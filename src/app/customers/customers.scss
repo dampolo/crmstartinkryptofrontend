@@ -18,19 +18,16 @@ td{
     background-color: white;
 }
 
+tr:hover td {
+    background-color: var(--body-bg);
+}
+
 tr td {
     border-right: none;
     border-left: none;
     border-bottom: none;
 }
 
-tr:nth-child(even){
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #ddd;
-}
 
 table thead tr td:first-child {
     border-top-left-radius:10px
