@@ -1,0 +1,45 @@
+@import url("./resets.css");
+@import url("./basic.css");
+
+main {
+    display: flex;
+    margin: 0 .0625rem .0625rem .0625rem;
+    height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: var(--body-bg);
+}
+
+.title {
+    margin-bottom: 1rem;
+}
+
+app-header {
+    display: block;
+    margin: .0625rem .0625rem 0 .0625rem;
+    height: 2.5rem;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+app-navbar {
+    height: 100%;
+    width: 192px;
+    background: #ffff;
+    border-right: 1px solid var(--border-color);
+}
+
+app-apply,
+app-newcustomer,
+app-invoices,
+app-customers {
+    height: 100%;
+    margin: 1rem;
+    padding: 0 1rem 1rem 1rem;
+}
+

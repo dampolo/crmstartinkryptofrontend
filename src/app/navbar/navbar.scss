@@ -1,0 +1,43 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.875rem;
+        background: none;
+        button {
+            width: 100%;
+            &:hover {
+                transition: var(--first-transition);
+                background-color: var(--primary);
+            }
+        }
+        button.active {
+            background-color: var(--primary);
+        }
+    }
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    outline: transparent;
+    &:focus-visible {
+    border: 2px dotted var(--primary);
+    outline: var(--primary);
+    }
+    img {
+        height: 2.5rem;
+        padding: 0.2rem;
+        &:hover {
+        filter: drop-shadow(2px 4px 6px var(--primary));
+        }
+    }
+}
+
+

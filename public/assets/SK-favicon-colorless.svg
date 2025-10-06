@@ -1,0 +1,13 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 412">
+	<defs>
+		<linearGradient xmlns="http://www.w3.org/2000/svg" id="goldGradient" x1="0" y1="1" x2="0" y2="0">
+			<stop offset="0" stop-color="#ffffff" />
+		</linearGradient>
+	</defs>
+
+	<circle cx="206" cy="206" r="206" fill="#02020207" />
+	<path fill="url(#goldGradient)" d="M193 130V96c-6-4-23-14-45-13-5 0-40 2-54 30a57 57 0 0 0 8 60c24 33 36 42 52 65 13 19 22 32 18 48-3 16-16 24-17 25-23 15-51-3-54-4-12-8-18-18-21-23v36a100 100 0 0 0 58 17c5 0 35-3 54-29 19-24 14-52 13-60-4-23-17-39-28-53l-43-52c-2-2-8-9-8-19 0-2 0-8 4-13 7-10 23-8 27-7 21 2 34 22 36 26Z" />
+	<path fill="url(#goldGradient)" d="M282 86c-10 12 4-6-60 90-6 8-8 19-8 32 0 16 6 29 11 36 63 95 49 77 59 89h54l-84-121c-3-3-3-8-1-11l76-115h-47Z" />
+</svg>
+
