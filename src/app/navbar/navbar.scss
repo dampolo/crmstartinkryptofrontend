@@ -3,6 +3,7 @@ ul {
     flex-direction: column;
     padding: 1rem;
     gap: 2rem;
+    height: 100%;
     li {
         display: flex;
         justify-content: center;
@@ -10,14 +11,24 @@ ul {
         height: 1.875rem;
         background: none;
         button {
+            display: flex;
             width: 100%;
+            gap: 0.5rem;
+            padding: 0.5rem;
             &:hover {
                 transition: var(--first-transition);
                 background-color: var(--primary);
             }
+            img {
+                width: 1.5625rem;
+                height: 1.5625rem;
+            }
         }
         button.active {
             background-color: var(--primary);
+        }
+        &:nth-last-child(-n + 1) {
+            margin-top: auto;
         }
     }
 }

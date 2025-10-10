@@ -10,5 +10,7 @@ export const routes: Routes = [
   { path: 'bewerbungen', component: Apply, title: 'Bewerbungen' },
   { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
   { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
+  { path: 'einstellungen', component: Newcustomer, title: 'Einstellungen' },
+
   { path: '**', redirectTo: 'kunden' },
 ];
