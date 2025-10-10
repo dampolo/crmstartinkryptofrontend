@@ -17,7 +17,7 @@ ul {
             padding: 0.5rem;
             &:hover {
                 transition: var(--first-transition);
-                background-color: var(--primary);
+                background: linear-gradient(180deg, #d6a65357, #8f59073f);
             }
             img {
                 width: 1.5625rem;
