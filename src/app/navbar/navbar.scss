@@ -12,8 +12,9 @@ ul {
         background: none;
         button {
             display: flex;
+            align-items: center;
             width: 100%;
-            gap: 0.5rem;
+            gap: 1rem;
             padding: 0.5rem;
             &:hover {
                 transition: var(--first-transition);
@@ -26,6 +27,9 @@ ul {
         }
         button.active {
             background-color: var(--primary);
+        }
+        &:nth-child(2) {
+            margin-top: 1rem;
         }
         &:nth-last-child(-n + 1) {
             margin-top: auto;
@@ -43,8 +47,6 @@ ul {
     outline: var(--primary);
     }
     img {
-        height: 2.5rem;
-        padding: 0.2rem;
         &:hover {
         filter: drop-shadow(2px 4px 6px var(--primary));
         }

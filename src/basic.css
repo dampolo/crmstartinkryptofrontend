@@ -2,6 +2,7 @@
   --main: #000000;
   --primary: #d6a553;
   --secondary: #8f5907;
+  --third: linear-gradient(180deg, #d6a65357, #8f59073f);
   --required: #ff0000;
   --border-color: #e4e5e5;
   --border-radius: 0.625rem;
@@ -13,4 +14,5 @@
   --content-color: #fafafa;
   --footer: #e1e1e1;
   --focus: 2px dotted var(--primary);
+
 }
