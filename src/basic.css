@@ -3,6 +3,15 @@
   --primary: #d6a553;
   --secondary: #8f5907;
   --third: linear-gradient(180deg, #d6a65357, #8f59073f);
+  --fourth: rgb(219, 234, 254);
+  --fifth: rgb(254, 249, 195);
+  --sixth: rgb(255, 255, 255);
+  --seventh: rgb(78, 101, 184);
+  --eighth: rgb(220, 252, 231);
+  --ninth: rgb(6, 70, 6);
+  --tenth: rgb(254, 226, 226);
+  --eleventh: rgb(158, 17, 17);
+  --twelfth: rgb(161 157 154);
   --required: #ff0000;
   --border-color: #e4e5e5;
   --border-radius: 0.625rem;

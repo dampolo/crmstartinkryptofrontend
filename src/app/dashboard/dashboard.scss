@@ -69,7 +69,7 @@
                     justify-content: space-between;
                     align-items: center;
                     width: 100%;
-                    .name-email {
+                    .dashboard-list-single {
                         text-align: left;
                         line-height: 1.2;
                         h3 {
@@ -77,6 +77,45 @@
                         }
                         span {
                             font-size: .8rem;
+                            color: var(--twelfth);
+                        }
+                    }
+                    .dashboard-list-status {
+                            display: flex;
+                            border-radius: var(--border-radius);
+                            padding-inline: 0.3rem;
+                            font-size: .75rem;                     
+                        &.paid{
+                            background: var(--fourth);
+                            color: var(--seventh);
+                        }
+                        &.unpaid{
+                            background: var(--fifth);
+                            color: var(--secondary);
+                        }
+                        &.standart {
+                            background: var(--fifth);
+                            color: var(--secondary);
+                        }
+                        &.optional {
+                            background: var(--third);
+                            color: var(--secondary);
+                        }
+                        &.premium {
+                            background: var(--primary);
+                            color: var(--sixth);
+                        }
+                        &.pending {
+                            background: var(--fifth);
+                            color: var(--secondary);
+                        }
+                        &.approved {
+                            background: var(--eighth);
+                            color: var(--ninth);
+                        }
+                        &.rejected {
+                            background: var(--tenth);
+                            color: var(--eleventh);
                         }
                     }
                 }
