@@ -1,0 +1,72 @@
+<h1 class="title">Algorithmus</h1>
+
+<form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()" novalidate>
+  <div>
+    <label for="summe">Summe (€):</label>
+    <input
+      id="summe"
+      type="number"
+      formControlName="Summe"
+      placeholder="z. B. 1000"
+    />
+
+    @if (Summe?.touched && Summe?.invalid) {
+      <div class="error">
+        @if (Summe?.errors?.['required']) {
+          <small>Summe ist erforderlich.</small>
+        }
+        @if (Summe?.errors?.['min']) {
+          <small>Mindestwert ist 1 €.</small>
+        }
+        @if (Summe?.errors?.['pattern']) {
+          <small>Bitte gültige Zahl eingeben (z. B. 1000.50).</small>
+        }
+      </div>
+    }
+  </div>
+
+  <hr />
+
+  <div class="checkboxes">
+    <label>
+      <input type="checkbox" formControlName="firstStep" />
+      Individuelle Express Krypto-Einführung
+    </label>
+
+    <label>
+      <input type="checkbox" formControlName="exchangeSetup" />
+      Börsenwahl & Einrichtung
+    </label>
+
+    <label>
+      <input type="checkbox" formControlName="buyStrategy" />
+      Kaufstrategie & Coin-Auswahl
+    </label>
+
+    <label>
+      <input type="checkbox" formControlName="walletSetup" />
+      Wallet-Einrichtung & Sicherheit
+    </label>
+
+    <label>
+      <input type="checkbox" formControlName="taxTool" />
+      Steuertool für deine Abwicklung
+    </label>
+
+    <label>
+      <input type="checkbox" formControlName="ongoingSupport" />
+      Laufende Betreuung
+    </label>
+  </div>
+
+  @if (formErrors?.['noServiceSelected'] && algorithmusForm.touched) {
+    <div class="error">
+      <small>Bitte wähle mindestens eine Dienstleistung aus.</small>
+    </div>
+  }
+
+  <button type="submit" [disabled]="algorithmusForm.invalid">
+    Absenden
+  </button>
+</form>
+
