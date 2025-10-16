@@ -28,6 +28,31 @@ export class Algorithmus {
     );
   }
 
+  getFirstStepValue():boolean {    
+    return this.algorithmusForm.get('firstStep')?.value
+  };
+
+  getExchangeSetup():boolean {    
+    return this.algorithmusForm.get('exchangeSetup')?.value
+  };
+
+  getBuyStrategy():boolean {    
+    return this.algorithmusForm.get('buyStrategy')?.value
+  };
+
+  getWalletSetup():boolean {    
+    return this.algorithmusForm.get('walletSetup')?.value
+  };
+
+  getTaxTool():boolean {    
+    return this.algorithmusForm.get('taxTool')?.value
+  };
+
+  ongoingSupport():boolean {    
+    return this.algorithmusForm.get('ongoingSupport')?.value
+  };
+
+
   onSubmit() {
     if (this.algorithmusForm.valid) {
       console.log('Form submitted:', this.algorithmusForm.value);
@@ -39,9 +64,7 @@ export class Algorithmus {
 
   get Summe() {
     return this.algorithmusForm.get('Summe');
+    
   }
 
-  get formErrors() {
-    return this.algorithmusForm.errors;
-  }
 }

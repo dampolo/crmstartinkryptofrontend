@@ -25,8 +25,6 @@
     }
   </div>
 
-  <hr />
-
   <div class="checkboxes">
     <label for="first-step">
       <input id="first-step" type="checkbox" formControlName="firstStep" />
@@ -58,12 +56,6 @@
       Laufende Betreuung
     </label>
   </div>
-
-  @if (formErrors?.['noServiceSelected'] && algorithmusForm.touched) {
-    <div class="error">
-      <small>Bitte wähle mindestens eine Dienstleistung aus.</small>
-    </div>
-  }
 
   <button type="submit" [disabled]="!algorithmusForm.valid">
     Berechnen
