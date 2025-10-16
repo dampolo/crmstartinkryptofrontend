@@ -1,6 +1,6 @@
 <h1 class="title">Algorithmus</h1>
 
-<form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="summe">Summe (€):</label>
     <input
@@ -28,33 +28,33 @@
   <hr />
 
   <div class="checkboxes">
-    <label>
-      <input type="checkbox" formControlName="firstStep" />
+    <label for="first-step">
+      <input id="first-step" type="checkbox" formControlName="firstStep" />
       Individuelle Express Krypto-Einführung
     </label>
 
-    <label>
-      <input type="checkbox" formControlName="exchangeSetup" />
+    <label for="exchange-setup" >
+      <input id="exchange-setup" type="checkbox" formControlName="exchangeSetup" />
       Börsenwahl & Einrichtung
     </label>
 
-    <label>
-      <input type="checkbox" formControlName="buyStrategy" />
+    <label for="buy-strategy">
+      <input id="buy-strategy" type="checkbox" formControlName="buyStrategy" />
       Kaufstrategie & Coin-Auswahl
     </label>
 
-    <label>
-      <input type="checkbox" formControlName="walletSetup" />
+    <label for="wallet-setup">
+      <input id="wallet-setup" type="checkbox" formControlName="walletSetup" />
       Wallet-Einrichtung & Sicherheit
     </label>
 
-    <label>
-      <input type="checkbox" formControlName="taxTool" />
+    <label for="tax-tool">
+      <input id="tax-tool" type="checkbox" formControlName="taxTool" />
       Steuertool für deine Abwicklung
     </label>
 
-    <label>
-      <input type="checkbox" formControlName="ongoingSupport" />
+    <label for="ongoing-support">
+      <input id="ongoing-support" type="checkbox" formControlName="ongoingSupport" />
       Laufende Betreuung
     </label>
   </div>
@@ -65,8 +65,8 @@
     </div>
   }
 
-  <button type="submit" [disabled]="algorithmusForm.invalid">
-    Absenden
+  <button type="submit" [disabled]="!algorithmusForm.valid">
+    Berechnen
   </button>
 </form>
 

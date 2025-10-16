@@ -10,7 +10,98 @@ form {
   font-size: 0.9rem;
 }
 
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .checkboxes label {
-  display: block;
-  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 26.25rem;
+  height: 30px;
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  padding-block: 1.5rem;
+  cursor: pointer;
+}
+
+input[id="summe"] {
+  border: 1px solid var(--border-color);
+  padding-inline: 0.5rem;
+  margin-left: 0.5rem;
+  max-width: 100%;
+}
+
+input[id="summe"]::-webkit-outer-spin-button,
+input[id="summe"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[id="summe"][type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[id="summe"]:focus {
+    border-color: var(--primary);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px var(--primary);
+    box-shadow: inset 0 1px 1px #00000013, 0 0 8px var(--primary);
+}
+
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  font: inherit;
+  color: var(--secondary);
+  width: 1rem;
+  height: 1rem;
+  border: 0.15em solid var(--secondary);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: var(--first-transition);
+  box-shadow: inset 1em 1em var(--secondary);
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+button[type="submit"] {
+  background-color: var(--primary);
+  width: fit-content;
+  padding: 0.5rem;
+  align-self: center;
+  transition: var(--first-transition);
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(180deg, rgba(214, 166, 83, 0.3411764706), rgba(143, 89, 7, 0.2470588235));
+}
+
+button[type="submit"]:disabled {
+  background-color: red
+}
+
+button[type="submit"]:disabled,
+button[type="submit"][disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: initial;
 }
