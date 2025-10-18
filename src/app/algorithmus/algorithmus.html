@@ -62,3 +62,39 @@
   </button>
 </form>
 
+<section>
+  <h2>
+    Zusammenfassung
+  </h2>
+  <dl>
+        <dt>Individuelle Express Krypto-Einführung</dt>
+    <dd>{{firstStepAmount | number:'1.2-2'}} €</dd>
+        <dt>Börsenwahl & Einrichtung</dt>
+    <dd>{{exchangeSetupAmount| number:'1.2-2'}} €</dd>
+        <dt> Kaufstrategie & Coin-Auswahl</dt>
+    <dd>{{buyStrategyAmount | number:'1.2-2'}} €</dd>
+        <dt>Wallet-Einrichtung & Sicherheit</dt>
+    <dd>{{walletSetupAmount | number:'1.2-2'}} €</dd>
+        <dt>Steuertool für deine Abwicklung</dt>
+    <dd>{{taxToolAmount | number:'1.2-2'}} €</dd>
+        <dt>Laufende Betreuung</dt>
+          <dd>{{ongoingSupportAmount | number:'1.2-2'}} €</dd> 
+  </dl>
+  
+  <div class="divider"></div>
+
+  <dl>
+        <dt>Investitions Betrag</dt>
+    <dd>{{ investmentAmount | number:'1.2-2' }} €</dd>
+        <dt>Provison</dt>
+    <dd>{{ totalProvision | number:'1.2-2' }} €</dd>
+  </dl>
+
+  <div class="divider"></div>
+
+  <dl>
+        <dt>Total Betrag</dt>
+    <dd>{{ totalAmount | number:'1.2-2'}} €</dd>
+  </dl>
+</section>
+
