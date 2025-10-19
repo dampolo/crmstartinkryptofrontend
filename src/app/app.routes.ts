@@ -16,5 +16,10 @@ export const routes: Routes = [
   { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
   { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
   { path: 'einstellungen', component: Settings, title: 'Einstellungen' },
+   {
+    path: 'einstellungen',
+    loadChildren: () =>
+      import('./settings/settings-routing').then(m => m.settingsRoutes),
+  },
   { path: '**', redirectTo: 'kunden' },
 ];

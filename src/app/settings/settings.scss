@@ -1,0 +1,32 @@
+ul {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    gap: 2rem;
+    height: 100%;
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.875rem;
+        background: none;
+        button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+            padding: 0.5rem;
+            &:hover {
+                transition: var(--first-transition);
+                background: linear-gradient(180deg, #d6a65357, #8f59073f);
+            }
+            img {
+                width: 1.5625rem;
+                height: 1.5625rem;
+            }
+        }
+        button.active {
+            background-color: var(--primary);
+        }
+    }
+}
