@@ -26,6 +26,10 @@
   </div>
 
   <div class="checkboxes">
+    <label for="basic-fee">
+      <input id="basic-fee" type="checkbox" formControlName="basicFee" />
+      Grundgebühr
+    </label>
     <label for="first-step">
       <input id="first-step" type="checkbox" formControlName="firstStep" />
       Individuelle Express Krypto-Einführung
@@ -67,6 +71,8 @@
     Zusammenfassung
   </h2>
   <dl>
+        <dt>Grundgebühr</dt>
+    <dd>{{basicFeeProvision | number:'1.2-2'}} €</dd>
         <dt>Individuelle Express Krypto-Einführung</dt>
     <dd>{{firstStepAmount | number:'1.2-2'}} €</dd>
         <dt>Börsenwahl & Einrichtung</dt>

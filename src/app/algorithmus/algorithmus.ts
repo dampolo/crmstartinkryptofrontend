@@ -22,6 +22,7 @@ export class Algorithmus {
   taxToolAmount: number = 0;
   ongoingSupportAmount: number = 0;
 
+  basicFeeProvision: number = 700
   firstStepProvision: number = 0.05;
   exchangeSetupProvision: number = 0.03;
   buyStrategyProvision: number = 0.05;
@@ -32,8 +33,9 @@ export class Algorithmus {
   constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group(
       {
+        basicFee: [true],
         Summe: [
-          '100',
+          '',
           [Validators.required, Validators.min(1), Validators.pattern(/^\d+(\.\d{1,2})?$/)],
         ],
         firstStep: [false],
@@ -45,6 +47,14 @@ export class Algorithmus {
       },
     );
   }
+
+  ngOnInit(): void {
+    this.onSubmit()
+  }
+
+  getBasicFee():boolean {    
+    return this.algorithmusForm.get('basicFee')?.value
+  };
 
   getFirstStepValue():boolean {    
     return this.algorithmusForm.get('firstStep')?.value
@@ -115,7 +125,8 @@ export class Algorithmus {
 
       }
       
-      this.totalAmount = this.totalProvision
+      this.totalAmount = this.totalProvision + this.basicFeeProvision;
+
     } else {
       this.algorithmusForm.markAllAsTouched();
     }
