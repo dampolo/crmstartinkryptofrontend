@@ -115,7 +115,7 @@ export class Algorithmus {
 
       }
       
-      this.totalAmount = sum + this.totalProvision
+      this.totalAmount = this.totalProvision
     } else {
       this.algorithmusForm.markAllAsTouched();
     }
