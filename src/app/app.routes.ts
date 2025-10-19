@@ -5,6 +5,7 @@ import { Invoices } from './invoices/invoices';
 import { Newcustomer } from './newcustomer/newcustomer';
 import { Dashboard } from './dashboard/dashboard';
 import { Algorithmus } from './algorithmus/algorithmus';
+import { Settings } from './settings/settings';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -14,8 +15,6 @@ export const routes: Routes = [
   { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
   { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
   { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
-
-  // { path: 'einstellungen', component: Newcustomer, title: 'Einstellungen' },
-
+  { path: 'einstellungen', component: Settings, title: 'Einstellungen' },
   { path: '**', redirectTo: 'kunden' },
 ];
