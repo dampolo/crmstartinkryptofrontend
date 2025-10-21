@@ -22,72 +22,72 @@
   <!-- First Name -->
   <div class="form-group">
     <label class="control-label" id="label-firstName" for="firstName">Vorname:</label>
-    <input class="form-control" type="text" id="firstName" formControlName="firstName">
+    <input class="form-control" type="text" placeholder="Max" id="firstName" formControlName="firstName">
   </div>
 
   <!-- Name -->
   <div class="form-group">
     <label class="control-label" id="label-name" for="name">Nachname:</label>
-    <input class="form-control" type="text" id="name" formControlName="name">
+    <input class="form-control" type="text" placeholder="Mustermann" id="name" formControlName="name">
   </div>
 
   <!-- Street -->
   <div class="form-group">
     <label class="control-label" id="label-street" for="street">Straße:</label>
-    <input class="form-control" type="text" id="street" formControlName="street">
+    <input class="form-control" type="text" placeholder="Musterstrasse" id="street" formControlName="street">
   </div>
 
   <!-- Number -->
   <div class="form-group">
     <label class="control-label" id="label-number" for="number">Hausnummer:</label>
-    <input class="form-control" type="text" id="number" formControlName="number">
+    <input class="form-control" type="text" placeholder="123" id="number" formControlName="number">
   </div>
 
   <!-- Postcode -->
   <div class="form-group">
     <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
-    <input class="form-control" type="text" id="postcode" formControlName="postcode">
+    <input class="form-control" type="text" placeholder="81500" id="postcode" formControlName="postcode">
   </div>
 
   <!-- City -->
   <div class="form-group">
     <label class="control-label" id="label-city" for="city">Stadt:</label>
-    <input class="form-control" type="text" id="city" formControlName="city">
+    <input class="form-control" type="text" placeholder="MusterStadt" id="city" formControlName="city">
   </div>
 
   <!-- Email -->
   <div class="form-group">
     <label class="control-label" id="label-email" for="email">E-mail:</label>
-    <input class="form-control" type="email" id="email" formControlName="email">
+    <input class="form-control" type="email" placeholder="maxmusterman@email.com" id="email" formControlName="email">
   </div>
 
   <!-- Phone Number -->
   <div class="form-group">
     <label class="control-label" id="label-phone" for="phone">Telephone:</label>
-    <input class="form-control" type="tel" id="phone" formControlName="phone">
+    <input class="form-control" type="tel" placeholder="+49 176 42 56 85 45" id="phone" formControlName="phone">
   </div>
 
   <!-- Receive Offers -->
   <div class="form-group">
-    <label class="control-label" id="label-receiveOffers">Would you like to receive e-mails with offers?</label>
+    <label class="control-label" id="label-receiveOffers">Willst du unsere Mitteilungen per E-Mail bekommen?</label>
     <div class="form-radio">
         
       <label for="offersYes">
       <input class="form-control" type="radio" id="offersYes" formControlName="receiveOffers" value="yes">
-        Yes
+        Ja
       </label>
 
-        <label for="offersNo">
-          <input class="form-control" type="radio" id="offersNo" formControlName="receiveOffers" value="no">
-          No
-        </label>
+      <label for="offersNo">
+        <input class="form-control" type="radio" id="offersNo" formControlName="receiveOffers" value="no">
+        Nein
+      </label>
     </div>
   </div>
 
   <!-- Comment -->
   <div class="form-group">
     <label class="control-label" id="label-comment" for="comment">Kommentar:</label>
-    <textarea class="form-control" id="comment" formControlName="comment" rows="4"></textarea>
+    <textarea class="form-control" id="comment" formControlName="comment"></textarea>
   </div>
 
   <button type="submit">Speichern</button>
