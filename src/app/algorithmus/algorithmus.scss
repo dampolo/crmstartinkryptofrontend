@@ -121,7 +121,8 @@ section {
   gap: 1rem;
   dt {
     float: left;
-    width: 18.75rem;
+    max-width: 23rem;
+    width: 100%;
     padding: 0;
     margin: 0;
   }
