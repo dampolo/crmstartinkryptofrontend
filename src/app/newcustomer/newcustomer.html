@@ -1,1 +1,94 @@
 <h1 class="title">Neuer Kunde</h1>
+
+<form [formGroup]="newCustomerForm" (ngSubmit)="onSubmit()">
+
+  <!-- Photo -->
+  <div class="form-group">
+    <label id="label-photo" for="photo">Photo:</label>
+    <input type="file" id="photo" formControlName="photo" accept="image/*">
+  </div>
+
+<!-- Anrede (Title) -->
+  <div class="form-group">
+    <label id="label-title" for="title">Anrede:</label>
+    <select class="form-control" id="title" formControlName="title">
+      <option value="">Keine Angabe</option>
+      <option value="Herr">Herr</option>
+      <option value="Frau">Frau</option>
+      <option value="Divers">Divers</option>
+    </select>
+  </div>
+
+  <!-- First Name -->
+  <div class="form-group">
+    <label class="control-label" id="label-firstName" for="firstName">Vorname:</label>
+    <input class="form-control" type="text" id="firstName" formControlName="firstName">
+  </div>
+
+  <!-- Name -->
+  <div class="form-group">
+    <label class="control-label" id="label-name" for="name">Nachname:</label>
+    <input class="form-control" type="text" id="name" formControlName="name">
+  </div>
+
+  <!-- Street -->
+  <div class="form-group">
+    <label class="control-label" id="label-street" for="street">Straße:</label>
+    <input class="form-control" type="text" id="street" formControlName="street">
+  </div>
+
+  <!-- Number -->
+  <div class="form-group">
+    <label class="control-label" id="label-number" for="number">Hausnummer:</label>
+    <input class="form-control" type="text" id="number" formControlName="number">
+  </div>
+
+  <!-- Postcode -->
+  <div class="form-group">
+    <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
+    <input class="form-control" type="text" id="postcode" formControlName="postcode">
+  </div>
+
+  <!-- City -->
+  <div class="form-group">
+    <label class="control-label" id="label-city" for="city">Stadt:</label>
+    <input class="form-control" type="text" id="city" formControlName="city">
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label class="control-label" id="label-email" for="email">E-mail:</label>
+    <input class="form-control" type="email" id="email" formControlName="email">
+  </div>
+
+  <!-- Phone Number -->
+  <div class="form-group">
+    <label class="control-label" id="label-phone" for="phone">Telephone:</label>
+    <input class="form-control" type="tel" id="phone" formControlName="phone">
+  </div>
+
+  <!-- Receive Offers -->
+  <div class="form-group">
+    <label class="control-label" id="label-receiveOffers">Would you like to receive e-mails with offers?</label>
+    <div class="form-radio">
+        
+      <label for="offersYes">
+      <input class="form-control" type="radio" id="offersYes" formControlName="receiveOffers" value="yes">
+        Yes
+      </label>
+
+        <label for="offersNo">
+          <input class="form-control" type="radio" id="offersNo" formControlName="receiveOffers" value="no">
+          No
+        </label>
+    </div>
+  </div>
+
+  <!-- Comment -->
+  <div class="form-group">
+    <label class="control-label" id="label-comment" for="comment">Kommentar:</label>
+    <textarea class="form-control" id="comment" formControlName="comment" rows="4"></textarea>
+  </div>
+
+  <button type="submit">Speichern</button>
+</form>
