@@ -90,7 +90,7 @@ button[type='submit'] {
   transition: var(--first-transition);
 }
 
-button[type='submit']:hover {
+button[type='submit']:not(:disabled):hover {
   background: linear-gradient(
     180deg,
     rgba(214, 166, 83, 0.3411764706),
