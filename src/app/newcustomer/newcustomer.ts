@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { StateControl } from '../services/state-control';
 
 @Component({
   standalone: true,
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class Newcustomer {
   newCustomerForm: FormGroup
-
+  stateControl = inject(StateControl);
 
   constructor(private fb: FormBuilder) {
     this.newCustomerForm = this.fb.group({
@@ -40,6 +41,6 @@ export class Newcustomer {
   }
 
   onSubmit() {
-
+    this.stateControl.showToastText.set("Der Kunde wurde erstellt")    
   }
 }
