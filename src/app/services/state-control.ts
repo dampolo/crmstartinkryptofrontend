@@ -4,7 +4,7 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class StateControl {
-  showToast: boolean = true;
+  showToast: boolean = false;
   showError: boolean = false;
   showArrow: boolean = false;
   showToastText = signal('');
@@ -13,8 +13,11 @@ export class StateControl {
   removeShowToast() {
     setTimeout(() => {
     this.showToast = false;
-    this.showToastText.set('');
     }, 2000);
+
+    setTimeout(() => {
+      this.showToastText.set('');
+    }, 2500);
   }
 
 }

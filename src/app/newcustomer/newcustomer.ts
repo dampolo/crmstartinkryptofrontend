@@ -41,6 +41,8 @@ export class Newcustomer {
   }
 
   onSubmit() {
-    this.stateControl.showToastText.set("Der Kunde wurde erstellt")    
+    this.stateControl.showToast = true;
+    this.stateControl.showToastText.set("Der Kunde wurde erstellt");
+    this.stateControl.removeShowToast();
   }
 }
