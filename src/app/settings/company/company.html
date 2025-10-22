@@ -1,0 +1,56 @@
+<form [formGroup]="companyForm" novalidate>
+
+  <!-- Company Logo -->
+  <div class="form-group">
+    <label class="control-label" id="label-logo" for="logo">Firmenlogo:</label>
+    <input class="form-control" type="file" id="logo" formControlName="logo" accept="image/*">
+  </div>
+
+  <!-- Company Name -->
+  <div class="form-group">
+    <label class="control-label" id="label-companyName" for="companyName">Firmenname:</label>
+    <input class="form-control" type="text" placeholder="Musterfirma GmbH" id="companyName" formControlName="companyName">
+  </div>
+
+  <!-- Street -->
+  <div class="form-group">
+    <label class="control-label" id="label-street" for="street">Straße:</label>
+    <input class="form-control" type="text" placeholder="Musterstraße" id="street" formControlName="street">
+  </div>
+
+  <!-- Number -->
+  <div class="form-group">
+    <label class="control-label" id="label-number" for="number">Hausnummer:</label>
+    <input class="form-control" type="text" placeholder="12A" id="number" formControlName="number">
+  </div>
+
+  <!-- Postcode -->
+  <div class="form-group">
+    <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
+    <input class="form-control" type="text" placeholder="12345" id="postcode" formControlName="postcode">
+  </div>
+
+  <!-- City -->
+  <div class="form-group">
+    <label class="control-label" id="label-city" for="city">Stadt:</label>
+    <input class="form-control" type="text" placeholder="Berlin" id="city" formControlName="city">
+  </div>
+
+  <!-- Owner Name -->
+  <div class="form-group">
+    <label class="control-label" id="label-ownerName" for="ownerName">Name des Inhabers:</label>
+    <input class="form-control" type="text" placeholder="Max Mustermann" id="ownerName" formControlName="ownerName">
+  </div>
+
+  <!-- Steuernummer -->
+  <div class="form-group">
+    <label class="control-label" id="label-taxNumber" for="taxNumber">Steuernummer:</label>
+    <input class="form-control" type="text" placeholder="123/4567/8901" id="taxNumber" formControlName="taxNumber">
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="companyForm.invalid">
+    Speichern
+  </button>
+
+</form>

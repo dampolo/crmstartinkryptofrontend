@@ -1,3 +1,5 @@
+@use "./../../basic";
+
 ul {
     display: flex;
     flex-direction: row;
@@ -17,7 +19,7 @@ ul {
             gap: 1rem;
             padding: 0.5rem;
             &:hover {
-                transition: var(--first-transition);
+                transition: basic.$first-transition;
                 background: linear-gradient(180deg, #d6a65357, #8f59073f);
             }
             img {
@@ -26,7 +28,7 @@ ul {
             }
         }
         button.active {
-            background-color: var(--primary);
+            background-color: basic.$primary;
         }
     }
 }
