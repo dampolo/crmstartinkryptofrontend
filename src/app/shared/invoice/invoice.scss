@@ -2,12 +2,17 @@
 
 
 .invoice-container {
-  background: #fff;
-  max-width: 700px;
-  margin: auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    width: 210mm;      /* A4 width */
+    min-height: 297mm; /* A4 height */
+    padding: 25mm;     /* nice margins */
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 40px;
 }
 
 .invoice-header {
@@ -48,7 +53,7 @@
   text-align: left;
   background: #fafafa;
   padding: 10px;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid basic.$border-color;
 }
 
 .invoice-table td {
@@ -66,8 +71,8 @@
     margin-top: 20px;
 }
 
-.totals span {
-    margin-right: 30px;
+.totals span:nth-of-type(2n) {
+    text-align: right;
 }
 
 .totals p,
@@ -77,7 +82,7 @@
 
 .totals span {
   display: inline-block;
-  width: 120px;
+  width: 130px;
   text-align: left;
 }
 
