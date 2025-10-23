@@ -12,6 +12,7 @@ import { StateControl } from '../../services/state-control';
 export class Company {
   companyForm: FormGroup;
   companyDeatils = inject(StateControl);
+  currentYear = new Date().getFullYear();
 
   constructor(private fb: FormBuilder) {
     this.companyForm = this.fb.group({
@@ -35,6 +36,15 @@ export class Company {
           Validators.pattern(/^[0-9]{3}\/[0-9]{4,5}\/[0-9]{4}$/), // e.g. 123/4567/8901
         ],
       ],
+      foundingYear: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^[0-9]{4}$/), // 4-digit year only
+        Validators.min(1800),
+        Validators.max(this.currentYear),
+      ],
+    ],
     });
   }
 }

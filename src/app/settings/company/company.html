@@ -1,97 +1,112 @@
-<section>
-      <div class="container">
-    <div class="logo">
-       <a href="/" class="logo">
-      <img width="170" height="40" src="./assets/SK-logo.svg" alt="Start in Krypto">
-    </a>
-    </div>
+  <div class="wrapper-content">
+    <div class="container-firma">
+      <div class="logo">
+        <a href="/" class="logo">
+          <img width="170" height="40" src="./assets/SK-logo.svg" alt="Start in Krypto">
+        </a>
+      </div>
     <h1>Start in Krypto</h1>
     <p class="subtitle">Dein Einstieg in die Krypto-Welt</p>
 
-    <h2>Über Firma</h2>
+    <h2>Firmendaten</h2>
     <address class="details">
       <dl>
-        <dt class="label">Name</dt>
+        <dt>Name</dt>
         <dd>Start in Krypto</dd>
       </dl>
       <dl>
-        <dt class="label">Name des Inhabers</dt>
+        <dt>Name des Inhabers</dt>
         <dd>Elisabeth Poloczek</dd>
       </dl>
       <dl>
-        <dt class="label">Straße & Nr.</dt>
+        <dt>Straße & Nr.</dt>
         <dd>Chiemgaustr. 156</dd>
       </dl>
       <dl>
-        <dt class="label">Stadt & Postleitzahl</dt>
+        <dt>Postleitzahl & Stadt</dt>
         <dd>81549 München</dd>
       </dl>
     </address>
-
-    <dl class="steuer">
+    
+    <dl class="tax">
       <dt>Steuernummer</dt>
       <dd>DE987654321</dd>
     </dl>
+    <dl class="founding">
+      <dt>Gründung</dt>
+      <dd>2025</dd>
+    </dl>
+    <button class="edit" onclick="toggleEditMode()" disabled="true">EDIT</button>
   </div>
 
-</section>
+  <form [formGroup]="companyForm" class="container-edit" novalidate>
+      
+    <!-- Company Logo -->
+    <div class="form-group">
+      <label class="control-label" id="label-logo" for="logo">Firmenlogo:</label>
+      <input class="form-control" type="file" id="logo" formControlName="logo" accept="image/*">
+      </div>
 
-<!-- <section>     -->
-    <!-- <form [formGroup]="companyForm" novalidate> -->
-        
-  <!-- Company Logo -->
-  <!-- <div class="form-group">
-    <label class="control-label" id="label-logo" for="logo">Firmenlogo:</label>
-    <input class="form-control" type="file" id="logo" formControlName="logo" accept="image/*">
-    </div> -->
+    <!-- Company Name -->
+    <div class="form-group">
+      <label class="control-label" id="label-companyName" for="companyName">Name:</label>
+      <input class="form-control" type="text" placeholder="Musterfirma GmbH" id="companyName" formControlName="companyName">
+    </div>
 
-  <!-- Company Name -->
-  <!-- <div class="form-group">
-    <label class="control-label" id="label-companyName" for="companyName">Firmenname:</label>
-    <input class="form-control" type="text" placeholder="Musterfirma GmbH" id="companyName" formControlName="companyName">
-   </div> -->
+    <!-- Street -->
+    <div class="form-group">
+      <label class="control-label" id="label-street" for="street">Straße:</label>
+      <input class="form-control" type="text" placeholder="Musterstraße" id="street" formControlName="street">
+    </div>
 
-  <!-- Street -->
-  <!-- <div class="form-group">
-    <label class="control-label" id="label-street" for="street">Straße:</label>
-    <input class="form-control" type="text" placeholder="Musterstraße" id="street" formControlName="street">
-  </div> -->
+    <!-- Number -->
+    <div class="form-group">
+      <label class="control-label" id="label-number" for="number">Hausnummer:</label>
+      <input class="form-control" type="text" placeholder="12A" id="number" formControlName="number">
+    </div>
 
-  <!-- Number -->
-  <!-- <div class="form-group">
-    <label class="control-label" id="label-number" for="number">Hausnummer:</label>
-    <input class="form-control" type="text" placeholder="12A" id="number" formControlName="number">
-  </div> -->
+    <!-- Postcode -->
+    <div class="form-group">
+      <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
+      <input class="form-control" type="text" placeholder="12345" id="postcode" formControlName="postcode">
+    </div>
+    
+    <!-- City -->
+    <div class="form-group">
+        <label class="control-label" id="label-city" for="city">Stadt:</label>
+      <input class="form-control" type="text" placeholder="Berlin" id="city" formControlName="city">
+    </div>
+    
+    <!-- Owner Name -->
+    <div class="form-group">
+        <label class="control-label" id="label-ownerName" for="ownerName">Name des Inhabers:</label>
+        <input class="form-control" type="text" placeholder="Max Mustermann" id="ownerName" formControlName="ownerName">
+    </div>
 
-  <!-- Postcode -->
-  <!-- <div class="form-group">
-    <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
-    <input class="form-control" type="text" placeholder="12345" id="postcode" formControlName="postcode">
-  </div> -->
+    <!-- Steuernummer -->
+    <div class="form-group">
+        <label class="control-label" id="label-taxNumber" for="taxNumber">Steuernummer:</label>
+        <input class="form-control" type="text" placeholder="123/4567/8901" id="taxNumber" formControlName="taxNumber">
+    </div>
+
+    <!-- Gründung -->
+    <div class="form-group">
+        <label class="control-label" id="label-founding" for="foundingYear">Gründung:</label>
+        <input class="form-control" type="text" placeholder="2025" id="foundingYear" formControlName="foundingYear">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="companyForm.invalid">
+      Speichern
+    </button>
+  </form>
+</div>
+
+
+
+<!-- <div class="wrapper">
+
+  <div class="container-edit"></div>
   
-  <!-- City -->
-  <!-- <div class="form-group">
-      <label class="control-label" id="label-city" for="city">Stadt:</label>
-    <input class="form-control" type="text" placeholder="Berlin" id="city" formControlName="city">
-  </div> -->
-  
-  <!-- Owner Name -->
-  <!-- <div class="form-group">
-      <label class="control-label" id="label-ownerName" for="ownerName">Name des Inhabers:</label>
-      <input class="form-control" type="text" placeholder="Max Mustermann" id="ownerName" formControlName="ownerName">
-  </div> -->
-
-  <!-- Steuernummer -->
-  <!-- <div class="form-group">
-      <label class="control-label" id="label-taxNumber" for="taxNumber">Steuernummer:</label>
-      <input class="form-control" type="text" placeholder="123/4567/8901" id="taxNumber" formControlName="taxNumber">
-  </div> -->
-
-  <!-- Submit Button -->
-  <!-- <button type="submit" [disabled]="companyForm.invalid">
-    Speichern
-  </button> -->
-
-<!-- </form> -->
-
-<!-- </section> -->
+  <div class="container-firma"></div>
+</div> -->

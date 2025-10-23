@@ -79,6 +79,16 @@ app-header {
     gap: 1rem;
 }
 
+app-company {
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  overflow-x: hidden;
+  border-radius: 0.75rem;
+  gap: 1rem;
+}
+
+button.edit,
 button[type='submit'] {
   background-color: basic.$primary;
   width: fit-content;
@@ -87,6 +97,7 @@ button[type='submit'] {
   transition: basic.$first-transition;
 }
 
+button.edit:not(:disabled):hover,
 button[type='submit']:not(:disabled):hover {
   background: linear-gradient(
     180deg,
@@ -95,10 +106,12 @@ button[type='submit']:not(:disabled):hover {
   );
 }
 
+button.edit:disabled,
 button[type='submit']:disabled {
   background-color: red;
 }
 
+button.edit:disabled,
 button[type='submit']:disabled,
 button[type='submit'][disabled] {
   border: 1px solid #999999;
@@ -127,4 +140,13 @@ app-toast {
 .show-success {
   opacity: 1;
   transform: translateX(0);
+}
+
+app-invoice {
+  display: flex;
+  z-index: 10000;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 40px;
+  color: #222;
 }

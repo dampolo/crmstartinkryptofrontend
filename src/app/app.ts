@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './navbar/navbar';
 import { Header } from './header/header';
-import { Toast } from './toast/toast';
+import { Toast } from './shared/toast/toast';
 import { StateControl } from './services/state-control';
 import { CommonModule } from '@angular/common';
 
