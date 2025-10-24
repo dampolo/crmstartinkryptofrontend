@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StateControl } from '../../services/state-control';
+import { CompanyControl } from '../../services/company-control';
 
 @Component({
   standalone: true,
@@ -11,7 +11,7 @@ import { StateControl } from '../../services/state-control';
 })
 export class Company {
   companyForm: FormGroup;
-  companyDeatils = inject(StateControl);
+  companyDetails = inject(CompanyControl);
   currentYear = new Date().getFullYear();
 
   constructor(private fb: FormBuilder) {

@@ -5,12 +5,11 @@ import { Company } from './company/company';
 
 export const settingsRoutes: Routes = [
   {
-    path: '',
-    component: Settings,
+    path: '', component: Settings,
     children: [
-      { path: '', redirectTo: 'profil', pathMatch: 'full' },
+      { path: '', redirectTo: 'firma', pathMatch: 'full' },
+      { path: 'firma', component: Company, title: 'Company - Einstellungen' },
       { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus - Einstellungen' },
-      { path: 'company', component: Company, title: 'Company - Einstellungen' },
     ],
   },
 ];

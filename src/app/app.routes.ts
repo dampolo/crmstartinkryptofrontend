@@ -15,7 +15,6 @@ export const routes: Routes = [
   { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
   { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
   { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
-  { path: 'einstellungen', component: Settings, title: 'Einstellungen' },
    {
     path: 'einstellungen',
     loadChildren: () =>

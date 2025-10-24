@@ -12,29 +12,33 @@
     <address class="details">
       <dl>
         <dt>Name</dt>
-        <dd>Start in Krypto</dd>
+        <dd>{{companyDetails.companyName}}</dd>
       </dl>
       <dl>
         <dt>Name des Inhabers</dt>
-        <dd>Elisabeth Poloczek</dd>
+        <dd>{{companyDetails.ownerName}}</dd>
       </dl>
       <dl>
         <dt>Straße & Nr.</dt>
-        <dd>Chiemgaustr. 156</dd>
+        <dd>{{companyDetails.street}} {{companyDetails.number}}</dd>
       </dl>
       <dl>
         <dt>Postleitzahl & Stadt</dt>
-        <dd>81549 München</dd>
+        <dd>{{companyDetails.postcode}} {{companyDetails.city}}</dd>
       </dl>
     </address>
     
     <dl class="tax">
       <dt>Steuernummer</dt>
-      <dd>DE987654321</dd>
+      <dd>{{companyDetails.taxNumber}}</dd>
     </dl>
     <dl class="founding">
       <dt>Gründung</dt>
-      <dd>2025</dd>
+      <dd>{{companyDetails.founding}}</dd>
+    </dl>
+    <dl class="email">
+      <dt>E-Mail</dt>
+      <dd>{{companyDetails.email}}</dd>
     </dl>
     <button class="edit" onclick="toggleEditMode()" disabled="true">EDIT</button>
   </div>
