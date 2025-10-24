@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Invoice } from '../shared/invoice/invoice';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   standalone: true,

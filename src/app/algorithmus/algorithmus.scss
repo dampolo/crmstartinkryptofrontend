@@ -26,6 +26,7 @@ form {
   width: 26.25rem;
   height: 30px;
   border: 1px solid basic.$border-color;
+  background-color: basic.$thirteenth;
   padding: 1rem;
   padding-block: 1.5rem;
   cursor: pointer;
@@ -90,7 +91,7 @@ section {
   border: 1px solid basic.$border-color;
   border-radius: basic.$border-radius;
   padding: 1rem;
-  background-color: white;
+  background-color: basic.$thirteenth;
   width: 50%;
   gap: 1rem;
   tr {

@@ -1,16 +1,17 @@
 <div class="invoice-container">
 <header class="invoice-header">
     <div class="company-info">
-    <h1>Start in Krypto</h1>
-    <p>Chiemgaustr. 156<br>81549 München</p>
+    <h1>{{companyControl.companyName}}</h1>
+    <p>{{companyControl.street}} {{companyControl.number}}<br>{{companyControl.postcode}} {{companyControl.city}} </p>
     </div>
     <a href="/" class="logo">
       <img width="60" height="60" src="./assets/SK-metatag.png" alt="Start in Krypto">
     </a>
     <div class="invoice-info">
     <h2>RECHNUNG</h2>
-    <p><strong>Rechnung Nr. #00123</strong><br>
-    Date: 24. Mai 2024</p>
+    <p>Rechnung Nr. #00123</p>
+    <p>Kundennr.: SK13245613</p>
+    <p>Date: {{currentDate | date:'dd.MM.yyyy' }}</p>
     </div>
 </header>
 
@@ -34,32 +35,32 @@
     <tbody>
     <tr>
         <td>Grundgebühr</td>
-        <td>2</td>
-        <td>300.00 €</td>
+        <td></td>
+        <td>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</td>
     </tr>
     <tr>
         <td>Individuelle Express Krypto-Einführung</td>
-        <td>1.5</td>
+        <td>{{algorithmusControl.firstStepProvision | number:'1.2-2'}} %</td>
         <td>180.00 €</td>
     </tr>
     <tr>
         <td>Börsenwahl & Einrichtung</td>
-        <td>3</td>
+        <td>{{algorithmusControl.exchangeSetupProvision | number:'1.2-2'}} %</td>
         <td>300.00 €</td>
     </tr> 
     <tr>
         <td>Kaufstrategie & Coin-Auswahl</td>
-        <td>3</td>
+        <td>{{algorithmusControl.buyStrategyProvision | number:'1.2-2'}} %</td>
         <td>300.00 €</td>
     </tr>
     <tr>
         <td>Wallet-Einrichtung & Sicherheit</td>
-        <td>3</td>
+        <td>{{algorithmusControl.walletSetupProvision | number:'1.2-2'}} %</td>
         <td>300.00 €</td>
     </tr>
     <tr>
         <td>Steuertool für deine Abwicklung</td>
-        <td>3</td>
+        <td>{{algorithmusControl.taxToolProvision| number:'1.2-2'}} %</td>
         <td>300.00 €</td>
     </tr>
     </tbody>
