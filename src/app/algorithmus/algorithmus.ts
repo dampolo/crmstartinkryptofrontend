@@ -1,6 +1,7 @@
 import { DecimalPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AlgorithmusControl } from '../services/algorithmus-control';
 
 @Component({
   standalone: true,
@@ -15,20 +16,15 @@ export class Algorithmus {
   totalAmount: number = 0;
   totalProvision: number = 0;
 
+  algorithmusControl = inject(AlgorithmusControl)
+
+
   firstStepAmount: number = 0;
   exchangeSetupAmount: number = 0;
   buyStrategyAmount: number = 0;
   walletSetupAmount: number = 0;
   taxToolAmount: number = 0;
   ongoingSupportAmount: number = 0;
-
-  basicFeeProvision: number = 700
-  firstStepProvision: number = 0.05;
-  exchangeSetupProvision: number = 0.03;
-  buyStrategyProvision: number = 0.05;
-  walletSetupProvision: number = 0.06;
-  taxToolProvision: number = 0.06;
-  ongoingSupportProvision: number = 400;
 
   constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group(
@@ -96,28 +92,28 @@ export class Algorithmus {
         this.investmentAmount = sum
       
       if (this.getFirstStepValue()) {
-        this.firstStepAmount = sum  * this.firstStepProvision;
+        this.firstStepAmount = (sum  * this.algorithmusControl.firstStepProvision) / 100;
         this.totalProvision += this.firstStepAmount;
       }
 
       if (this.getExchangeSetup()) {
-        this.exchangeSetupAmount = sum * this.exchangeSetupProvision;
+        this.exchangeSetupAmount = (sum * this.algorithmusControl.exchangeSetupProvision) / 100;
         this.totalProvision += this.exchangeSetupAmount;
       }
 
       if (this.getBuyStrategy()){
-        this.buyStrategyAmount = sum * this.buyStrategyProvision;
+        this.buyStrategyAmount = (sum * this.algorithmusControl.buyStrategyProvision) / 100;
         this.totalProvision += this.buyStrategyAmount;
         
       }
 
       if(this.getWalletSetup()) {
-        this.walletSetupAmount = sum * this.walletSetupProvision;
+        this.walletSetupAmount = (sum * this.algorithmusControl.walletSetupProvision) / 100;
         this.totalProvision += this.walletSetupAmount;    
       }
       
       if (this.getTaxTool()) {
-        this.taxToolAmount = sum * this.taxToolProvision;
+        this.taxToolAmount = (sum * this.algorithmusControl.taxToolProvision) / 100;
         this.totalProvision += this.walletSetupAmount;     
       }
 
@@ -125,7 +121,7 @@ export class Algorithmus {
 
       }
       
-      this.totalAmount = this.totalProvision + this.basicFeeProvision;
+      this.totalAmount = this.totalProvision + this.algorithmusControl.basicFeeProvision;
 
     } else {
       this.algorithmusForm.markAllAsTouched();

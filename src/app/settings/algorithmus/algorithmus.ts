@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AlgorithmusControl } from '../../services/algorithmus-control';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-algorithmus',
-  imports: [],
+  imports: [DecimalPipe],
   templateUrl: './algorithmus.html',
   styleUrl: './algorithmus.scss'
 })
 export class Algorithmus {
-
+  algorithmusControl = inject(AlgorithmusControl)
 }
