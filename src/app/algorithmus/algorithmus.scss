@@ -93,17 +93,21 @@ section {
   background-color: white;
   width: 50%;
   gap: 1rem;
-  dt {
-    float: left;
-    max-width: 23rem;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  dd {
-    float: right;
-    padding: 0;
-    margin: 0;
+  tr {
+    td {
+      &:first-child {
+        float: left;
+        max-width: 23rem;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      &:last-child {
+        float: right;
+        padding: 0;
+        margin: 0;
+      }
+    }
   }
   .divider {
     height: 1rem;

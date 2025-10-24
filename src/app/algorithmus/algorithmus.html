@@ -70,37 +70,67 @@
   <h2>
     Zusammenfassung
   </h2>
-  <dl>
-        <dt class="first-part">Grundgebühr</dt>
-    <dd class="first-part">{{basicFeeProvision | number:'1.2-2'}} €</dd>
-        <dt>Individuelle Express Krypto-Einführung</dt>
-    <dd>{{firstStepAmount | number:'1.2-2'}} €</dd>
-        <dt>Börsenwahl & Einrichtung</dt>
-    <dd>{{exchangeSetupAmount| number:'1.2-2'}} €</dd>
-        <dt> Kaufstrategie & Coin-Auswahl</dt>
-    <dd>{{buyStrategyAmount | number:'1.2-2'}} €</dd>
-        <dt>Wallet-Einrichtung & Sicherheit</dt>
-    <dd>{{walletSetupAmount | number:'1.2-2'}} €</dd>
-        <dt>Steuertool für deine Abwicklung</dt>
-    <dd>{{taxToolAmount | number:'1.2-2'}} €</dd>
-        <dt>Laufende Betreuung</dt>
-          <dd>{{ongoingSupportAmount | number:'1.2-2'}} €</dd> 
-  </dl>
-  
-  <div class="divider"></div>
+  <table>
+    <thead>
+      <tr>
+        <td>
+          Leistung
+        </td>
+        <td>
+          Gebühr
+        </td>
+      </tr>
+    </thead>
+        <div class="divider"></div>
+    <tbody>
+    <tr>
+        <td class="first-part">Grundgebühr</td>
+        <td class="first-part">{{basicFeeProvision | number:'1.2-2'}} €</td>
+    </tr>
+    <tr>
+      <td>Individuelle Express Krypto-Einführung</td>
+      <td>{{firstStepAmount | number:'1.2-2'}} €</td>
+    </tr>
+    <tr>
+      <td>Börsenwahl & Einrichtung</td>
+      <td>{{exchangeSetupAmount| number:'1.2-2'}} €</td>
+    </tr>
+    <tr>
+      <td> Kaufstrategie & Coin-Auswahl</td>
+      <td>{{buyStrategyAmount | number:'1.2-2'}} €</td>
+    </tr>
+    <tr>
+      <td>Wallet-Einrichtung & Sicherheit</td>
+      <td>{{walletSetupAmount | number:'1.2-2'}} €</td>
+    </tr>
+    <tr>
+      <td>Steuertool für deine Abwicklung</td>
+      <td>{{taxToolAmount | number:'1.2-2'}} €</td>
+    </tr>
+    <tr>
+      <td>Laufende Betreuung</td>
+      <td>{{ongoingSupportAmount | number:'1.2-2'}} €</td> 
+    </tr>
+    
+    <div class="divider"></div>
 
-  <dl>
-        <dt>Investitions Betrag</dt>
-    <dd>{{ investmentAmount | number:'1.2-2' }} €</dd>
-        <dt>Provison</dt>
-    <dd>{{ totalProvision | number:'1.2-2' }} €</dd>
-  </dl>
+      <tr>
+      <td>Investitions Betrag</td>
+      <td>{{ investmentAmount | number:'1.2-2' }} €</td>
+      </tr>
 
-  <div class="divider"></div>
+      <tr>
+        <td>Provison</td>
+        <td>{{ totalProvision | number:'1.2-2' }} €</td>
+      </tr>
+        
+    <div class="divider"></div>
 
-  <dl>
-        <dt>Total Betrag</dt>
-    <dd>{{ totalAmount | number:'1.2-2'}} €</dd>
-  </dl>
+    <tr>
+      <td>Total Betrag</td>
+      <td>{{ totalAmount | number:'1.2-2'}} €</td>
+    </tr>
+  </tbody>
+  </table>
 </section>
 
