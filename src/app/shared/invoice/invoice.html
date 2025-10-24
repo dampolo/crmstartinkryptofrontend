@@ -1,85 +1,85 @@
-<div class="invoice-container">
-<header class="invoice-header">
-    <div class="company-info">
-    <h1>{{companyControl.companyName}}</h1>
-    <p>{{companyControl.street}} {{companyControl.number}}<br>{{companyControl.postcode}} {{companyControl.city}} </p>
-    </div>
-    <a href="/" class="logo">
-      <img width="60" height="60" src="./assets/SK-metatag.png" alt="Start in Krypto">
-    </a>
-    <div class="invoice-info">
-    <h2>RECHNUNG</h2>
-    <p>Rechnung Nr. #00123</p>
-    <p>Kundennr.: SK13245613</p>
-    <p>Date: {{currentDate | date:'dd.MM.yyyy' }}</p>
-    </div>
-</header>
+<section class="invoice-container">
+    <header class="invoice-header">
+        <div class="company-info">
+        <h1>{{companyControl.companyName}}</h1>
+        <p>{{companyControl.street}} {{companyControl.number}}<br>{{companyControl.postcode}} {{companyControl.city}} </p>
+        </div>
+        <a href="/" class="logo">
+        <img width="60" height="60" src="./assets/SK-metatag.png" alt="Start in Krypto">
+        </a>
+        <div class="invoice-info">
+        <h2>RECHNUNG</h2>
+        <p>Rechnung Nr. #00123</p>
+        <p>Kundennr.: SK13245613</p>
+        <p>Date: {{currentDate | date:'dd.MM.yyyy' }}</p>
+        </div>
+    </header>
 
-<section class="bill-to">
-    <h3>Rechnung an:</h3>
-    <p>
-    <strong>Damian Poloczek</strong><br>
-    Chiemgastr 156<br>
-    81549 München
-    </p>
+    <div class="bill-to">
+        <h3>Rechnung an:</h3>
+        <address>
+        <strong>Damian Poloczek</strong><br>
+        Chiemgastr 156<br>
+        81549 München
+        </address>
+    </div>
+
+    <table class="invoice-table">
+        <thead>
+        <tr>
+            <th>Service</th>
+            <th>Provison</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Grundgebühr</td>
+            <td></td>
+            <td>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</td>
+        </tr>
+        <tr>
+            <td>Individuelle Express Krypto-Einführung</td>
+            <td>{{algorithmusControl.firstStepProvision | number:'1.2-2'}} %</td>
+            <td>180.00 €</td>
+        </tr>
+        <tr>
+            <td>Börsenwahl & Einrichtung</td>
+            <td>{{algorithmusControl.exchangeSetupProvision | number:'1.2-2'}} %</td>
+            <td>300.00 €</td>
+        </tr> 
+        <tr>
+            <td>Kaufstrategie & Coin-Auswahl</td>
+            <td>{{algorithmusControl.buyStrategyProvision | number:'1.2-2'}} %</td>
+            <td>300.00 €</td>
+        </tr>
+        <tr>
+            <td>Wallet-Einrichtung & Sicherheit</td>
+            <td>{{algorithmusControl.walletSetupProvision | number:'1.2-2'}} %</td>
+            <td>300.00 €</td>
+        </tr>
+        <tr>
+            <td>Steuertool für deine Abwicklung</td>
+            <td>{{algorithmusControl.taxToolProvision| number:'1.2-2'}} %</td>
+            <td>300.00 €</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="totals">
+        <p><span>Zwischensumme:</span> <span>780.00 €</span></p>
+        <p><span>Provison (6.5%):</span> <span>200.20 €</span></p>
+        <p><span>MwSt. (19%):</span> <span>148.20 €</span></p>
+        <h3><span>Total:</span> <span>928.20 €</span></h3>
+    </div>
+
+    <footer class="provisions">
+        <p>
+        Bitte überweisen Sie den Gesamtbetrag innerhalb von 14 Tagen nach Erhalt dieser Rechnung.
+        Zahlungen können per Banküberweisung oder in Kryptowährung erfolgen.
+        Bei Fragen zu dieser Rechnung kontaktieren Sie uns bitte unter:
+        <a href="mailto:elisabeth@startinkrypto.de">elisabeth@startinkrypto.de</a>.
+        </p>
+        <p> Bankverbindung: {{companyControl.bankAccount}}, USt-Idnr: {{companyControl.taxNumber}}</p>
+    </footer>
 </section>
-
-<table class="invoice-table">
-    <thead>
-    <tr>
-        <th>Service</th>
-        <th>Provison</th>
-        <th>Amount</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Grundgebühr</td>
-        <td></td>
-        <td>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</td>
-    </tr>
-    <tr>
-        <td>Individuelle Express Krypto-Einführung</td>
-        <td>{{algorithmusControl.firstStepProvision | number:'1.2-2'}} %</td>
-        <td>180.00 €</td>
-    </tr>
-    <tr>
-        <td>Börsenwahl & Einrichtung</td>
-        <td>{{algorithmusControl.exchangeSetupProvision | number:'1.2-2'}} %</td>
-        <td>300.00 €</td>
-    </tr> 
-    <tr>
-        <td>Kaufstrategie & Coin-Auswahl</td>
-        <td>{{algorithmusControl.buyStrategyProvision | number:'1.2-2'}} %</td>
-        <td>300.00 €</td>
-    </tr>
-    <tr>
-        <td>Wallet-Einrichtung & Sicherheit</td>
-        <td>{{algorithmusControl.walletSetupProvision | number:'1.2-2'}} %</td>
-        <td>300.00 €</td>
-    </tr>
-    <tr>
-        <td>Steuertool für deine Abwicklung</td>
-        <td>{{algorithmusControl.taxToolProvision| number:'1.2-2'}} %</td>
-        <td>300.00 €</td>
-    </tr>
-    </tbody>
-</table>
-
-<div class="totals">
-    <p><span>Zwischensumme:</span> <span>780.00 €</span></p>
-    <p><span>Provison (6.5%):</span> <span>200.20 €</span></p>
-    <p><span>MwSt. (19%):</span> <span>148.20 €</span></p>
-    <h3><span>Total:</span> <span>928.20 €</span></h3>
-</div>
-
-<footer class="provisions">
-    <p>
-    Bitte überweisen Sie den Gesamtbetrag innerhalb von 14 Tagen nach Erhalt dieser Rechnung.
-    Zahlungen können per Banküberweisung oder in Kryptowährung erfolgen.
-    Bei Fragen zu dieser Rechnung kontaktieren Sie uns bitte unter:
-    <a href="mailto:elisabeth@startinkrypto.de">elisabeth@startinkrypto.de</a>.
-    </p>
-    <p> Bankverbindung: {{companyControl.bankAccount}}, USt-Idnr: {{companyControl.taxNumber}}</p>
-</footer>
-</div>
