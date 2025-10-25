@@ -88,23 +88,23 @@
         <td>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</td>
     </tr>
     <tr>
-      <td>Individuelle Express Krypto-Einführung</td>
+      <td>Individuelle Express Krypto-Einführung <span>({{algorithmusControl.firstStepProvision}}%)</span></td>
       <td>{{firstStepAmount | number:'1.2-2'}} €</td>
     </tr>
     <tr>
-      <td>Börsenwahl & Einrichtung</td>
+      <td>Börsenwahl & Einrichtung <span>({{algorithmusControl.exchangeSetupProvision}}%)</span></td>
       <td>{{exchangeSetupAmount| number:'1.2-2'}} €</td>
     </tr>
     <tr>
-      <td> Kaufstrategie & Coin-Auswahl</td>
+      <td> Kaufstrategie & Coin-Auswahl ({{algorithmusControl.buyStrategyProvision}}%)</td>
       <td>{{buyStrategyAmount | number:'1.2-2'}} €</td>
     </tr>
     <tr>
-      <td>Wallet-Einrichtung & Sicherheit</td>
+      <td>Wallet-Einrichtung & Sicherheit ({{algorithmusControl.walletSetupProvision}}%)</td>
       <td>{{walletSetupAmount | number:'1.2-2'}} €</td>
     </tr>
     <tr>
-      <td>Steuertool für deine Abwicklung</td>
+      <td>Steuertool für deine Abwicklung ({{algorithmusControl.taxToolProvision}}%)</td>
       <td>{{taxToolAmount | number:'1.2-2'}} €</td>
     </tr>
     <tr>
@@ -123,6 +123,13 @@
         <td>Provison</td>
         <td>{{ totalProvision | number:'1.2-2' }} €</td>
       </tr>
+
+    <div class="divider"></div>
+
+      <tr>
+        <td>Mehrwertsteuer(19%)</td>
+        <td>{{ valueAddedTax | number:'1.2-2' }} €</td>
+      </tr>
         
     <div class="divider"></div>
 
@@ -132,5 +139,9 @@
     </tr>
   </tbody>
   </table>
+
 </section>
 
+  <button type="submit" [disabled]="!algorithmusForm.valid">
+    Rechnung erstellen
+  </button>

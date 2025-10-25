@@ -15,7 +15,7 @@ export class Algorithmus {
   investmentAmount: number = 0;
   totalAmount: number = 0;
   totalProvision: number = 0;
-
+  ongoingSupportAmount: number = 0;
   algorithmusControl = inject(AlgorithmusControl)
 
 
@@ -24,7 +24,7 @@ export class Algorithmus {
   buyStrategyAmount: number = 0;
   walletSetupAmount: number = 0;
   taxToolAmount: number = 0;
-  ongoingSupportAmount: number = 0;
+  valueAddedTax: number = 0
 
   constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group(
@@ -118,12 +118,15 @@ export class Algorithmus {
       }
 
       if (this.ongoingSupport()) {
-
+        this.ongoingSupportAmount = this.algorithmusControl.ongoingSupportProvision;
+        this.totalProvision += this.ongoingSupportAmount;
       }
       
-      this.totalAmount = this.totalProvision + this.algorithmusControl.basicFeeProvision;
+      this.valueAddedTax = ((this.totalProvision + this.algorithmusControl.basicFeeProvision)*this.algorithmusControl.valueAddedTax)/100
+      this.totalAmount = this.totalProvision + this.algorithmusControl.basicFeeProvision + this.valueAddedTax;
 
-    } else {
+
+    } else { 
       this.algorithmusForm.markAllAsTouched();
     }
   }

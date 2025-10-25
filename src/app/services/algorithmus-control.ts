@@ -12,5 +12,6 @@ export class AlgorithmusControl {
   walletSetupProvision: number = 0.06;
   taxToolProvision: number = 0.06;
   ongoingSupportProvision: number = 400;
+  valueAddedTax: number = 19
   
 }
