@@ -28,36 +28,36 @@
   <div class="checkboxes">
     <label for="basic-fee">
       <input id="basic-fee" type="checkbox" formControlName="basicFee" />
-      Grundgebühr
+      Grundgebühr <span>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</span>
     </label>
     <label for="first-step">
       <input id="first-step" type="checkbox" formControlName="firstStep" />
-      Individuelle Express Krypto-Einführung
+      Individuelle Express Krypto-Einführung <span>{{algorithmusControl.firstStepProvision}}%</span> 
     </label>
 
     <label for="exchange-setup" >
       <input id="exchange-setup" type="checkbox" formControlName="exchangeSetup" />
-      Börsenwahl & Einrichtung
+      Börsenwahl & Einrichtung <span>{{algorithmusControl.exchangeSetupProvision}}%</span>
     </label>
 
     <label for="buy-strategy">
       <input id="buy-strategy" type="checkbox" formControlName="buyStrategy" />
-      Kaufstrategie & Coin-Auswahl
+      Kaufstrategie & Coin-Auswahl <span>{{algorithmusControl.buyStrategyProvision}}%</span>
     </label>
 
     <label for="wallet-setup">
       <input id="wallet-setup" type="checkbox" formControlName="walletSetup" />
-      Wallet-Einrichtung & Sicherheit
+      Wallet-Einrichtung & Sicherheit <span>{{algorithmusControl.walletSetupProvision}}%</span> 
     </label>
 
     <label for="tax-tool">
       <input id="tax-tool" type="checkbox" formControlName="taxTool" />
-      Steuertool für deine Abwicklung
+      Steuertool für deine Abwicklung <span>{{algorithmusControl.taxToolProvision}}%</span> 
     </label>
 
     <label for="ongoing-support">
       <input id="ongoing-support" type="checkbox" formControlName="ongoingSupport" />
-      Laufende Betreuung
+      Laufende Betreuung <span>{{algorithmusControl.ongoingSupportProvision}}€</span> 
     </label>
   </div>
 
@@ -108,7 +108,7 @@
       <td>{{taxToolAmount | number:'1.2-2'}} €</td>
     </tr>
     <tr>
-      <td>Laufende Betreuung</td>
+      <td>Laufende Betreuung ({{algorithmusControl.ongoingSupportProvision}}€)</td>
       <td>{{ongoingSupportAmount | number:'1.2-2'}} €</td> 
     </tr>
     

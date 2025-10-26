@@ -1,4 +1,4 @@
-@use "./../../basic";
+@use './../../basic';
 
 form {
   display: flex;
@@ -17,22 +17,24 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 26.25rem;
+    height: 30px;
+    border: 1px solid basic.$border-color;
+    background-color: basic.$thirteenth;
+    padding: 1rem;
+    padding-block: 1.5rem;
+    cursor: pointer;
+    span {
+      margin-left: auto;
+    }
+  }
 }
 
-.checkboxes label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 26.25rem;
-  height: 30px;
-  border: 1px solid basic.$border-color;
-  background-color: basic.$thirteenth;
-  padding: 1rem;
-  padding-block: 1.5rem;
-  cursor: pointer;
-}
-
-input[id='summe'] {
+.checkboxes input[id='summe'] {
   border: 1px solid basic.$border-color;
   padding-inline: 0.5rem;
   margin-left: 0.5rem;
