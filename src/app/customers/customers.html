@@ -1,32 +1,43 @@
 <h1 class="title">Kunden</h1>
 
+<search></search>
+
 <div class="">
     <table class="">
         <thead class="">
             <tr>
+                <td class="">Kundennr</td>
+                <td class="">Anrede</td>
                 <td class="">Vorname</td>
                 <td class="">Nachname</td>
                 <td class="">Straße</td>
                 <td class="">Nr</td>
                 <td class="">PLZ</td>
                 <td class="">Stadt</td>
+                <td class="">E-Mail</td>
                 <td class="">Handy</td>
                 <td class="">Portfolio</td>
                 <td class="">Abo</td>
+                <td class="">Rechnungen</td>
+
             </tr>
         </thead>
         <tbody class="">
-             @for (customer of customerControl.Customers; track customer) {
+             @for (customer of customerControl.customers; track customer) {
             <tr>
+                <td>{{ customer.customerNumber }}</td>
+                <td>{{ customer.title }}</td>
                 <td>{{ customer.firstName }}</td>
                 <td>{{ customer.lastName }}</td>
                 <td>{{ customer.street }}</td>
                 <td>{{ customer.number }}</td>
-                <td>{{ customer.postalCode }}</td>
+                <td>{{ customer.postCode }}</td>
                 <td>{{ customer.city }}</td>
-                <td>{{ customer.mobile }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
                 <td>{{ customer.portfolio }}</td>
                 <td>{{ customer.subscription }}</td>
+                <td>{{ customer.invoices }}</td>
             </tr>
             }
         </tbody>
