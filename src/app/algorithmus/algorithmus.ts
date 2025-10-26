@@ -78,18 +78,18 @@ export class Algorithmus {
 
 
   onSubmit() {
-    this.totalProvision = 0;
+    this.totalProvision = this.algorithmusControl.basicFeeProvision;
     this.firstStepAmount = 0;
     this.exchangeSetupAmount = 0;
     this.buyStrategyAmount = 0;
     this.walletSetupAmount = 0;
     this.taxToolAmount = 0;
-
+    this.ongoingSupportAmount = 0;
 
 
     if (this.algorithmusForm.valid) {
         const sum = Number(this.algorithmusForm.get("Summe")?.value) || 0;
-        this.investmentAmount = sum
+        this.investmentAmount = sum;
       
       if (this.getFirstStepValue()) {
         this.firstStepAmount = (sum  * this.algorithmusControl.firstStepProvision) / 100;
@@ -122,8 +122,8 @@ export class Algorithmus {
         this.totalProvision += this.ongoingSupportAmount;
       }
       
-      this.valueAddedTax = ((this.totalProvision + this.algorithmusControl.basicFeeProvision)*this.algorithmusControl.valueAddedTax)/100
-      this.totalAmount = this.totalProvision + this.algorithmusControl.basicFeeProvision + this.valueAddedTax;
+      this.valueAddedTax = (this.totalProvision*this.algorithmusControl.valueAddedTax)/100
+      this.totalAmount = this.totalProvision + this.valueAddedTax;
 
 
     } else { 
