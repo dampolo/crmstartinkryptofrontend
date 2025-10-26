@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CustomerControl } from '../services/customer-control';
 
 @Component({
   standalone: true,
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './customers.scss'
 })
 export class Customers {
+    customerControl = inject(CustomerControl)
+
 
 }
