@@ -37,13 +37,17 @@ export class Newcustomer {
   }
 
   onSubmit() {
-    this.stateControl.showToast = true;
-    this.stateControl.showToastText.set("Der Kunde wurde erstellt");
-    this.stateControl.removeShowToast();
+    this.showConfirmation();
     this.newCustomerForm.patchValue({
       customerNumber: this.customerControl.generateCustomerNumber()
     })
     this.customerControl.customers.push(this.newCustomerForm.value as CUSTOMER)
     
+  }
+
+  showConfirmation() {
+    this.stateControl.showToast = true;
+    this.stateControl.showToastText.set("Der Kunde wurde erstellt");
+    this.stateControl.removeShowToast();
   }
 }
