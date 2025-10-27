@@ -40,9 +40,10 @@ export class Newcustomer {
     this.stateControl.showToast = true;
     this.stateControl.showToastText.set("Der Kunde wurde erstellt");
     this.stateControl.removeShowToast();
+    this.newCustomerForm.patchValue({
+      customerNumber: this.customerControl.generateCustomerNumber()
+    })
     this.customerControl.customers.push(this.newCustomerForm.value as CUSTOMER)
-    console.log(this.newCustomerForm.value);
-    console.log(this.customerControl.customers);
     
   }
 }

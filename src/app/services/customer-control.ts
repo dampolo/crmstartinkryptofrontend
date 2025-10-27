@@ -5,11 +5,19 @@ import { CUSTOMER } from '../models/customer.model';
   providedIn: 'root',
 })
 export class CustomerControl {
+
+  generateCustomerNumber() {
+    let customerPart1 = "SK";
+    let customerPart2 = 1;
+    customerPart2 += 1;
+    const paddedNumber = customerPart2.toString().padStart(6, '0');
+    return customerPart1 + paddedNumber;
+  }
   
   customers: CUSTOMER[] = [
     {
       photo: '',
-      customerNumber: '',
+      customerNumber: "SK000001",
       title: 'Herr',
       firstName: 'John',
       lastName: 'Doe',
