@@ -1,5 +1,11 @@
 @use "./../../basic";
 
+section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 table { 
     border-radius: 10px; 
     border-spacing: 0; 

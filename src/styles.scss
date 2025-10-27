@@ -65,7 +65,6 @@ app-apply,
 app-newcustomer,
 app-invoices,
 app-customers {
-    height: 100%;
     margin: 1rem;
     padding: 0 1rem 1rem 1rem;
 }
@@ -87,6 +86,7 @@ app-company {
   gap: 1rem;
 }
 
+a.new-customer,
 button.edit,
 button[type='submit'] {
   background-color: basic.$primary;
@@ -96,6 +96,8 @@ button[type='submit'] {
   transition: basic.$first-transition;
 }
 
+
+a.new-customer:not(:disabled):hover,
 button.edit:not(:disabled):hover,
 button[type='submit']:not(:disabled):hover {
   background: linear-gradient(
