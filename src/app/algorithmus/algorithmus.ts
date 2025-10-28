@@ -159,7 +159,6 @@ export class Algorithmus {
         c.lastName.toLowerCase().includes(term) ||
         c.customerNumber.toLowerCase().includes(term)
       );
-      this.showDropdown = this.filteredCustomers.length > 0;
     } else {
       // if input is empty, show all customers
       this.filteredCustomers = [...this.customerControl.customers];
