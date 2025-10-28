@@ -155,13 +155,15 @@ export class Algorithmus {
     const term = this.searchTerm.toLowerCase();
     if (term) {
       this.filteredCustomers = this.customerControl.customers.filter(c =>
-        c.lastName.toLowerCase().includes(term)
+        c.firstName.toLowerCase().includes(term) ||
+        c.lastName.toLowerCase().includes(term) ||
+        c.customerNumber.toLowerCase().includes(term)
       );
+      this.showDropdown = this.filteredCustomers.length > 0;
     } else {
       // if input is empty, show all customers
       this.filteredCustomers = [...this.customerControl.customers];
     }
-    this.showDropdown = this.filteredCustomers.length > 0;
   }
 
   onFocus() {
@@ -172,7 +174,6 @@ export class Algorithmus {
 
   selectCustomer(customer: CUSTOMER) {
     this.searchTerm = customer.firstName + " " + customer.lastName;
-
     this.showDropdown = false;
   }
 
