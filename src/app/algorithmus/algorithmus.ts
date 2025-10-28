@@ -1,16 +1,20 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlgorithmusControl } from '../services/algorithmus-control';
+import { CustomerControl } from '../services/customer-control';
+import { CUSTOMER } from '../models/customer.model';
 
 @Component({
   standalone: true,
   selector: 'app-algorithmus',
-  imports: [ReactiveFormsModule, DecimalPipe],
+  imports: [ReactiveFormsModule, DecimalPipe, FormsModule],
   templateUrl: './algorithmus.html',
   styleUrl: './algorithmus.scss'
 })
 export class Algorithmus {
+  customerControl = inject(CustomerControl)
+
   algorithmusForm: FormGroup;
   investmentAmount: number = 0;
   totalAmount: number = 0;
@@ -139,5 +143,42 @@ export class Algorithmus {
     return this.algorithmusForm.get('Summe');
     
   }
+
+  // SEARCH
+
+
+  filteredCustomers: CUSTOMER[] = [];
+  searchTerm: string = '';
+  showDropdown: boolean = false;
+
+  onSearchChange() {
+    const term = this.searchTerm.toLowerCase();
+    if (term) {
+      this.filteredCustomers = this.customerControl.customers.filter(c =>
+        c.lastName.toLowerCase().includes(term)
+      );
+    } else {
+      // if input is empty, show all customers
+      this.filteredCustomers = [...this.customerControl.customers];
+    }
+    this.showDropdown = this.filteredCustomers.length > 0;
+  }
+
+  onFocus() {
+    // when input is focused, show all customers
+    this.filteredCustomers = [...this.customerControl.customers];
+    this.showDropdown = true;
+  }
+
+  selectCustomer(customer: CUSTOMER) {
+    this.searchTerm = customer.firstName + " " + customer.lastName;
+
+    this.showDropdown = false;
+  }
+
+  hideDropdown() {
+    setTimeout(() => this.showDropdown = false, 150);
+  }
+
 
 }

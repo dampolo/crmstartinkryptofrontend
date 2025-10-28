@@ -51,6 +51,10 @@ input[id='summe'][type='number'] {
   -moz-appearance: textfield;
 }
 
+input[id='summe'] {
+  padding-inline: 0.5rem;
+}
+
 input[id='summe']:focus {
   border-color: var(--primary);
   outline: 0;
@@ -120,4 +124,49 @@ section {
   .first-part {
     font-weight: 700;
   }
+}
+
+// SEARCH
+
+.search-container {
+  position: relative;
+  width: 260px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: basic.$primary;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: basic.$thirteenth;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.dropdown li {
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown li:hover {
+  background: #f2f2f2;
 }

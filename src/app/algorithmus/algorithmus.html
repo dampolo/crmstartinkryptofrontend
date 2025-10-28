@@ -1,5 +1,26 @@
 <h1 class="title">Algorithmus</h1>
 
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Search customers..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearchChange()"
+    (focus)="onFocus()"
+    (blur)="hideDropdown()"
+  />
+
+  @if (showDropdown) {
+    <ul class="dropdown">
+      @for (customer of customerControl.customers; track customer) {
+        <li (click)="selectCustomer(customer)">
+          {{ customer.firstName }} {{ customer.lastName }}
+        </li>
+      }
+    </ul>
+  }
+</div>
+
 <form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="summe">Summe (€):</label>
