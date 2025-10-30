@@ -1,26 +1,32 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { CommonModule, DatePipe, DecimalPipe, NgClass } from '@angular/common';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlgorithmusControl } from '../services/algorithmus-control';
 import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
+import { Invoice } from '../shared/invoice/invoice';
+import { CompanyControl } from '../services/company-control';
 
 @Component({
   standalone: true,
   selector: 'app-algorithmus',
-  imports: [ReactiveFormsModule, DecimalPipe, FormsModule],
+  imports: [ReactiveFormsModule, DecimalPipe, FormsModule, DatePipe, NgClass, CommonModule],
   templateUrl: './algorithmus.html',
   styleUrl: './algorithmus.scss'
 })
 export class Algorithmus {
   customerControl = inject(CustomerControl)
+  algorithmusControl = inject(AlgorithmusControl)
+  companyControl = inject(CompanyControl)
+  currentDate = new Date(); // stores the current date and time
+  isInvoiceVisible: boolean = false
+
 
   algorithmusForm: FormGroup;
   investmentAmount: number = 0;
   totalAmount: number = 0;
   totalProvision: number = 0;
   ongoingSupportAmount: number = 0;
-  algorithmusControl = inject(AlgorithmusControl)
 
 
   firstStepAmount: number = 0;
@@ -28,7 +34,13 @@ export class Algorithmus {
   buyStrategyAmount: number = 0;
   walletSetupAmount: number = 0;
   taxToolAmount: number = 0;
-  valueAddedTax: number = 0
+  valueAddedTax: number = 0 
+
+  // Creat Invoice
+  customerNumberInvoice: string ="";
+  customerNameInvoice: string ="";
+  customerStreetInvoice: string ="";
+  customerCityInvoice: string ="";
 
   constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group(
@@ -81,6 +93,15 @@ export class Algorithmus {
   };
 
 
+  openDialog() {    
+    this.isInvoiceVisible = true;
+  }
+
+  closeDialog() {
+    this.isInvoiceVisible = false;
+
+  }
+
   onSubmit() {
     this.totalProvision = this.algorithmusControl.basicFeeProvision;
     this.firstStepAmount = 0;
@@ -89,7 +110,6 @@ export class Algorithmus {
     this.walletSetupAmount = 0;
     this.taxToolAmount = 0;
     this.ongoingSupportAmount = 0;
-
 
     if (this.algorithmusForm.valid) {
         const sum = Number(this.algorithmusForm.get("Summe")?.value) || 0;
@@ -128,15 +148,9 @@ export class Algorithmus {
       
       this.valueAddedTax = (this.totalProvision*this.algorithmusControl.valueAddedTax)/100
       this.totalAmount = this.totalProvision + this.valueAddedTax;
-
-
     } else { 
       this.algorithmusForm.markAllAsTouched();
     }
-  }
-
-  setProvisons() {
-
   }
 
   get Summe() {
@@ -174,6 +188,10 @@ export class Algorithmus {
   selectCustomer(customer: CUSTOMER) {
     this.searchTerm = customer.firstName + " " + customer.lastName;
     this.showDropdown = false;
+    this.customerNumberInvoice = customer.customerNumber;
+    this.customerNameInvoice = customer.firstName + " " + customer.lastName;
+    this.customerStreetInvoice = customer.street + " " + customer.number;
+    this.customerCityInvoice = customer.postCode + " " + customer.city;
   }
 
   hideDropdown() {
