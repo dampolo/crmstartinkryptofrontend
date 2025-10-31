@@ -290,21 +290,26 @@ footer {
 }
 
 .hide-invoice {
-  display: none;
-}
-
-.show-invoice {
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 999;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
   position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: -100;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: all 0.5s ease;
+}
+.show-invoice {
   opacity: 1;
-  inset: 0;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  padding: 20px;
+  visibility: visible;
+  z-index: 1000;
+  pointer-events: auto;
   overflow-y: scroll;
-  animation: new-animation 0.5s ease;
 }
 
 @keyframes first-animation {

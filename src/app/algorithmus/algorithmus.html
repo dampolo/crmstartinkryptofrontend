@@ -167,7 +167,7 @@
   Rechnung erstellen
 </button>
 
-<section [ngClass]="isInvoiceVisible ? 'show-invoice': 'hide-invoice'" (click)="closeDialog()">
+<section class="hide-invoice" [ngClass]="isInvoiceVisible ? 'show-invoice' : ''" (click)="closeDialog()">
 
   <div class="invoice-container">
     <header class="invoice-header">
