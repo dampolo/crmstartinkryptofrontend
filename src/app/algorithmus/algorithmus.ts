@@ -37,7 +37,9 @@ export class Algorithmus {
   valueAddedTax: number = 0 
 
   // Creat Invoice
-  customerNumberInvoice: string ="";
+  customerNumber: string ="";
+  invoiceNumber: string ="";
+
   customerNameInvoice: string ="";
   customerStreetInvoice: string ="";
   customerCityInvoice: string ="";
@@ -148,6 +150,7 @@ export class Algorithmus {
       
       this.valueAddedTax = (this.totalProvision*this.algorithmusControl.valueAddedTax)/100
       this.totalAmount = this.totalProvision + this.valueAddedTax;
+      this.invoiceNumber = this.customerControl.generateCustomerInvoiceNumber();
     } else { 
       this.algorithmusForm.markAllAsTouched();
     }
@@ -188,7 +191,7 @@ export class Algorithmus {
   selectCustomer(customer: CUSTOMER) {
     this.searchTerm = customer.firstName + " " + customer.lastName;
     this.showDropdown = false;
-    this.customerNumberInvoice = customer.customerNumber;
+    this.customerNumber = customer.customerNumber;
     this.customerNameInvoice = customer.firstName + " " + customer.lastName;
     this.customerStreetInvoice = customer.street + " " + customer.number;
     this.customerCityInvoice = customer.postCode + " " + customer.city;

@@ -6,12 +6,20 @@ import { CUSTOMER } from '../models/customer.model';
 })
 export class CustomerControl {
   generateCustomerNumber() {
-    let customerPart1 = 'SK';
-    let customerPart2 = 1;
-    customerPart2 += 1;
-    const paddedNumber = customerPart2.toString().padStart(6, '0');
-    return customerPart1 + paddedNumber;
-  }
+    const prefix = 'SK';
+    let counter = 1;
+    counter += 1;
+    const paddedCounter = counter.toString().padStart(6, '0');
+    return prefix + paddedCounter;
+}
+
+  generateCustomerInvoiceNumber() {
+    const prefix = '#';
+    let counter = 1;
+    counter += 1;
+    const paddedCounter = counter.toString().padStart(6, '0');
+    return prefix + paddedCounter;
+}
 
   customers: CUSTOMER[] = [
     {

@@ -180,8 +180,8 @@
         </a>
         <div class="invoice-info">
         <h2>RECHNUNG</h2>
-        <p>Rechnung Nr.</p>
-        <p>Kundennr.: {{customerNumberInvoice}}</p>
+        <p>Rechnung Nr.: {{invoiceNumber}}</p>
+        <p>Kundennr.: {{customerNumber}}</p>
         <p>Date: {{currentDate | date:'dd.MM.yyyy' }}</p>
         </div>
     </header>
@@ -243,7 +243,7 @@
     </table>
 
     <div class="totals">
-        <p><span>Zwischensumme:</span> <span>{{ investmentAmount| number:'1.2-2' }} €</span></p>
+        <p><span>Investitions Betrag:</span> <span>{{ investmentAmount| number:'1.2-2' }} €</span></p>
         <p><span>Provison (6.5%):</span> <span>{{totalProvision| number:'1.2-2' }} €</span></p>
         <p><span>MwSt. (19%):</span> <span>{{valueAddedTax | number:'1.2-2' }} €</span></p>
         <h3><span>Total:</span> <span>{{totalAmount | number:'1.2-2' }} €</span></h3>
