@@ -1,4 +1,4 @@
-  <div class="wrapper-content">
+  <div class="wrapper-content" [ngClass]="showEdit ? 'show-edit' : ''">
     <div class="container-firma">
       <div class="logo">
         <a href="/" class="logo">
@@ -40,10 +40,10 @@
       <dt>E-Mail</dt>
       <dd>{{companyDetails.email}}</dd>
     </dl>
-    <button class="edit" onclick="toggleEditMode()" disabled="true">EDIT</button>
+    <button class="edit" (click)="editDetails()">EDIT</button>
   </div>
 
-  <form [formGroup]="companyForm" class="container-edit" novalidate>
+  <form [formGroup]="companyForm" class="container-edit" [ngClass]="showEdit ? 'show-scroll' : ''" novalidate>
       
     <!-- Company Logo -->
     <div class="form-group">

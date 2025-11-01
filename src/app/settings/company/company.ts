@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CompanyControl } from '../../services/company-control';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-company',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './company.html',
   styleUrl: './company.scss'
 })
@@ -13,6 +14,7 @@ export class Company {
   companyForm: FormGroup;
   companyDetails = inject(CompanyControl);
   currentYear = new Date().getFullYear();
+  showEdit:boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.companyForm = this.fb.group({
@@ -46,5 +48,10 @@ export class Company {
       ],
     ],
     });
+  }
+
+
+  editDetails() {
+    this.showEdit = true;
   }
 }
