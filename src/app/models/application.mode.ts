@@ -1,4 +1,5 @@
 export interface ApplicationFormData {
+  applicationNumber: string;
   /** Anrede (title) — optional */
   title?: 'Herr' | 'Frau' | 'Divers' | '';
 
