@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ApplicationControl } from '../services/application-control';
 
 @Component({
   // standalone: true,
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './apply.scss'
 })
 export class Apply {
+
+  application = inject(ApplicationControl);
 
 }

@@ -1,1 +1,54 @@
 <h1 class="title">Bewerbungen</h1>
+
+<section>
+  <table class="">
+    <thead>
+      <tr>
+        <td>Anrede</td>
+        <td>Vorname</td>
+        <td>Nachname</td>
+        <td>E-Mail</td>
+        <td>Telefonnummer</td>
+        <td>Lebenslauf</td>
+        <td>Weitere Anhänge</td>
+        <td>Datenschutz akzeptiert</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (app of application.Applications; track app.email) {
+      <tr>
+        <td>{{ app.title || 'Keine Angabe' }}</td>
+        <td>{{ app.firstName }}</td>
+        <td>{{ app.lastName }}</td>
+        <td>{{ app.email }}</td>
+        <td>{{ app.phoneNumber }}</td>
+
+        <!-- Required CV file -->
+        <td>{{ app.file }}</td>
+
+        <!-- Optional attachments -->
+        <td>
+          <ul>
+            @if (app.file2) {
+            <li>{{ app.file2 }}</li>
+            } @if (app.file3) {
+            <li>{{ app.file3 }}</li>
+            } @if (!app.file2 && !app.file3) {
+            <li>Keine</li>
+            }
+          </ul>
+        </td>
+
+        <td>
+          {{ app.privacyAccepted ? 'Ja' : 'Nein' }}
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td>Keine Bewerbungen vorhanden.</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</section>
