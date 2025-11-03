@@ -169,7 +169,7 @@
 
 <section class="hide-invoice" [ngClass]="isInvoiceVisible ? 'show-invoice' : ''" (click)="closeDialog()">
 
-  <div class="invoice-container">
+  <div class="invoice-container" (click)="onEvent($event)">
     <header class="invoice-header">
         <div class="company-info">
         <h1>{{companyControl.companyName}}</h1>
@@ -256,6 +256,7 @@
         Bei Fragen zu dieser Rechnung kontaktieren Sie uns bitte unter:
         <a href="mailto:elisabeth@startinkrypto.de">elisabeth@startinkrypto.de</a>.
         </p>
+        <p>BLZ: {{companyControl.swiftCode}}</p>
         <p> Bankverbindung: {{companyControl.bankAccount}}, USt-Idnr: {{companyControl.taxNumber}}</p>
     </footer>
   </div>

@@ -201,5 +201,9 @@ export class Algorithmus {
     setTimeout(() => this.showDropdown = false, 150);
   }
 
+  onEvent(event: Event) {
+   event.stopPropagation();
+}
+
 
 }

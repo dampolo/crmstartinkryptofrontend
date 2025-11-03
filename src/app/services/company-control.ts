@@ -14,5 +14,7 @@ export class CompanyControl {
   taxNumber = "DE455357286";
   founding = "2025";
   email = "elisabeth@startinkrypto.de"
-  bankAccount = "DE12 4567 1234 4561 12"
+  bank = "N26";
+  bankAccount = "DE13 1001 1001 2429 1491 43";
+  swiftCode = "NTSBDEB1XXX";
 }
