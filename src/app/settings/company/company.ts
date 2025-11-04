@@ -50,6 +50,9 @@ export class Company {
     });
   }
 
+  onCancel() {
+    this.showEdit = false;
+  }
 
   editDetails() {
     this.showEdit = true;

@@ -86,6 +86,7 @@ app-company {
   gap: 1rem;
 }
 
+button[type="button"],
 a.new-customer,
 button.edit,
 button[type='submit'] {
@@ -97,6 +98,7 @@ button[type='submit'] {
 }
 
 
+button[type="button"]:hover,
 a.new-customer:not(:disabled):hover,
 button.edit:not(:disabled):hover,
 button[type='submit']:not(:disabled):hover {

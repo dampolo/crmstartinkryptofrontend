@@ -107,5 +107,9 @@ dt {
 
 .show-scroll {
     overflow-y: scroll;
+}
 
+.btn-container {
+  display: flex;
+  justify-content: space-between;
 }

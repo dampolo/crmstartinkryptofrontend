@@ -98,11 +98,17 @@
         <label class="control-label" id="label-founding" for="foundingYear">Gründung:</label>
         <input class="form-control" type="text" placeholder="2025" id="foundingYear" formControlName="foundingYear">
     </div>
-
-    <!-- Submit Button -->
-    <button type="submit" [disabled]="companyForm.invalid">
-      Speichern
-    </button>
+    <div class="btn-container">
+      <!-- Cancel Button -->
+      <button type="button" (click)="onCancel()">
+        Abbrechen
+      </button>
+      
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="companyForm.invalid">
+        Speichern
+      </button>
+    </div>
   </form>
 </div>
 
