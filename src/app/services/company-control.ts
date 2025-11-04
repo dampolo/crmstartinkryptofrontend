@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CompanyControl {
 
+  companyLogo = "./assets/SK-logo.svg";
   companyName = "Start in Krypto";
   street = "Chiemgaustrasse";
   number = "156";

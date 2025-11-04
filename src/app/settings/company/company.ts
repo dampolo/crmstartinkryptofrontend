@@ -19,27 +19,27 @@ export class Company {
   constructor(private fb: FormBuilder) {
     this.companyForm = this.fb.group({
       logo: [null, Validators.required],
-      companyName: ['', [Validators.required, Validators.minLength(2)]],
-      street: ['', [Validators.required]],
-      number: ['', [Validators.required]],
+      companyName: [this.companyDetails.companyName, [Validators.required, Validators.minLength(2)]],
+      street: [this.companyDetails.street, [Validators.required]],
+      number: [this.companyDetails.number, [Validators.required]],
       postcode: [
-        '',
+        this.companyDetails.postcode,
         [
           Validators.required,
           Validators.pattern(/^[0-9]{4,5}$/), // German ZIP format (4–5 digits)
         ],
       ],
-      city: ['', [Validators.required]],
-      ownerName: ['', [Validators.required]],
+      city: [this.companyDetails.city, [Validators.required]],
+      ownerName: [this.companyDetails.ownerName, [Validators.required]],
       taxNumber: [
-        '',
+        this.companyDetails.taxNumber,
         [
           Validators.required,
           Validators.pattern(/^[0-9]{3}\/[0-9]{4,5}\/[0-9]{4}$/), // e.g. 123/4567/8901
         ],
       ],
       foundingYear: [
-      '',
+      this.companyDetails.founding,
       [
         Validators.required,
         Validators.pattern(/^[0-9]{4}$/), // 4-digit year only
@@ -47,6 +47,10 @@ export class Company {
         Validators.max(this.currentYear),
       ],
     ],
+      bank: [this.companyDetails.bank, Validators.required],
+      bankAccount: [this.companyDetails.bankAccount, [Validators.required]],
+      swiftCode: [this.companyDetails.swiftCode, [Validators.required],
+      ],
     });
   }
 

@@ -2,7 +2,7 @@
     <div class="container-firma">
       <div class="logo">
         <a href="/" class="logo">
-          <img width="170" height="40" src="./assets/SK-logo.svg" alt="Start in Krypto">
+          <img width="170" height="40" [src]="companyDetails.companyLogo"  alt="Start in Krypto">
         </a>
       </div>
     <h1>Start in Krypto</h1>
@@ -32,14 +32,32 @@
       <dt>Steuernummer</dt>
       <dd>{{companyDetails.taxNumber}}</dd>
     </dl>
+    
+    <dl class="bank">
+      <dt>Bankname:</dt>
+      <dd>{{companyDetails.bank}}</dd>
+    </dl>
+
+    <dl class="bank-account">
+      <dt>IBAN / Kontonummer:</dt>
+      <dd>{{companyDetails.bankAccount}}</dd>
+    </dl>
+
+    <dl class="swift-code">
+      <dt>SWIFT / BIC:</dt>
+      <dd>{{companyDetails.swiftCode}}</dd>
+    </dl>
+
     <dl class="founding">
       <dt>Gründung</dt>
       <dd>{{companyDetails.founding}}</dd>
     </dl>
+
     <dl class="email">
       <dt>E-Mail</dt>
       <dd>{{companyDetails.email}}</dd>
     </dl>
+
     <button class="edit" (click)="editDetails()">EDIT</button>
   </div>
 
@@ -93,6 +111,26 @@
         <input class="form-control" type="text" placeholder="123/4567/8901" id="taxNumber" formControlName="taxNumber">
     </div>
 
+    <!-- Bank Name -->
+    <div class="form-group">
+      <label class="control-label" id="label-bank" for="bank">Bankname:</label>
+      <input class="form-control" type="text" placeholder="z. B. N26" id="bank" formControlName="bank"/>
+    </div>
+
+    <!-- Bank Account -->
+    <div class="form-group">
+      <label class="control-label" id="label-bankAccount" for="bankAccount">IBAN / Kontonummer:</label>
+      <input class="form-control" type="text" placeholder="z. B. DE13 1001 1001 2429 1491 43"
+        id="bankAccount" formControlName="bankAccount"/>
+    </div>
+
+    
+    <!-- SWIFT Code -->
+    <div class="form-group">
+      <label class="control-label" id="label-swiftCode" for="swiftCode">SWIFT / BIC:</label>
+      <input class="form-control" type="text" placeholder="z. B. NTSBDEB1XXX" id="swiftCode" formControlName="swiftCode"/>
+    </div>
+
     <!-- Gründung -->
     <div class="form-group">
         <label class="control-label" id="label-founding" for="foundingYear">Gründung:</label>
@@ -111,12 +149,3 @@
     </div>
   </form>
 </div>
-
-
-
-<!-- <div class="wrapper">
-
-  <div class="container-edit"></div>
-  
-  <div class="container-firma"></div>
-</div> -->
