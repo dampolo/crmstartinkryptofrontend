@@ -99,60 +99,60 @@
     </div>
 
     <!-- Number -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label" id="label-number" for="number">Hausnummer:</label>
       <input class="form-control" type="text" placeholder="12A" id="number" formControlName="number">
-    </div>
+    </div> -->
 
     <!-- Postcode -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
       <input class="form-control" type="text" placeholder="12345" id="postcode" formControlName="postcode">
-    </div>
+    </div> -->
     
     <!-- City -->
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="control-label" id="label-city" for="city">Stadt:</label>
       <input class="form-control" type="text" placeholder="Berlin" id="city" formControlName="city">
-    </div>
+    </div> -->
     
     <!-- Owner Name -->
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="control-label" id="label-ownerName" for="ownerName">Name des Inhabers:</label>
         <input class="form-control" type="text" placeholder="Max Mustermann" id="ownerName" formControlName="ownerName">
-    </div>
+    </div> -->
 
     <!-- Steuernummer -->
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="control-label" id="label-taxNumber" for="taxNumber">Steuernummer:</label>
         <input class="form-control" type="text" placeholder="123/4567/8901" id="taxNumber" formControlName="taxNumber">
-    </div>
+    </div> -->
 
     <!-- Bank Name -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label" id="label-bank" for="bank">Bankname:</label>
       <input class="form-control" type="text" placeholder="z. B. N26" id="bank" formControlName="bank"/>
-    </div>
+    </div> -->
 
     <!-- Bank Account -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label" id="label-bankAccount" for="bankAccount">IBAN / Kontonummer:</label>
       <input class="form-control" type="text" placeholder="z. B. DE13 1001 1001 2429 1491 43"
         id="bankAccount" formControlName="bankAccount"/>
-    </div>
+    </div> -->
 
     
     <!-- SWIFT Code -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label" id="label-swiftCode" for="swiftCode">SWIFT / BIC:</label>
       <input class="form-control" type="text" placeholder="z. B. NTSBDEB1XXX" id="swiftCode" formControlName="swiftCode"/>
-    </div>
+    </div> -->
 
     <!-- Gründung -->
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="control-label" id="label-founding" for="foundingYear">Gründung:</label>
-        <input class="form-control" type="text" placeholder="2025" id="foundingYear" formControlName="foundingYear">
-    </div>
+        <input class="form-control" type="text" placeholder="2025" id="foundingYear" formControlName="foundingYear"> -->
+    <!-- </div> -->
     <div class="btn-container">
       <!-- Cancel Button -->
       <button type="button" (click)="onCancel()">
@@ -160,7 +160,7 @@
       </button>
       
       <!-- Submit Button -->
-      <button type="submit" [disabled]="companyForm.valid">
+      <button type="submit" [disabled]="!companyForm.valid">
         Speichern
       </button>
     </div>
