@@ -91,7 +91,7 @@ dt {
   border: 0.063rem solid #ccc;
   border-radius: 0.25rem;
   background-color: #fff;
-  color: #555;
+  color: basic.$main;
   font-size: 0.88rem;
   font-weight: 300;
   line-height: 1.25rem;
@@ -120,4 +120,10 @@ dt {
 .btn-container {
   display: flex;
   justify-content: space-between;
+}
+
+.form-group label::after {
+  content: " *";
+  color: red;
+  font-weight: bold;
 }

@@ -61,24 +61,41 @@
     <button class="edit" (click)="editDetails()">EDIT</button>
   </div>
 
-  <form [formGroup]="companyForm" class="container-edit" [ngClass]="showEdit ? 'show-scroll' : ''" novalidate>
+  <form [formGroup]="companyForm" class="container-edit" (submit)="submit()" [ngClass]="showEdit ? 'show-scroll' : ''">
       
     <!-- Company Logo -->
     <div class="form-group">
       <label class="control-label" id="label-logo" for="logo">Firmenlogo:</label>
       <input class="form-control" type="file" id="logo" formControlName="logo" accept="image/*">
-      </div>
+    </div>
 
     <!-- Company Name -->
     <div class="form-group">
       <label class="control-label" id="label-companyName" for="companyName">Name:</label>
-      <input class="form-control" type="text" placeholder="Musterfirma GmbH" id="companyName" formControlName="companyName">
+      <input class="form-control" type="text" placeholder="Musterfirma GmbH" id="companyName" formControlName="companyName" required>
+      @if (companyForm.get('companyName')?.invalid && (companyForm.get('companyName')?.touched || companyForm.get('companyName')?.dirty)) {
+      <div class="text-requied">
+      @if (companyForm.get('companyName')?.errors?.['required']) {
+          <small>Firmenname ist erforderlich.</small>
+          }
+          @if (companyForm.get('companyName')?.errors?.['minlength']) {
+          <small>Firmenname muss mindestens 2 Zeichen lang sein.</small>
+        }
+      </div>
+      }
     </div>
 
     <!-- Street -->
     <div class="form-group">
       <label class="control-label" id="label-street" for="street">Straße:</label>
-      <input class="form-control" type="text" placeholder="Musterstraße" id="street" formControlName="street">
+      <input class="form-control" type="text" placeholder="Musterstraße" id="street" formControlName="street" required>
+      @if (companyForm.get('street')?.invalid && (companyForm.get('street')?.touched || companyForm.get('street')?.dirty)) {
+      <div class="text-requied">
+      @if (companyForm.get('street')?.errors?.['required']) {
+          <small>Straße ist erforderlich.</small>
+          }
+      </div>
+      }
     </div>
 
     <!-- Number -->
@@ -143,7 +160,7 @@
       </button>
       
       <!-- Submit Button -->
-      <button type="submit" [disabled]="companyForm.invalid">
+      <button type="submit" [disabled]="companyForm.valid">
         Speichern
       </button>
     </div>
