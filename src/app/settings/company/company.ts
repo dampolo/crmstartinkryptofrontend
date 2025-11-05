@@ -19,9 +19,9 @@ export class Company {
   constructor(private fb: FormBuilder) {
     this.companyForm = this.fb.group({
       // logo: [null, Validators.required],
-      companyName: [this.companyDetails.companyName, [Validators.required, Validators.minLength(2)]],
-      street: [this.companyDetails.street, [Validators.required]],
-      // number: [this.companyDetails.number, [Validators.required]],
+      companyName: [this.companyDetails.companyName, [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)]],
+      street: [this.companyDetails.street, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      number: [this.companyDetails.number, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
       // postcode: [
       //   this.companyDetails.postcode,
       //   [

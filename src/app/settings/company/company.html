@@ -81,6 +81,9 @@
           @if (companyForm.get('companyName')?.errors?.['minlength']) {
           <small>Firmenname muss mindestens 2 Zeichen lang sein.</small>
         }
+         @if (companyForm.get('companyName')?.errors?.['pattern']) {
+        <small>Firmenname darf nicht nur aus Leerzeichen bestehen.</small>
+      }
       </div>
       }
     </div>
@@ -94,15 +97,29 @@
       @if (companyForm.get('street')?.errors?.['required']) {
           <small>Straße ist erforderlich.</small>
           }
+      @if (companyForm.get('street')?.errors?.['pattern']) {
+        <small>Straße darf nicht nur aus Leerzeichen bestehen.</small>
+      }
       </div>
       }
     </div>
 
     <!-- Number -->
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label class="control-label" id="label-number" for="number">Hausnummer:</label>
-      <input class="form-control" type="text" placeholder="12A" id="number" formControlName="number">
-    </div> -->
+      <input class="form-control" type="text" placeholder="12A" id="number" formControlName="number" required>
+      @if (companyForm.get('number')?.invalid && (companyForm.get('number')?.touched || companyForm.get('number')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('number')?.errors?.['required']) {
+        <small>Hausnummer ist erforderlich.</small>
+      }
+      @if (companyForm.get('number')?.errors?.['pattern']) {
+        <small>Hausnummer darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+    </div>
+  }
+    
+    </div>
 
     <!-- Postcode -->
     <!-- <div class="form-group">
