@@ -35,6 +35,9 @@ export class Company {
       ],
       bank: [this.companyDetails.bank, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
       bankAccount: [this.companyDetails.bankAccount, [Validators.required, Validators.pattern(/^[A-Z]{2}\d{2}(?: ?[A-Z0-9]){11,30}$/i)]],
+      swiftCode: [this.companyDetails.swiftCode, [Validators.required,
+        Validators.pattern(/^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?$/i),],
+      ],
     //   foundingYear: [
     //   this.companyDetails.founding,
     //   [
@@ -44,8 +47,6 @@ export class Company {
     //     Validators.max(this.currentYear),
     //   ],
     // ],
-      // swiftCode: [this.companyDetails.swiftCode, [Validators.required],
-      // ],
     });
   }
 

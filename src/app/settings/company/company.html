@@ -217,16 +217,25 @@
         <small>Bitte geben Sie eine gültige IBAN im Format <b>DE13 1001 1001 2429 1491 43</b> ein.</small>
       }
     </div>
-  }
-    
-    </div>
+    }
+  </div>
 
     
     <!-- SWIFT Code -->
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label class="control-label" id="label-swiftCode" for="swiftCode">SWIFT / BIC:</label>
       <input class="form-control" type="text" placeholder="z. B. NTSBDEB1XXX" id="swiftCode" formControlName="swiftCode"/>
-    </div> -->
+      @if (companyForm.get('swiftCode')?.invalid && (companyForm.get('swiftCode')?.touched || companyForm.get('swiftCode')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('swiftCode')?.errors?.['required']) {
+        <small>SWIFT / BIC ist erforderlich.</small>
+      }
+      @if (companyForm.get('swiftCode')?.errors?.['pattern']) {
+        <small>Bitte geben Sie einen gültigen SWIFT / BIC-Code ein (z. B. NTSBDEB1XXX).</small>
+      }
+    </div>
+  }
+    </div>
 
     <!-- Gründung -->
     <!-- <div class="form-group">
