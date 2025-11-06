@@ -26,13 +26,13 @@ export class Company {
       postcode: [this.companyDetails.postcode, [Validators.required, Validators.pattern(/^[0-9]{4,5}$/), Validators.pattern(/^(?!\s*$).+/) ],],
       city: [this.companyDetails.city, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
       ownerName: [this.companyDetails.ownerName, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
-      // taxNumber: [
-      //   this.companyDetails.taxNumber,
-      //   [
-      //     Validators.required,
-      //     Validators.pattern(/^[0-9]{3}\/[0-9]{4,5}\/[0-9]{4}$/), // e.g. 123/4567/8901
-      //   ],
-      // ],
+      taxNumber: [
+        this.companyDetails.taxNumber,
+        [
+          Validators.required,
+          Validators.pattern(/^[0-9]{3}\/[0-9]{4,5}\/[0-9]{4}$/), 
+        ],
+      ],
     //   foundingYear: [
     //   this.companyDetails.founding,
     //   [

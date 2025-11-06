@@ -173,10 +173,20 @@
     </div>
 
     <!-- Steuernummer -->
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label class="control-label" id="label-taxNumber" for="taxNumber">Steuernummer:</label>
-        <input class="form-control" type="text" placeholder="123/4567/8901" id="taxNumber" formControlName="taxNumber">
-    </div> -->
+        <input class="form-control" type="text" placeholder="DE455357286" id="taxNumber" formControlName="taxNumber">
+      @if (companyForm.get('taxNumber')?.invalid && (companyForm.get('taxNumber')?.touched || companyForm.get('taxNumber')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('taxNumber')?.errors?.['required']) {
+        <small>Steuernummer ist erforderlich.</small>
+      }
+      @if (companyForm.get('taxNumber')?.errors?.['pattern']) {
+        <small>Bitte geben Sie eine gültige Steuernummer im Format DE123456789 ein.</small>
+      }
+      </div>
+      }
+    </div>
 
     <!-- Bank Name -->
     <!-- <div class="form-group">
