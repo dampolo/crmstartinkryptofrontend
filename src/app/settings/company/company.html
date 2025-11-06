@@ -64,10 +64,10 @@
   <form [formGroup]="companyForm" class="container-edit" (submit)="submit()" [ngClass]="showEdit ? 'show-scroll' : ''">
       
     <!-- Company Logo -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="control-label" id="label-logo" for="logo">Firmenlogo:</label>
       <input class="form-control" type="file" id="logo" formControlName="logo" accept="image/*">
-    </div>
+    </div> -->
 
     <!-- Company Name -->
     <div class="form-group">
@@ -117,8 +117,7 @@
         <small>Hausnummer darf nur Zahlen, Buchstaben, Bindestriche oder Schrägstriche enthalten (z. B. 12A, 12-14, 12/1). Keine Leerzeichen</small>
       }
     </div>
-  }
-    
+    }
     </div>
 
     <!-- Postcode -->
@@ -192,6 +191,16 @@
     <!-- <div class="form-group">
       <label class="control-label" id="label-bank" for="bank">Bankname:</label>
       <input class="form-control" type="text" placeholder="z. B. N26" id="bank" formControlName="bank"/>
+    @if (companyForm.get('bank')?.invalid && (companyForm.get('bank')?.touched || companyForm.get('bank')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('bank')?.errors?.['required']) {
+        <small>Bankname ist erforderlich.</small>
+      }
+      @if (companyForm.get('bank')?.errors?.['pattern']) {
+        <small>Bankname darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+    </div>
+    } 
     </div> -->
 
     <!-- Bank Account -->

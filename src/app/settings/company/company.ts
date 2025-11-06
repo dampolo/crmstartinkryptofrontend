@@ -30,9 +30,10 @@ export class Company {
         this.companyDetails.taxNumber,
         [
           Validators.required,
-          Validators.pattern(/^[0-9]{3}\/[0-9]{4,5}\/[0-9]{4}$/), 
+          Validators.pattern(/^DE[0-9]{9}$/), 
         ],
       ],
+      // bank: [this.companyDetails.bank, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
     //   foundingYear: [
     //   this.companyDetails.founding,
     //   [
@@ -42,7 +43,6 @@ export class Company {
     //     Validators.max(this.currentYear),
     //   ],
     // ],
-      // bank: [this.companyDetails.bank, Validators.required],
       // bankAccount: [this.companyDetails.bankAccount, [Validators.required]],
       // swiftCode: [this.companyDetails.swiftCode, [Validators.required],
       // ],
