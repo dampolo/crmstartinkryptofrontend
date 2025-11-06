@@ -204,11 +204,22 @@
     </div>
 
     <!-- Bank Account -->
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label class="control-label" id="label-bankAccount" for="bankAccount">IBAN / Kontonummer:</label>
       <input class="form-control" type="text" placeholder="z. B. DE13 1001 1001 2429 1491 43"
         id="bankAccount" formControlName="bankAccount"/>
-    </div> -->
+     @if (companyForm.get('bankAccount')?.invalid && (companyForm.get('bankAccount')?.touched || companyForm.get('bankAccount')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('bankAccount')?.errors?.['required']) {
+        <small>IBAN ist erforderlich.</small>
+      }
+      @if (companyForm.get('bankAccount')?.errors?.['pattern']) {
+        <small>Bitte geben Sie eine gültige IBAN im Format <b>DE13 1001 1001 2429 1491 43</b> ein.</small>
+      }
+    </div>
+  }
+    
+    </div>
 
     
     <!-- SWIFT Code -->
