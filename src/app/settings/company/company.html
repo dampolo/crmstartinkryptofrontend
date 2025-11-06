@@ -141,10 +141,20 @@
     </div>
     
     <!-- City -->
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label class="control-label" id="label-city" for="city">Stadt:</label>
       <input class="form-control" type="text" placeholder="Berlin" id="city" formControlName="city">
-    </div> -->
+     @if (companyForm.get('city')?.invalid && (companyForm.get('city')?.touched || companyForm.get('city')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('city')?.errors?.['required']) {
+        <small>Stadt ist erforderlich.</small>
+      }
+      @if (companyForm.get('city')?.errors?.['pattern']) {
+        <small>Stadt darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+    </div>
+    }
+    </div>
     
     <!-- Owner Name -->
     <!-- <div class="form-group">
