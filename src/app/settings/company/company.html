@@ -238,10 +238,27 @@
     </div>
 
     <!-- Gründung -->
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label class="control-label" id="label-founding" for="foundingYear">Gründung:</label>
-        <input class="form-control" type="text" placeholder="2025" id="foundingYear" formControlName="foundingYear"> -->
-    <!-- </div> -->
+        <input class="form-control" type="text" placeholder="2025" id="foundingYear" formControlName="foundingYear">
+    @if (companyForm.get('foundingYear')?.invalid && (companyForm.get('foundingYear')?.touched || companyForm.get('foundingYear')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('foundingYear')?.errors?.['required']) {
+        <small>Gründungsjahr ist erforderlich.</small>
+      }
+      @if (companyForm.get('foundingYear')?.errors?.['pattern']) {
+        <small>Gründungsjahr muss aus genau 4 Ziffern bestehen (z. B. 2020).</small>
+      }
+      @if (companyForm.get('foundingYear')?.errors?.['min']) {
+        <small>Gründungsjahr darf nicht vor 1800 liegen.</small>
+      }
+      @if (companyForm.get('foundingYear')?.errors?.['max']) {
+        <small>Gründungsjahr darf nicht in der Zukunft liegen.</small>
+      }
+    </div>
+  }
+    
+    </div>
     <div class="btn-container">
       <!-- Cancel Button -->
       <button type="button" (click)="onCancel()">

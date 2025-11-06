@@ -38,15 +38,15 @@ export class Company {
       swiftCode: [this.companyDetails.swiftCode, [Validators.required,
         Validators.pattern(/^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?$/i),],
       ],
-    //   foundingYear: [
-    //   this.companyDetails.founding,
-    //   [
-    //     Validators.required,
-    //     Validators.pattern(/^[0-9]{4}$/), // 4-digit year only
-    //     Validators.min(1800),
-    //     Validators.max(this.currentYear),
-    //   ],
-    // ],
+      foundingYear: [
+      this.companyDetails.founding,
+      [
+        Validators.required,
+        Validators.pattern(/^[0-9]{4}$/), // 4-digit year only
+        Validators.min(1800),
+        Validators.max(this.currentYear),
+      ],
+    ],
     });
   }
 
