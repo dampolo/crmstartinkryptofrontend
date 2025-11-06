@@ -122,10 +122,23 @@
     </div>
 
     <!-- Postcode -->
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
       <input class="form-control" type="text" placeholder="12345" id="postcode" formControlName="postcode">
-    </div> -->
+       @if (companyForm.get('postcode')?.invalid && (companyForm.get('postcode')?.touched || companyForm.get('postcode')?.dirty)) {
+        <div class="text-requied">
+        @if (companyForm.get('postcode')?.errors?.['required']) {
+        <small>Postleitzahl ist erforderlich.</small>
+        }
+        @if (companyForm.get('postcode')?.errors?.['pattern']) {
+        <small>Postleitzahl muss aus 4 oder 5 Ziffern bestehen.</small>
+        }
+        @if (companyForm.get('postcode')?.errors?.['pattern']) {
+        <small>Postleitzahl darf nicht nur aus Leerzeichen bestehen.</small>
+        }
+        </div>
+        }
+    </div>
     
     <!-- City -->
     <!-- <div class="form-group">

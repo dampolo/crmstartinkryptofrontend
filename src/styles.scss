@@ -155,5 +155,7 @@ app-invoice {
 }
 
 .text-requied {
+  display: flex;
+  flex-direction: column;
   color: basic.$required;
 }
