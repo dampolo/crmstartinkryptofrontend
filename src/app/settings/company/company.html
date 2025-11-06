@@ -114,7 +114,7 @@
         <small>Hausnummer ist erforderlich.</small>
       }
       @if (companyForm.get('number')?.errors?.['pattern']) {
-        <small>Hausnummer darf nicht nur aus Leerzeichen bestehen.</small>
+        <small>Hausnummer darf nur Zahlen, Buchstaben, Bindestriche oder Schrägstriche enthalten (z. B. 12A, 12-14, 12/1). Keine Leerzeichen</small>
       }
     </div>
   }

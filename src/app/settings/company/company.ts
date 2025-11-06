@@ -21,7 +21,7 @@ export class Company {
       // logo: [null, Validators.required],
       companyName: [this.companyDetails.companyName, [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)]],
       street: [this.companyDetails.street, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
-      number: [this.companyDetails.number, [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z]?$/)]],
+      number: [this.companyDetails.number, [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)]],
       // German ZIP format (4–5 digits)
       postcode: [this.companyDetails.postcode, [Validators.required, Validators.pattern(/^[0-9]{4,5}$/), Validators.pattern(/^(?!\s*$).+/) ],],
       city: [this.companyDetails.city, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
