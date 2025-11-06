@@ -157,10 +157,20 @@
     </div>
     
     <!-- Owner Name -->
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label class="control-label" id="label-ownerName" for="ownerName">Name des Inhabers:</label>
         <input class="form-control" type="text" placeholder="Max Mustermann" id="ownerName" formControlName="ownerName">
-    </div> -->
+      @if (companyForm.get('ownerName')?.invalid && (companyForm.get('ownerName')?.touched || companyForm.get('ownerName')?.dirty)) {
+      <div class="text-requied">
+      @if (companyForm.get('ownerName')?.errors?.['required']) {
+        <small>Name des Inhabers ist erforderlich.</small>
+      }
+      @if (companyForm.get('ownerName')?.errors?.['pattern']) {
+        <small>Name darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      </div>
+      }
+    </div>
 
     <!-- Steuernummer -->
     <!-- <div class="form-group">

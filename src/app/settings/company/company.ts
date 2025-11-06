@@ -25,7 +25,7 @@ export class Company {
       // German ZIP format (4–5 digits)
       postcode: [this.companyDetails.postcode, [Validators.required, Validators.pattern(/^[0-9]{4,5}$/), Validators.pattern(/^(?!\s*$).+/) ],],
       city: [this.companyDetails.city, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
-      // ownerName: [this.companyDetails.ownerName, [Validators.required]],
+      ownerName: [this.companyDetails.ownerName, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
       // taxNumber: [
       //   this.companyDetails.taxNumber,
       //   [
