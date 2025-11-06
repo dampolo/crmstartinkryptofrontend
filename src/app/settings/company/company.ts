@@ -33,7 +33,7 @@ export class Company {
           Validators.pattern(/^DE[0-9]{9}$/), 
         ],
       ],
-      // bank: [this.companyDetails.bank, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      bank: [this.companyDetails.bank, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
     //   foundingYear: [
     //   this.companyDetails.founding,
     //   [
