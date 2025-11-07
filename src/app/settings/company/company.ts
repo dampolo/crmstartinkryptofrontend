@@ -13,7 +13,7 @@ import { StateControl } from '../../services/state-control';
 })
 export class Company {
   companyForm: FormGroup;
-  companyDetails = inject(CompanyControl);
+  companyData = inject(CompanyControl);
   stateControl = inject(StateControl)
   currentYear = new Date().getFullYear();
   showEdit: boolean = false;
@@ -22,46 +22,46 @@ export class Company {
     this.companyForm = this.fb.group({
       // logo: [null, Validators.required],
       companyName: [
-        this.companyDetails.companyName,
+        this.companyData.companyName,
         [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
       ],
       street: [
-        this.companyDetails.street,
+        this.companyData.street,
         [Validators.required, Validators.pattern(/^(?!\s*$).+/)],
       ],
       number: [
-        this.companyDetails.number,
+        this.companyData.number,
         [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)],
       ],
       // German ZIP format (4–5 digits)
       postcode: [
-        this.companyDetails.postcode,
+        this.companyData.postcode,
         [
           Validators.required,
           Validators.pattern(/^[0-9]{4,5}$/),
           Validators.pattern(/^(?!\s*$).+/),
         ],
       ],
-      city: [this.companyDetails.city, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      city: [this.companyData.city, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
       ownerName: [
-        this.companyDetails.ownerName,
+        this.companyData.ownerName,
         [Validators.required, Validators.pattern(/^(?!\s*$).+/)],
       ],
       taxNumber: [
-        this.companyDetails.taxNumber,
+        this.companyData.taxNumber,
         [Validators.required, Validators.pattern(/^DE[0-9]{9}$/)],
       ],
-      bank: [this.companyDetails.bank, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      bank: [this.companyData.bank, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
       bankAccount: [
-        this.companyDetails.bankAccount,
+        this.companyData.bankAccount,
         [Validators.required, Validators.pattern(/^[A-Z]{2}\d{2}(?: ?[A-Z0-9]){11,30}$/i)],
       ],
       swiftCode: [
-        this.companyDetails.swiftCode,
+        this.companyData.swiftCode,
         [Validators.required, Validators.pattern(/^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?$/i)],
       ],
       foundingYear: [
-        this.companyDetails.founding,
+        this.companyData.founding,
         [
           Validators.required,
           Validators.pattern(/^[0-9]{4}$/), // 4-digit year only
@@ -70,7 +70,7 @@ export class Company {
         ],
       ],
       email: [
-        this.companyDetails.email,
+        this.companyData.email,
         [Validators.required, Validators.pattern(/^(?!\s*$).+/), Validators.email],
       ],
     });
@@ -92,7 +92,7 @@ export class Company {
 
     const formData = this.companyForm.value;
 
-    
+
     this.stateControl.showToast = true;
     this.stateControl.showToastText.set("Firmendaten wurden abgeändert.");
     this.stateControl.removeShowToast();

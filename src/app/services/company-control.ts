@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyControl {
+  private apiUrl = "https://demo.startinkrypto.de/api/company/";
+  private http = inject(HttpClient);
 
   companyLogo = "./assets/SK-logo.svg";
   companyName = "Start in Krypto";
@@ -18,4 +21,6 @@ export class CompanyControl {
   bank = "N26";
   bankAccount = "DE13 1001 1001 2429 1491 43";
   swiftCode = "NTSBDEB1XXX";
+
+
 }
