@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CompanyControl } from '../../services/company-control';
 import { CommonModule } from '@angular/common';
+import { StateControl } from '../../services/state-control';
 
 @Component({
   standalone: true,
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class Company {
   companyForm: FormGroup;
   companyDetails = inject(CompanyControl);
+  stateControl = inject(StateControl)
   currentYear = new Date().getFullYear();
   showEdit: boolean = false;
 
@@ -84,5 +86,8 @@ export class Company {
 
   submit() {
     console.log('TEST');
+    this.stateControl.showToast = true;
+    this.stateControl.showToastText.set("Firmendaten wurden abgeändert.");
+    this.stateControl.removeShowToast();
   }
 }
