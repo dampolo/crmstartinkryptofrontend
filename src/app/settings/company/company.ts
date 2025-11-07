@@ -85,7 +85,6 @@ export class Company {
   }
 
   submit() {
-    console.log('TEST');
     this.stateControl.showToast = true;
     this.stateControl.showToastText.set("Firmendaten wurden abgeändert.");
     this.stateControl.removeShowToast();
