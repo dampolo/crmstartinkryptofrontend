@@ -257,7 +257,26 @@
       }
     </div>
   }
-    
+    </div>
+
+
+  <!-- E-mail -->
+    <div class="form-group">
+        <label class="control-label" id="label-email" for="email">E-Mail-Adresse:</label>
+        <input class="form-control" type="email" placeholder="max.mustermann@example.com" id="email" formControlName="email">
+    @if (companyForm.get('email')?.invalid && (companyForm.get('email')?.touched || companyForm.get('email')?.dirty)) {
+    <div class="text-requied">
+      @if (companyForm.get('email')?.errors?.['required']) {
+        <small>E-Mail-Adresse ist erforderlich.</small>
+      }
+      @if (companyForm.get('email')?.errors?.['pattern']) {
+        <small>E-Mail-Adresse darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      @if (companyForm.get('email')?.errors?.['email']) {
+        <small>Bitte geben Sie eine gültige E-Mail-Adresse ein (z. B. max.mustermann@example.com).</small>
+      }
+    </div>
+  }
     </div>
     <div class="btn-container">
       <!-- Cancel Button -->
