@@ -22,5 +22,9 @@ export class CompanyControl {
   bank = "N26";
   bankAccount = "DE13 1001 1001 2429 1491 43";
   swiftCode = "NTSBDEB1XXX";
+  
+  updateCompany(data: any):Observable<any> {
+    return this.http.patch(this.apiUrl, data)
+  }
 
 }
