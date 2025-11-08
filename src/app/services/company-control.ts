@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,5 @@ export class CompanyControl {
   bank = "N26";
   bankAccount = "DE13 1001 1001 2429 1491 43";
   swiftCode = "NTSBDEB1XXX";
-
 
 }

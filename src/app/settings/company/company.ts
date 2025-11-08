@@ -93,7 +93,7 @@ export class Company {
     const formData = this.companyForm.value;
 
     this.stateControl.showToast = true;
-    this.stateControl.showToastText.set("Firmendaten wurden abgeändert.");
+    this.stateControl.showToastText.set("Firmendaten wurden erfolgreich gespeichert.");
     this.stateControl.removeShowToast();
   }
 }
