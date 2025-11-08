@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CompanyInfo } from '../models/company-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class CompanyControl {
   bankAccount = "DE13 1001 1001 2429 1491 43";
   swiftCode = "NTSBDEB1XXX";
   
-  updateCompany(data: any):Observable<any> {
+  updateCompany(data: CompanyInfo):Observable<any> {
     return this.http.patch(this.apiUrl, data)
   }
 
