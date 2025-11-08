@@ -20,7 +20,7 @@ export class Company {
 
   constructor(private fb: FormBuilder) {
     this.companyForm = this.fb.group({
-      // logo: [null, Validators.required],
+      logo: [this.companyData.companyLogo, Validators.required],
       companyName: [
         this.companyData.companyName,
         [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
@@ -92,8 +92,20 @@ export class Company {
 
     const formData = this.companyForm.value;
 
-    this.stateControl.showToast = true;
-    this.stateControl.showToastText.set("Firmendaten wurden erfolgreich gespeichert.");
-    this.stateControl.removeShowToast();
+    this.companyData.updateCompany(formData).subscribe({
+      next: (response) => {
+        this.stateControl.showToast = true;
+        this.stateControl.showToastText.set("Firmendaten wurden erfolgreich gespeichert.");
+        this.stateControl.removeShowToast();
+
+      },
+      error:(err) => {
+        this.stateControl.showToast = true;
+        this.stateControl.showToastText.set("Fehler beim Speichern der Daten.");
+        this.stateControl.removeShowToast();
+        console.error("Update failed: ", err);
+        
+      }
+    })
   }
 }
