@@ -76,6 +76,10 @@ dt {
   margin-bottom: 1.25rem;
 }
 
+input[type="file"] {
+  cursor: pointer;
+}
+
 .control-label {
   display: inline-block;
   margin: 0rem 0rem 0.5rem;
