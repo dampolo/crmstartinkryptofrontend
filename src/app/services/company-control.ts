@@ -27,4 +27,7 @@ export class CompanyControl {
     return this.http.patch(this.apiUrl, data)
   }
 
+  getCompany(data: any):Observable<any> {
+    return this.http.get(this.apiUrl, data)
+  }
 }
