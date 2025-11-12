@@ -10,8 +10,8 @@ export class CompanyControl {
   private apiUrl = "https://demo.startinkrypto.de/api/company/";
   private http = inject(HttpClient);
 
-  companyLogo = "./assets/SK-logo.svg";
-  companyName = "Start in Krypto";
+  logo = "./assets/SK-logo.svg";
+  name = "Start in Krypto";
   street = "Chiemgaustrasse";
   number = "156";
   postcode = "81549";

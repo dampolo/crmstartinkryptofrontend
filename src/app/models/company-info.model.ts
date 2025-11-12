@@ -1,6 +1,6 @@
 export interface CompanyInfo {
-  companyLogo: string;
-  companyName: string;
+  logo: string;
+  name: string;
   street: string;
   number: string;
   postcode: string;
