@@ -22,7 +22,7 @@ export class Company {
     this.companyForm = this.fb.group({
       logo: [this.companyData.logo, Validators.required],
       companyName: [
-        this.companyData.logo,
+        this.companyData.name,
         [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
       ],
       street: [
@@ -34,15 +34,15 @@ export class Company {
         [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)],
       ],
       // German ZIP format (4–5 digits)
-      postcode: [
-        this.companyData.postcode,
+      postCode: [
+        this.companyData.postCode,
         [
           Validators.required,
           Validators.pattern(/^[0-9]{4,5}$/),
           Validators.pattern(/^(?!\s*$).+/),
         ],
       ],
-      city: [this.companyData.city, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      city: [this.companyData.city, [Validators.required, Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$/)]],
       ownerName: [
         this.companyData.ownerName,
         [Validators.required, Validators.pattern(/^(?!\s*$).+/)],

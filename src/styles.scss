@@ -159,3 +159,9 @@ app-invoice {
   flex-direction: column;
   color: basic.$required;
 }
+
+.form-group .control-label.required::after {
+  content: " *";
+  color: red;
+  font-weight: bold;
+}

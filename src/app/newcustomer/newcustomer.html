@@ -21,44 +21,136 @@
 
   <!-- First Name -->
   <div class="form-group">
-    <label class="control-label" id="label-firstName" for="firstName">Vorname:</label>
+    <label class="control-label required" id="label-firstName" for="firstName">Vorname:</label>
     <input class="form-control" type="text" placeholder="Max" id="firstName" formControlName="firstName">
+     @if (newCustomerForm.get('firstName')?.invalid && (newCustomerForm.get('firstName')?.touched || newCustomerForm.get('firstName')?.dirty)) {
+      <div class="text-requied">
+      @if (newCustomerForm.get('firstName')?.errors?.['required']) {
+          <small>Vorname ist erforderlich.</small>
+          }
+          @if (newCustomerForm.get('firstName')?.errors?.['minlength']) {
+          <small>Vorname muss mindestens 2 Zeichen lang sein.</small>
+        }
+         @if (newCustomerForm.get('firstName')?.errors?.['pattern']) {
+        <small>Vorname darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      </div>
+      }
+  
   </div>
 
   <!-- Name -->
   <div class="form-group">
-    <label class="control-label" id="label-name" for="lastName">Nachname:</label>
+    <label class="control-label required" id="label-name" for="lastName">Nachname:</label>
     <input class="form-control" type="text" placeholder="Mustermann" id="lastName" formControlName="lastName">
+    @if (newCustomerForm.get('lastName')?.invalid && (newCustomerForm.get('lastName')?.touched || newCustomerForm.get('lastName')?.dirty)) {
+      <div class="text-requied">
+      @if (newCustomerForm.get('lastName')?.errors?.['required']) {
+          <small>Nachname ist erforderlich.</small>
+          }
+          @if (newCustomerForm.get('lastName')?.errors?.['minlength']) {
+          <small>Nachname muss mindestens 2 Zeichen lang sein.</small>
+        }
+         @if (newCustomerForm.get('lastName')?.errors?.['pattern']) {
+        <small>Nachname darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      </div>
+      }
+  
   </div>
 
   <!-- Street -->
   <div class="form-group">
-    <label class="control-label" id="label-street" for="street">Straße:</label>
+    <label class="control-label required" id="label-street" for="street">Straße:</label>
     <input class="form-control" type="text" placeholder="Musterstrasse" id="street" formControlName="street">
+  @if (newCustomerForm.get('street')?.invalid && (newCustomerForm.get('street')?.touched || newCustomerForm.get('street')?.dirty)) {
+      <div class="text-requied">
+      @if (newCustomerForm.get('street')?.errors?.['required']) {
+          <small>Straße ist erforderlich.</small>
+          }
+      @if (newCustomerForm.get('street')?.errors?.['pattern']) {
+        <small>Straße darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      </div>
+      }
+  
   </div>
 
   <!-- Number -->
   <div class="form-group">
-    <label class="control-label" id="label-number" for="number">Hausnummer:</label>
+    <label class="control-label required" id="label-number" for="number">Hausnummer:</label>
     <input class="form-control" type="text" placeholder="123" id="number" formControlName="number">
+  @if (newCustomerForm.get('number')?.invalid && (newCustomerForm.get('number')?.touched || newCustomerForm.get('number')?.dirty)) {
+    <div class="text-requied">
+      @if (newCustomerForm.get('number')?.errors?.['required']) {
+        <small>Hausnummer ist erforderlich.</small>
+      }
+      @if (newCustomerForm.get('number')?.errors?.['pattern']) {
+        <small>Hausnummer darf nur Zahlen, Buchstaben, Bindestriche oder Schrägstriche enthalten (z. B. 12A, 12-14, 12/1). Keine Leerzeichen</small>
+      }
+    </div>
+    }
+  
   </div>
 
   <!-- Postcode -->
   <div class="form-group">
-    <label class="control-label" id="label-postcode" for="postCode">Postleitzahl:</label>
+    <label class="control-label required" id="label-postcode" for="postCode">Postleitzahl:</label>
     <input class="form-control" type="text" placeholder="81500" id="postCode" formControlName="postCode">
+  @if (newCustomerForm.get('postCode')?.invalid && (newCustomerForm.get('postCode')?.touched || newCustomerForm.get('postCode')?.dirty)) {
+        <div class="text-requied">
+        @if (newCustomerForm.get('postCode')?.errors?.['required']) {
+        <small>Postleitzahl ist erforderlich.</small>
+        }
+        @if (newCustomerForm.get('postCode')?.errors?.['pattern']) {
+        <small>Postleitzahl muss aus 4 oder 5 Ziffern bestehen.</small>
+        }
+        @if (newCustomerForm.get('postCode')?.errors?.['pattern']) {
+        <small>Postleitzahl darf nicht nur aus Leerzeichen bestehen.</small>
+        }
+        </div>
+        }
+  
   </div>
 
   <!-- City -->
   <div class="form-group">
-    <label class="control-label" id="label-city" for="city">Stadt:</label>
+    <label class="control-label required" id="label-city" for="city">Stadt:</label>
     <input class="form-control" type="text" placeholder="MusterStadt" id="city" formControlName="city">
+ @if (newCustomerForm.get('city')?.invalid && (newCustomerForm.get('city')?.touched || newCustomerForm.get('city')?.dirty)) {
+  <div class="text-requied">
+
+    @if (newCustomerForm.get('city')?.errors?.['required']) {
+      <small>Stadt ist erforderlich.</small>
+    }
+
+    @if (newCustomerForm.get('city')?.errors?.['pattern']) {
+      <small>Stadt darf nur Buchstaben enthalten.</small>
+    }
+
+  </div>
+}
+  
   </div>
 
   <!-- Email -->
   <div class="form-group">
-    <label class="control-label" id="label-email" for="email">E-mail:</label>
+    <label class="control-label required" id="label-email" for="email">E-mail:</label>
     <input class="form-control" type="email" placeholder="maxmusterman@email.com" id="email" formControlName="email">
+  @if (newCustomerForm.get('email')?.invalid && (newCustomerForm.get('email')?.touched || newCustomerForm.get('email')?.dirty)) {
+    <div class="text-requied">
+      @if (newCustomerForm.get('email')?.errors?.['required']) {
+        <small>E-Mail-Adresse ist erforderlich.</small>
+      }
+      @if (newCustomerForm.get('email')?.errors?.['pattern']) {
+        <small>E-Mail-Adresse darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      @if (newCustomerForm.get('email')?.errors?.['email']) {
+        <small>Bitte geben Sie eine gültige E-Mail-Adresse ein (z. B. max.mustermann@example.com).</small>
+      }
+    </div>
+  }
+  
   </div>
 
   <!-- Phone Number -->
@@ -90,5 +182,7 @@
     <textarea class="form-control" id="comment" formControlName="comment"></textarea>
   </div>
 
-  <button type="submit">Speichern</button>
+  <button type="submit" [disabled]="!newCustomerForm.valid">
+    Speichern
+  </button>
 </form>

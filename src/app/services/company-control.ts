@@ -14,7 +14,7 @@ export class CompanyControl {
   name = "Start in Krypto";
   street = "Chiemgaustrasse";
   number = "156";
-  postcode = "81549";
+  postCode = "81549";
   city = "München";
   ownerName = "Elisabeth Poloczek";
   taxNumber = "DE455357286";

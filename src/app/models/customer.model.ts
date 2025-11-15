@@ -1,7 +1,7 @@
 export interface CUSTOMER {
     photo: string;
     customerNumber: string;
-    title: 'Herr' | 'Frau' | 'Divers' | string; // adjust if you have fixed titles
+    title: 'Herr' | 'Frau' | 'Divers' | string;
     firstName: string;
     lastName: string;
     street: string;

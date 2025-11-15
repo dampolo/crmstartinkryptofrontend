@@ -24,7 +24,7 @@
       </dl>
       <dl>
         <dt>Postleitzahl & Stadt</dt>
-        <dd>{{companyData.postcode}} {{companyData.city}}</dd>
+        <dd>{{companyData.postCode}} {{companyData.city}}</dd>
       </dl>
     </address>
     
@@ -122,17 +122,17 @@
 
     <!-- Postcode -->
     <div class="form-group">
-      <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
-      <input class="form-control" type="text" placeholder="12345" id="postcode" formControlName="postcode">
-       @if (companyForm.get('postcode')?.invalid && (companyForm.get('postcode')?.touched || companyForm.get('postcode')?.dirty)) {
+      <label class="control-label" id="label-postcode" for="postCode">Postleitzahl:</label>
+      <input class="form-control" type="text" placeholder="12345" id="postCode" formControlName="postCode">
+       @if (companyForm.get('postCode')?.invalid && (companyForm.get('postCode')?.touched || companyForm.get('postCode')?.dirty)) {
         <div class="text-requied">
-        @if (companyForm.get('postcode')?.errors?.['required']) {
+        @if (companyForm.get('postCode')?.errors?.['required']) {
         <small>Postleitzahl ist erforderlich.</small>
         }
-        @if (companyForm.get('postcode')?.errors?.['pattern']) {
+        @if (companyForm.get('postCode')?.errors?.['pattern']) {
         <small>Postleitzahl muss aus 4 oder 5 Ziffern bestehen.</small>
         }
-        @if (companyForm.get('postcode')?.errors?.['pattern']) {
+        @if (companyForm.get('postCode')?.errors?.['pattern']) {
         <small>Postleitzahl darf nicht nur aus Leerzeichen bestehen.</small>
         }
         </div>
@@ -144,15 +144,18 @@
         <label class="control-label" id="label-city" for="city">Stadt:</label>
       <input class="form-control" type="text" placeholder="Berlin" id="city" formControlName="city">
      @if (companyForm.get('city')?.invalid && (companyForm.get('city')?.touched || companyForm.get('city')?.dirty)) {
-    <div class="text-requied">
-      @if (companyForm.get('city')?.errors?.['required']) {
-        <small>Stadt ist erforderlich.</small>
-      }
-      @if (companyForm.get('city')?.errors?.['pattern']) {
-        <small>Stadt darf nicht nur aus Leerzeichen bestehen.</small>
-      }
-    </div>
+  <div class="text-requied">
+
+    @if (companyForm.get('city')?.errors?.['required']) {
+      <small>Stadt ist erforderlich.</small>
     }
+
+    @if (companyForm.get('city')?.errors?.['pattern']) {
+      <small>Stadt darf nur Buchstaben enthalten.</small>
+    }
+
+  </div>
+}
     </div>
     
     <!-- Owner Name -->
