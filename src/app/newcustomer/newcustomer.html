@@ -10,13 +10,20 @@
 
 <!-- Anrede (Title) -->
   <div class="form-group">
-    <label id="label-title" for="title">Anrede:</label>
+    <label class="control-label required" id="label-title" for="title">Anrede:</label>
     <select class="form-control" id="title" formControlName="title">
       <option value="">Keine Angabe</option>
       <option value="Herr">Herr</option>
       <option value="Frau">Frau</option>
       <option value="Divers">Divers</option>
     </select>
+    @if (newCustomerForm.get('title')?.invalid && (newCustomerForm.get('title')?.touched || newCustomerForm.get('firstName')?.dirty)) {
+      <div class="text-requied">
+      @if (newCustomerForm.get('title')?.errors?.['required']) {
+          <small>Anrede ist erforderlich.</small>
+          }
+      </div>
+      }
   </div>
 
   <!-- First Name -->

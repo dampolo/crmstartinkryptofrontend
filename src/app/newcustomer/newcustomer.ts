@@ -20,7 +20,7 @@ export class Newcustomer {
     this.newCustomerForm = this.fb.group({
       photo: [''],
       customerNumber: [''],
-      title: [''],
+      title: ['', Validators.required],
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)]],
       street: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
