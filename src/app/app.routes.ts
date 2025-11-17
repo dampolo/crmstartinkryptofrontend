@@ -6,9 +6,12 @@ import { Newcustomer } from './newcustomer/newcustomer';
 import { Dashboard } from './dashboard/dashboard';
 import { Algorithmus } from './algorithmus/algorithmus';
 import { Settings } from './settings/settings';
+import { Login } from './login/login';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: Login, title: 'Login' },
+
   { path: 'dashboard', component: Dashboard, title: 'Dashboard' },
   { path: 'kunden', component: Customers, title: 'Alle Kunden' },
   { path: 'bewerbungen', component: Apply, title: 'Bewerbungen' },
