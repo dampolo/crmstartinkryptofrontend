@@ -46,14 +46,14 @@ export class Login {
   onSubmit() {
     if (this.checkCredential()) {
       this.stateControl.showToast = true;
-      this.stateControl.showToastText.set('Du bist angemeldet angemeldet');
+      this.stateControl.showToastText.set('Du bist angemeldet');
       this.stateControl.removeShowToast();
       this.router.navigate(['/dashboard']);
       this.loginForm.markAllAsTouched();
       return;
     } else {
       this.stateControl.showToast = true;
-      this.stateControl.showToastText.set('Die Daten sind nich richtig');
+      this.stateControl.showToastText.set('Die Daten sind nicht richtig');
       this.stateControl.removeShowToast();
     }
   }
