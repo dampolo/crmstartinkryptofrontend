@@ -26,17 +26,35 @@
         <h1>Sign in to your account</h1>
         <p class="subtitle">Manage Your Customer Relationships.</p>
 
-        <form>
-          <label>Email Address</label>
-          <input type="email" placeholder="Enter your email">
-
-          <label>Password</label>
-          <div class="password-group">
-            <input type="password" placeholder="Enter your password">
-            <span class="eye">👁️</span>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="control-label required" for="user">Benutzer</label>
+            <input type="text" placeholder="Enter your email" id="user" formControlName="user">
+            <div class="text-requied">
+              @if (loginForm.get('user')?.touched && loginForm.get('user')?.invalid) {
+                <small>Benutzer ist erforderlich.</small>
+              }
+            </div>
           </div>
 
-          <button type="submit" class="login-btn" (click)="login()">Login</button>
+          <div class="form-group">
+            <label class="control-label required" for="password">Passwort</label>
+            <div class="password-group">
+              <input type="password" placeholder="Enter your password" id="password" formControlName="password">
+            </div>
+            
+            <div class="text-requied">
+              @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+                <small>
+                  @if (loginForm.get('password')?.errors?.['required']) { 
+                    Passwort ist erforderlich. 
+                  }
+                </small>
+              }
+            </div>
+        </div>
+
+          <button type="submit" class="login-btn" [disabled]="!loginForm.valid">Login</button>
         </form>
 
         <a href="#" class="forgot">Forgot Password?</a>

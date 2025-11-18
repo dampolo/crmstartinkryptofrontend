@@ -1,5 +1,11 @@
 @if (isLoginPage) {
   <app-login></app-login>
+  <app-toast
+      [ngClass]="{
+        'show-success': stateControl.showToast,
+        'show-error': stateControl.showError
+      }"
+    ></app-toast>
 } @else {
   <main>
     <app-navbar></app-navbar>
