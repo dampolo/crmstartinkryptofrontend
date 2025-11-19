@@ -17,13 +17,11 @@ import { Login } from './login/login';
 export class App {
   protected readonly title = signal('crmstartinkryptofrontend');
   stateControl = inject(StateControl)
-    isLoginPage = true;
 
   constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.isLoginPage = event.url !== '/dashboard';
-      }
-    });
+    if(window.localStorage.getItem("user")) {
+      this.stateControl.isLoginPage = false
+    }
+
   }
 }

@@ -49,6 +49,8 @@ export class Login {
       this.stateControl.showToastText.set('Du bist angemeldet');
       this.stateControl.removeShowToast();
       this.router.navigate(['/dashboard']);
+      window.localStorage.setItem("user", this.loginForm.value.user);
+      this.stateControl.isLoginPage = false;
       this.loginForm.markAllAsTouched();
       return;
     } else {

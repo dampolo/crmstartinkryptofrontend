@@ -7,6 +7,8 @@ export class StateControl {
   showToast: boolean = false;
   showError: boolean = false;
   showArrow: boolean = false;
+  isLoginPage: boolean = true;
+
   showToastText = signal('');
   showConfirmationText = signal('');
 
