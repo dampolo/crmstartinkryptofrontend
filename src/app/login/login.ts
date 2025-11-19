@@ -45,18 +45,14 @@ export class Login {
   }
   onSubmit() {
     if (this.checkCredential()) {
-      this.stateControl.showToast = true;
-      this.stateControl.showToastText.set('Du bist angemeldet');
-      this.stateControl.removeShowToast();
+      this.stateControl.displayToast('Du bist angemeldet')
       this.router.navigate(['/dashboard']);
       window.localStorage.setItem("user", this.loginForm.value.user);
       this.stateControl.isLoginPage = false;
       this.loginForm.markAllAsTouched();
       return;
     } else {
-      this.stateControl.showToast = true;
-      this.stateControl.showToastText.set('Die Daten sind nicht richtig');
-      this.stateControl.removeShowToast();
+      this.stateControl.displayToast('Die Daten sind nicht richtig')
     }
   }
 }

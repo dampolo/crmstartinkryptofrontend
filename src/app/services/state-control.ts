@@ -22,4 +22,9 @@ export class StateControl {
     }, 2500);
   }
 
+  displayToast(message: string) {
+    this.showToast = true;
+    this.showToastText.set(message);
+    this.removeShowToast();
+  }
 }
