@@ -18,10 +18,11 @@ export const routes: Routes = [
   { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
   { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
   { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
-   {
+  // ✅ LAZY LOAD SETTINGS
+  {
     path: 'einstellungen',
-    loadChildren: () =>
-      import('./settings/settings-routing').then(m => m.settingsRoutes),
+    loadChildren: () => import('./settings/settings.routing').then(m => m.default),
   },
+
   { path: '**', redirectTo: 'kunden' },
 ];

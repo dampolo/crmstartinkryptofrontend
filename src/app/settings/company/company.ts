@@ -20,7 +20,7 @@ export class Company {
 
   constructor(private fb: FormBuilder) {
     this.companyForm = this.fb.group({
-      logo: [this.companyData.logo, Validators.required],
+      logo: [null, Validators.required],
       companyName: [
         this.companyData.name,
         [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
