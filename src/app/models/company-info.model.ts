@@ -5,11 +5,11 @@ export interface CompanyInfo {
   number: string;
   postcode: string;
   city: string;
-  ownerName: string;
-  taxNumber: string;
+  owner_name: string;
+  tax_number: string;
   founding: string;
   email: string;
   bank: string;
-  bankAccount: string;
-  swiftCode: string;
+  bank_account: string;
+  swift_code: string;
 }

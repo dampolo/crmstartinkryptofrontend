@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CompanyControl } from '../../services/company-control';
 import { CommonModule } from '@angular/common';
@@ -14,65 +14,73 @@ import { StateControl } from '../../services/state-control';
 export class Company {
   companyForm: FormGroup;
   companyData = inject(CompanyControl);
-  stateControl = inject(StateControl)
+  stateControl = inject(StateControl);
   currentYear = new Date().getFullYear();
   showEdit: boolean = false;
 
+  ngOnInit() {
+    this.companyData.getCompany();
+  }
+
   constructor(private fb: FormBuilder) {
     this.companyForm = this.fb.group({
-      logo: [null, Validators.required],
-      companyName: [
-        this.companyData.name,
+      logo: [null],
+      name: [
+        '',
         [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
       ],
-      street: [
-        this.companyData.street,
-        [Validators.required, Validators.pattern(/^(?!\s*$).+/)],
-      ],
-      number: [
-        this.companyData.number,
-        [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)],
-      ],
-      // German ZIP format (4–5 digits)
-      postCode: [
-        this.companyData.postCode,
+      street: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      number: ['', [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)]],
+      postcode: [
+        '',
         [
           Validators.required,
           Validators.pattern(/^[0-9]{4,5}$/),
           Validators.pattern(/^(?!\s*$).+/),
         ],
       ],
-      city: [this.companyData.city, [Validators.required, Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$/)]],
-      ownerName: [
-        this.companyData.ownerName,
-        [Validators.required, Validators.pattern(/^(?!\s*$).+/)],
-      ],
-      taxNumber: [
-        this.companyData.taxNumber,
-        [Validators.required, Validators.pattern(/^DE[0-9]{9}$/)],
-      ],
-      bank: [this.companyData.bank, [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
-      bankAccount: [
-        this.companyData.bankAccount,
+      city: ['', [Validators.required, Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$/)]],
+      owner_name: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      tax_number: ['', [Validators.required, Validators.pattern(/^DE[0-9]{9}$/)]],
+      bank: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
+      bank_account: [
+        '',
         [Validators.required, Validators.pattern(/^[A-Z]{2}\d{2}(?: ?[A-Z0-9]){11,30}$/i)],
       ],
-      swiftCode: [
-        this.companyData.swiftCode,
+      swift_code: [
+        '',
         [Validators.required, Validators.pattern(/^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?$/i)],
       ],
-      foundingYear: [
-        this.companyData.founding,
+      founding: [
+        '',
         [
           Validators.required,
-          Validators.pattern(/^[0-9]{4}$/), // 4-digit year only
+          Validators.pattern(/^[0-9]{4}$/),
           Validators.min(1800),
           Validators.max(this.currentYear),
         ],
       ],
-      email: [
-        this.companyData.email,
-        [Validators.required, Validators.pattern(/^(?!\s*$).+/), Validators.email],
-      ],
+      email: ['', [Validators.required, Validators.email]],
+    });
+
+    effect(() => {
+      const company = this.companyData.company();
+      if (company) {
+        this.companyForm.patchValue({
+          name: company.name,
+          street: company.street,
+          number: company.number,
+          postcode: company.postcode,
+          city: company.city,
+          owner_name: company.owner_name,
+          tax_number: company.tax_number,
+          bank: company.bank,
+          bank_account: company.bank_account,
+          swift_code: company.swift_code,
+          founding: company.founding,
+          email: company.email,
+        });
+      }
     });
   }
 
@@ -82,12 +90,13 @@ export class Company {
 
   editDetails() {
     this.showEdit = true;
+    this.companyData.getCompany();
   }
 
   submit() {
-    if(this.companyForm.invalid) {
+    if (this.companyForm.invalid) {
       this.companyForm.markAllAsTouched();
-      return
+      return;
     }
 
     const formData = this.companyForm.value;
@@ -95,17 +104,15 @@ export class Company {
     this.companyData.updateCompany(formData).subscribe({
       next: (response) => {
         this.stateControl.showToast = true;
-        this.stateControl.showToastText.set("Firmendaten wurden erfolgreich gespeichert.");
+        this.stateControl.showToastText.set('Firmendaten wurden erfolgreich gespeichert.');
         this.stateControl.removeShowToast();
-
       },
-      error:(err) => {
+      error: (err) => {
         this.stateControl.showToast = true;
-        this.stateControl.showToastText.set("Fehler beim Speichern der Daten.");
+        this.stateControl.showToastText.set('Fehler beim Speichern der Daten.');
         this.stateControl.removeShowToast();
-        console.error("Update failed: ", err);
-        
-      }
-    })
+        console.error('Update failed: ', err);
+      },
+    });
   }
 }

@@ -2,7 +2,7 @@
     <div class="container-firma">
       <div class="logo">
         <a href="/" class="logo">
-          <img width="170" height="40" [src]="companyData.logo"  alt="Start in Krypto">
+          <img width="170" height="40" [src]="companyData.company()?.logo"  alt="Start in Krypto">
         </a>
       </div>
     <h1>Start in Krypto</h1>
@@ -12,50 +12,50 @@
     <address class="details">
       <dl>
         <dt>Name</dt>
-        <dd>{{companyData.name}}</dd>
+        <dd>{{companyData.company()?.name}}</dd>
       </dl>
       <dl>
         <dt>Name des Inhabers</dt>
-        <dd>{{companyData.ownerName}}</dd>
+        <dd>{{companyData.company()?.owner_name}}</dd>
       </dl>
       <dl>
         <dt>Straße & Nr.</dt>
-        <dd>{{companyData.street}} {{companyData.number}}</dd>
+        <dd>{{companyData.company()?.street}} {{companyData.company()?.number}}</dd>
       </dl>
       <dl>
         <dt>Postleitzahl & Stadt</dt>
-        <dd>{{companyData.postCode}} {{companyData.city}}</dd>
+        <dd>{{companyData.company()?.postcode}} {{companyData.company()?.city}}</dd>
       </dl>
     </address>
     
     <dl class="tax">
       <dt>Steuernummer</dt>
-      <dd>{{companyData.taxNumber}}</dd>
+      <dd>{{companyData.company()?.tax_number}}</dd>
     </dl>
     
     <dl class="bank">
       <dt>Bankname:</dt>
-      <dd>{{companyData.bank}}</dd>
+      <dd>{{companyData.company()?.bank}}</dd>
     </dl>
 
     <dl class="bank-account">
       <dt>IBAN / Kontonummer:</dt>
-      <dd>{{companyData.bankAccount}}</dd>
+      <dd>{{companyData.company()?.bank_account}}</dd>
     </dl>
 
     <dl class="swift-code">
       <dt>SWIFT / BIC:</dt>
-      <dd>{{companyData.swiftCode}}</dd>
+      <dd>{{companyData.company()?.swift_code}}</dd>
     </dl>
 
     <dl class="founding">
       <dt>Gründung</dt>
-      <dd>{{companyData.founding}}</dd>
+      <dd>{{companyData.company()?.founding}}</dd>
     </dl>
 
     <dl class="email">
       <dt>E-Mail</dt>
-      <dd>{{companyData.email}}</dd>
+      <dd>{{companyData.company()?.email}}</dd>
     </dl>
 
     <button class="edit" (click)="editDetails()">EDIT</button>
@@ -72,16 +72,16 @@
     <!-- Company Name -->
     <div class="form-group">
       <label class="control-label" id="label-companyName" for="companyName">Name:</label>
-      <input class="form-control" type="text" placeholder="Musterfirma GmbH" id="companyName" formControlName="companyName" required>
-      @if (companyForm.get('companyName')?.invalid && (companyForm.get('companyName')?.touched || companyForm.get('companyName')?.dirty)) {
+      <input class="form-control" type="text" placeholder="Musterfirma GmbH" id="name" formControlName="name" required>
+      @if (companyForm.get('name')?.invalid && (companyForm.get('name')?.touched || companyForm.get('name')?.dirty)) {
       <div class="text-requied">
-      @if (companyForm.get('companyName')?.errors?.['required']) {
+      @if (companyForm.get('name')?.errors?.['required']) {
           <small>Firmenname ist erforderlich.</small>
           }
-          @if (companyForm.get('companyName')?.errors?.['minlength']) {
+          @if (companyForm.get('name')?.errors?.['minlength']) {
           <small>Firmenname muss mindestens 2 Zeichen lang sein.</small>
         }
-         @if (companyForm.get('companyName')?.errors?.['pattern']) {
+         @if (companyForm.get('name')?.errors?.['pattern']) {
         <small>Firmenname darf nicht nur aus Leerzeichen bestehen.</small>
       }
       </div>
@@ -122,17 +122,17 @@
 
     <!-- Postcode -->
     <div class="form-group">
-      <label class="control-label" id="label-postcode" for="postCode">Postleitzahl:</label>
-      <input class="form-control" type="text" placeholder="12345" id="postCode" formControlName="postCode">
-       @if (companyForm.get('postCode')?.invalid && (companyForm.get('postCode')?.touched || companyForm.get('postCode')?.dirty)) {
+      <label class="control-label" id="label-postcode" for="postcode">Postleitzahl:</label>
+      <input class="form-control" type="text" placeholder="12345" id="postcode" formControlName="postcode">
+       @if (companyForm.get('postcode')?.invalid && (companyForm.get('postcode')?.touched || companyForm.get('postcode')?.dirty)) {
         <div class="text-requied">
-        @if (companyForm.get('postCode')?.errors?.['required']) {
+        @if (companyForm.get('postcode')?.errors?.['required']) {
         <small>Postleitzahl ist erforderlich.</small>
         }
-        @if (companyForm.get('postCode')?.errors?.['pattern']) {
+        @if (companyForm.get('postcode')?.errors?.['pattern']) {
         <small>Postleitzahl muss aus 4 oder 5 Ziffern bestehen.</small>
         }
-        @if (companyForm.get('postCode')?.errors?.['pattern']) {
+        @if (companyForm.get('postcode')?.errors?.['pattern']) {
         <small>Postleitzahl darf nicht nur aus Leerzeichen bestehen.</small>
         }
         </div>
@@ -160,14 +160,14 @@
     
     <!-- Owner Name -->
     <div class="form-group">
-        <label class="control-label" id="label-ownerName" for="ownerName">Name des Inhabers:</label>
-        <input class="form-control" type="text" placeholder="Max Mustermann" id="ownerName" formControlName="ownerName">
-      @if (companyForm.get('ownerName')?.invalid && (companyForm.get('ownerName')?.touched || companyForm.get('ownerName')?.dirty)) {
+        <label class="control-label" id="label-owner_name" for="owner_name">Name des Inhabers:</label>
+        <input class="form-control" type="text" placeholder="Max Mustermann" id="owner_name" formControlName="owner_name">
+      @if (companyForm.get('owner_name')?.invalid && (companyForm.get('owner_name')?.touched || companyForm.get('owner_name')?.dirty)) {
       <div class="text-requied">
-      @if (companyForm.get('ownerName')?.errors?.['required']) {
+      @if (companyForm.get('owner_name')?.errors?.['required']) {
         <small>Name des Inhabers ist erforderlich.</small>
       }
-      @if (companyForm.get('ownerName')?.errors?.['pattern']) {
+      @if (companyForm.get('owner_name')?.errors?.['pattern']) {
         <small>Name darf nicht nur aus Leerzeichen bestehen.</small>
       }
       </div>
@@ -176,14 +176,14 @@
 
     <!-- Steuernummer -->
     <div class="form-group">
-        <label class="control-label" id="label-taxNumber" for="taxNumber">Steuernummer:</label>
-        <input class="form-control" type="text" placeholder="DE455357286" id="taxNumber" formControlName="taxNumber">
-      @if (companyForm.get('taxNumber')?.invalid && (companyForm.get('taxNumber')?.touched || companyForm.get('taxNumber')?.dirty)) {
+        <label class="control-label" id="label-tax_number" for="tax_number">Steuernummer:</label>
+        <input class="form-control" type="text" placeholder="DE455357286" id="tax_number" formControlName="tax_number">
+      @if (companyForm.get('tax_number')?.invalid && (companyForm.get('tax_number')?.touched || companyForm.get('tax_number')?.dirty)) {
     <div class="text-requied">
-      @if (companyForm.get('taxNumber')?.errors?.['required']) {
+      @if (companyForm.get('tax_number')?.errors?.['required']) {
         <small>Steuernummer ist erforderlich.</small>
       }
-      @if (companyForm.get('taxNumber')?.errors?.['pattern']) {
+      @if (companyForm.get('tax_number')?.errors?.['pattern']) {
         <small>Bitte geben Sie eine gültige Steuernummer im Format DE123456789 ein.</small>
       }
       </div>
@@ -208,15 +208,15 @@
 
     <!-- Bank Account -->
     <div class="form-group">
-      <label class="control-label" id="label-bankAccount" for="bankAccount">IBAN / Kontonummer:</label>
+      <label class="control-label" id="label-bank_account" for="bank_account">IBAN / Kontonummer:</label>
       <input class="form-control" type="text" placeholder="z. B. DE13 1001 1001 2429 1491 43"
-        id="bankAccount" formControlName="bankAccount"/>
-     @if (companyForm.get('bankAccount')?.invalid && (companyForm.get('bankAccount')?.touched || companyForm.get('bankAccount')?.dirty)) {
+        id="bank_account" formControlName="bank_account"/>
+     @if (companyForm.get('bank_account')?.invalid && (companyForm.get('bank_account')?.touched || companyForm.get('bank_account')?.dirty)) {
     <div class="text-requied">
-      @if (companyForm.get('bankAccount')?.errors?.['required']) {
+      @if (companyForm.get('bank_account')?.errors?.['required']) {
         <small>IBAN ist erforderlich.</small>
       }
-      @if (companyForm.get('bankAccount')?.errors?.['pattern']) {
+      @if (companyForm.get('bank_account')?.errors?.['pattern']) {
         <small>Bitte geben Sie eine gültige IBAN im Format <b>DE13 1001 1001 2429 1491 43</b> ein.</small>
       }
     </div>
@@ -226,14 +226,14 @@
     
     <!-- SWIFT Code -->
     <div class="form-group">
-      <label class="control-label" id="label-swiftCode" for="swiftCode">SWIFT / BIC:</label>
-      <input class="form-control" type="text" placeholder="z. B. NTSBDEB1XXX" id="swiftCode" formControlName="swiftCode"/>
-      @if (companyForm.get('swiftCode')?.invalid && (companyForm.get('swiftCode')?.touched || companyForm.get('swiftCode')?.dirty)) {
+      <label class="control-label" id="label-swift_code" for="swift_code">SWIFT / BIC:</label>
+      <input class="form-control" type="text" placeholder="z. B. NTSBDEB1XXX" id="swift_code" formControlName="swift_code"/>
+      @if (companyForm.get('swift_code')?.invalid && (companyForm.get('swift_code')?.touched || companyForm.get('swift_code')?.dirty)) {
     <div class="text-requied">
-      @if (companyForm.get('swiftCode')?.errors?.['required']) {
+      @if (companyForm.get('swift_code')?.errors?.['required']) {
         <small>SWIFT / BIC ist erforderlich.</small>
       }
-      @if (companyForm.get('swiftCode')?.errors?.['pattern']) {
+      @if (companyForm.get('swift_code')?.errors?.['pattern']) {
         <small>Bitte geben Sie einen gültigen SWIFT / BIC-Code ein (z. B. NTSBDEB1XXX).</small>
       }
     </div>
@@ -242,20 +242,20 @@
 
     <!-- Gründung -->
     <div class="form-group">
-        <label class="control-label" id="label-founding" for="foundingYear">Gründung:</label>
-        <input class="form-control" type="text" placeholder="2025" id="foundingYear" formControlName="foundingYear">
-    @if (companyForm.get('foundingYear')?.invalid && (companyForm.get('foundingYear')?.touched || companyForm.get('foundingYear')?.dirty)) {
+        <label class="control-label" id="label-founding" for="founding">Gründung:</label>
+        <input class="form-control" type="text" placeholder="2025" id="founding" formControlName="founding">
+    @if (companyForm.get('founding')?.invalid && (companyForm.get('founding')?.touched || companyForm.get('founding')?.dirty)) {
     <div class="text-requied">
-      @if (companyForm.get('foundingYear')?.errors?.['required']) {
+      @if (companyForm.get('founding')?.errors?.['required']) {
         <small>Gründungsjahr ist erforderlich.</small>
       }
-      @if (companyForm.get('foundingYear')?.errors?.['pattern']) {
+      @if (companyForm.get('founding')?.errors?.['pattern']) {
         <small>Gründungsjahr muss aus genau 4 Ziffern bestehen (z. B. 2020).</small>
       }
-      @if (companyForm.get('foundingYear')?.errors?.['min']) {
+      @if (companyForm.get('founding')?.errors?.['min']) {
         <small>Gründungsjahr darf nicht vor 1800 liegen.</small>
       }
-      @if (companyForm.get('foundingYear')?.errors?.['max']) {
+      @if (companyForm.get('founding')?.errors?.['max']) {
         <small>Gründungsjahr darf nicht in der Zukunft liegen.</small>
       }
     </div>
