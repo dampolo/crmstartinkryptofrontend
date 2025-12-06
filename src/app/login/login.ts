@@ -26,7 +26,7 @@ export class Login {
   constructor(private router: Router, private http: HttpClient, private config: ConfigService) {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', Validators.required),
     });
   }
 
