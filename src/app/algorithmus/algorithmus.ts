@@ -171,30 +171,30 @@ export class Algorithmus {
   onSearchChange() {
     const term = this.searchTerm.toLowerCase();
     if (term) {
-      this.filteredCustomers = this.customerControl.customers.filter(c =>
-        c.firstName.toLowerCase().includes(term) ||
-        c.lastName.toLowerCase().includes(term) ||
-        c.customerNumber.toLowerCase().includes(term)
+      this.filteredCustomers = this.customerControl.customers().filter(c =>
+        c.first_name.toLowerCase().includes(term) ||
+        c.last_name.toLowerCase().includes(term) ||
+        c.customer_number.toLowerCase().includes(term)
       );
     } else {
       // if input is empty, show all customers
-      this.filteredCustomers = [...this.customerControl.customers];
+      this.filteredCustomers = [...this.customerControl.customers()];
     }
   }
 
   onFocus() {
     // when input is focused, show all customers
-    this.filteredCustomers = [...this.customerControl.customers];
+    this.filteredCustomers = [...this.customerControl.customers()];
     this.showDropdown = true;
   }
 
   selectCustomer(customer: CUSTOMER) {
-    this.searchTerm = customer.firstName + " " + customer.lastName;
+    this.searchTerm = customer.first_name + " " + customer.last_name;
     this.showDropdown = false;
-    this.customerNumber = customer.customerNumber;
-    this.customerNameInvoice = customer.firstName + " " + customer.lastName;
+    this.customerNumber = customer.customer_number;
+    this.customerNameInvoice = customer.first_name + " " + customer.last_name;
     this.customerStreetInvoice = customer.street + " " + customer.number;
-    this.customerCityInvoice = customer.postCode + " " + customer.city;
+    this.customerCityInvoice = customer.postcode + " " + customer.city;
   }
 
   hideDropdown() {

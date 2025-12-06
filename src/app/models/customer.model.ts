@@ -1,17 +1,18 @@
 export interface CUSTOMER {
+    id: number;
     photo: string;
-    customerNumber: string;
+    customer_number: string;
     title: 'Herr' | 'Frau' | 'Divers' | string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     street: string;
     number: string;
-    postCode: string;
+    postcode: string;
     city: string;
     email: string;
     phone: string;
-    portfolio: boolean;
+    has_portfolio: boolean;
     comment: string;
-    subscription: boolean;
+    has_subscription: boolean;
     invoices: number;
 }

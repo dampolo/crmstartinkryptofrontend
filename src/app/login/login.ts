@@ -9,6 +9,8 @@ import {
 import { Router } from '@angular/router';
 import { StateControl } from '../services/state-control';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-login',
@@ -21,38 +23,45 @@ export class Login {
   loginForm: FormGroup;
   isPasswordVisible = false;
 
-  loginData = {
-    user: 'Elisabeth',
-    password: 'test',
-  };
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient, private config: ConfigService) {
     this.loginForm = new FormGroup({
-      user: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required]),
     });
   }
 
-  checkCredential() {
-    if (
-      this.loginForm.value.user === this.loginData.user &&
-      this.loginForm.value.password === this.loginData.password
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+  // Dynamically build endpoint from config.json
+  private get apiUrl() {
+    return this.config.apiUrl + 'token/';
   }
-  onSubmit() {
-    if (this.checkCredential()) {
-      this.stateControl.displayToast('Du bist angemeldet')
-      this.router.navigate(['/dashboard']);
-      window.localStorage.setItem("user", this.loginForm.value.user);
-      this.stateControl.isLoginPage = false;
-      this.loginForm.markAllAsTouched();
+
+
+ onSubmit() {
+    if (this.loginForm.invalid) {
+      this.stateControl.displayToast('Bitte alle Felder ausfüllen');
       return;
-    } else {
-      this.stateControl.displayToast('Die Daten sind nicht richtig')
     }
+
+    const data = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    };
+
+    this.http.post(this.apiUrl, data, { withCredentials: true }).subscribe({
+      next: () => {
+        // Django sends JWT cookies (HttpOnly)
+        // Angular cannot read them but browser stores them automatically
+
+        this.stateControl.displayToast('Du bist angemeldet');
+        this.stateControl.isLoginPage = false;
+
+        this.router.navigate(['/dashboard']);
+      },
+
+      error: (err) => {
+        console.error(err);
+        this.stateControl.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+      }
+    });
   }
 }

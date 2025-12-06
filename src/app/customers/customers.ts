@@ -6,10 +6,12 @@ import { CustomerControl } from '../services/customer-control';
   selector: 'app-customers',
   imports: [],
   templateUrl: './customers.html',
-  styleUrl: './customers.scss'
+  styleUrl: './customers.scss',
 })
 export class Customers {
-    customerControl = inject(CustomerControl)
-
-
+  customerControl = inject(CustomerControl);
+  
+  ngOnInit() {
+    this.customerControl.getCustomers();
+  }
 }

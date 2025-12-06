@@ -28,10 +28,10 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label class="control-label required" for="user">Benutzer</label>
-            <input type="text" placeholder="Enter your email" id="user" formControlName="user">
+            <label class="control-label required" for="username">Benutzer</label>
+            <input type="text" placeholder="Enter your email" id="username" formControlName="username">
             <div class="text-requied">
-              @if (loginForm.get('user')?.touched && loginForm.get('user')?.invalid) {
+              @if (loginForm.get('username')?.touched && loginForm.get('username')?.invalid) {
                 <small>Benutzer ist erforderlich.</small>
               }
             </div>

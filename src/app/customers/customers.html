@@ -23,20 +23,20 @@
             </tr>
         </thead>
         <tbody class="">
-             @for (customer of customerControl.customers; track customer) {
+             @for (customer of customerControl.customers(); track customer.id) {
             <tr>
-                <td>{{ customer.customerNumber }}</td>
+                <td>{{ customer.customer_number }}</td>
                 <td>{{ customer.title }}</td>
-                <td>{{ customer.firstName }}</td>
-                <td>{{ customer.lastName }}</td>
+                <td>{{ customer.first_name }}</td>
+                <td>{{ customer.last_name }}</td>
                 <td>{{ customer.street }}</td>
                 <td>{{ customer.number }}</td>
-                <td>{{ customer.postCode }}</td>
+                <td>{{ customer.postcode }}</td>
                 <td>{{ customer.city }}</td>
                 <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
-                <td>{{ customer.portfolio }}</td>
-                <td>{{ customer.subscription }}</td>
+                <td>{{ customer.has_portfolio }}</td>
+                <td>{{ customer.has_subscription }}</td>
                 <td>{{ customer.invoices }}</td>
             </tr>
             }

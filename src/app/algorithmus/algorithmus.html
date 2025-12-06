@@ -14,7 +14,7 @@
     <ul class="dropdown">
       @for (customer of filteredCustomers; track customer) {
         <li (click)="selectCustomer(customer)">
-          {{ customer.firstName }} {{ customer.lastName }}
+          {{ customer.first_name }} {{ customer.last_name }}
         </li>
       }
     </ul>
