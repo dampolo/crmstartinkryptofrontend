@@ -1,4 +1,4 @@
-export interface CompanyInfo {
+export interface COMPANY {
   logo: string;
   name: string;
   street: string;

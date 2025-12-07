@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompanyInfo } from '../models/company-info.model';
+import { COMPANY } from '../models/company.model';
 import { ConfigService } from '../config.service';
 
 @Injectable({
@@ -16,16 +16,16 @@ export class CompanyControl {
     return this.config.apiUrl + 'company/';
   }
 
-  company = signal<CompanyInfo | null>(null);
+  company = signal<COMPANY | null>(null);
 
-  updateCompany(data: Partial<CompanyInfo>) {
+  updateCompany(data: Partial<COMPANY>) {
     return this.http.patch(this.apiUrl, data, {
       withCredentials: true,
     });
   }
 
   getCompany() {
-    this.http.get<CompanyInfo>(this.apiUrl, { withCredentials: true }).subscribe({
+    this.http.get<COMPANY>(this.apiUrl, { withCredentials: true }).subscribe({
       next: (res) => {
         this.company.set(res);
       },
