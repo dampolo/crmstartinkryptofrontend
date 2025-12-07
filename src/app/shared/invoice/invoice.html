@@ -1,8 +1,8 @@
 <section class="invoice-container">
     <header class="invoice-header">
         <div class="company-info">
-        <h1>{{companyControl.name}}</h1>
-        <p>{{companyControl.street}} {{companyControl.number}}<br>{{companyControl.postCode}} {{companyControl.city}} </p>
+        <h1>{{companyControl.company()?.name}}</h1>
+        <p>{{companyControl.company()?.street}} {{companyControl.company()?.number}}<br>{{companyControl.company()?.postcode}} {{companyControl.company()?.city}} </p>
         </div>
         <a href="/" class="logo">
         <img width="60" height="60" src="./assets/SK-metatag.png" alt="Start in Krypto">
@@ -80,6 +80,6 @@
         Bei Fragen zu dieser Rechnung kontaktieren Sie uns bitte unter:
         <a href="mailto:elisabeth@startinkrypto.de">elisabeth@startinkrypto.de</a>.
         </p>
-        <p> Bankverbindung: {{companyControl.bankAccount}}, USt-Idnr: {{companyControl.taxNumber}}</p>
+        <p> Bankverbindung: {{companyControl.company()?.bank_account}}, USt-Idnr: {{companyControl.company()?.tax_number}}</p>
     </footer>
 </section>

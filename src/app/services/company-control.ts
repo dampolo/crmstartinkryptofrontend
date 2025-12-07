@@ -8,19 +8,6 @@ import { ConfigService } from '../config.service';
   providedIn: 'root',
 })
 export class CompanyControl {
-  // logo = './assets/SK-logo.svg';
-  // name = 'Start in Krypto';
-  // street = 'Chiemgaustrasse';
-  // number = '156';
-  // postCode = '81549';
-  // city = 'München';
-  // ownerName = 'Elisabeth Poloczek';
-  // taxNumber = 'DE455357286';
-  // founding = '2025';
-  // email = 'elisabeth@startinkrypto.de';
-  // bank = 'N26';
-  // bankAccount = 'DE13 1001 1001 2429 1491 43';
-  // swiftCode = 'NTSBDEB1XXX';
 
   constructor(private http: HttpClient, private config: ConfigService) {}
 

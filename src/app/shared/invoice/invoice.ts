@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AlgorithmusControl } from '../../services/algorithmus-control';
-import { DatePipe, DecimalPipe } from '@angular/common';
 import { CompanyControl } from '../../services/company-control';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-invoice',

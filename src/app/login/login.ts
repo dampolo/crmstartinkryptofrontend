@@ -8,13 +8,13 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StateControl } from '../services/state-control';
-import { CommonModule } from '@angular/common';
+
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
