@@ -15,9 +15,7 @@ export class AuthService {
   // Dynamically build endpoint from config.json
 
   login(username: string, password: string) {
-    return this.http.post(
-      this.config.apiUrl + 'token/',
-      { username, password },
+    return this.http.post(this.config.apiUrl + 'token/', { username, password },
       { withCredentials: true }
     );
   }
