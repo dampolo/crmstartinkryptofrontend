@@ -50,11 +50,8 @@ export class Login {
     };
 
     
-
     this.authService.login(data.username, data.password).subscribe({
       next: () => {
-        // Django sends JWT cookies (HttpOnly)
-        // Angular cannot read them but browser stores them automatically
 
         this.stateControl.displayToast('Du bist angemeldet');
         this.stateControl.isLoginPage = false;
