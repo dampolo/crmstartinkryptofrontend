@@ -11,6 +11,7 @@ import { StateControl } from '../services/state-control';
 
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { ConfigService } from '../config.service';
 })
 export class Login {
   stateControl = inject(StateControl);
+  authService = inject(AuthService);
   loginForm: FormGroup;
   isPasswordVisible = false;
 
@@ -47,7 +49,9 @@ export class Login {
       password: this.loginForm.value.password
     };
 
-    this.http.post(this.apiUrl, data, { withCredentials: true }).subscribe({
+    
+
+    this.authService.login(data.username, data.password).subscribe({
       next: () => {
         // Django sends JWT cookies (HttpOnly)
         // Angular cannot read them but browser stores them automatically
