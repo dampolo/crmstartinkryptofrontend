@@ -17,7 +17,6 @@ export class Header {
 
   }
   logOut() {
-    window.localStorage.removeItem("user");
     this.router.navigate(["/login"])
     this.stateControl.isLoginPage = true;
     this.stateControl.displayToast('Du bist erfolgreich abgemeldet')
