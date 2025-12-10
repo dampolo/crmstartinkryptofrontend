@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ConfigService } from '../config.service';
+import { StateControl } from './state-control';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   isAuthenticated = new BehaviorSubject<boolean>(false);
+  stateControl = inject(StateControl);
+  
 
   constructor(private http: HttpClient, private router: Router, private config: ConfigService) {}
 
@@ -22,8 +25,14 @@ export class AuthService {
 
   checkAuth() {
     return this.http.get(this.config.apiUrl + 'me/', { withCredentials: true }).subscribe({
-      next: () => this.isAuthenticated.next(true),
-      error: () => this.isAuthenticated.next(false),
+      next: () => {
+        this.isAuthenticated.next(true);
+        this.stateControl.isLoginPage = false;
+      },
+      error: () => {
+        this.isAuthenticated.next(false);
+        this.stateControl.isLoginPage = true;
+      }
     });
   }
 

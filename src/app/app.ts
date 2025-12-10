@@ -25,6 +25,5 @@ export class App {
   
   ngOnInit() {
     this.auth.checkAuth(); // runs ONCE on page load
-    this.stateControl.isLoginPage = false;
   }
 }

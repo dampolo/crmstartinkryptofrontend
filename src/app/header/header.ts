@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { StateControl } from '../services/state-control';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   standalone: true,
@@ -12,11 +13,13 @@ import { StateControl } from '../services/state-control';
 
 export class Header {
   stateControl = inject(StateControl);
+  authService = inject(AuthService);
 
   constructor(private router: Router) {
 
   }
   logOut() {
+    this.authService.logout()
     this.router.navigate(["/login"])
     this.stateControl.isLoginPage = true;
     this.stateControl.displayToast('Du bist erfolgreich abgemeldet')

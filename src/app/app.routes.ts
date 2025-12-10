@@ -11,20 +11,38 @@ import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
+  
   { path: 'login', component: Login, title: 'Login' },
 
-  { path: 'dashboard', 
-    component: Dashboard, title: 'Dashboard' },
-  { path: 'kunden',
-    component: Customers, title: 'Alle Kunden' },
-  { path: 'bewerbungen',
-    component: Apply, title: 'Bewerbungen' },
-  { path: 'rechnungen',
-    component: Invoices, title: 'Rechnungen' },
-  { path: 'neu-kunde',
-    component: Newcustomer, title: 'Neuer Kunde' },
-  { path: 'algorithmus',
-    component: Algorithmus, title: 'Algorithmus' },
+  { 
+    path: 'dashboard', 
+    component: Dashboard, 
+    title: 'Dashboard' 
+  },
+  { 
+    path: 'kunden', 
+    component: Customers, 
+    title: 'Alle Kunden' 
+  },
+  { 
+    path: 'bewerbungen', 
+    component: Apply, 
+    title: 'Bewerbungen' 
+  },
+  { 
+    path: 'rechnungen', 
+    component: Invoices, 
+    title: 'Rechnungen' 
+  },
+  { 
+    path: 'neu-kunde', 
+    component: Newcustomer, 
+    title: 'Neuer Kunde' 
+  },
+  { 
+    path: 'algorithmus', 
+    component: Algorithmus, 
+    title: 'Algorithmus' },
   // ✅ LAZY LOAD SETTINGS
   {
     path: 'einstellungen',

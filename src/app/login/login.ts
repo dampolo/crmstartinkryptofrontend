@@ -52,10 +52,8 @@ export class Login {
     
     this.authService.login(data.username, data.password).subscribe({
       next: () => {
-
         this.stateControl.displayToast('Du bist angemeldet');
         this.stateControl.isLoginPage = false;
-
         this.router.navigate(['/dashboard']);
       },
 
