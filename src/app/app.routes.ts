@@ -43,7 +43,6 @@ export const routes: Routes = [
     path: 'algorithmus', 
     component: Algorithmus, 
     title: 'Algorithmus' },
-  // ✅ LAZY LOAD SETTINGS
   {
     path: 'einstellungen',
     loadChildren: () => import('./settings/settings.routing').then(m => m.default),
