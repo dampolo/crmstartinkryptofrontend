@@ -8,45 +8,34 @@ import { Algorithmus } from './algorithmus/algorithmus';
 import { Settings } from './settings/settings';
 import { Login } from './login/login';
 import { authGuard } from './guards/auth-guard';
+import { Layout } from './layout/layout';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
-  
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+
+  // Public route
   { path: 'login', component: Login, title: 'Login' },
 
-  { 
-    path: 'dashboard', 
-    component: Dashboard, 
-    title: 'Dashboard' 
-  },
-  { 
-    path: 'kunden', 
-    component: Customers, 
-    title: 'Alle Kunden' 
-  },
-  { 
-    path: 'bewerbungen', 
-    component: Apply, 
-    title: 'Bewerbungen' 
-  },
-  { 
-    path: 'rechnungen', 
-    component: Invoices, 
-    title: 'Rechnungen' 
-  },
-  { 
-    path: 'neu-kunde', 
-    component: Newcustomer, 
-    title: 'Neuer Kunde' 
-  },
-  { 
-    path: 'algorithmus', 
-    component: Algorithmus, 
-    title: 'Algorithmus' },
+  // AUTHENTICATED AREA
   {
-    path: 'einstellungen',
-    loadChildren: () => import('./settings/settings.routing').then(m => m.default),
+    path: '',
+    component: Layout,
+    canActivate: [authGuard],
+    children: [
+      { path: 'dashboard', component: Dashboard, title: 'Dashboard' },
+      { path: 'kunden', component: Customers, title: 'Alle Kunden' },
+      { path: 'bewerbungen', component: Apply, title: 'Bewerbungen' },
+      { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
+      { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
+      { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
+
+      {
+        path: 'einstellungen',
+        loadChildren: () =>
+          import('./settings/settings.routing').then(m => m.default),
+      },
+    ],
   },
 
-  { path: '**', redirectTo: 'kunden' },
+  { path: '**', redirectTo: 'dashboard' },
 ];

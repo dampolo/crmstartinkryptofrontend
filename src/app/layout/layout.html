@@ -1,0 +1,15 @@
+<main>
+  <app-navbar></app-navbar>
+
+  <div class="main-content">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-toast
+    [ngClass]="{
+      'show-success': stateControl.showToast,
+      'show-error': stateControl.showError
+    }"
+  ></app-toast>
+</main>

@@ -52,9 +52,9 @@ export class Login {
     
     this.authService.login(data.username, data.password).subscribe({
       next: () => {
+        this.authService.isAuthenticated.next(true);
         this.stateControl.displayToast('Du bist angemeldet');
-        this.stateControl.isLoginPage = false;
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard'], {replaceUrl: true});
       },
 
       error: (err) => {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { ConfigService } from '../config.service';
 import { StateControl } from './state-control';
 
@@ -10,6 +10,7 @@ import { StateControl } from './state-control';
 })
 export class AuthService {
   isAuthenticated = new BehaviorSubject<boolean>(false);
+
   stateControl = inject(StateControl);
   
 
@@ -23,23 +24,26 @@ export class AuthService {
     );
   }
 
-  checkAuth() {
-    return this.http.get(this.config.apiUrl + 'me/', { withCredentials: true }).subscribe({
-      next: () => {
+  
+  checkAuth(): Observable<boolean> {
+  return this.http
+    .get(this.config.apiUrl + 'me/', { withCredentials: true })
+    .pipe(
+      map(() => {
         this.isAuthenticated.next(true);
-        this.stateControl.isLoginPage = false;
-      },
-      error: () => {
+        return true;
+      }),
+      catchError(() => {
         this.isAuthenticated.next(false);
-        this.stateControl.isLoginPage = true;
-      }
-    });
-  }
+        return of(false);
+      })
+    );
+}
 
     logout() {
     this.http.post(this.config.apiUrl + 'logout/', {}, { withCredentials: true }).subscribe(() => {
       this.isAuthenticated.next(false);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'],{replaceUrl: true});
     });
   }
 }

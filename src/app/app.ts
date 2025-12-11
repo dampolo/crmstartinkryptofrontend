@@ -1,17 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { Navbar } from './navbar/navbar';
-import { Header } from './header/header';
-import { Toast } from './shared/toast/toast';
+import { Router, RouterOutlet } from '@angular/router';
 import { StateControl } from './services/state-control';
 import { CommonModule } from '@angular/common';
-import { Login } from './login/login';
 import { AuthService } from './services/auth.service';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, Header, Navbar, Toast, Login],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -23,7 +19,4 @@ export class App {
     
   }
   
-  ngOnInit() {
-    this.auth.checkAuth(); // runs ONCE on page load
-  }
 }
