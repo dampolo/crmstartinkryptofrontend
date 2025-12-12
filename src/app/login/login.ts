@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { StateControl } from '../services/state-control';
 
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../config.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -25,18 +24,12 @@ export class Login {
   loginForm: FormGroup;
   isPasswordVisible = false;
 
-  constructor(private router: Router, private http: HttpClient, private config: ConfigService) {
+  constructor(private router: Router, private http: HttpClient) {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
   }
-
-  // Dynamically build endpoint from config.json
-  private get apiUrl() {
-    return this.config.apiUrl + 'token/';
-  }
-
 
  onSubmit() {
     if (this.loginForm.invalid) {

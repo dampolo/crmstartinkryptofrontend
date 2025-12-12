@@ -12,7 +12,7 @@
 
   @if (showDropdown) {
     <ul class="dropdown">
-      @for (customer of filteredCustomers; track customer) {
+      @for (customer of filteredCustomers; track customer.id) {
         <li (click)="selectCustomer(customer)">
           {{ customer.first_name }} {{ customer.last_name }}
         </li>

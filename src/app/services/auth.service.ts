@@ -3,13 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { StateControl } from './state-control';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   isAuthenticated = new BehaviorSubject<boolean>(false);
-
+  private baseUrl = environment.apiBaseUrl;
   stateControl = inject(StateControl);
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -18,14 +19,14 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.http.post(
-      'http://127.0.0.1:8000/api/token/',
+      this.baseUrl + 'token/',
       { username, password },
       { withCredentials: true }
     );
   }
 
   checkAuth(): Observable<boolean> {
-    return this.http.get('http://127.0.0.1:8000/api/me/', { withCredentials: true }).pipe(
+    return this.http.get(this.baseUrl + 'me/', { withCredentials: true }).pipe(
       map(() => {
         this.isAuthenticated.next(true);
         return true;
@@ -38,7 +39,7 @@ export class AuthService {
   }
 
   logout() {
-    this.http.post('http://127.0.0.1:8000/api/logout/', {}, { withCredentials: true }).subscribe(() => {
+    this.http.post(this.baseUrl + 'logout/', {}, { withCredentials: true }).subscribe(() => {
       this.isAuthenticated.next(false);
       this.router.navigate(['/login'], { replaceUrl: true });
     });

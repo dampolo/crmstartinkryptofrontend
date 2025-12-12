@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CustomerControl } from '../services/customer-control';
+import { CUSTOMER } from '../models/customer.model';
 
 @Component({
   standalone: true,
@@ -10,8 +11,12 @@ import { CustomerControl } from '../services/customer-control';
 })
 export class Customers {
   customerControl = inject(CustomerControl);
-  
+
+  customer = signal<CUSTOMER[]>([]); // <-- SIGNAL
+
   ngOnInit() {
-    this.customerControl.getCustomers();
+    this.customerControl.getCustomers().subscribe((res) => {
+      this.customer.set(res);
+    });
   }
 }

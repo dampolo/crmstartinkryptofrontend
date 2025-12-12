@@ -41,7 +41,7 @@ export class Newcustomer {
     this.newCustomerForm.patchValue({
       customerNumber: this.customerControl.generateCustomerNumber()
     })
-    this.customerControl.customers().push(this.newCustomerForm.value as CUSTOMER)
+    // this.customerControl.customer().push(this.newCustomerForm.value as CUSTOMER)
     
   }
 

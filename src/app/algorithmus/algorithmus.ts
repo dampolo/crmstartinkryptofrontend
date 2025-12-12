@@ -1,6 +1,12 @@
 import { CommonModule, DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AlgorithmusControl } from '../services/algorithmus-control';
 import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
@@ -12,15 +18,14 @@ import { CompanyControl } from '../services/company-control';
   selector: 'app-algorithmus',
   imports: [ReactiveFormsModule, DecimalPipe, FormsModule, DatePipe, NgClass, CommonModule],
   templateUrl: './algorithmus.html',
-  styleUrl: './algorithmus.scss'
+  styleUrl: './algorithmus.scss',
 })
 export class Algorithmus {
-  customerControl = inject(CustomerControl)
-  algorithmusControl = inject(AlgorithmusControl)
-  companyControl = inject(CompanyControl)
+  customerControl = inject(CustomerControl);
+  algorithmusControl = inject(AlgorithmusControl);
+  companyControl = inject(CompanyControl);
   currentDate = new Date(); // stores the current date and time
-  isInvoiceVisible: boolean = false
-
+  isInvoiceVisible: boolean = false;
 
   algorithmusForm: FormGroup;
   investmentAmount: number = 0;
@@ -28,80 +33,75 @@ export class Algorithmus {
   totalProvision: number = 0;
   ongoingSupportAmount: number = 0;
 
-
   firstStepAmount: number = 0;
   exchangeSetupAmount: number = 0;
   buyStrategyAmount: number = 0;
   walletSetupAmount: number = 0;
   taxToolAmount: number = 0;
-  valueAddedTax: number = 0 
+  valueAddedTax: number = 0;
 
   // Creat Invoice
-  customerNumber: string ="";
-  invoiceNumber: string ="";
+  customerNumber: string = '';
+  invoiceNumber: string = '';
 
-  customerNameInvoice: string ="";
-  customerStreetInvoice: string ="";
-  customerCityInvoice: string ="";
+  customerNameInvoice: string = '';
+  customerStreetInvoice: string = '';
+  customerCityInvoice: string = '';
 
   constructor(private fb: FormBuilder) {
-    this.algorithmusForm = this.fb.group(
-      {
-        basicFee: [true],
-        Summe: [
-          '',
-          [Validators.required, Validators.min(1), Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-        ],
-        firstStep: [false],
-        exchangeSetup: [false],
-        buyStrategy: [false],
-        walletSetup: [false],
-        taxTool: [false],
-        ongoingSupport: [false],
-      },
-    );
+    this.algorithmusForm = this.fb.group({
+      basicFee: [true],
+      Summe: [
+        '',
+        [Validators.required, Validators.min(1), Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+      ],
+      firstStep: [false],
+      exchangeSetup: [false],
+      buyStrategy: [false],
+      walletSetup: [false],
+      taxTool: [false],
+      ongoingSupport: [false],
+    });
   }
 
   ngOnInit(): void {
-    this.onSubmit()
+    this.onSubmit();
   }
 
-  getBasicFee():boolean {    
-    return this.algorithmusForm.get('basicFee')?.value
-  };
+  getBasicFee(): boolean {
+    return this.algorithmusForm.get('basicFee')?.value;
+  }
 
-  getFirstStepValue():boolean {    
-    return this.algorithmusForm.get('firstStep')?.value
-  };
+  getFirstStepValue(): boolean {
+    return this.algorithmusForm.get('firstStep')?.value;
+  }
 
-  getExchangeSetup():boolean {    
-    return this.algorithmusForm.get('exchangeSetup')?.value
-  };
+  getExchangeSetup(): boolean {
+    return this.algorithmusForm.get('exchangeSetup')?.value;
+  }
 
-  getBuyStrategy():boolean {    
-    return this.algorithmusForm.get('buyStrategy')?.value
-  };
+  getBuyStrategy(): boolean {
+    return this.algorithmusForm.get('buyStrategy')?.value;
+  }
 
-  getWalletSetup():boolean {    
-    return this.algorithmusForm.get('walletSetup')?.value
-  };
+  getWalletSetup(): boolean {
+    return this.algorithmusForm.get('walletSetup')?.value;
+  }
 
-  getTaxTool():boolean {    
-    return this.algorithmusForm.get('taxTool')?.value
-  };
+  getTaxTool(): boolean {
+    return this.algorithmusForm.get('taxTool')?.value;
+  }
 
-  ongoingSupport():boolean {    
-    return this.algorithmusForm.get('ongoingSupport')?.value
-  };
+  ongoingSupport(): boolean {
+    return this.algorithmusForm.get('ongoingSupport')?.value;
+  }
 
-
-  openDialog() {    
+  openDialog() {
     this.isInvoiceVisible = true;
   }
 
   closeDialog() {
     this.isInvoiceVisible = false;
-
   }
 
   onSubmit() {
@@ -114,11 +114,11 @@ export class Algorithmus {
     this.ongoingSupportAmount = 0;
 
     if (this.algorithmusForm.valid) {
-        const sum = Number(this.algorithmusForm.get("Summe")?.value) || 0;
-        this.investmentAmount = sum;
-      
+      const sum = Number(this.algorithmusForm.get('Summe')?.value) || 0;
+      this.investmentAmount = sum;
+
       if (this.getFirstStepValue()) {
-        this.firstStepAmount = (sum  * this.algorithmusControl.firstStepProvision) / 100;
+        this.firstStepAmount = (sum * this.algorithmusControl.firstStepProvision) / 100;
         this.totalProvision += this.firstStepAmount;
       }
 
@@ -127,42 +127,39 @@ export class Algorithmus {
         this.totalProvision += this.exchangeSetupAmount;
       }
 
-      if (this.getBuyStrategy()){
+      if (this.getBuyStrategy()) {
         this.buyStrategyAmount = (sum * this.algorithmusControl.buyStrategyProvision) / 100;
         this.totalProvision += this.buyStrategyAmount;
-        
       }
 
-      if(this.getWalletSetup()) {
+      if (this.getWalletSetup()) {
         this.walletSetupAmount = (sum * this.algorithmusControl.walletSetupProvision) / 100;
-        this.totalProvision += this.walletSetupAmount;    
+        this.totalProvision += this.walletSetupAmount;
       }
-      
+
       if (this.getTaxTool()) {
         this.taxToolAmount = (sum * this.algorithmusControl.taxToolProvision) / 100;
-        this.totalProvision += this.walletSetupAmount;     
+        this.totalProvision += this.walletSetupAmount;
       }
 
       if (this.ongoingSupport()) {
         this.ongoingSupportAmount = this.algorithmusControl.ongoingSupportProvision;
         this.totalProvision += this.ongoingSupportAmount;
       }
-      
-      this.valueAddedTax = (this.totalProvision*this.algorithmusControl.valueAddedTax)/100
+
+      this.valueAddedTax = (this.totalProvision * this.algorithmusControl.valueAddedTax) / 100;
       this.totalAmount = this.totalProvision + this.valueAddedTax;
       this.invoiceNumber = this.customerControl.generateCustomerInvoiceNumber();
-    } else { 
+    } else {
       this.algorithmusForm.markAllAsTouched();
     }
   }
 
   get Summe() {
     return this.algorithmusForm.get('Summe');
-    
   }
 
   // SEARCH
-
 
   filteredCustomers: CUSTOMER[] = [];
   searchTerm: string = '';
@@ -171,39 +168,42 @@ export class Algorithmus {
   onSearchChange() {
     const term = this.searchTerm.toLowerCase();
     if (term) {
-      this.filteredCustomers = this.customerControl.customers().filter(c =>
-        c.first_name.toLowerCase().includes(term) ||
-        c.last_name.toLowerCase().includes(term) ||
-        c.customer_number.toLowerCase().includes(term)
-      );
+      this.customerControl.getCustomers().subscribe((customers) => {
+        this.filteredCustomers = customers.filter(
+          (c) =>
+            c.first_name.toLowerCase().includes(term) ||
+            c.last_name.toLowerCase().includes(term) ||
+            c.customer_number.toLowerCase().includes(term)
+        );
+      });
     } else {
-      // if input is empty, show all customers
-      this.filteredCustomers = [...this.customerControl.customers()];
+      this.customerControl.getCustomers().subscribe((customers) => {
+        this.filteredCustomers = [...customers];
+      });
     }
   }
 
   onFocus() {
-    // when input is focused, show all customers
-    this.filteredCustomers = [...this.customerControl.customers()];
-    this.showDropdown = true;
+    this.customerControl.getCustomers().subscribe((customers) => {
+      this.filteredCustomers = [...customers];
+      this.showDropdown = true;
+    });
   }
 
   selectCustomer(customer: CUSTOMER) {
-    this.searchTerm = customer.first_name + " " + customer.last_name;
+    this.searchTerm = customer.first_name + ' ' + customer.last_name;
     this.showDropdown = false;
     this.customerNumber = customer.customer_number;
-    this.customerNameInvoice = customer.first_name + " " + customer.last_name;
-    this.customerStreetInvoice = customer.street + " " + customer.number;
-    this.customerCityInvoice = customer.postcode + " " + customer.city;
+    this.customerNameInvoice = customer.first_name + ' ' + customer.last_name;
+    this.customerStreetInvoice = customer.street + ' ' + customer.number;
+    this.customerCityInvoice = customer.postcode + ' ' + customer.city;
   }
 
   hideDropdown() {
-    setTimeout(() => this.showDropdown = false, 150);
+    setTimeout(() => (this.showDropdown = false), 150);
   }
 
   onEvent(event: Event) {
-   event.stopPropagation();
-}
-
-
+    event.stopPropagation();
+  }
 }

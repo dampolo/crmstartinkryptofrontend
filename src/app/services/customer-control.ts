@@ -2,12 +2,14 @@ import { Injectable, signal } from '@angular/core';
 import { CUSTOMER } from '../models/customer.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../config.service';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerControl {
+  private baseUrl = environment.apiBaseUrl;
+
   generateCustomerNumber() {
     const prefix = 'SK';
     let counter = 1;
@@ -24,22 +26,13 @@ export class CustomerControl {
     return prefix + paddedCounter;
   }
 
-  customers = signal<CUSTOMER[]>([]);   // <-- SIGNAL
-
-  constructor(private http: HttpClient, private config: ConfigService) {}
-
-  // Dynamically build endpoint from config.json
-  private get apiUrl() {
-    return this.config.apiUrl + 'customers/';
-  }
+  constructor(private http: HttpClient) {}
 
   // Fetch ALL customers
-  getCustomers() {
-    this.http.get<CUSTOMER[]>(this.apiUrl, { withCredentials: true }).subscribe({
-      next: (res) => {
-        this.customers.set(res);
-      },
-    });
-  }
+  getCustomers():Observable<CUSTOMER[]> {
+    return this.http.get<CUSTOMER[]>(this.baseUrl + 'customers/', {
+      withCredentials: true
+    })
+  } 
 
 }
