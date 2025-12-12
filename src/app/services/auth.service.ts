@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
-import { ConfigService } from '../config.service';
 import { StateControl } from './state-control';
 
 @Injectable({
@@ -12,23 +11,21 @@ export class AuthService {
   isAuthenticated = new BehaviorSubject<boolean>(false);
 
   stateControl = inject(StateControl);
-  
 
-  constructor(private http: HttpClient, private router: Router, private config: ConfigService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // Dynamically build endpoint from config.json
 
   login(username: string, password: string) {
-    return this.http.post(this.config.apiUrl + 'token/', { username, password },
+    return this.http.post(
+      'http://127.0.0.1:8000/api/token/',
+      { username, password },
       { withCredentials: true }
     );
   }
 
-  
   checkAuth(): Observable<boolean> {
-  return this.http
-    .get(this.config.apiUrl + 'me/', { withCredentials: true })
-    .pipe(
+    return this.http.get('http://127.0.0.1:8000/api/me/', { withCredentials: true }).pipe(
       map(() => {
         this.isAuthenticated.next(true);
         return true;
@@ -38,12 +35,12 @@ export class AuthService {
         return of(false);
       })
     );
-}
+  }
 
-    logout() {
-    this.http.post(this.config.apiUrl + 'logout/', {}, { withCredentials: true }).subscribe(() => {
+  logout() {
+    this.http.post('http://127.0.0.1:8000/api/logout/', {}, { withCredentials: true }).subscribe(() => {
       this.isAuthenticated.next(false);
-      this.router.navigate(['/login'],{replaceUrl: true});
+      this.router.navigate(['/login'], { replaceUrl: true });
     });
   }
 }

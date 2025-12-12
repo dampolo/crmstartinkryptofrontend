@@ -8,9 +8,9 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { ConfigService } from './config.service';
 import { AuthService } from './services/auth.service';
 import { firstValueFrom } from 'rxjs';
+import { ConfigService } from './config.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
