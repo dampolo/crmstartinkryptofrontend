@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CompanyControl } from '../../services/company-control';
 import { CommonModule } from '@angular/common';
 import { StateControl } from '../../services/state-control';
+import { COMPANY } from '../../models/company.model';
 
 @Component({
   standalone: true,
@@ -18,8 +19,10 @@ export class Company {
   currentYear = new Date().getFullYear();
   showEdit: boolean = false;
 
+  company: COMPANY[] = [];
+
   ngOnInit() {
-    this.companyData.getCompany();
+    this.companyData.getCompany().subscribe()
   }
 
   constructor(private fb: FormBuilder) {
