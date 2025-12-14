@@ -15,4 +15,8 @@ export class Invoice {
   companyControl = inject(CompanyControl)
   currentDate = new Date(); // stores the current date and time
 
+   ngOnInit() {
+    this.companyControl.getCompany().subscribe()
+  }
+
 }

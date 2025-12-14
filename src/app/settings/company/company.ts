@@ -4,6 +4,7 @@ import { CompanyControl } from '../../services/company-control';
 import { CommonModule } from '@angular/common';
 import { StateControl } from '../../services/state-control';
 import { COMPANY } from '../../models/company.model';
+import { catchError, EMPTY, switchMap, tap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -14,15 +15,14 @@ import { COMPANY } from '../../models/company.model';
 })
 export class Company {
   companyForm: FormGroup;
-  companyData = inject(CompanyControl);
+  companyControl = inject(CompanyControl);
   stateControl = inject(StateControl);
   currentYear = new Date().getFullYear();
   showEdit: boolean = false;
 
-  company: COMPANY[] = [];
 
   ngOnInit() {
-    this.companyData.getCompany().subscribe()
+    this.companyControl.getCompany().subscribe()
   }
 
   constructor(private fb: FormBuilder) {
@@ -67,7 +67,7 @@ export class Company {
     });
 
     effect(() => {
-      const company = this.companyData.company();
+      const company = this.companyControl.company();
       if (company) {
         this.companyForm.patchValue({
           name: company.name,
@@ -93,7 +93,7 @@ export class Company {
 
   editDetails() {
     this.showEdit = true;
-    this.companyData.getCompany();
+    this.companyControl.getCompany();
   }
 
   submit() {
@@ -101,21 +101,23 @@ export class Company {
       this.companyForm.markAllAsTouched();
       return;
     }
-
     const formData = this.companyForm.value;
 
-    this.companyData.updateCompany(formData).subscribe({
-      next: (response) => {
-        this.stateControl.showToast = true;
-        this.stateControl.showToastText.set('Firmendaten wurden erfolgreich gespeichert.');
-        this.stateControl.removeShowToast();
-      },
-      error: (err) => {
-        this.stateControl.showToast = true;
-        this.stateControl.showToastText.set('Fehler beim Speichern der Daten.');
-        this.stateControl.removeShowToast();
-        console.error('Update failed: ', err);
-      },
-    });
-  }
+    this.companyControl.updateCompany(formData)
+    .pipe(switchMap(() => this.companyControl.getCompany()),
+      tap(() => {
+      this.showEdit = false;
+      this.stateControl.showToast = true;
+      this.stateControl.showToastText.set('Firmendaten wurden erfolgreich gespeichert.');
+      this.stateControl.removeShowToast();
+    }),
+    catchError(err => {
+      this.stateControl.showToast = true;
+      this.stateControl.showToastText.set('Fehler beim Speichern der Daten.');
+      this.stateControl.removeShowToast();
+      return EMPTY
+    })
+    )
+    .subscribe();
+}
 }

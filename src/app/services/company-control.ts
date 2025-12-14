@@ -14,13 +14,13 @@ export class CompanyControl {
   company = signal<COMPANY | null>(null);
 
   updateCompany(data: Partial<COMPANY>) {
-    return this.http.patch(this.baseUrl + 'company', data, {
+    return this.http.patch(this.baseUrl + 'company/', data, {
       withCredentials: true,
     });
   }
 
   getCompany():Observable<COMPANY> {
-     return this.http.get<COMPANY>(this.baseUrl + 'company', { 
+     return this.http.get<COMPANY>(this.baseUrl + 'company/', { 
       withCredentials: true 
     }).pipe(
       tap(res => this.company.set(res))

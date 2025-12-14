@@ -2,7 +2,7 @@
     <div class="container-firma">
       <div class="logo">
         <a href="/" class="logo">
-          <img width="170" height="40" [src]="companyData.company()?.logo"  alt="Start in Krypto">
+          <img width="170" height="40" [src]="companyControl.company()?.logo"  alt="Start in Krypto">
         </a>
       </div>
     <h1>Start in Krypto</h1>
@@ -12,50 +12,50 @@
     <address class="details">
       <dl>
         <dt>Name</dt>
-        <dd>{{companyData.company()?.name}}</dd>
+        <dd>{{companyControl.company()?.name}}</dd>
       </dl>
       <dl>
         <dt>Name des Inhabers</dt>
-        <dd>{{companyData.company()?.owner_name}}</dd>
+        <dd>{{companyControl.company()?.owner_name}}</dd>
       </dl>
       <dl>
         <dt>Straße & Nr.</dt>
-        <dd>{{companyData.company()?.street}} {{companyData.company()?.number}}</dd>
+        <dd>{{companyControl.company()?.street}} {{companyControl.company()?.number}}</dd>
       </dl>
       <dl>
         <dt>Postleitzahl & Stadt</dt>
-        <dd>{{companyData.company()?.postcode}} {{companyData.company()?.city}}</dd>
+        <dd>{{companyControl.company()?.postcode}} {{companyControl.company()?.city}}</dd>
       </dl>
     </address>
     
     <dl class="tax">
       <dt>Steuernummer</dt>
-      <dd>{{companyData.company()?.tax_number}}</dd>
+      <dd>{{companyControl.company()?.tax_number}}</dd>
     </dl>
     
     <dl class="bank">
       <dt>Bankname:</dt>
-      <dd>{{companyData.company()?.bank}}</dd>
+      <dd>{{companyControl.company()?.bank}}</dd>
     </dl>
 
     <dl class="bank-account">
       <dt>IBAN / Kontonummer:</dt>
-      <dd>{{companyData.company()?.bank_account}}</dd>
+      <dd>{{companyControl.company()?.bank_account}}</dd>
     </dl>
 
     <dl class="swift-code">
       <dt>SWIFT / BIC:</dt>
-      <dd>{{companyData.company()?.swift_code}}</dd>
+      <dd>{{companyControl.company()?.swift_code}}</dd>
     </dl>
 
     <dl class="founding">
       <dt>Gründung</dt>
-      <dd>{{companyData.company()?.founding}}</dd>
+      <dd>{{companyControl.company()?.founding}}</dd>
     </dl>
 
     <dl class="email">
       <dt>E-Mail</dt>
-      <dd>{{companyData.company()?.email}}</dd>
+      <dd>{{companyControl.company()?.email}}</dd>
     </dl>
 
     <button class="edit" (click)="editDetails()">EDIT</button>
