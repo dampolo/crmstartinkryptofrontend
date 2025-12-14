@@ -70,3 +70,17 @@ table tbody tr td:last-child {
 table tbody tr {
     height: 2rem;
 }
+
+.crmSK-icon-three-dots{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: basic.$first-transition;
+}
+
+.crmSK-icon-three-dots:hover {
+    background-color: rgb(196, 196, 196);;
+}

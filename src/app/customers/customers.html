@@ -19,7 +19,7 @@
                 <td class="">Portfolio</td>
                 <td class="">Abo</td>
                 <td class="">Rechnungen</td>
-
+                <td class="">Edit</td>
             </tr>
         </thead>
         <tbody class="">
@@ -38,6 +38,11 @@
                 <td>{{ customer.has_portfolio }}</td>
                 <td>{{ customer.has_subscription }}</td>
                 <td>{{ customer.invoices }}</td>
+                <td>
+                    <button class="crmSK-icon-three-dots">
+                        <img src="/assets/three.svg" alt="edit">
+                    </button>
+                </td>
             </tr>
             }
 
