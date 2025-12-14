@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
+import { StateControl } from '../services/state-control';
 
 @Component({
   standalone: true,
@@ -11,12 +12,18 @@ import { CUSTOMER } from '../models/customer.model';
 })
 export class Customers {
   customerControl = inject(CustomerControl);
+  stateControl = inject(StateControl)
 
-  customer = signal<CUSTOMER[]>([]); // <-- SIGNAL
+  customers = signal<CUSTOMER[]>([]); // <-- SIGNAL
 
   ngOnInit() {
-    this.customerControl.getCustomers().subscribe((res) => {
-      this.customer.set(res);
-    });
+    this.customerControl.getCustomers().subscribe({
+      next: (customers) => {
+        this.customers.set(customers)
+      },
+      error: (err) => {
+        this.stateControl.displayToast('Systemfehler')
+      }
+    })
   }
 }
