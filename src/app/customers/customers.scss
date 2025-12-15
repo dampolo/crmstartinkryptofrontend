@@ -7,6 +7,7 @@ section {
 }
 
 table { 
+    position: relative;
     border-radius: 10px; 
     border-spacing: 0; 
     border-collapse: separate; 
@@ -83,4 +84,43 @@ table tbody tr {
 
 .crmSK-icon-three-dots:hover {
     background-color: rgb(196, 196, 196);;
+}
+
+.crmSK-td-edit {
+    position: relative;
+}
+
+.crmSK-popper.show {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+.crmSK-popper {
+    position: absolute;
+    inset:  0 0 auto auto;
+    margin: 0;
+    transform: translate(-35px, 30px);
+    background-color: basic.$content-color;
+    border-radius: basic.$border-radius;
+    box-shadow: basic.$box-shadow;
+    height: 7rem;
+    width: 10rem;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -100;
+    pointer-events: none;
+}
+
+.crmSK-popper-li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .375rem 1rem;
+    cursor: pointer;
+}
+
+.crmSK-popper-li:hover {
+    background-color: basic.$body-bg;
 }
