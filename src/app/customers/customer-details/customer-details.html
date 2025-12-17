@@ -1,1 +1,113 @@
-<p>customer-details works!</p>
+<h1 class="title">Kunde - {{customer?.first_name}} {{customer?.last_name}}</h1>
+
+
+  <address class="details">
+
+    <!-- Person -->
+    <dl>
+      <dt>Titel</dt>
+      <dd>{{ customer?.title }}</dd>
+    </dl>
+
+    <dl>
+      <dt>Vorname</dt>
+      <dd>{{ customer?.first_name }}</dd>
+    </dl>
+
+    <dl>
+      <dt>Nachname</dt>
+      <dd>{{ customer?.last_name }}</dd>
+    </dl>
+
+    <!-- Contact -->
+    <dl>
+      <dt>E-Mail</dt>
+      <dd>
+        @if (customer?.email) {
+          <a [href]="'mailto:' + customer?.email">{{ customer?.email }}</a>
+        } @else {
+          —
+        }
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>Telefon</dt>
+      <dd>
+        @if (customer?.phone) {
+          <a [href]="'tel:' + customer?.phone">{{ customer?.phone }}</a>
+        } @else {
+          —
+        }
+      </dd>
+    </dl>
+
+    <!-- Address -->
+    <dl>
+      <dt>Straße & Nr.</dt>
+      <dd>{{ customer?.street }} {{ customer?.number }}</dd>
+    </dl>
+
+    <dl>
+      <dt>PLZ & Stadt</dt>
+      <dd>{{ customer?.postcode }} {{ customer?.city }}</dd>
+    </dl>
+
+    <!-- Status -->
+    <dl>
+      <dt>Aktiv</dt>
+      <!-- <dd>{{ customer?. ? 'Ja' : 'Nein' }}</dd> -->
+    </dl>
+
+    <dl>
+      <dt>Portfolio</dt>
+      <dd>{{ customer?.has_portfolio ? 'Ja' : 'Nein' }}</dd>
+    </dl>
+
+    <dl>
+      <dt>Abo</dt>
+      <dd>{{ customer?.has_subscription ? 'Ja' : 'Nein' }}</dd>
+    </dl>
+
+    <!-- Meta -->
+    <dl>
+      <dt>Erstellt</dt>
+      <dd>{{ customer?.created_at | date:'dd.MM.yyyy, HH:mm' }}</dd>
+    </dl>
+
+    <dl>
+      <dt>Zuletzt geändert</dt>
+      <dd>{{ customer?.updated_at | date:'dd.MM.yyyy, HH:mm' }}</dd>
+    </dl>
+
+    <!-- Photo -->
+    <dl>
+      <dt>Foto</dt>
+      <dd>
+        @if (customer?.photo) {
+          <img [src]="customer?.photo" alt="Kundenfoto" />
+        } @else {
+          —
+        }
+      </dd>
+    </dl>
+
+    <!-- Comments -->
+    <section class="comments">
+      <h2>Kommentare</h2>
+
+      @if (!customer?.comments?.length) {
+        <p>Keine Kommentare vorhanden.</p>
+      } @else {
+        <ul>
+          @for (comment of customer?.comments; track $index) {
+            <li>{{ comment }}</li>
+          }
+        </ul>
+      }
+    </section>
+
+  </address>
+
+<a href="/kunden" class="new-customer">Bearbeiten</a>
+<a href="/kunden" class="new-customer">Zurück</a>

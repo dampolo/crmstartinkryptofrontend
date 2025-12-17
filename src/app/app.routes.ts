@@ -9,6 +9,8 @@ import { Settings } from './settings/settings';
 import { Login } from './login/login';
 import { authGuard } from './guards/auth-guard';
 import { Layout } from './layout/layout';
+import { CustomerDetails } from './customers/customer-details/customer-details';
+import { CustomerComments } from './customers/customer-comments/customer-comments';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -23,12 +25,13 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: Dashboard, title: 'Dashboard' },
-      { path: 'kunden', component: Customers, title: 'Alle Kunden' },
+      { path: 'kunden', component: Customers, title: 'Alle Kunden'},
+      { path: 'kunden/:id', component: CustomerDetails },
+      { path: 'kunden/:id/comments', component: CustomerComments },
       { path: 'bewerbungen', component: Apply, title: 'Bewerbungen' },
       { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
       { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
       { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
-
       {
         path: 'einstellungen',
         loadChildren: () =>

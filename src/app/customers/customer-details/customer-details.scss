@@ -1,0 +1,6 @@
+@use './../../../basic';
+
+dt {
+  font-weight: bold;
+  color: basic.$secondary;
+}

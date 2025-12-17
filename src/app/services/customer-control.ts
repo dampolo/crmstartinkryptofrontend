@@ -35,4 +35,10 @@ export class CustomerControl {
     })
   } 
 
+  getCustomerById(id: number): Observable<CUSTOMER> {
+    return this.http.get<CUSTOMER>(
+      `${this.baseUrl}customers/${id}`,
+      {withCredentials: true}
+    )
+  }
 }

@@ -3,11 +3,12 @@ import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
 import { StateControl } from '../services/state-control';
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterOutlet } from "@angular/router";
 
 @Component({
   standalone: true,
   selector: 'app-customers',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './customers.html',
   styleUrl: './customers.scss',
 })

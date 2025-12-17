@@ -12,7 +12,9 @@ export interface CUSTOMER {
     email: string;
     phone: string;
     has_portfolio: boolean;
-    comment: string;
+    comments: string;
     has_subscription: boolean;
     invoices: number;
+    updated_at: number;
+    created_at: number;    
 }
