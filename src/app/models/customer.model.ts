@@ -1,3 +1,12 @@
+
+export interface Comment {
+  id: number;
+  user: number | null;
+  text: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface CUSTOMER {
     id: number;
     photo: string;
@@ -12,9 +21,9 @@ export interface CUSTOMER {
     email: string;
     phone: string;
     has_portfolio: boolean;
-    comments: string;
     has_subscription: boolean;
     invoices: number;
     updated_at: number;
-    created_at: number;    
+    created_at: number;
+    comments: Comment[];
 }

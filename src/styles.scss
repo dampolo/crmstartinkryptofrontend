@@ -89,6 +89,7 @@ app-company {
 
 button[type="button"],
 a.new-customer,
+button.new-customer,
 button.edit,
 button[type='submit'] {
   background-color: basic.$primary;
@@ -98,7 +99,7 @@ button[type='submit'] {
   transition: basic.$first-transition;
 }
 
-
+button.new-customer:hover,
 button[type="button"]:hover,
 a.new-customer:not(:disabled):hover,
 button.edit:not(:disabled):hover,
