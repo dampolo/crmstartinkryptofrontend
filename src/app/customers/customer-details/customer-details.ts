@@ -53,9 +53,9 @@ export class CustomerDetails {
       city: ['', [Validators.required, Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/)]],
       email: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/), Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9\-\+\s]{6,15}$/)]],
-      has_portfolio: ['false', Validators.required],
+      has_portfolio: [Boolean, Validators.required],
       comment: ['', Validators.maxLength(500)],
-      has_subscription: [false],
+      has_subscription: [Boolean, Validators.required],
       invoices: [0],
     });
 

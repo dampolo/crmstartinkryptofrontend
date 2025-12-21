@@ -303,18 +303,35 @@
     <input class="form-control" type="tel" placeholder="+49 176 42 56 85 45" id="phone" formControlName="phone">
   </div>
 
-  <!-- Receive Offers -->
+  <!-- Receive Subscribtion -->
   <div class="form-group">
-    <label class="control-label" id="label-receiveOffers">Willst du unsere Mitteilungen per E-Mail bekommen?</label>
+    <label class="control-label" id="label-has_subscription">Willst du unsere Mitteilungen per E-Mail bekommen?</label>
     <div class="form-radio">
         
-      <label for="offersYes">
-      <input class="form-control" type="radio" id="offersYes" formControlName="has_subscription" [value]="true">
+      <label for="has_subscriptionYes">
+      <input class="form-control" type="radio" id="has_subscriptionYes" formControlName="has_subscription" [value]="true">
         Ja
       </label>
 
-      <label for="offersNo">
-        <input class="form-control" type="radio" id="offersNo" formControlName="has_subscription" [value]="false">
+      <label for="has_subscriptionNo">
+        <input class="form-control" type="radio" id="has_subscriptionNo" formControlName="has_subscription" [value]="false">
+        Nein
+      </label>
+    </div>
+  </div>
+
+   <!-- Portofilo -->
+  <div class="form-group">
+    <label class="control-label" id="label-has_portfolio">Willst du ein Profolio bei uns haben?</label>
+    <div class="form-radio">
+        
+      <label for="has_portfolioYes">
+      <input class="form-control" type="radio" id="has_portfolioYes" formControlName="has_portfolio" [value]="true">
+        Ja
+      </label>
+
+      <label for="has_portfolioNo">
+        <input class="form-control" type="radio" id="has_portfolioNo" formControlName="has_portfolio" [value]="false">
         Nein
       </label>
     </div>
