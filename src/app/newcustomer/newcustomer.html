@@ -16,7 +16,7 @@
       <option value="Frau">Frau</option>
       <option value="Divers">Divers</option>
     </select>
-    @if (newCustomerForm.get('title')?.invalid && (newCustomerForm.get('title')?.touched || newCustomerForm.get('firstName')?.dirty)) {
+    @if (newCustomerForm.get('title')?.invalid && (newCustomerForm.get('title')?.touched || newCustomerForm.get('first_name')?.dirty)) {
       <div class="text-requied">
       @if (newCustomerForm.get('title')?.errors?.['required']) {
           <small>Anrede ist erforderlich.</small>
@@ -27,17 +27,17 @@
 
   <!-- First Name -->
   <div class="form-group">
-    <label class="control-label required" id="label-firstName" for="firstName">Vorname:</label>
-    <input class="form-control" type="text" placeholder="Max" id="firstName" formControlName="firstName">
-     @if (newCustomerForm.get('firstName')?.invalid && (newCustomerForm.get('firstName')?.touched || newCustomerForm.get('firstName')?.dirty)) {
+    <label class="control-label required" id="label-first_name" for="first_name">Vorname:</label>
+    <input class="form-control" type="text" placeholder="Max" id="label-first_name" formControlName="first_name">
+     @if (newCustomerForm.get('first_name')?.invalid && (newCustomerForm.get('first_name')?.touched || newCustomerForm.get('first_name')?.dirty)) {
       <div class="text-requied">
-      @if (newCustomerForm.get('firstName')?.errors?.['required']) {
+      @if (newCustomerForm.get('first_name')?.errors?.['required']) {
           <small>Vorname ist erforderlich.</small>
           }
-          @if (newCustomerForm.get('firstName')?.errors?.['minlength']) {
+          @if (newCustomerForm.get('first_name')?.errors?.['minlength']) {
           <small>Vorname muss mindestens 2 Zeichen lang sein.</small>
         }
-         @if (newCustomerForm.get('firstName')?.errors?.['pattern']) {
+         @if (newCustomerForm.get('first_name')?.errors?.['pattern']) {
         <small>Vorname darf nicht nur aus Leerzeichen bestehen.</small>
       }
       </div>
@@ -47,17 +47,17 @@
 
   <!-- Name -->
   <div class="form-group">
-    <label class="control-label required" id="label-name" for="lastName">Nachname:</label>
-    <input class="form-control" type="text" placeholder="Mustermann" id="lastName" formControlName="lastName">
-    @if (newCustomerForm.get('lastName')?.invalid && (newCustomerForm.get('lastName')?.touched || newCustomerForm.get('lastName')?.dirty)) {
+    <label class="control-label required" id="label-last_name" for="last_name">Nachname:</label>
+    <input class="form-control" type="text" placeholder="Mustermann" id="last_name" formControlName="last_name">
+    @if (newCustomerForm.get('last_name')?.invalid && (newCustomerForm.get('last_name')?.touched || newCustomerForm.get('last_name')?.dirty)) {
       <div class="text-requied">
-      @if (newCustomerForm.get('lastName')?.errors?.['required']) {
+      @if (newCustomerForm.get('last_name')?.errors?.['required']) {
           <small>Nachname ist erforderlich.</small>
           }
-          @if (newCustomerForm.get('lastName')?.errors?.['minlength']) {
+          @if (newCustomerForm.get('last_name')?.errors?.['minlength']) {
           <small>Nachname muss mindestens 2 Zeichen lang sein.</small>
         }
-         @if (newCustomerForm.get('lastName')?.errors?.['pattern']) {
+         @if (newCustomerForm.get('last_name')?.errors?.['pattern']) {
         <small>Nachname darf nicht nur aus Leerzeichen bestehen.</small>
       }
       </div>
@@ -101,17 +101,17 @@
 
   <!-- Postcode -->
   <div class="form-group">
-    <label class="control-label required" id="label-postcode" for="postCode">Postleitzahl:</label>
-    <input class="form-control" type="text" placeholder="81500" id="postCode" formControlName="postCode">
-  @if (newCustomerForm.get('postCode')?.invalid && (newCustomerForm.get('postCode')?.touched || newCustomerForm.get('postCode')?.dirty)) {
+    <label class="control-label required" id="label-postcode" for="postcode">Postleitzahl:</label>
+    <input class="form-control" type="text" placeholder="81500" id="postcode" formControlName="postcode">
+  @if (newCustomerForm.get('postcode')?.invalid && (newCustomerForm.get('postcode')?.touched || newCustomerForm.get('postcode')?.dirty)) {
         <div class="text-requied">
-        @if (newCustomerForm.get('postCode')?.errors?.['required']) {
+        @if (newCustomerForm.get('postcode')?.errors?.['required']) {
         <small>Postleitzahl ist erforderlich.</small>
         }
-        @if (newCustomerForm.get('postCode')?.errors?.['pattern']) {
+        @if (newCustomerForm.get('postcode')?.errors?.['pattern']) {
         <small>Postleitzahl muss aus 4 oder 5 Ziffern bestehen.</small>
         }
-        @if (newCustomerForm.get('postCode')?.errors?.['pattern']) {
+        @if (newCustomerForm.get('postcode')?.errors?.['pattern']) {
         <small>Postleitzahl darf nicht nur aus Leerzeichen bestehen.</small>
         }
         </div>
@@ -165,18 +165,35 @@
     <input class="form-control" type="tel" placeholder="+49 176 42 56 85 45" id="phone" formControlName="phone">
   </div>
 
-  <!-- Receive Offers -->
+  <!-- Receive Subscribtion -->
   <div class="form-group">
-    <label class="control-label" id="label-receiveOffers">Willst du unsere Mitteilungen per E-Mail bekommen?</label>
+    <label class="control-label" id="label-has_subscription">Willst du unsere Mitteilungen per E-Mail bekommen?</label>
     <div class="form-radio">
         
-      <label for="offersYes">
-      <input class="form-control" type="radio" id="offersYes" formControlName="portfolio" value="yes">
+      <label for="has_subscriptionYes">
+      <input class="form-control" type="radio" id="has_subscriptionYes" formControlName="has_subscription" [value]="true">
         Ja
       </label>
 
-      <label for="offersNo">
-        <input class="form-control" type="radio" id="offersNo" formControlName="portfolio" value="no">
+      <label for="has_subscriptionNo">
+        <input class="form-control" type="radio" id="has_subscriptionNo" formControlName="has_subscription" [value]="false">
+        Nein
+      </label>
+    </div>
+  </div>
+
+   <!-- Portofilo -->
+  <div class="form-group">
+    <label class="control-label" id="label-has_portfolio">Willst du ein Profolio bei uns haben?</label>
+    <div class="form-radio">
+        
+      <label for="has_portfolioYes">
+      <input class="form-control" type="radio" id="has_portfolioYes" formControlName="has_portfolio" [value]="true">
+        Ja
+      </label>
+
+      <label for="has_portfolioNo">
+        <input class="form-control" type="radio" id="has_portfolioNo" formControlName="has_portfolio" [value]="false">
         Nein
       </label>
     </div>

@@ -42,6 +42,14 @@ export class CustomerControl {
     )
   }
 
+  postCustomerById(payload: CUSTOMER): Observable<CUSTOMER> {
+    return this.http.post<CUSTOMER>(
+      `${this.baseUrl}customers/`,
+      payload,
+      {withCredentials: true}
+    )
+  }
+
   updateCustomerById(id: number, payload: CUSTOMER): Observable<CUSTOMER> {
     return this.http.patch<CUSTOMER>(
       `${this.baseUrl}customers/${id}/`,
