@@ -1,5 +1,5 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CUSTOMER } from '../../models/customer.model';
 import { CustomerControl } from '../../services/customer-control';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -22,12 +22,8 @@ export class CustomerDetails {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(this.customer);
-
     this.customerControl.getCustomerById(id).subscribe({
       next: (data) => {
-        console.log(data);
-
         this.customer.set(data)
       },
       error: (err) => {
@@ -36,9 +32,11 @@ export class CustomerDetails {
     });
   }
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute,
+    private router: Router, 
+    private fb: FormBuilder) {
     this.customerForm = this.fb.group({
-      photo: [''],
+      photo: [null],
       customer_number: [''],
       title: ['', Validators.required],
       first_name: [
@@ -61,9 +59,7 @@ export class CustomerDetails {
       invoices: [0],
     });
 
-    effect(() => {
-      console.log(this.customer()?.has_portfolio);
-      
+    effect(() => {      
       this.customerForm.patchValue({
         customer_number: this.customer()?.customer_number,
         title: this.customer()?.title,
@@ -86,17 +82,29 @@ export class CustomerDetails {
   }
 
   onSubmit() {
-    this.showConfirmation();
-    this.customerForm.patchValue({
-      customerNumber: this.customerControl.generateCustomerNumber(),
-    });
-    // this.customerControl.customer().push(this.newCustomerForm.value as CUSTOMER)
+    if(this.customerForm.invalid) {
+      this.customerForm.markAllAsTouched();
+      return
+    }
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const payload = this.customerForm.getRawValue();
+
+    this.customerControl.updateCustomerById(id, payload).subscribe({
+      next: () => {
+        this.showConfirmation('Der Kunde wurde aktualisiert');
+      },
+      error: (err) => {
+        this.showConfirmation('!! Verusche noch einmal');
+      }
+    })
   }
 
-  showConfirmation() {
-    this.stateControl.showToast = true;
-    this.stateControl.showToastText.set('Der Kunde wurde erstellt');
+  showConfirmation(message: string) {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.stateControl.displayToast(message);
     this.stateControl.removeShowToast();
+    this.showEdit = false;
+    this.ngOnInit();
   }
 
   onCancel() {
@@ -105,6 +113,5 @@ export class CustomerDetails {
 
   editDetails() {
     this.showEdit = true;
-    // this.companyControl.getCompany();
   }
 }
