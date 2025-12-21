@@ -1,43 +1,184 @@
 <div class="container-preise">
   <h2>Leistungsübersicht</h2>
 
-  <table class="price-table">
-    <thead>
-      <tr>
-        <th>Leistung</th>
-        <th>Preis</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Grundgebühr</td>
-        <td>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</td>
-      </tr>
-      <tr>
-        <td>Individuelle Express Krypto-Einführung</td>
-        <td>{{algorithmusControl.firstStepProvision | number:'1.2-2'}} %</td>
-      </tr>
-      <tr>
-        <td>Börsenwahl & Einrichtung</td>
-        <td>{{algorithmusControl.exchangeSetupProvision | number:'1.2-2'}} %</td>
-      </tr>
-      <tr>
-        <td>Kaufstrategie & Coin-Auswahl</td>
-        <td>{{algorithmusControl.buyStrategyProvision | number:'1.2-2'}} %</td>
-      </tr>
-      <tr>
-        <td>Wallet-Einrichtung & Sicherheit</td>
-        <td>{{algorithmusControl.walletSetupProvision | number:'1.2-2'}} %</td>
-      </tr>
-      <tr>
-        <td>Steuertool für deine Abwicklung</td>
-        <td>{{algorithmusControl.taxToolProvision | number:'1.2-2'}} %</td>
-      </tr>
-      <tr>
-        <td>Laufende Betreuung</td>
-        <td>{{algorithmusControl.ongoingSupportProvision | number:'1.2-2'}} €</td>
-      </tr>
-    </tbody>
-  </table>
-    <button class="edit" onclick="toggleEditMode()" disabled="true">EDIT</button>
+  <div class="main-wrapper">
+    <div class="wrapper-content" [ngClass]="showEdit ? 'show-edit' : ''">
+      <div class="container-prices">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>Leistung</th>
+              <th>Preis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Grundgebühr</td>
+              <td>{{ algorithmusControl.basicFeeProvision | number : '1.2-2' }} €</td>
+            </tr>
+            <tr>
+              <td>Individuelle Express Krypto-Einführung</td>
+              <td>{{ algorithmusControl.firstStepProvision | number : '1.2-2' }} %</td>
+            </tr>
+            <tr>
+              <td>Börsenwahl & Einrichtung</td>
+              <td>{{ algorithmusControl.exchangeSetupProvision | number : '1.2-2' }} %</td>
+            </tr>
+            <tr>
+              <td>Kaufstrategie & Coin-Auswahl</td>
+              <td>{{ algorithmusControl.buyStrategyProvision | number : '1.2-2' }} %</td>
+            </tr>
+            <tr>
+              <td>Wallet-Einrichtung & Sicherheit</td>
+              <td>{{ algorithmusControl.walletSetupProvision | number : '1.2-2' }} %</td>
+            </tr>
+            <tr>
+              <td>Steuertool für deine Abwicklung</td>
+              <td>{{ algorithmusControl.taxToolProvision | number : '1.2-2' }} %</td>
+            </tr>
+            <tr>
+              <td>Laufende Betreuung</td>
+              <td>{{ algorithmusControl.ongoingSupportProvision | number : '1.2-2' }} €</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="edit" (click)="editDetails()">EDIT</button>
+      </div>
+      
+      <div class="container-edit">
+  
+  <form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()">
+
+  <!-- Name -->
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      id="name"
+      type="text"
+      class="form-control"
+      formControlName="name"
+    />
+
+    @if (
+      algorithmusForm.get('name')?.invalid &&
+      (algorithmusForm.get('name')?.touched || algorithmusForm.get('name')?.dirty)
+    ) {
+      <div class="text-requied">
+        @if (algorithmusForm.get('name')?.errors?.['required']) {
+          <small>Name ist erforderlich.</small>
+        }
+        @if (algorithmusForm.get('name')?.errors?.['maxlength']) {
+          <small>Name darf maximal 200 Zeichen lang sein.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Provision Type -->
+  <div class="form-group">
+    <label for="provision_type">Provision type</label>
+    <select
+      id="provision_type"
+      class="form-control"
+      formControlName="provision_type"
+    >
+      @for (type of provisionTypes; track type.value) {
+        <option [value]="type.value">
+          {{ type.label }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <!-- Fixed amount -->
+  @if (isFixed) {
+    <div class="form-group">
+      <label for="amount_fixed">Fixed amount (€)</label>
+      <input
+        id="amount_fixed"
+        type="number"
+        step="0.01"
+        class="form-control"
+        formControlName="amount_fixed"
+      />
+
+      @if (
+        algorithmusForm.get('amount_fixed')?.invalid &&
+        (algorithmusForm.get('amount_fixed')?.touched || algorithmusForm.get('amount_fixed')?.dirty)
+      ) {
+        <div class="text-requied">
+          @if (algorithmusForm.get('amount_fixed')?.errors?.['required']) {
+            <small>Fixbetrag ist erforderlich.</small>
+          }
+          @if (algorithmusForm.get('amount_fixed')?.errors?.['min']) {
+            <small>Fixbetrag muss größer als 0 sein.</small>
+          }
+          @if (algorithmusForm.get('amount_fixed')?.errors?.['pattern']) {
+            <small>Ungültiges Zahlenformat (z. B. 700.00).</small>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Percent amount -->
+  @if (!isFixed) {
+    <div class="form-group">
+      <label for="amount_percent">Percent (decimal)</label>
+      <input
+        id="amount_percent"
+        type="number"
+        step="0.0001"
+        class="form-control"
+        formControlName="amount_percent"
+      />
+
+      @if (
+        algorithmusForm.get('amount_percent')?.invalid &&
+        (algorithmusForm.get('amount_percent')?.touched || algorithmusForm.get('amount_percent')?.dirty)
+      ) {
+        <div class="text-requied">
+          @if (algorithmusForm.get('amount_percent')?.errors?.['required']) {
+            <small>Prozentwert ist erforderlich.</small>
+          }
+          @if (
+            algorithmusForm.get('amount_percent')?.errors?.['min'] ||
+            algorithmusForm.get('amount_percent')?.errors?.['max']
+          ) {
+            <small>Wert muss zwischen 0 und 1 liegen (z. B. 0.05).</small>
+          }
+          @if (algorithmusForm.get('amount_percent')?.errors?.['pattern']) {
+            <small>Ungültiges Dezimalformat.</small>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="algorithmusForm.invalid"
+  >
+    Save
+  </button>
+
+</form>
+
+      
+      
+      <div class="btn-container">
+      <!-- Cancel Button -->
+      <button type="button" (click)="onCancel()">
+        Abbrechen
+      </button>
+      
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="">
+        Speichern
+      </button>
+    </div>
+      </div>
+    </div>
+  </div>
 </div>

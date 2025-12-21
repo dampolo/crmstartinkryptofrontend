@@ -52,3 +52,37 @@
     }
   }
 }
+
+.wrapper-content {
+  display: flex;
+  width: 75rem;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  transform: translateX(0%);
+  transition: basic.$first-transition;
+}
+
+
+.container-edit,
+.container-prices {
+  display: flex;
+  flex-direction: column;
+  width: 37.5rem;
+  // height: 50rem;
+  padding: 1.875rem;
+  overflow: hidden;
+}
+
+.show-edit {
+  transform: translateX(-50%);
+}
+
+.main-wrapper {
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  overflow-x: hidden;
+  border-radius: 0.75rem;
+  gap: 1rem;
+}
