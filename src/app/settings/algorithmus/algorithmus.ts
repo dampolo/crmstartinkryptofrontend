@@ -31,13 +31,12 @@ export class Algorithmus {
   }
 
   // FormArray getter
-  get services(): FormArray {
+  get services(): FormArray {    
     return this.algorithmusForm.get('services') as FormArray;
   }
 
   //Create one service block
-  private createServiceGroup(): FormGroup {
-    debugger
+  createServiceGroup(): FormGroup {
     const group = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(200)]],
       provision_type: ['', Validators.required],
@@ -45,12 +44,6 @@ export class Algorithmus {
       amount_percent: [null],
     });
 
-    queueMicrotask(() => {
-      const index = this.services.controls.indexOf(group);
-      if (index > -1) {
-        this.updateValidators(index);
-      }
-    });
 
     group.get('provision_type')?.valueChanges.subscribe(() => {
       const index = this.services.controls.indexOf(group);
