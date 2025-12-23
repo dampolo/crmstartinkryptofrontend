@@ -110,14 +110,11 @@ export class Algorithmus {
     this.algorithmusControl.updateServices(payload.services).subscribe({
       next: () => {
         this.showConfirmation('Der Kunde wurde erstellt');
-        console.log(payload.services);
       },
       error: (err) => {
         this.showConfirmation('!! Verusche noch einmal');
       },
     });
-
-    console.log(payload.services);
   }
 
 
