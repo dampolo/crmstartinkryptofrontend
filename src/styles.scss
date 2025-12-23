@@ -96,19 +96,14 @@ button[type='submit'] {
   width: fit-content;
   padding: 0.5rem;
   align-self: center;
-  transition: basic.$first-transition;
 }
 
 button.new-customer:hover,
-button[type="button"]:hover,
+button[type='button']:hover,
 a.new-customer:not(:disabled):hover,
 button.edit:not(:disabled):hover,
 button[type='submit']:not(:disabled):hover {
-  background: linear-gradient(
-    180deg,
-    rgba(214, 166, 83, 0.3411764706),
-    rgba(143, 89, 7, 0.2470588235)
-  );
+  background: linear-gradient(180deg, #d6a65357, #8f59073f);
 }
 
 button.edit:disabled,
@@ -116,6 +111,8 @@ button[type='submit']:disabled {
   background-color: red;
 }
 
+button[type='button']:disabled,
+button[type='button'][disabled],
 button.edit:disabled,
 button[type='submit']:disabled,
 button[type='submit'][disabled] {

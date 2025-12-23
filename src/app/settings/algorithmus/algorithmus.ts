@@ -2,9 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AlgorithmusControl } from '../../services/algorithmus-control';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { StateControl } from '../../services/state-control';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-type ProvisionType = 'FIXED' | 'PERCENT';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProvisionType } from '../../models/service.model';
 
 @Component({
   selector: 'app-algorithmus',
@@ -19,37 +18,64 @@ export class Algorithmus {
   algorithmusForm!: FormGroup;
 
   provisionTypes: { value: ProvisionType; label: string }[] = [
-    { value: 'FIXED', label: 'Fixed amount' },
-    { value: 'PERCENT', label: 'Percent' },
+    { value: 'fixed', label: 'Festbetrag' },
+    { value: 'percent', label: 'Prozent' },
   ];
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.algorithmusForm = this.fb.group({
+      services: this.fb.array([this.createServiceGroup()]),
+    });
+  }
+
+  // FormArray getter
+  get services(): FormArray {
+    return this.algorithmusForm.get('services') as FormArray;
+  }
+
+  //Create one service block
+  private createServiceGroup(): FormGroup {
+    debugger
+    const group = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(200)]],
-      provision_type: ['FIXED', Validators.required],
+      provision_type: ['', Validators.required],
       amount_fixed: [null],
       amount_percent: [null],
     });
 
-    // React to provision type changes
-    this.algorithmusForm.get('provision_type')?.valueChanges.subscribe((type: ProvisionType) => {
-      this.updateValidators(type);
+    queueMicrotask(() => {
+      const index = this.services.controls.indexOf(group);
+      if (index > -1) {
+        this.updateValidators(index);
+      }
     });
 
-    // Initial validator setup
-    this.updateValidators(this.algorithmusForm.get('provision_type')?.value);
+    group.get('provision_type')?.valueChanges.subscribe(() => {
+      const index = this.services.controls.indexOf(group);
+      if (index > -1) {
+        this.updateValidators(index);
+      }
+    });
+
+    return group;
   }
 
-  get isFixed(): boolean {
-    return this.algorithmusForm.get('provision_type')?.value === 'FIXED';
+  isFixed(index: number): boolean {
+    return this.services.at(index).get('provision_type')?.value === 'fixed';
   }
 
-  
-  private updateValidators(type: ProvisionType): void {
-    const fixed = this.algorithmusForm.get('amount_fixed');
-    const percent = this.algorithmusForm.get('amount_percent');
+  addService(): void {
+    this.services.push(this.createServiceGroup());
+  }
+
+  private updateValidators(index: number): void {
+    const service = this.services.at(index) as FormGroup;
+
+    const fixed = service.get('amount_fixed');
+    const percent = service.get('amount_percent');
+    const type = service.get('provision_type')?.value as ProvisionType;
 
     if (!fixed || !percent) return;
 
@@ -57,7 +83,7 @@ export class Algorithmus {
     fixed.clearValidators();
     percent.clearValidators();
 
-    if (type === 'FIXED') {
+    if (type === 'fixed') {
       fixed.setValidators([
         Validators.required,
         Validators.min(0.01),
@@ -67,7 +93,7 @@ export class Algorithmus {
       percent.setValue(null, { emitEvent: false });
     }
 
-    if (type === 'PERCENT') {
+    if (type === 'percent') {
       percent.setValidators([
         Validators.required,
         Validators.min(0.0001),
@@ -82,10 +108,38 @@ export class Algorithmus {
     percent.updateValueAndValidity({ emitEvent: false });
   }
 
-  onSubmit() {}
+  onSubmit(): void {
+    if (this.algorithmusForm.invalid) {
+      this.algorithmusForm.markAllAsTouched();
+    }
+
+    const payload = this.algorithmusForm.getRawValue();
+    this.algorithmusControl.updateServices(payload.services).subscribe({
+      next: () => {
+        this.showConfirmation('Der Kunde wurde erstellt');
+        console.log(payload.services);
+      },
+      error: (err) => {
+        this.showConfirmation('!! Verusche noch einmal');
+      },
+    });
+
+    console.log(payload.services);
+  }
+
+
+  showConfirmation(message: string) {
+    this.stateControl.displayToast(message);
+    this.stateControl.removeShowToast();
+  }
 
   onCancel() {
     this.showEdit = false;
+  }
+
+  // Remove container
+  removeService(index: number): void {
+    this.services.removeAt(index);
   }
 
   editDetails() {
