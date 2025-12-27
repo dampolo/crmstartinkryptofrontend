@@ -69,3 +69,10 @@
     </div>
 
   </section>
+
+  <app-toast
+    [ngClass]="{
+      'show-success': stateControl.showToast,
+      'show-error': stateControl.showError
+    }"
+  ></app-toast>

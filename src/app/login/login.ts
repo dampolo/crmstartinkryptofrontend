@@ -11,10 +11,12 @@ import { StateControl } from '../services/state-control';
 
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+import { Toast } from '../shared/toast/toast';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Toast, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -52,6 +54,7 @@ export class Login {
 
       error: (err) => {
         console.error(err);
+        debugger
         this.stateControl.displayToast('Login fehlgeschlagen – prüfe deine Daten');
       }
     });
