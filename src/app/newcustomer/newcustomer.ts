@@ -45,16 +45,12 @@ export class Newcustomer {
     const payload = this.newCustomerForm.getRawValue();
     this.customerControl.postCustomerById(payload).subscribe({
       next: () => {
-        this.showConfirmation('Der Kunde wurde erstellt')
+        this.stateControl.displayToast('Der Kunde wurde erstellt')
       },
       error: (err) => {
-        this.showConfirmation('!! Verusche noch einmal')
+        this.stateControl.displayToast('!! Verusche noch einmal')
       }
     })
   }
 
-  showConfirmation(message: string) {
-    this.stateControl.displayToast(message)
-    this.stateControl.removeShowToast();
-  }
 }

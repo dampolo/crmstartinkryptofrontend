@@ -1,7 +1,8 @@
 import { Injectable, signal } from '@angular/core';
-import { Service } from '../models/service.model';
+import { ServiceCatalog } from '../models/service-catalog.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AlgorithmusControl {
   ongoingSupportProvision: number = 400;
   valueAddedTax: number = 19
 
-  serivce = signal<Service | null>(null);
+  serivce = signal<ServiceCatalog | null>(null);
 
    constructor(private http: HttpClient) {}
 
@@ -28,4 +29,9 @@ export class AlgorithmusControl {
     });
   }
   
+  getServiceCatalog(): Observable<ServiceCatalog[] > {
+    return this.http.get<ServiceCatalog[]>(`${this.baseUrl}service-catalog/`, {
+      withCredentials: true,
+    });
+  }
 }

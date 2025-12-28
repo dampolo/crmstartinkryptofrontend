@@ -1,6 +1,6 @@
 export type ProvisionType = 'fixed' | 'percent';
 
-export interface Service {
+export interface ServiceCatalog {
   name: string,
   provison_type: ProvisionType,
   amount_fixed: null | string

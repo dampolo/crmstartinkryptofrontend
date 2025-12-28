@@ -12,34 +12,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Grundgebühr</td>
-              <td>{{ algorithmusControl.basicFeeProvision | number : '1.2-2' }} €</td>
-            </tr>
-            <tr>
-              <td>Individuelle Express Krypto-Einführung</td>
-              <td>{{ algorithmusControl.firstStepProvision | number : '1.2-2' }} %</td>
-            </tr>
-            <tr>
-              <td>Börsenwahl & Einrichtung</td>
-              <td>{{ algorithmusControl.exchangeSetupProvision | number : '1.2-2' }} %</td>
-            </tr>
-            <tr>
-              <td>Kaufstrategie & Coin-Auswahl</td>
-              <td>{{ algorithmusControl.buyStrategyProvision | number : '1.2-2' }} %</td>
-            </tr>
-            <tr>
-              <td>Wallet-Einrichtung & Sicherheit</td>
-              <td>{{ algorithmusControl.walletSetupProvision | number : '1.2-2' }} %</td>
-            </tr>
-            <tr>
-              <td>Steuertool für deine Abwicklung</td>
-              <td>{{ algorithmusControl.taxToolProvision | number : '1.2-2' }} %</td>
-            </tr>
-            <tr>
-              <td>Laufende Betreuung</td>
-              <td>{{ algorithmusControl.ongoingSupportProvision | number : '1.2-2' }} €</td>
-            </tr>
+            
+            @for (service of serviceCatalog() ; track $index) {
+              <tr>
+                <td> {{service.name }}</td>
+                @if(service.amount_fixed === null) {
+                  <td>{{ service.amount_percent | number : '1.2-2' }} €</td>
+
+                } 
+                @else {
+                  <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
+                }
+              </tr>
+            
+            }
           </tbody>
         </table>
         <button class="edit" (click)="editDetails()">EDIT</button>

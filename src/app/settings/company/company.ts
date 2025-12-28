@@ -22,7 +22,14 @@ export class Company {
 
 
   ngOnInit() {
-    this.companyControl.getCompany().subscribe()
+    this.companyControl.getCompany().subscribe({
+      next: () => {
+        this.stateControl.displayToast('Die Daten wurden gelesen')
+      },
+      error: (err) => {
+        this.stateControl.displayToast('Du hast kein Internet')
+      }
+    })
   }
 
   constructor(private fb: FormBuilder) {

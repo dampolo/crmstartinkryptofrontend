@@ -1,9 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal, Signal } from '@angular/core';
 import { AlgorithmusControl } from '../../services/algorithmus-control';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { StateControl } from '../../services/state-control';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProvisionType } from '../../models/service.model';
+import { ProvisionType, ServiceCatalog } from '../../models/service-catalog.model';
 
 @Component({
   selector: 'app-algorithmus',
@@ -16,6 +16,7 @@ export class Algorithmus {
   stateControl = inject(StateControl);
   showEdit: boolean = false;
   algorithmusForm!: FormGroup;
+  serviceCatalog = signal<ServiceCatalog []>([])
 
   provisionTypes: { value: ProvisionType; label: string }[] = [
     { value: 'fixed', label: 'Festbetrag' },
@@ -28,6 +29,18 @@ export class Algorithmus {
     this.algorithmusForm = this.fb.group({
       services: this.fb.array([this.createServiceGroup()]),
     });
+
+    this.algorithmusControl.getServiceCatalog().subscribe({
+      next: (data) => {
+        this.serviceCatalog.set(data);
+        console.log(this.serviceCatalog);
+        
+        this.stateControl.displayToast('Die Daten wurden gelesen')        
+      },
+      error: (err) => {
+        this.stateControl.displayToast('Du hast kein Internet')
+      },
+    })
   }
 
   // FormArray getter

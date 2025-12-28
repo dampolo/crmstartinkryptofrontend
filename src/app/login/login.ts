@@ -54,7 +54,6 @@ export class Login {
 
       error: (err) => {
         console.error(err);
-        debugger
         this.stateControl.displayToast('Login fehlgeschlagen – prüfe deine Daten');
       }
     });
