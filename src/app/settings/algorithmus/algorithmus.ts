@@ -27,14 +27,14 @@ export class Algorithmus {
 
   ngOnInit(): void {
     this.algorithmusForm = this.fb.group({
-      services: this.fb.array([this.createServiceGroup()]),
+      services: this.fb.array([]),
     });
 
+    
     this.algorithmusControl.getServiceCatalog().subscribe({
       next: (data) => {
         this.serviceCatalog.set(data);
-        console.log(this.serviceCatalog);
-        
+        this.loadServicesIntoForm(data);        
         this.stateControl.displayToast('Die Daten wurden gelesen')        
       },
       error: (err) => {
@@ -48,13 +48,20 @@ export class Algorithmus {
     return this.algorithmusForm.get('services') as FormArray;
   }
 
+  loadServicesIntoForm(services: any[]): void {
+  services.forEach(service => {
+    this.services.push(this.createServiceGroup(service));
+  });
+}
+
   //Create one service block
-  createServiceGroup(): FormGroup {
+  createServiceGroup(service?: any): FormGroup {
     const group = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(200)]],
-      provision_type: ['', Validators.required],
-      amount_fixed: [null],
-      amount_percent: [null],
+      id: [service?.id ?? null],
+      name: [service?.name ?? '', [Validators.required, Validators.maxLength(200)]],
+      provision_type: [service?.provision_type ?? '', Validators.required],
+      amount_fixed: [service?.amount_fixed ?? null],
+      amount_percent: [service?.amount_percent ?? null],
     });
 
 
@@ -73,8 +80,9 @@ export class Algorithmus {
   }
 
   addService(): void {
-    this.services.push(this.createServiceGroup());
-  }
+  this.services.push(this.createServiceGroup(this.services));
+}
+
 
   private updateValidators(index: number): void {
     const service = this.services.at(index) as FormGroup;
@@ -120,6 +128,7 @@ export class Algorithmus {
     }
 
     const payload = this.algorithmusForm.getRawValue();
+
     this.algorithmusControl.updateServices(payload.services).subscribe({
       next: () => {
         this.showConfirmation('Der Kunde wurde erstellt');
