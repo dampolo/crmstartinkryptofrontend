@@ -2,7 +2,14 @@ import { Component, inject, OnInit, signal, Signal } from '@angular/core';
 import { AlgorithmusControl } from '../../services/algorithmus-control';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { StateControl } from '../../services/state-control';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ProvisionType, ServiceCatalog } from '../../models/service-catalog.model';
 
 @Component({
@@ -16,7 +23,7 @@ export class Algorithmus {
   stateControl = inject(StateControl);
   showEdit: boolean = false;
   algorithmusForm!: FormGroup;
-  serviceCatalog = signal<ServiceCatalog []>([])
+  serviceCatalog = signal<ServiceCatalog[]>([]);
 
   provisionTypes: { value: ProvisionType; label: string }[] = [
     { value: 'fixed', label: 'Festbetrag' },
@@ -30,32 +37,33 @@ export class Algorithmus {
       services: this.fb.array([]),
     });
 
-    
     this.algorithmusControl.getServiceCatalog().subscribe({
       next: (data) => {
         this.serviceCatalog.set(data);
-        this.loadServicesIntoForm(data);        
-        this.stateControl.displayToast('Die Daten wurden gelesen')        
+        this.loadServicesIntoForm(data);
+        this.stateControl.displayToast('Die Daten wurden gelesen');
       },
       error: (err) => {
-        this.stateControl.displayToast('Du hast kein Internet')
+        this.stateControl.displayToast('Du hast kein Internet');
       },
-    })
+    });
   }
 
   // FormArray getter
-  get services(): FormArray {    
+  get services(): FormArray {
     return this.algorithmusForm.get('services') as FormArray;
   }
 
-  loadServicesIntoForm(services: any[]): void {
-  services.forEach(service => {
-    this.services.push(this.createServiceGroup(service));
-  });
-}
+  loadServicesIntoForm(services: ServiceCatalog[]): void {
+    services.forEach((service) => {
+      this.services.push(this.createServiceGroup(service));
+    });
+  }
 
   //Create one service block
-  createServiceGroup(service?: any): FormGroup {
+  createServiceGroup(service?: Partial<ServiceCatalog>): FormGroup {
+    console.log(service);
+
     const group = this.fb.group({
       id: [service?.id ?? null],
       name: [service?.name ?? '', [Validators.required, Validators.maxLength(200)]],
@@ -63,7 +71,6 @@ export class Algorithmus {
       amount_fixed: [service?.amount_fixed ?? null],
       amount_percent: [service?.amount_percent ?? null],
     });
-
 
     group.get('provision_type')?.valueChanges.subscribe(() => {
       const index = this.services.controls.indexOf(group);
@@ -80,9 +87,8 @@ export class Algorithmus {
   }
 
   addService(): void {
-  this.services.push(this.createServiceGroup(this.services));
-}
-
+    this.services.push(this.createServiceGroup());
+  }
 
   private updateValidators(index: number): void {
     const service = this.services.at(index) as FormGroup;
@@ -139,7 +145,6 @@ export class Algorithmus {
     });
   }
 
-
   showConfirmation(message: string) {
     this.stateControl.displayToast(message);
     this.stateControl.removeShowToast();
@@ -150,8 +155,12 @@ export class Algorithmus {
   }
 
   // Remove container
-  removeService(index: number): void {
-    this.services.removeAt(index);
+  // Never use track $index with reactive forms and dynamic rows
+  removeService(service: AbstractControl): void {
+    const index = this.services.controls.indexOf(service);
+    if (index > -1) {
+      this.services.removeAt(index);
+    }
   }
 
   editDetails() {

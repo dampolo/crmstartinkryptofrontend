@@ -12,19 +12,17 @@
             </tr>
           </thead>
           <tbody>
-            
             @for (service of serviceCatalog() ; track service.id) {
-              <tr>
-                <td> {{service.name }}</td>
-                @if(service.amount_fixed === null) {
-                  <td>{{ service.amount_percent | number : '1.2-2' }} €</td>
+            <tr>
+              <td>{{ service.name }}</td>
+              @if(service.amount_fixed === null) {
+              <td>{{ service.amount_percent | number : '1.2-2' }} €</td>
 
-                } 
-                @else {
-                  <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
-                }
-              </tr>
-            
+              } @else {
+              <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
+              }
+            </tr>
+
             }
           </tbody>
         </table>
@@ -35,10 +33,9 @@
       <div class="container-edit">
         <form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()">
           <div class="services" formArrayName="services">
-            @for (service of services.controls; track $index) {
-
-            <div class="service" [formGroupName]="$index">
-              <!-- Name -->
+            @for (service of services.controls; track service) {
+              <div class="service" [formGroupName]="$index">
+                <!-- Name -->
               <div class="form-group">
                 <!-- <label for="name">Name</label> -->
                 <input
@@ -67,9 +64,9 @@
                 <select id="provision_type" class="form-control" formControlName="provision_type">
                   <option value="">Keine Angabe</option>
                   @for (type of provisionTypes; track type.value) {
-                    <option [value]="type.value">
-                      {{ type.label }}
-                    </option>
+                  <option [value]="type.value">
+                    {{ type.label }}
+                  </option>
                   }
                 </select>
               </div>
@@ -87,9 +84,8 @@
                   placeholder="Festbetrag (€)"
                 />
 
-                @if ( service.get('amount_fixed')?.invalid &&
-                (service.get('amount_fixed')?.touched ||
-                service.get('amount_fixed')?.dirty) ) {
+                @if ( service.get('amount_fixed')?.invalid && (service.get('amount_fixed')?.touched
+                || service.get('amount_fixed')?.dirty) ) {
                 <div class="text-requied">
                   @if (service.get('amount_fixed')?.errors?.['required']) {
                   <small>Fixbetrag ist erforderlich.</small>
@@ -115,12 +111,10 @@
                   formControlName="amount_percent"
                   placeholder="Prozent (decimal)"
                 />
-
                 @if ( service.get('amount_percent')?.invalid &&
-                (service.get('amount_percent')?.touched ||
-                service.get('amount_percent')?.dirty) ) {
-                <div class="text-requied">
-                  @if (service.get('amount_percent')?.errors?.['required']) {
+                (service.get('amount_percent')?.touched || service.get('amount_percent')?.dirty) ) {
+                  <div class="text-requied">
+                    @if (service.get('amount_percent')?.errors?.['required']) {
                   <small>Prozentwert ist erforderlich.</small>
                   } @if ( service.get('amount_percent')?.errors?.['min'] ||
                   service.get('amount_percent')?.errors?.['max'] ) {
@@ -131,20 +125,22 @@
                 </div>
                 }
               </div>
-              }
+            }
+            <button type="button" (click)="removeService(service)">Löschen</button>
             </div>
             }
-            <button type="button" (click)="addService()" [disabled]='!algorithmusForm.valid' >Neue</button>
+            <button type="button" (click)="addService()" [disabled]="!algorithmusForm.valid">
+              Neue
+            </button>
           </div>
           <div class="btn-container">
             <!-- Cancel Button -->
             <button type="button" (click)="onCancel()">Abbrechen</button>
-  
+
             <!-- Submit Button -->
-            <button type="submit" >Speichern</button>
+            <button type="submit">Speichern</button>
           </div>
         </form>
-
       </div>
     </div>
   </div>
