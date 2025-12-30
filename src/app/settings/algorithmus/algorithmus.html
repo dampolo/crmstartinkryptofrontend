@@ -16,7 +16,7 @@
             <tr>
               <td>{{ service.name }}</td>
               @if(service.amount_fixed === null) {
-              <td>{{ service.amount_percent | number : '1.2-2' }} €</td>
+              <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
 
               } @else {
               <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
