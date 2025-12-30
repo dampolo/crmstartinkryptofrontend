@@ -24,7 +24,13 @@ export class AlgorithmusControl {
    constructor(private http: HttpClient) {}
 
   updateServices(services: any[]) {
-    return this.http.post(this.baseUrl + 'service-catalog/', services, {
+    return this.http.put(this.baseUrl + 'service-catalog/bulk_update/', services, {
+      withCredentials: true,
+    });
+  }
+
+  deleteService(id: number) {
+    return this.http.delete(`${this.baseUrl}service-catalog/${id}/`, {
       withCredentials: true,
     });
   }

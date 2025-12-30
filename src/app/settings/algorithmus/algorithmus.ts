@@ -134,7 +134,8 @@ export class Algorithmus {
     }
 
     const payload = this.algorithmusForm.getRawValue();
-
+    console.log(payload.services);
+    
     this.algorithmusControl.updateServices(payload.services).subscribe({
       next: () => {
         this.showConfirmation('Der Kunde wurde erstellt');
@@ -156,14 +157,33 @@ export class Algorithmus {
 
   // Remove container
   // Never use track $index with reactive forms and dynamic rows
-  removeService(service: AbstractControl): void {
-    const index = this.services.controls.indexOf(service);
-    if (index > -1) {
-      this.services.removeAt(index);
+  deleteService(service: AbstractControl): void {
+    const id = service.get('id')?.value;
+
+    if(id) {
+      this.algorithmusControl.deleteService(id).subscribe({
+        next: () => {
+          this.removeFromForm(service);
+          this.showConfirmation('!!! Der Service wurde gelöscht.')
+        },
+        error: (err: any) => {
+          this.showConfirmation('!!! Versuche noch einmal')
+        }
+      });
+    } else {
+      this.removeFromForm(service);
     }
   }
 
-  editDetails() {
+  removeFromForm(serivce: AbstractControl): void{
+    const index = this.services.controls.indexOf(serivce);
+    if(index > -1) {
+      this.services.removeAt(index)
+    }
+  }
+
+  editDetails(): void {
     this.showEdit = true;
   }
+
 }
