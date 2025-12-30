@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe, DecimalPipe, NgClass } from '@angular/common';
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -10,8 +10,9 @@ import {
 import { AlgorithmusControl } from '../services/algorithmus-control';
 import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
-import { Invoice } from '../shared/invoice/invoice';
 import { CompanyControl } from '../services/company-control';
+import { StateControl } from '../services/state-control';
+import { ServiceCatalog } from '../models/service-catalog.model';
 
 @Component({
   standalone: true,
@@ -24,8 +25,10 @@ export class Algorithmus {
   customerControl = inject(CustomerControl);
   algorithmusControl = inject(AlgorithmusControl);
   companyControl = inject(CompanyControl);
+  stateControl = inject(StateControl);
   currentDate = new Date(); // stores the current date and time
   isInvoiceVisible: boolean = false;
+  serviceCatalog = signal<ServiceCatalog[]>([]);
 
   algorithmusForm: FormGroup;
   investmentAmount: number = 0;
@@ -50,22 +53,36 @@ export class Algorithmus {
 
   constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group({
-      basicFee: [true],
       Summe: [
         '',
-        [Validators.required, Validators.min(1), Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+        [
+          Validators.required, 
+          Validators.min(1), 
+          Validators.pattern(/^\d+(\.\d{1,2})?$/),
+          ],
       ],
-      firstStep: [false],
-      exchangeSetup: [false],
-      buyStrategy: [false],
-      walletSetup: [false],
-      taxTool: [false],
-      ongoingSupport: [false],
     });
+
   }
 
   ngOnInit(): void {
     this.onSubmit();
+
+    this.algorithmusControl.getServiceCatalog().subscribe({
+      next: (data) => {
+        this.serviceCatalog.set(data);
+        data.forEach(service => {
+        this.algorithmusForm.addControl(
+          String(service.id),
+          this.fb.control(false)
+        );
+      });
+        this.stateControl.displayToast('Die Daten wurden gelesen');
+      },
+      error: (err) => {
+        this.stateControl.displayToast('Du hast kein Internet');
+      },
+    });
   }
 
   getBasicFee(): boolean {

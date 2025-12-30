@@ -11,253 +11,220 @@
   />
 
   @if (showDropdown) {
-    <ul class="dropdown">
-      @for (customer of filteredCustomers; track customer.id) {
-        <li (click)="selectCustomer(customer)">
-          {{ customer.first_name }} {{ customer.last_name }}
-        </li>
-      }
-    </ul>
+  <ul class="dropdown">
+    @for (customer of filteredCustomers; track customer.id) {
+    <li (click)="selectCustomer(customer)">{{ customer.first_name }} {{ customer.last_name }}</li>
+    }
+  </ul>
   }
 </search>
 
 <form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="summe">Summe (€):</label>
-    <input
-      id="summe"
-      type="number"
-      formControlName="Summe"
-      placeholder="z. B. 1000"
-    />
+    <input id="summe" type="number" formControlName="Summe" placeholder="z. B. 1000" />
 
-    @if (Summe?.touched && Summe?.invalid) {
-      <div class="error">
-        @if (Summe?.errors?.['required']) {
-          <small>Summe ist erforderlich.</small>
-        }
-        @if (Summe?.errors?.['min']) {
-          <small>Mindestwert ist 1 €.</small>
-        }
-        @if (Summe?.errors?.['pattern']) {
-          <small>Bitte gültige Zahl eingeben (z. B. 1000.50).</small>
-        }
-      </div>
+    @if (Summe?.touched && Summe?.invalid && Summe?.dirty) {
+    <div class="error">
+      @if (Summe?.errors?.['required']) {
+      <small>Summe ist erforderlich.</small>
+      } @if (Summe?.errors?.['min']) {
+      <small>Mindestwert ist 1 €.</small>
+      } @if (Summe?.errors?.['pattern']) {
+      <small>Bitte gültige Zahl eingeben (z. B. 1000.50).</small>
+      }
+    </div>
     }
   </div>
 
   <div class="checkboxes">
-    <label for="basic-fee">
-      <input id="basic-fee" type="checkbox" formControlName="basicFee" />
-      Grundgebühr <span>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</span>
-    </label>
-    <label for="first-step">
-      <input id="first-step" type="checkbox" formControlName="firstStep" />
-      Individuelle Express Krypto-Einführung <span>{{algorithmusControl.firstStepProvision}}%</span> 
-    </label>
+    @for (service of serviceCatalog(); track service.id) {
+    <label [for]="service.id">
+      <input type="checkbox" [id]="service.id" [formControlName]="service.id ?? ''" />
 
-    <label for="exchange-setup" >
-      <input id="exchange-setup" type="checkbox" formControlName="exchangeSetup" />
-      Börsenwahl & Einrichtung <span>{{algorithmusControl.exchangeSetupProvision}}%</span>
-    </label>
+      {{ service.name }}
 
-    <label for="buy-strategy">
-      <input id="buy-strategy" type="checkbox" formControlName="buyStrategy" />
-      Kaufstrategie & Coin-Auswahl <span>{{algorithmusControl.buyStrategyProvision}}%</span>
+      @if (service.amount_fixed !== null) {
+      <span> {{ service.amount_fixed | number : '1.2-2' }} € </span>
+      } @else {
+      <span> {{ service.amount_percent | number : '1.2-2' }} % </span>
+      }
     </label>
-
-    <label for="wallet-setup">
-      <input id="wallet-setup" type="checkbox" formControlName="walletSetup" />
-      Wallet-Einrichtung & Sicherheit <span>{{algorithmusControl.walletSetupProvision}}%</span> 
-    </label>
-
-    <label for="tax-tool">
-      <input id="tax-tool" type="checkbox" formControlName="taxTool" />
-      Steuertool für deine Abwicklung <span>{{algorithmusControl.taxToolProvision}}%</span> 
-    </label>
-
-    <label for="ongoing-support">
-      <input id="ongoing-support" type="checkbox" formControlName="ongoingSupport" />
-      Laufende Betreuung <span>{{algorithmusControl.ongoingSupportProvision}}€</span> 
-    </label>
+    }
   </div>
 
-  <button type="submit" [disabled]="!algorithmusForm.valid">
-    Berechnen
-  </button>
+  <button type="submit" [disabled]="!algorithmusForm.valid">Berechnen</button>
 </form>
 
 <section class="summary">
-  <h2>
-    Zusammenfassung
-  </h2>
+  <h2>Zusammenfassung</h2>
   <table>
     <thead>
       <tr>
-        <td class="first-part">
-          Leistung
-        </td>
-        <td class="first-part">
-          Gebühr
-        </td>
+        <td class="first-part">Leistung</td>
+        <td class="first-part">Gebühr</td>
       </tr>
     </thead>
-        <div class="divider"></div>
-    <tbody>
-    <tr>
-        <td>Grundgebühr</td>
-        <td>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</td>
-    </tr>
-    <tr>
-      <td>Individuelle Express Krypto-Einführung <span>({{algorithmusControl.firstStepProvision}}%)</span></td>
-      <td>{{firstStepAmount | number:'1.2-2'}} €</td>
-    </tr>
-    <tr>
-      <td>Börsenwahl & Einrichtung <span>({{algorithmusControl.exchangeSetupProvision}}%)</span></td>
-      <td>{{exchangeSetupAmount| number:'1.2-2'}} €</td>
-    </tr>
-    <tr>
-      <td> Kaufstrategie & Coin-Auswahl ({{algorithmusControl.buyStrategyProvision}}%)</td>
-      <td>{{buyStrategyAmount | number:'1.2-2'}} €</td>
-    </tr>
-    <tr>
-      <td>Wallet-Einrichtung & Sicherheit ({{algorithmusControl.walletSetupProvision}}%)</td>
-      <td>{{walletSetupAmount | number:'1.2-2'}} €</td>
-    </tr>
-    <tr>
-      <td>Steuertool für deine Abwicklung ({{algorithmusControl.taxToolProvision}}%)</td>
-      <td>{{taxToolAmount | number:'1.2-2'}} €</td>
-    </tr>
-    <tr>
-      <td>Laufende Betreuung ({{algorithmusControl.ongoingSupportProvision}}€)</td>
-      <td>{{ongoingSupportAmount | number:'1.2-2'}} €</td> 
-    </tr>
-    
     <div class="divider"></div>
+    <tbody>
+      @for (service of serviceCatalog() ; track service.id) {
+      <tr>
+        @if(service.amount_fixed === null) {
+        <td>{{ service.name }} {{ service.amount_percent | number : '1.2-2' }} %</td>
+        <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
+
+        } @else {
+        <td>{{ service.name }}</td>
+        <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
+        }
+      </tr>
+
+      }
+
+      <div class="divider"></div>
 
       <tr>
-      <td>Investitions Betrag</td>
-      <td>{{ investmentAmount | number:'1.2-2' }} €</td>
+        <td>Investitions Betrag</td>
+        <td>{{ investmentAmount | number : '1.2-2' }} €</td>
       </tr>
 
       <tr>
         <td>Provison</td>
-        <td>{{ totalProvision | number:'1.2-2' }} €</td>
+        <td>{{ totalProvision | number : '1.2-2' }} €</td>
       </tr>
 
-    <div class="divider"></div>
+      <div class="divider"></div>
 
       <tr>
         <td>Mehrwertsteuer(19%)</td>
-        <td>{{ valueAddedTax | number:'1.2-2' }} €</td>
+        <td>{{ valueAddedTax | number : '1.2-2' }} €</td>
       </tr>
-        
-    <div class="divider"></div>
 
-    <tr>
-      <td>Total Betrag</td>
-      <td>{{ totalAmount | number:'1.2-2'}} €</td>
-    </tr>
-  </tbody>
+      <div class="divider"></div>
+
+      <tr>
+        <td>Total Betrag</td>
+        <td>{{ totalAmount | number : '1.2-2' }} €</td>
+      </tr>
+    </tbody>
   </table>
-
 </section>
 
 <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid">
   Rechnung erstellen
 </button>
 
-<section class="hide-invoice" [ngClass]="isInvoiceVisible ? 'show-invoice' : ''" (click)="closeDialog()">
-
+<section
+  class="hide-invoice"
+  [ngClass]="isInvoiceVisible ? 'show-invoice' : ''"
+  (click)="closeDialog()"
+>
   <div class="invoice-container" (click)="onEvent($event)">
     <header class="invoice-header">
-        <div class="company-info">
-        <h1>{{companyControl.company()?.name}}</h1>
-        <p>{{companyControl.company()?.street}} {{companyControl.company()?.number}}<br>{{companyControl.company()?.postcode}} {{companyControl.company()?.city}} </p>
-        </div>
-        <a href="/" class="logo">
-        <img width="60" height="60" src="./assets/SK-metatag.png" alt="Start in Krypto">
-        </a>
-        <div class="invoice-info">
+      <div class="company-info">
+        <h1>{{ companyControl.company()?.name }}</h1>
+        <p>
+          {{ companyControl.company()?.street }} {{ companyControl.company()?.number }}<br />{{
+            companyControl.company()?.postcode
+          }}
+          {{ companyControl.company()?.city }}
+        </p>
+      </div>
+      <a href="/" class="logo">
+        <img width="60" height="60" src="./assets/SK-metatag.png" alt="Start in Krypto" />
+      </a>
+      <div class="invoice-info">
         <h2>RECHNUNG</h2>
-        <p>Rechnung Nr.: {{invoiceNumber}}</p>
-        <p>Kundennr.: {{customerNumber}}</p>
-        <p>Date: {{currentDate | date:'dd.MM.yyyy' }}</p>
-        </div>
+        <p>Rechnung Nr.: {{ invoiceNumber }}</p>
+        <p>Kundennr.: {{ customerNumber }}</p>
+        <p>Date: {{ currentDate | date : 'dd.MM.yyyy' }}</p>
+      </div>
     </header>
 
     <div class="bill-to">
-        <h3>Rechnung an:</h3>
-        <address>
-        <strong>{{customerNameInvoice}}</strong><br>
-        {{customerStreetInvoice}}<br>
-        {{customerCityInvoice}}
-        </address>
+      <h3>Rechnung an:</h3>
+      <address>
+        <strong>{{ customerNameInvoice }}</strong
+        ><br />
+        {{ customerStreetInvoice }}<br />
+        {{ customerCityInvoice }}
+      </address>
     </div>
 
     <table class="invoice-table">
-        <thead>
+      <thead>
         <tr>
-            <th>Service</th>
-            <th>Provison</th>
-            <th>Gebühr</th>
+          <th>Service</th>
+          <th>Provison</th>
+          <th>Gebühr</th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <tr>
-            <td>Grundgebühr</td>
-            <td></td>
-            <td>{{algorithmusControl.basicFeeProvision | number:'1.2-2'}} €</td>
-        </tr>
-        <tr>
-            <td>Individuelle Express Krypto-Einführung</td>
-            <td>{{algorithmusControl.firstStepProvision | number:'1.2-2'}} %</td>
-            <td>{{firstStepAmount | number:'1.2-2' }} €</td>
+          <td>Grundgebühr</td>
+          <td></td>
+          <td>{{ algorithmusControl.basicFeeProvision | number : '1.2-2' }} €</td>
         </tr>
         <tr>
-            <td>Börsenwahl & Einrichtung</td>
-            <td>{{algorithmusControl.exchangeSetupProvision | number:'1.2-2'}} %</td>
-            <td>{{exchangeSetupAmount | number:'1.2-2' }} €</td>
-        </tr> 
-        <tr>
-            <td>Kaufstrategie & Coin-Auswahl</td>
-            <td>{{algorithmusControl.buyStrategyProvision | number:'1.2-2'}} %</td>
-            <td>{{buyStrategyAmount | number:'1.2-2' }} €</td>
+          <td>Individuelle Express Krypto-Einführung</td>
+          <td>{{ algorithmusControl.firstStepProvision | number : '1.2-2' }} %</td>
+          <td>{{ firstStepAmount | number : '1.2-2' }} €</td>
         </tr>
         <tr>
-            <td>Wallet-Einrichtung & Sicherheit</td>
-            <td>{{algorithmusControl.walletSetupProvision | number:'1.2-2'}} %</td>
-            <td>{{walletSetupAmount | number:'1.2-2' }} €</td>
+          <td>Börsenwahl & Einrichtung</td>
+          <td>{{ algorithmusControl.exchangeSetupProvision | number : '1.2-2' }} %</td>
+          <td>{{ exchangeSetupAmount | number : '1.2-2' }} €</td>
         </tr>
         <tr>
-            <td>Steuertool für deine Abwicklung</td>
-            <td>{{algorithmusControl.taxToolProvision | number:'1.2-2'}} %</td>
-            <td>{{walletSetupAmount | number:'1.2-2' }} €</td>
+          <td>Kaufstrategie & Coin-Auswahl</td>
+          <td>{{ algorithmusControl.buyStrategyProvision | number : '1.2-2' }} %</td>
+          <td>{{ buyStrategyAmount | number : '1.2-2' }} €</td>
         </tr>
         <tr>
-            <td>Laufende Betreuung</td>
-            <td></td>
-            <td>{{algorithmusControl.ongoingSupportProvision| number:'1.2-2' }} €</td>
+          <td>Wallet-Einrichtung & Sicherheit</td>
+          <td>{{ algorithmusControl.walletSetupProvision | number : '1.2-2' }} %</td>
+          <td>{{ walletSetupAmount | number : '1.2-2' }} €</td>
         </tr>
-        </tbody>
+        <tr>
+          <td>Steuertool für deine Abwicklung</td>
+          <td>{{ algorithmusControl.taxToolProvision | number : '1.2-2' }} %</td>
+          <td>{{ walletSetupAmount | number : '1.2-2' }} €</td>
+        </tr>
+        <tr>
+          <td>Laufende Betreuung</td>
+          <td></td>
+          <td>{{ algorithmusControl.ongoingSupportProvision | number : '1.2-2' }} €</td>
+        </tr>
+      </tbody>
     </table>
 
     <div class="totals">
-        <p><span>Investitions Betrag:</span> <span>{{ investmentAmount| number:'1.2-2' }} €</span></p>
-        <p><span>Provison (6.5%):</span> <span>{{totalProvision| number:'1.2-2' }} €</span></p>
-        <p><span>MwSt. (19%):</span> <span>{{valueAddedTax | number:'1.2-2' }} €</span></p>
-        <h3><span>Total:</span> <span>{{totalAmount | number:'1.2-2' }} €</span></h3>
+      <p>
+        <span>Investitions Betrag:</span> <span>{{ investmentAmount | number : '1.2-2' }} €</span>
+      </p>
+      <p>
+        <span>Provison (6.5%):</span> <span>{{ totalProvision | number : '1.2-2' }} €</span>
+      </p>
+      <p>
+        <span>MwSt. (19%):</span> <span>{{ valueAddedTax | number : '1.2-2' }} €</span>
+      </p>
+      <h3>
+        <span>Total:</span> <span>{{ totalAmount | number : '1.2-2' }} €</span>
+      </h3>
     </div>
 
     <footer>
-        <p>
+      <p>
         Bitte überweisen Sie den Gesamtbetrag innerhalb von 14 Tagen nach Erhalt dieser Rechnung.
-        Zahlungen können per Banküberweisung oder in Kryptowährung erfolgen.
-        Bei Fragen zu dieser Rechnung kontaktieren Sie uns bitte unter:
+        Zahlungen können per Banküberweisung oder in Kryptowährung erfolgen. Bei Fragen zu dieser
+        Rechnung kontaktieren Sie uns bitte unter:
         <a href="mailto:elisabeth@startinkrypto.de">elisabeth@startinkrypto.de</a>.
-        </p>
-        <p>BLZ: {{companyControl.company()?.swift_code}}</p>
-        <p> Bankverbindung: {{companyControl.company()?.bank_account}}, USt-Idnr: {{companyControl.company()?.tax_number}}</p>
+      </p>
+      <p>BLZ: {{ companyControl.company()?.swift_code }}</p>
+      <p>
+        Bankverbindung: {{ companyControl.company()?.bank_account }}, USt-Idnr:
+        {{ companyControl.company()?.tax_number }}
+      </p>
     </footer>
   </div>
 </section>
