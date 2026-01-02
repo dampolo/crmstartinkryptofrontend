@@ -67,18 +67,16 @@
     </thead>
     <div class="divider"></div>
     <tbody>
-      @for (service of serviceCatalog() ; track service.id) {
+      @for (service of serviceCatalog(); track service.id) {
       <tr>
-        @if(service.amount_fixed === null) {
+        @if (service.amount_fixed === null) {
         <td>{{ service.name }} {{ service.amount_percent | number : '1.2-2' }} %</td>
-        <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
-
+        <td>{{ (+service.amount_percent! * totalAmount) | number : '1.2-2' }}</td>
         } @else {
         <td>{{ service.name }}</td>
         <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
         }
       </tr>
-
       }
 
       <div class="divider"></div>
