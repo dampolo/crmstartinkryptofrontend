@@ -74,6 +74,7 @@ export class Algorithmus {
   }
 
   ngOnInit(): void {
+    // Load company data
     this.companyControl.getCompany().subscribe({
       next: () => {
         this.stateControl.displayToast('Die Daten wurden gelesen');
@@ -82,6 +83,7 @@ export class Algorithmus {
         this.stateControl.displayToast('Du hast kein Internet');
       },
     });
+    // Load all services
     this.algorithmusControl.getServiceCatalog().subscribe({
       next: (data) => {
         this.serviceCatalog.set(data);
