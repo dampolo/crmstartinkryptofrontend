@@ -91,7 +91,7 @@
       </tr>
 
       <tr>
-        <td>Provison</td>
+        <td>Provison ({{totalProvisonPercent}}%)</td>
         <td>{{ invoiceObject.provision| number : '1.2-2' }} €</td>
       </tr>
 
@@ -186,7 +186,7 @@
         <span>Investitions Betrag:</span> <span>{{ invoiceObject.investitions_amount| number : '1.2-2' }} €</span>
       </p>
       <p>
-        <span>Provison (6.5%):</span> <span>{{ invoiceObject.provision| number : '1.2-2' }} €</span>
+        <span>Provison ({{totalProvisonPercent}}%):</span> <span>{{ invoiceObject.provision| number : '1.2-2' }} €</span>
       </p>
       <p>
         <span>MwSt. (19%):</span> <span>{{ invoiceObject.value_tax| number : '1.2-2' }} €</span>

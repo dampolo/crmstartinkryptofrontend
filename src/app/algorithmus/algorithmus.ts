@@ -38,7 +38,7 @@ export class Algorithmus {
   serviceCatalog = signal<ServiceCatalog[]>([]);
 
   algorithmusForm: FormGroup;
-  totalAmount: number = 0;
+  totalProvisonPercent: number = 0;
 
   invoiceObject: InvoiceCreate = {
     customer: 0,
@@ -107,9 +107,9 @@ export class Algorithmus {
     const summe = Number(formValues.Summe) || 0;
     let totalFixed = 0;
     let totalPercent = 0;
-
+    
     const selectedServices = this.serviceCatalog().filter((service) => formValues[service.id!]);
-
+    
     for (const service of selectedServices) {
       if (service.amount_fixed !== null) {
         totalFixed += +service.amount_fixed;
@@ -117,7 +117,8 @@ export class Algorithmus {
         totalPercent += +service.amount_percent;
       }
     }
-
+    
+    this.totalProvisonPercent = totalPercent;
     const percentAmount = (summe * totalPercent) / 100;
 
     this.invoiceObject.services = selectedServices.map((s) => s);
@@ -134,12 +135,6 @@ export class Algorithmus {
 
   closeDialog() {
     this.isInvoiceVisible = false;
-  }
-
-  getServiceValue(service: ServiceCatalog): number {
-    return service.amount_fixed === null
-      ? (+service.amount_percent! * this.totalAmount) / 100
-      : +service.amount_fixed;
   }
 
   get Summe() {
