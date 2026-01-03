@@ -75,7 +75,7 @@
         @if (service.amount_fixed === null) {
         <td>{{ service.name }} {{ service.amount_percent | number : '1.2-2' }} %</td>
 
-        <td>{{ (+service.amount_percent! * invoiceObject.amount) / 100 | number : '1.2-2' }}</td>
+        <td>{{ (+service.amount_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }}</td>
         } @else {
         <td>{{ service.name }}</td>
         <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
@@ -169,7 +169,7 @@
 
         <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
 
-        <td>{{ (+service.amount_percent! * invoiceObject.amount) / 100 | number : '1.2-2' }}</td>
+        <td>{{ (+service.amount_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }}</td>
         } @else {
         <td>{{ service.name }}</td>
         <td></td>

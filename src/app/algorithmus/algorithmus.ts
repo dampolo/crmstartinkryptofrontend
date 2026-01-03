@@ -122,8 +122,8 @@ export class Algorithmus {
 
     this.invoiceObject.services = selectedServices.map((s) => s);
     this.invoiceObject.provision = totalFixed + percentAmount;
-    this.invoiceObject.amount = this.invoiceObject.provision + this.invoiceObject.value_tax;
     this.invoiceObject.value_tax = (totalFixed + percentAmount) * 0.19;
+    this.invoiceObject.amount = this.invoiceObject.provision + this.invoiceObject.value_tax;
     this.invoiceObject.investitions_amount = summe;
     console.log(this.invoiceObject);
   }
