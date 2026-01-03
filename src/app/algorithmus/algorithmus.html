@@ -22,7 +22,7 @@
 <form [formGroup]="algorithmusForm">
   <div>
     <label for="summe">Summe (€):</label>
-    <input id="summe" type="number" formControlName="Summe" placeholder="z. B. 1000" />
+    <input (keyup)="onFormChange()" id="summe" type="number" formControlName="Summe" placeholder="z. B. 1000" />
 
     @if (Summe?.touched && Summe?.invalid && Summe?.dirty) {
     <div class="error">
