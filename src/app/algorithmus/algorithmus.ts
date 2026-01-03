@@ -2,6 +2,7 @@ import { CommonModule, DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -13,6 +14,12 @@ import { CUSTOMER } from '../models/customer.model';
 import { CompanyControl } from '../services/company-control';
 import { StateControl } from '../services/state-control';
 import { ServiceCatalog } from '../models/service-catalog.model';
+import {
+  createEmptyInvoice,
+  InvoiceCreate,
+  InvoiceType,
+  PaymentStatus,
+} from '../models/invoice.model';
 
 @Component({
   standalone: true,
@@ -31,17 +38,23 @@ export class Algorithmus {
   serviceCatalog = signal<ServiceCatalog[]>([]);
 
   algorithmusForm: FormGroup;
-  investmentAmount: number = 0;
   totalAmount: number = 0;
-  totalProvision: number = 0;
-  ongoingSupportAmount: number = 0;
 
-  firstStepAmount: number = 0;
-  exchangeSetupAmount: number = 0;
-  buyStrategyAmount: number = 0;
-  walletSetupAmount: number = 0;
-  taxToolAmount: number = 0;
-  valueAddedTax: number = 0;
+  invoiceObject: InvoiceCreate = {
+    customer: 0,
+    invoice_type: InvoiceType.INVOICE,
+    invoice_status: PaymentStatus.UNPAID,
+    provision: 0,
+    amount: 0,
+    investitions_amount: 0,
+    value_tax: 19,
+    services: [],
+  };
+
+  // reset
+  resetInvoice(): void {
+    this.invoiceObject = createEmptyInvoice();
+  }
 
   // Creat Invoice
   customerNumber: string = '';
@@ -55,28 +68,27 @@ export class Algorithmus {
     this.algorithmusForm = this.fb.group({
       Summe: [
         '',
-        [
-          Validators.required, 
-          Validators.min(1), 
-          Validators.pattern(/^\d+(\.\d{1,2})?$/),
-          ],
+        [Validators.required, Validators.min(1), Validators.pattern(/^\d+(\.\d{1,2})?$/)],
       ],
     });
-
   }
 
   ngOnInit(): void {
-    this.onSubmit();
-
+    this.companyControl.getCompany().subscribe({
+      next: () => {
+        this.stateControl.displayToast('Die Daten wurden gelesen');
+      },
+      error: (err) => {
+        this.stateControl.displayToast('Du hast kein Internet');
+      },
+    });
     this.algorithmusControl.getServiceCatalog().subscribe({
       next: (data) => {
         this.serviceCatalog.set(data);
-        data.forEach(service => {
-        this.algorithmusForm.addControl(
-          String(service.id),
-          this.fb.control(false)
-        );
-      });
+        data.forEach((service) => {
+          this.algorithmusForm.addControl(String(service.id), this.fb.control(false));
+        });
+
         this.stateControl.displayToast('Die Daten wurden gelesen');
       },
       error: (err) => {
@@ -85,32 +97,33 @@ export class Algorithmus {
     });
   }
 
-  getBasicFee(): boolean {
-    return this.algorithmusForm.get('basicFee')?.value;
+  onFormChange(): void {
+    this.updateInvoice(this.algorithmusForm.value);
   }
 
-  getFirstStepValue(): boolean {
-    return this.algorithmusForm.get('firstStep')?.value;
-  }
+  updateInvoice(formValues: any): void {
+    const summe = Number(formValues.Summe) || 0;
+    let totalFixed = 0;
+    let totalPercent = 0;
 
-  getExchangeSetup(): boolean {
-    return this.algorithmusForm.get('exchangeSetup')?.value;
-  }
+    const selectedServices = this.serviceCatalog().filter((service) => formValues[service.id!]);
 
-  getBuyStrategy(): boolean {
-    return this.algorithmusForm.get('buyStrategy')?.value;
-  }
+    for (const service of selectedServices) {
+      if (service.amount_fixed !== null) {
+        totalFixed += +service.amount_fixed;
+      } else if (service.amount_percent !== null) {
+        totalPercent += +service.amount_percent;
+      }
+    }
 
-  getWalletSetup(): boolean {
-    return this.algorithmusForm.get('walletSetup')?.value;
-  }
+    const percentAmount = (summe * totalPercent) / 100;
 
-  getTaxTool(): boolean {
-    return this.algorithmusForm.get('taxTool')?.value;
-  }
-
-  ongoingSupport(): boolean {
-    return this.algorithmusForm.get('ongoingSupport')?.value;
+    this.invoiceObject.services = selectedServices.map((s) => s);
+    this.invoiceObject.provision = totalFixed + percentAmount;
+    this.invoiceObject.amount = this.invoiceObject.provision + this.invoiceObject.value_tax;
+    this.invoiceObject.value_tax = (totalFixed + percentAmount) * 0.19;
+    this.invoiceObject.investitions_amount = summe;
+    console.log(this.invoiceObject);
   }
 
   openDialog() {
@@ -121,55 +134,10 @@ export class Algorithmus {
     this.isInvoiceVisible = false;
   }
 
-  onSubmit() {
-    this.totalProvision = this.algorithmusControl.basicFeeProvision;
-    this.firstStepAmount = 0;
-    this.exchangeSetupAmount = 0;
-    this.buyStrategyAmount = 0;
-    this.walletSetupAmount = 0;
-    this.taxToolAmount = 0;
-    this.ongoingSupportAmount = 0;
-
-    if (this.algorithmusForm.valid) {
-      const sum = Number(this.algorithmusForm.get('Summe')?.value) || 0;
-      this.investmentAmount = sum;
-
-      if (this.getFirstStepValue()) {
-        this.firstStepAmount = (sum * this.algorithmusControl.firstStepProvision) / 100;
-        this.totalProvision += this.firstStepAmount;
-      }
-
-      if (this.getExchangeSetup()) {
-        this.exchangeSetupAmount = (sum * this.algorithmusControl.exchangeSetupProvision) / 100;
-        this.totalProvision += this.exchangeSetupAmount;
-      }
-
-      if (this.getBuyStrategy()) {
-        this.buyStrategyAmount = (sum * this.algorithmusControl.buyStrategyProvision) / 100;
-        this.totalProvision += this.buyStrategyAmount;
-      }
-
-      if (this.getWalletSetup()) {
-        this.walletSetupAmount = (sum * this.algorithmusControl.walletSetupProvision) / 100;
-        this.totalProvision += this.walletSetupAmount;
-      }
-
-      if (this.getTaxTool()) {
-        this.taxToolAmount = (sum * this.algorithmusControl.taxToolProvision) / 100;
-        this.totalProvision += this.walletSetupAmount;
-      }
-
-      if (this.ongoingSupport()) {
-        this.ongoingSupportAmount = this.algorithmusControl.ongoingSupportProvision;
-        this.totalProvision += this.ongoingSupportAmount;
-      }
-
-      this.valueAddedTax = (this.totalProvision * this.algorithmusControl.valueAddedTax) / 100;
-      this.totalAmount = this.totalProvision + this.valueAddedTax;
-      this.invoiceNumber = this.customerControl.generateCustomerInvoiceNumber();
-    } else {
-      this.algorithmusForm.markAllAsTouched();
-    }
+  getServiceValue(service: ServiceCatalog): number {
+    return service.amount_fixed === null
+      ? (+service.amount_percent! * this.totalAmount) / 100
+      : +service.amount_fixed;
   }
 
   get Summe() {
@@ -214,6 +182,7 @@ export class Algorithmus {
     this.customerNameInvoice = customer.first_name + ' ' + customer.last_name;
     this.customerStreetInvoice = customer.street + ' ' + customer.number;
     this.customerCityInvoice = customer.postcode + ' ' + customer.city;
+    this.invoiceObject.customer = customer.id;
   }
 
   hideDropdown() {

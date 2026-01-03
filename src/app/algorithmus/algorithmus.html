@@ -19,7 +19,7 @@
   }
 </search>
 
-<form [formGroup]="algorithmusForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="algorithmusForm">
   <div>
     <label for="summe">Summe (€):</label>
     <input id="summe" type="number" formControlName="Summe" placeholder="z. B. 1000" />
@@ -40,7 +40,12 @@
   <div class="checkboxes">
     @for (service of serviceCatalog(); track service.id) {
     <label [for]="service.id">
-      <input type="checkbox" [id]="service.id" [formControlName]="service.id ?? ''" />
+      <input
+        type="checkbox"
+        [id]="service.id"
+        [formControlName]="service.id ?? ''"
+        (change)="onFormChange()"
+      />
 
       {{ service.name }}
 
@@ -52,8 +57,6 @@
     </label>
     }
   </div>
-
-  <button type="submit" [disabled]="!algorithmusForm.valid">Berechnen</button>
 </form>
 
 <section class="summary">
@@ -67,11 +70,12 @@
     </thead>
     <div class="divider"></div>
     <tbody>
-      @for (service of serviceCatalog(); track service.id) {
+      @for (service of invoiceObject.services; track service.id) {
       <tr>
         @if (service.amount_fixed === null) {
         <td>{{ service.name }} {{ service.amount_percent | number : '1.2-2' }} %</td>
-        <td>{{ (+service.amount_percent! * totalAmount) | number : '1.2-2' }}</td>
+
+        <td>{{ (+service.amount_percent! * invoiceObject.amount) / 100 | number : '1.2-2' }}</td>
         } @else {
         <td>{{ service.name }}</td>
         <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
@@ -83,26 +87,26 @@
 
       <tr>
         <td>Investitions Betrag</td>
-        <td>{{ investmentAmount | number : '1.2-2' }} €</td>
+        <td>{{ invoiceObject.investitions_amount| number : '1.2-2' }} €</td>
       </tr>
 
       <tr>
         <td>Provison</td>
-        <td>{{ totalProvision | number : '1.2-2' }} €</td>
+        <td>{{ invoiceObject.provision| number : '1.2-2' }} €</td>
       </tr>
 
       <div class="divider"></div>
 
       <tr>
         <td>Mehrwertsteuer(19%)</td>
-        <td>{{ valueAddedTax | number : '1.2-2' }} €</td>
+        <td>{{ invoiceObject.value_tax| number : '1.2-2' }} €</td>
       </tr>
 
       <div class="divider"></div>
 
       <tr>
         <td>Total Betrag</td>
-        <td>{{ totalAmount | number : '1.2-2' }} €</td>
+        <td>{{ invoiceObject.amount| number : '1.2-2' }} €</td>
       </tr>
     </tbody>
   </table>
@@ -158,56 +162,37 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Grundgebühr</td>
-          <td></td>
-          <td>{{ algorithmusControl.basicFeeProvision | number : '1.2-2' }} €</td>
-        </tr>
-        <tr>
-          <td>Individuelle Express Krypto-Einführung</td>
-          <td>{{ algorithmusControl.firstStepProvision | number : '1.2-2' }} %</td>
-          <td>{{ firstStepAmount | number : '1.2-2' }} €</td>
-        </tr>
-        <tr>
-          <td>Börsenwahl & Einrichtung</td>
-          <td>{{ algorithmusControl.exchangeSetupProvision | number : '1.2-2' }} %</td>
-          <td>{{ exchangeSetupAmount | number : '1.2-2' }} €</td>
-        </tr>
-        <tr>
-          <td>Kaufstrategie & Coin-Auswahl</td>
-          <td>{{ algorithmusControl.buyStrategyProvision | number : '1.2-2' }} %</td>
-          <td>{{ buyStrategyAmount | number : '1.2-2' }} €</td>
-        </tr>
-        <tr>
-          <td>Wallet-Einrichtung & Sicherheit</td>
-          <td>{{ algorithmusControl.walletSetupProvision | number : '1.2-2' }} %</td>
-          <td>{{ walletSetupAmount | number : '1.2-2' }} €</td>
-        </tr>
-        <tr>
-          <td>Steuertool für deine Abwicklung</td>
-          <td>{{ algorithmusControl.taxToolProvision | number : '1.2-2' }} %</td>
-          <td>{{ walletSetupAmount | number : '1.2-2' }} €</td>
-        </tr>
-        <tr>
-          <td>Laufende Betreuung</td>
-          <td></td>
-          <td>{{ algorithmusControl.ongoingSupportProvision | number : '1.2-2' }} €</td>
-        </tr>
+        @for (service of invoiceObject.services; track service.id) {
+      <tr>
+        @if (service.amount_fixed === null) {
+        <td>{{ service.name }} </td>
+
+        <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
+
+        <td>{{ (+service.amount_percent! * invoiceObject.amount) / 100 | number : '1.2-2' }}</td>
+        } @else {
+        <td>{{ service.name }}</td>
+        <td></td>
+        <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
+        }
+      </tr>
+      }
+
       </tbody>
     </table>
 
     <div class="totals">
       <p>
-        <span>Investitions Betrag:</span> <span>{{ investmentAmount | number : '1.2-2' }} €</span>
+        <span>Investitions Betrag:</span> <span>{{ invoiceObject.investitions_amount| number : '1.2-2' }} €</span>
       </p>
       <p>
-        <span>Provison (6.5%):</span> <span>{{ totalProvision | number : '1.2-2' }} €</span>
+        <span>Provison (6.5%):</span> <span>{{ invoiceObject.provision| number : '1.2-2' }} €</span>
       </p>
       <p>
-        <span>MwSt. (19%):</span> <span>{{ valueAddedTax | number : '1.2-2' }} €</span>
+        <span>MwSt. (19%):</span> <span>{{ invoiceObject.value_tax| number : '1.2-2' }} €</span>
       </p>
       <h3>
-        <span>Total:</span> <span>{{ totalAmount | number : '1.2-2' }} €</span>
+        <span>Total:</span> <span>{{ invoiceObject.amount| number : '1.2-2' }} €</span>
       </h3>
     </div>
 
