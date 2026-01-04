@@ -311,3 +311,9 @@ footer {
   pointer-events: auto;
   overflow-y: scroll;
 }
+
+.btn-container {
+  display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}

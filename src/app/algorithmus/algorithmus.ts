@@ -66,6 +66,7 @@ export class Algorithmus {
 
   constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group({
+      searchTerm: ['', Validators.required],
       Summe: [
         '',
         [Validators.required, Validators.min(1), Validators.pattern(/^\d+(\.\d{1,2})?$/)],
@@ -107,9 +108,9 @@ export class Algorithmus {
     const summe = Number(formValues.Summe) || 0;
     let totalFixed = 0;
     let totalPercent = 0;
-    
+
     const selectedServices = this.serviceCatalog().filter((service) => formValues[service.id!]);
-    
+
     for (const service of selectedServices) {
       if (service.amount_fixed !== null) {
         totalFixed += +service.amount_fixed;
@@ -117,7 +118,7 @@ export class Algorithmus {
         totalPercent += +service.amount_percent;
       }
     }
-    
+
     this.totalProvisonPercent = totalPercent;
     const percentAmount = (summe * totalPercent) / 100;
 
@@ -144,11 +145,14 @@ export class Algorithmus {
   // SEARCH
 
   filteredCustomers: CUSTOMER[] = [];
-  searchTerm: string = '';
   showDropdown: boolean = false;
 
+  get searchTerm() {
+    return this.algorithmusForm.get('searchTerm');
+  }
+
   onSearchChange() {
-    const term = this.searchTerm.toLowerCase();
+    const term = (this.searchTerm?.value || '').toLowerCase();
     if (term) {
       this.customerControl.getCustomers().subscribe((customers) => {
         this.filteredCustomers = customers.filter(
@@ -173,7 +177,12 @@ export class Algorithmus {
   }
 
   selectCustomer(customer: CUSTOMER) {
-    this.searchTerm = customer.first_name + ' ' + customer.last_name;
+    const fullName = `${customer.first_name} ${customer.last_name}`;
+
+    this.algorithmusForm.patchValue({
+      searchTerm: fullName,
+    });
+
     this.showDropdown = false;
     this.customerNumber = customer.customer_number;
     this.customerNameInvoice = customer.first_name + ' ' + customer.last_name;

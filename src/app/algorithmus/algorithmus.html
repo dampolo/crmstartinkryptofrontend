@@ -1,14 +1,22 @@
 <h1 class="title">Algorithmus</h1>
 
+<form [formGroup]="algorithmusForm">
 <search class="search-container">
   <input
     type="text"
     placeholder="Search customers..."
-    [(ngModel)]="searchTerm"
+    formControlName="searchTerm"
     (input)="onSearchChange()"
     (focus)="onFocus()"
     (blur)="hideDropdown()"
   />
+  @if (searchTerm?.touched && searchTerm?.invalid) {
+    <div class="error">
+      @if (searchTerm?.errors?.['required']) {
+        Kunde kann nicht leer sein
+      }
+    </div>
+  }
 
   @if (showDropdown) {
   <ul class="dropdown">
@@ -19,7 +27,6 @@
   }
 </search>
 
-<form [formGroup]="algorithmusForm">
   <div>
     <label for="summe">Summe (€):</label>
     <input (keyup)="onFormChange()" id="summe" type="number" formControlName="Summe" placeholder="z. B. 1000" />
@@ -111,10 +118,14 @@
     </tbody>
   </table>
 </section>
-
-<button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid">
-  Vorschau
-</button>
+<div class="btn-container">
+  <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid && !searchTerm?.invalid">
+    Vorschau
+  </button>
+  <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid">
+    Erstellen
+  </button>
+</div>
 
 <section
   class="hide-invoice"
