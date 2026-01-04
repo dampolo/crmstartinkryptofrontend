@@ -66,7 +66,7 @@ export class Algorithmus {
 
   constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group({
-      cutomerName: ['', Validators.required],
+      customerName: ['', Validators.required],
       Summe: [
         '',
         [Validators.required, Validators.min(1), Validators.pattern(/^\d+(\.\d{1,2})?$/)],
@@ -147,12 +147,12 @@ export class Algorithmus {
   filteredCustomers: CUSTOMER[] = [];
   showDropdown: boolean = false;
 
-  get cutomerName() {
-    return this.algorithmusForm.get('cutomerName');
+  get customerName() {
+    return this.algorithmusForm.get('customerName');
   }
 
   onSearchChange() {
-    const term = (this.cutomerName?.value || '').toLowerCase();
+    const term = (this.customerName?.value || '').toLowerCase();
     if (term) {
       this.customerControl.getCustomers().subscribe((customers) => {
         this.filteredCustomers = customers.filter(
@@ -180,7 +180,7 @@ export class Algorithmus {
     const fullName = `${customer.first_name} ${customer.last_name}`;
 
     this.algorithmusForm.patchValue({
-      cutomerName: fullName,
+      searchTerm: fullName,
     });
 
     this.showDropdown = false;

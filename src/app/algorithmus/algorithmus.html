@@ -5,14 +5,14 @@
   <input
     type="text"
     placeholder="Kunden..."
-    formControlName="cutomerName"
+    formControlName="customerName"
     (input)="onSearchChange()"
     (focus)="onFocus()"
     (blur)="hideDropdown()"
   />
-  @if (cutomerName?.touched && cutomerName?.invalid) {
+  @if (customerName?.touched && customerName?.invalid) {
     <div class="error">
-      @if (cutomerName?.errors?.['required']) {
+      @if (customerName?.errors?.['required']) {
         Kunde kann nicht leer sein
       }
     </div>
