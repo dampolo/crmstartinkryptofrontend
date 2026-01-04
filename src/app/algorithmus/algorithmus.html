@@ -5,14 +5,14 @@
   <input
     type="text"
     placeholder="Search customers..."
-    formControlName="searchTerm"
+    formControlName="cutomerName"
     (input)="onSearchChange()"
     (focus)="onFocus()"
     (blur)="hideDropdown()"
   />
-  @if (searchTerm?.touched && searchTerm?.invalid) {
+  @if (cutomerName?.touched && cutomerName?.invalid) {
     <div class="error">
-      @if (searchTerm?.errors?.['required']) {
+      @if (cutomerName?.errors?.['required']) {
         Kunde kann nicht leer sein
       }
     </div>
@@ -119,7 +119,7 @@
   </table>
 </section>
 <div class="btn-container">
-  <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid && !searchTerm?.invalid">
+  <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid && !cutomerName?.invalid">
     Vorschau
   </button>
   <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid">
