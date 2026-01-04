@@ -182,9 +182,8 @@ export class Algorithmus {
     const fullName = `${customer.first_name} ${customer.last_name}`;
 
     this.algorithmusForm.patchValue({
-      searchTerm: fullName,
+      customerName: fullName,
     });
-
     this.showDropdown = false;
     this.customerNumber = customer.customer_number;
     this.customerNameInvoice = customer.first_name + ' ' + customer.last_name;

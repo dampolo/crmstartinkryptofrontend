@@ -5,14 +5,14 @@ import { environment } from '../../environment/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlgorithmusControl {
   private baseUrl = environment.apiBaseUrl;
 
   serivce = signal<ServiceCatalog | null>(null);
 
-   constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   updateServices(services: any[]) {
     return this.http.put(`${this.baseUrl}service-catalog/bulk_update/`, services, {
@@ -25,8 +25,8 @@ export class AlgorithmusControl {
       withCredentials: true,
     });
   }
-  
-  getServiceCatalog(): Observable<ServiceCatalog[] > {
+
+  getServiceCatalog(): Observable<ServiceCatalog[]> {
     return this.http.get<ServiceCatalog[]>(`${this.baseUrl}service-catalog/`, {
       withCredentials: true,
     });
