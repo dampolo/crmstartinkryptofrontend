@@ -4,7 +4,7 @@
 <search class="search-container">
   <input
     type="text"
-    placeholder="Search customers..."
+    placeholder="Kunden..."
     formControlName="cutomerName"
     (input)="onSearchChange()"
     (focus)="onFocus()"
@@ -119,7 +119,7 @@
   </table>
 </section>
 <div class="btn-container">
-  <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid && !cutomerName?.invalid">
+  <button (click)="openDialog()" type="submit">
     Vorschau
   </button>
   <button (click)="openDialog()" type="submit" [disabled]="!algorithmusForm.valid">
@@ -180,7 +180,7 @@
 
         <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
 
-        <td>{{ (+service.amount_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }}</td>
+        <td>{{ (+service.amount_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }} €</td>
         } @else {
         <td>{{ service.name }}</td>
         <td></td>
