@@ -20,6 +20,7 @@ import {
   InvoiceType,
   PaymentStatus,
 } from '../models/invoice.model';
+import { InvoiceService } from '../services/invoice-service';
 
 @Component({
   standalone: true,
@@ -33,6 +34,7 @@ export class Algorithmus {
   algorithmusControl = inject(AlgorithmusControl);
   companyControl = inject(CompanyControl);
   stateControl = inject(StateControl);
+  invoiceService = inject(InvoiceService)
   currentDate = new Date(); // stores the current date and time
   isInvoiceVisible: boolean = false;
   serviceCatalog = signal<ServiceCatalog[]>([]);
@@ -197,5 +199,16 @@ export class Algorithmus {
 
   onEvent(event: Event) {
     event.stopPropagation();
+  }
+
+  createInvoice() {
+    this.invoiceService.createInvoice(this.invoiceObject).subscribe({
+      next: () => {
+        this.stateControl.displayToast('Die Rechnung wurde erstellt.');
+      },
+      error: (err) => {
+        this.stateControl.displayToast('Du bist nicht angemeldet');
+      }
+    })
   }
 }
