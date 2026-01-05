@@ -13,7 +13,7 @@ import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
 import { CompanyControl } from '../services/company-control';
 import { StateControl } from '../services/state-control';
-import { ServiceCatalog } from '../models/service-catalog.model';
+import { InvoiceServices, ServiceCatalog } from '../models/service-catalog.model';
 import {
   createEmptyInvoice,
   InvoiceCreate,
@@ -107,30 +107,47 @@ export class Algorithmus {
   }
 
   updateInvoice(formValues: any): void {
-    const summe = Number(formValues.Summe) || 0;
-    let totalFixed = 0;
-    let totalPercent = 0;
+  const summe = Number(formValues.Summe) || 0;
 
-    const selectedServices = this.serviceCatalog().filter((service) => formValues[service.id!]);
+  let totalFixed = 0;
+  let totalPercentAmount = 0;
 
-    for (const service of selectedServices) {
-      if (service.amount_fixed !== null) {
-        totalFixed += +service.amount_fixed;
-      } else if (service.amount_percent !== null) {
-        totalPercent += +service.amount_percent;
-      }
+  const selectedServices = this.serviceCatalog().filter(
+    (service) => formValues[service.id!]
+  );
+
+  const invoiceServices = selectedServices.map((service) => {
+    let provision_amount = 0;
+
+    if (service.provision_fixed !== null) {
+      provision_amount = +service.provision_fixed;
+      totalFixed += provision_amount;
     }
 
-    this.totalProvisonPercent = totalPercent;
-    const percentAmount = (summe * totalPercent) / 100;
+    if (service.provision_percent !== null) {
+      provision_amount = (+service.provision_percent * summe) / 100;
+      totalPercentAmount += provision_amount;
+    }
 
-    this.invoiceObject.services = selectedServices.map((s) => s);
-    this.invoiceObject.provision = totalFixed + percentAmount;
-    this.invoiceObject.value_tax = (totalFixed + percentAmount) * 0.19;
-    this.invoiceObject.amount = this.invoiceObject.provision + this.invoiceObject.value_tax;
-    this.invoiceObject.investitions_amount = summe;
-    console.log(this.invoiceObject);
-  }
+    return {
+      ...service,
+      service_name: service.service_name,
+      provision_amount, // ✅ calculated once
+    };
+  });
+
+  this.invoiceObject.services = invoiceServices;
+
+  this.invoiceObject.provision = totalFixed + totalPercentAmount;
+  this.invoiceObject.value_tax = this.invoiceObject.provision * 0.19;
+  this.invoiceObject.amount =
+    this.invoiceObject.provision + this.invoiceObject.value_tax;
+
+  this.invoiceObject.investitions_amount = summe;
+
+  console.log(this.invoiceObject);
+}
+
 
   openDialog() {
     this.isInvoiceVisible = true;

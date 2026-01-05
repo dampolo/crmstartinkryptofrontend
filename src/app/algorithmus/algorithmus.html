@@ -54,12 +54,12 @@
         (change)="onFormChange()"
       />
 
-      {{ service.name }}
+      {{ service.service_name }}
 
-      @if (service.amount_fixed !== null) {
-      <span> {{ service.amount_fixed | number : '1.2-2' }} € </span>
+      @if (service.provision_fixed !== null) {
+      <span> {{ service.provision_fixed | number : '1.2-2' }} € </span>
       } @else {
-      <span> {{ service.amount_percent | number : '1.2-2' }} % </span>
+      <span> {{ service.provision_percent | number : '1.2-2' }} % </span>
       }
     </label>
     }
@@ -79,13 +79,13 @@
     <tbody>
       @for (service of invoiceObject.services; track service.id) {
       <tr>
-        @if (service.amount_fixed === null) {
-        <td>{{ service.name }} {{ service.amount_percent | number : '1.2-2' }} %</td>
+        @if (service.provision_fixed === null) {
+        <td>{{ service.service_name }} {{ service.provision_percent | number : '1.2-2' }} %</td>
 
-        <td>{{ (+service.amount_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }}</td>
+        <td>{{ service.provision_amount| number : '1.2-2' }} €</td>
         } @else {
-        <td>{{ service.name }}</td>
-        <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
+        <td>{{ service.service_name }}</td>
+        <td>{{ service.provision_fixed | number : '1.2-2' }} €</td>
         }
       </tr>
       }
@@ -175,16 +175,16 @@
       <tbody>
         @for (service of invoiceObject.services; track service.id) {
       <tr>
-        @if (service.amount_fixed === null) {
-        <td>{{ service.name }} </td>
+        @if (service.provision_fixed === null) {
+        <td>{{ service.service_name }} </td>
 
-        <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
+        <td>{{ service.provision_percent | number : '1.2-2' }} %</td>
 
-        <td>{{ (+service.amount_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }} €</td>
+        <td>{{ (+service.provision_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }} €</td>
         } @else {
-        <td>{{ service.name }}</td>
+        <td>{{ service.service_name }}</td>
         <td></td>
-        <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
+        <td>{{ service.provision_fixed | number : '1.2-2' }} €</td>
         }
       </tr>
       }

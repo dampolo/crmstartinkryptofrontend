@@ -2,8 +2,17 @@ export type ProvisionType = 'fixed' | 'percent';
 
 export interface ServiceCatalog {
   id?: number,
-  name: string,
+  service_name: string,
   provision_type: ProvisionType,
-  amount_fixed: null | string
-  amount_percent: null | string
+  provision_fixed: string | null,
+  provision_percent: string | null,
+}
+
+export interface InvoiceServices {
+  id?: number,
+  service_name: string,
+  provision_type: ProvisionType,
+  provision_fixed: string | null,
+  provision_percent: string | null,
+  provision_amount: number
 }

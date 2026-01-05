@@ -14,12 +14,12 @@
           <tbody>
             @for (service of serviceCatalog() ; track service.id) {
             <tr>
-              <td>{{ service.name }}</td>
-              @if(service.amount_fixed === null) {
-              <td>{{ service.amount_percent | number : '1.2-2' }} %</td>
+              <td>{{ service.service_name }}</td>
+              @if(service.provision_fixed === null) {
+              <td>{{ service.provision_percent | number : '1.2-2' }} %</td>
 
               } @else {
-              <td>{{ service.amount_fixed | number : '1.2-2' }} €</td>
+              <td>{{ service.provision_fixed | number : '1.2-2' }} €</td>
               }
             </tr>
 
@@ -37,21 +37,21 @@
               <div class="service" [formGroupName]="$index">
                 <!-- Name -->
               <div class="form-group">
-                <!-- <label for="name">Name</label> -->
+                <!-- <label for="service_name">Name</label> -->
                 <input
-                  id="name"
+                  id="service_name"
                   type="text"
                   class="form-control"
-                  formControlName="name"
+                  formControlName="service_name"
                   placeholder="service"
                 />
 
-                @if ( service.get('name')?.invalid && (service.get('name')?.touched ||
-                service.get('name')?.dirty) ) {
+                @if ( service.get('service_name')?.invalid && (service.get('service_name')?.touched ||
+                service.get('service_name')?.dirty) ) {
                 <div class="text-requied">
-                  @if (service.get('name')?.errors?.['required']) {
+                  @if (service.get('service_name')?.errors?.['required']) {
                   <small>Name ist erforderlich.</small>
-                  } @if (service.get('name')?.errors?.['maxlength']) {
+                  } @if (service.get('service_name')?.errors?.['maxlength']) {
                   <small>Name darf maximal 200 Zeichen lang sein.</small>
                   }
                 </div>
@@ -74,24 +74,24 @@
               <!-- Fixed amount -->
               @if (isFixed($index)) {
               <div class="form-group">
-                <!-- <label for="amount_fixed">Fixed amount (€)</label> -->
+                <!-- <label for="provision_fixed">Fixed amount (€)</label> -->
                 <input
-                  id="amount_fixed"
+                  id="provision_fixed"
                   type="number"
                   step="0.01"
                   class="form-control"
-                  formControlName="amount_fixed"
+                  formControlName="provision_fixed"
                   placeholder="Festbetrag (€)"
                 />
 
-                @if ( service.get('amount_fixed')?.invalid && (service.get('amount_fixed')?.touched
-                || service.get('amount_fixed')?.dirty) ) {
+                @if ( service.get('provision_fixed')?.invalid && (service.get('provision_fixed')?.touched
+                || service.get('provision_fixed')?.dirty) ) {
                 <div class="text-requied">
-                  @if (service.get('amount_fixed')?.errors?.['required']) {
+                  @if (service.get('provision_fixed')?.errors?.['required']) {
                   <small>Fixbetrag ist erforderlich.</small>
-                  } @if (service.get('amount_fixed')?.errors?.['min']) {
+                  } @if (service.get('provision_fixed')?.errors?.['min']) {
                   <small>Fixbetrag muss größer als 0 sein.</small>
-                  } @if (service.get('amount_fixed')?.errors?.['pattern']) {
+                  } @if (service.get('provision_fixed')?.errors?.['pattern']) {
                   <small>Ungültiges Zahlenformat (z. B. 700.00).</small>
                   }
                 </div>
@@ -102,24 +102,24 @@
               <!-- Percent amount -->
               @if (!isFixed($index)) {
               <div class="form-group">
-                <!-- <label for="amount_percent">Percent (decimal)</label> -->
+                <!-- <label for="provision_percent">Percent (decimal)</label> -->
                 <input
-                  id="amount_percent"
+                  id="provision_percent"
                   type="number"
                   step="0.0001"
                   class="form-control"
-                  formControlName="amount_percent"
+                  formControlName="provision_percent"
                   placeholder="Prozent (decimal)"
                 />
-                @if ( service.get('amount_percent')?.invalid &&
-                (service.get('amount_percent')?.touched || service.get('amount_percent')?.dirty) ) {
+                @if ( service.get('provision_percent')?.invalid &&
+                (service.get('provision_percent')?.touched || service.get('provision_percent')?.dirty) ) {
                   <div class="text-requied">
-                    @if (service.get('amount_percent')?.errors?.['required']) {
+                    @if (service.get('provision_percent')?.errors?.['required']) {
                   <small>Prozentwert ist erforderlich.</small>
-                  } @if ( service.get('amount_percent')?.errors?.['min'] ||
-                  service.get('amount_percent')?.errors?.['max'] ) {
+                  } @if ( service.get('provision_percent')?.errors?.['min'] ||
+                  service.get('provision_percent')?.errors?.['max'] ) {
                   <small>Wert muss zwischen 0 und 1 liegen (z. B. 0.05).</small>
-                  } @if (service.get('amount_percent')?.errors?.['pattern']) {
+                  } @if (service.get('provision_percent')?.errors?.['pattern']) {
                   <small>Ungültiges Dezimalformat.</small>
                   }
                 </div>

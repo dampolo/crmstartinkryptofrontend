@@ -1,4 +1,4 @@
-import { ServiceCatalog } from "./service-catalog.model";
+import { InvoiceServices, ServiceCatalog } from "./service-catalog.model";
 
 export enum InvoiceType {
   INVOICE = 'invoice',
@@ -29,7 +29,7 @@ export interface InvoiceCreate {
   investitions_amount: number;
   value_tax: number;
 
-  services: ServiceCatalog[];
+  services: InvoiceServices[];
 }
 
 // GET

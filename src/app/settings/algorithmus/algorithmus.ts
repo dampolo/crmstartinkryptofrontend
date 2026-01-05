@@ -66,10 +66,10 @@ export class Algorithmus {
 
     const group = this.fb.group({
       id: [service?.id ?? null],
-      name: [service?.name ?? '', [Validators.required, Validators.maxLength(200)]],
+      service_name: [service?.service_name ?? '', [Validators.required, Validators.maxLength(200)]],
       provision_type: [service?.provision_type ?? '', Validators.required],
-      amount_fixed: [service?.amount_fixed ?? null],
-      amount_percent: [service?.amount_percent ?? null],
+      provision_fixed: [service?.provision_fixed ?? null],
+      provision_percent: [service?.provision_percent ?? null],
     });
 
     group.get('provision_type')?.valueChanges.subscribe(() => {
@@ -93,8 +93,8 @@ export class Algorithmus {
   private updateValidators(index: number): void {
     const service = this.services.at(index) as FormGroup;
 
-    const fixed = service.get('amount_fixed');
-    const percent = service.get('amount_percent');
+    const fixed = service.get('provision_fixed');
+    const percent = service.get('provision_percent');
     const type = service.get('provision_type')?.value as ProvisionType;
 
     if (!fixed || !percent) return;
