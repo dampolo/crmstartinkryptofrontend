@@ -180,7 +180,7 @@
 
         <td>{{ service.provision_percent | number : '1.2-2' }} %</td>
 
-        <td>{{ (+service.provision_percent! * invoiceObject.investitions_amount) / 100 | number : '1.2-2' }} €</td>
+        <td>{{ service.provision_amount | number : '1.2-2' }} €</td>
         } @else {
         <td>{{ service.service_name }}</td>
         <td></td>
