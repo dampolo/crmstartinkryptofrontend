@@ -1,3 +1,46 @@
 <h1 class="title">Rechnungen</h1>
 
-<app-invoice></app-invoice>
+<section>
+    <table class="">
+        <thead class="">
+            <tr>
+                <td class="">Rechnungsnr.</td>
+                <td class="">Typ</td>
+                <td class="">Name</td>
+                <td class="">Status</td>
+                <td class="">Kunde</td>
+            </tr>
+        </thead>
+        <tbody class="">
+             @for (invoice of invoices(); track invoice.id) {
+            <tr class="table">
+                <td>{{ invoice.invoice_number }}</td>
+                <td>{{ invoice.invoice_type }}</td>
+                <td>{{ invoice.customer_name }}</td>
+                <td>{{ invoice.invoice_status }}</td>
+                <td class="crmSK-td-edit">
+                    <button class="crmSK-icon-three-dots" (click)="toggleMenu(invoice.id)">
+                        <img src="/assets/three.svg" alt="edit">
+                    </button>
+
+                    <ul role="menu" class="crmSK-popper" [class.show]="openMenuId === invoice.id">
+                        <li class="crmSK-popper-li" [routerLink]="['/kunden', invoice.id]">
+                            Ansehen
+                        </li>
+                        <li class="crmSK-popper-li">
+                            Löschen
+                        </li>
+                        <li class="crmSK-popper-li" [routerLink]="['/kunden', invoice.id, 'comments']">
+                            Kommentar hin. 
+                        </li>
+                    </ul>
+
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+    <router-outlet></router-outlet>
+    <a href="/algorithmus" class="new-invoice">Neuer Rechnung erstellen</a>
+</section>

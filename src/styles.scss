@@ -87,6 +87,7 @@ app-company {
   gap: 1rem;
 }
 
+a.new-invoice,
 button[type="button"],
 a.new-customer,
 button.new-customer,
@@ -98,6 +99,7 @@ button[type='submit'] {
   align-self: center;
 }
 
+a.new-invoice:hover,
 button.new-customer:hover,
 button[type='button']:hover,
 a.new-customer:not(:disabled):hover,

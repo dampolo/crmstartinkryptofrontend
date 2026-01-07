@@ -128,7 +128,6 @@ export class Algorithmus {
       provision_amount = (+service.provision_percent * summe) / 100;
       totalPercentAmount += provision_amount;
     }
-    debugger
     return {
       ...service,
       service_name: service.service_name,
