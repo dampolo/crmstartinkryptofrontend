@@ -150,6 +150,8 @@ export class Algorithmus {
 
   openDialog() {
     this.isInvoiceVisible = true;
+    console.log(this.invoiceObject);
+    
   }
 
   closeDialog() {
@@ -217,13 +219,13 @@ export class Algorithmus {
   }
 
   createInvoice() {
-    this.invoiceService.createInvoice(this.invoiceObject).subscribe({
-      next: () => {
-        this.stateControl.displayToast('Die Rechnung wurde erstellt.');
-      },
-      error: (err) => {
-        this.stateControl.displayToast('Du bist nicht angemeldet');
-      }
-    })
+    // this.invoiceService.createInvoice(this.invoiceObject).subscribe({
+    //   next: () => {
+    //     this.stateControl.displayToast('Die Rechnung wurde erstellt.');
+    //   },
+    //   error: (err) => {
+    //     this.stateControl.displayToast('Du bist nicht angemeldet');
+    //   }
+    // })
   }
 }
