@@ -16,7 +16,7 @@
             <tr class="table">
                 <td>{{ invoice.invoice_number }}</td>
                 <td>{{ invoice.invoice_type }}</td>
-                <td>{{ invoice.customer_name }}</td>
+                <td>{{ invoice.customer_first_name }} {{ invoice.customer_last_name }}</td>
                 <td>{{ invoice.invoice_status }}</td>
                 <td class="crmSK-td-edit">
                     <button class="crmSK-icon-three-dots" (click)="toggleMenu(invoice.id)">

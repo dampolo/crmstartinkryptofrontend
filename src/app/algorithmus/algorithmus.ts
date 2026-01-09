@@ -103,6 +103,8 @@ export class Algorithmus {
   }
 
   onFormChange(): void {
+    console.log(this.invoiceObject);
+    
     this.updateInvoice(this.algorithmusForm.value);
   }
 
@@ -144,13 +146,11 @@ export class Algorithmus {
 
   this.invoiceObject.investitions_amount = summe;
 
-  console.log(this.invoiceObject);
 }
 
 
   openDialog() {
     this.isInvoiceVisible = true;
-    console.log(this.invoiceObject);
     
   }
 
@@ -219,13 +219,13 @@ export class Algorithmus {
   }
 
   createInvoice() {
-    // this.invoiceService.createInvoice(this.invoiceObject).subscribe({
-    //   next: () => {
-    //     this.stateControl.displayToast('Die Rechnung wurde erstellt.');
-    //   },
-    //   error: (err) => {
-    //     this.stateControl.displayToast('Du bist nicht angemeldet');
-    //   }
-    // })
+    this.invoiceService.createInvoice(this.invoiceObject).subscribe({
+      next: () => {
+        this.stateControl.displayToast('Die Rechnung wurde erstellt.');
+      },
+      error: (err) => {
+        this.stateControl.displayToast('Du bist nicht angemeldet');
+      }
+    })
   }
 }
