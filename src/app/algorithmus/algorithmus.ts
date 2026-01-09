@@ -2,7 +2,6 @@ import { CommonModule, DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -13,9 +12,8 @@ import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
 import { CompanyControl } from '../services/company-control';
 import { StateControl } from '../services/state-control';
-import { InvoiceServices, ServiceCatalog } from '../models/service-catalog.model';
+import { ServiceCatalog } from '../models/service-catalog.model';
 import {
-  createEmptyInvoice,
   InvoiceCreate,
   InvoiceType,
   PaymentStatus,
@@ -52,11 +50,6 @@ export class Algorithmus {
     value_tax: 19,
     services: [],
   };
-
-  // reset
-  resetInvoice(): void {
-    this.invoiceObject = createEmptyInvoice();
-  }
 
   // Creat Invoice
   customerNumber: string = '';
