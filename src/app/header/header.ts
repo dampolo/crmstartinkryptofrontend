@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { StateControl } from '../services/state-control';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   standalone: true,

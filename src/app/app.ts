@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { StateControl } from './services/state-control';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth-service';
 
 @Component({
   standalone: true,

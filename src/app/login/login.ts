@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { StateControl } from '../services/state-control';
 
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth-service';
 import { Toast } from '../shared/toast/toast';
 import { CommonModule } from '@angular/common';
 
