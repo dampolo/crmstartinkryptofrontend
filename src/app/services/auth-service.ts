@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
-import { StateControl } from './state-service';
+import { stateService } from './state-service';
 import { environment } from '../../environment/environment';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { environment } from '../../environment/environment';
 export class AuthService {
   isAuthenticated = new BehaviorSubject<boolean>(false);
   private baseUrl = environment.apiBaseUrl;
-  stateControl = inject(StateControl);
+  stateControl = inject(stateService);
 
   constructor(private http: HttpClient, private router: Router) {}
 
