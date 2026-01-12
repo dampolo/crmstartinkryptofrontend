@@ -1,9 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
 import { InvoiceService } from '../services/invoice-service';
-import { StateControl } from '../services/state-control';
 import { Invoice } from '../models/invoice.model';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { stateService } from '../services/state-service';
 
 @Component({
   standalone: true,
@@ -14,7 +13,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class Invoices {
   invoiceService = inject(InvoiceService);
-  stateControl = inject(StateControl);
+  stateService = inject(stateService);
   openMenuId: number | null = null;
   invoices = signal<Invoice[]>([]);
 
@@ -25,7 +24,7 @@ export class Invoices {
         console.log(invoices);
       },
       error: (err) => {
-        this.stateControl.displayToast('SystemFehler');
+        this.stateService.displayToast('SystemFehler');
       },
     });
   }

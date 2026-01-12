@@ -4,7 +4,7 @@ import { CUSTOMER } from '../../models/customer.model';
 import { CustomerControl } from '../../services/customer-control';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StateControl } from '../../services/state-control';
+import { StateControl } from '../../services/state-service';
 
 @Component({
   selector: 'app-customer-details',

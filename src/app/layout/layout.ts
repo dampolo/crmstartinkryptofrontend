@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { StateControl } from '../services/state-control';
+import { StateControl } from '../services/state-service';
 import { CommonModule } from '@angular/common';
 import { Header } from '../header/header';
 import { Router, RouterOutlet } from '@angular/router';

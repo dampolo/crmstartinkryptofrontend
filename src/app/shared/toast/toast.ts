@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StateControl } from '../../services/state-control';
+import { StateControl } from '../../services/state-service';
 
 @Component({
   standalone: true,

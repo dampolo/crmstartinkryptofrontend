@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { StateControl } from '../services/state-control';
+import { stateService } from '../services/state-service';
 
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth-service';
@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.scss',
 })
 export class Login {
-  stateControl = inject(StateControl);
+  stateService = inject(stateService);
   authService = inject(AuthService);
   loginForm: FormGroup;
   isPasswordVisible = false;
@@ -35,7 +35,7 @@ export class Login {
 
  onSubmit() {
     if (this.loginForm.invalid) {
-      this.stateControl.displayToast('Bitte alle Felder ausfüllen');
+      this.stateService.displayToast('Bitte alle Felder ausfüllen');
       return;
     }
 
@@ -48,13 +48,13 @@ export class Login {
     this.authService.login(data.username, data.password).subscribe({
       next: () => {
         this.authService.isAuthenticated.next(true);
-        this.stateControl.displayToast('Du bist angemeldet');
+        this.stateService.displayToast('Du bist angemeldet');
         this.router.navigate(['/dashboard'], {replaceUrl: true});
       },
 
       error: (err) => {
         console.error(err);
-        this.stateControl.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+        this.stateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
       }
     });
   }

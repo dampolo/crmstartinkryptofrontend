@@ -2,7 +2,7 @@ import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CompanyControl } from '../../services/company-control';
 import { CommonModule } from '@angular/common';
-import { StateControl } from '../../services/state-control';
+import { StateControl } from '../../services/state-service';
 import { COMPANY } from '../../models/company.model';
 import { catchError, EMPTY, switchMap, tap } from 'rxjs';
 

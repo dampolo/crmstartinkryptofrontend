@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal, Signal } from '@angular/core';
 import { AlgorithmusControl } from '../../services/algorithmus-control';
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { StateControl } from '../../services/state-control';
+import { StateControl } from '../../services/state-service';
 import {
   AbstractControl,
   FormArray,

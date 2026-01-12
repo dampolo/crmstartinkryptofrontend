@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StateControl } from '../services/state-control';
+import { stateService } from '../services/state-service';
 import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
 
@@ -13,7 +13,7 @@ import { CUSTOMER } from '../models/customer.model';
 })
 export class Newcustomer {
   newCustomerForm: FormGroup
-  stateControl = inject(StateControl);
+  stateService = inject(stateService);
   customerControl = inject(CustomerControl)
 
   constructor(private fb: FormBuilder) {
@@ -45,10 +45,10 @@ export class Newcustomer {
     const payload = this.newCustomerForm.getRawValue();
     this.customerControl.postCustomerById(payload).subscribe({
       next: () => {
-        this.stateControl.displayToast('Der Kunde wurde erstellt')
+        this.stateService.displayToast('Der Kunde wurde erstellt')
       },
       error: (err) => {
-        this.stateControl.displayToast('!! Verusche noch einmal')
+        this.stateService.displayToast('!! Verusche noch einmal')
       }
     })
   }

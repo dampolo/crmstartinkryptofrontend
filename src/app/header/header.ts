@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { StateControl } from '../services/state-control';
+import { StateControl } from '../services/state-service';
 import { AuthService } from '../services/auth-service';
 
 @Component({

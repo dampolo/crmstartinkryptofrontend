@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class StateControl {
+export class stateService {
   showToast: boolean = false;
   showError: boolean = false;
   showArrow: boolean = false;

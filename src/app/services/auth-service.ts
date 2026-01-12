@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
-import { StateControl } from './state-control';
+import { StateControl } from './state-service';
 import { environment } from '../../environment/environment';
 
 @Injectable({

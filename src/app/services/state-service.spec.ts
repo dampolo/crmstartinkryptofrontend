@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StateControl } from './state-control';
+import { StateControl } from './state-service';
 
 describe('StateControl', () => {
   let service: StateControl;

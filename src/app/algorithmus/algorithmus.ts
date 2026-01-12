@@ -11,7 +11,7 @@ import { AlgorithmusControl } from '../services/algorithmus-control';
 import { CustomerControl } from '../services/customer-control';
 import { CUSTOMER } from '../models/customer.model';
 import { CompanyControl } from '../services/company-control';
-import { StateControl } from '../services/state-control';
+import { stateService } from '../services/state-service';
 import { ServiceCatalog } from '../models/service-catalog.model';
 import {
   InvoiceCreate,
@@ -31,7 +31,7 @@ export class Algorithmus {
   customerControl = inject(CustomerControl);
   algorithmusControl = inject(AlgorithmusControl);
   companyControl = inject(CompanyControl);
-  stateControl = inject(StateControl);
+  stateService = inject(stateService);
   invoiceService = inject(InvoiceService)
   currentDate = new Date(); // stores the current date and time
   isInvoiceVisible: boolean = false;
@@ -73,10 +73,10 @@ export class Algorithmus {
     // Load company data
     this.companyControl.getCompany().subscribe({
       next: () => {
-        this.stateControl.displayToast('Die Daten wurden gelesen');
+        this.stateService.displayToast('Die Daten wurden gelesen');
       },
       error: (err) => {
-        this.stateControl.displayToast('Du hast kein Internet');
+        this.stateService.displayToast('Du hast kein Internet');
       },
     });
     // Load all services
@@ -87,10 +87,10 @@ export class Algorithmus {
           this.algorithmusForm.addControl(String(service.id), this.fb.control(false));
         });
 
-        this.stateControl.displayToast('Die Daten wurden gelesen');
+        this.stateService.displayToast('Die Daten wurden gelesen');
       },
       error: (err) => {
-        this.stateControl.displayToast('Du hast kein Internet');
+        this.stateService.displayToast('Du hast kein Internet');
       },
     });
   }
@@ -214,10 +214,10 @@ export class Algorithmus {
   createInvoice() {
     this.invoiceService.createInvoice(this.invoiceObject).subscribe({
       next: () => {
-        this.stateControl.displayToast('Die Rechnung wurde erstellt.');
+        this.stateService.displayToast('Die Rechnung wurde erstellt.');
       },
       error: (err) => {
-        this.stateControl.displayToast('Du bist nicht angemeldet');
+        this.stateService.displayToast('Du bist nicht angemeldet');
       }
     })
   }
