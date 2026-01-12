@@ -78,16 +78,3 @@ export interface Invoice {
 
   services: ServiceCatalog[];
 }
-
-export function createEmptyInvoice(): InvoiceCreate {
-  return {
-    customer: 0,
-    invoice_type: InvoiceType.INVOICE,
-    invoice_status: PaymentStatus.UNPAID,
-    provision: 0,
-    amount: 0,
-    investitions_amount: 0,
-    value_tax: 0,
-    services: [],
-  };
-}

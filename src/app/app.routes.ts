@@ -5,7 +5,6 @@ import { Invoices } from './invoices/invoices';
 import { Newcustomer } from './newcustomer/newcustomer';
 import { Dashboard } from './dashboard/dashboard';
 import { Algorithmus } from './algorithmus/algorithmus';
-import { Settings } from './settings/settings';
 import { Login } from './login/login';
 import { authGuard } from './guards/auth-guard';
 import { Layout } from './layout/layout';
