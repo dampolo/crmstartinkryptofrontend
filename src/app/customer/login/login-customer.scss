@@ -1,0 +1,242 @@
+@use './../../../basic';
+
+.main-content-customer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  max-width: 37.875rem;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 1.25rem;
+  padding: 40px;
+  margin: 10px;
+  .form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2.5rem;
+    margin-bottom: 1.875rem;
+    .form-title-name {
+      color: basic.$primary;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+  }
+
+  .description {
+    text-align: center;
+    margin-bottom: 1.875rem;
+    .new-user-link {
+      color: basic.$primary;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .input-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .input-field {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: basic.$body-bg;
+      border: solid 0.0625rem transparent;
+      padding-left: 5.3125rem;
+      padding-top: 1.125rem;
+      padding-bottom: 1.125rem;
+      width: 100%;
+      height: 3.07rem;
+      border-radius: basic.$border-radius;
+      transition: basic.$first-transition;
+      &:hover {
+        border: solid 0.0625rem basic.$secondary;
+      }
+
+      &:focus {
+        border: solid 0.0625rem basic.$secondary;
+        outline: basic.$secondary;
+      }
+      input:-webkit-autofill {
+        background-color: basic.$body-bg;
+        box-shadow: 0 0 0px 1000px basic.$body-bg inset;
+        border: solid 0.0625rem transparent;
+      }
+    }
+    .input-icon {
+      position: absolute;
+      top: 0.875rem;
+      left: 0;
+      padding: 0 1.5625rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .warn-txt-hight {
+      height: 3.4375rem;
+    }
+
+    .eye-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      position: absolute;
+      top: 0.625rem;
+      right: 0;
+      padding: 0 1.5625rem;
+    }
+
+    .btn-password {
+      display: flex;
+      justify-content: center;
+      background: none;
+      color: basic.$primary;
+      text-decoration: none;
+      width: fit-content;
+      padding: 0.3125rem 0.9375rem;
+      border-radius: basic.$border-radius;
+      margin-bottom: 1.875rem;
+      border: solid 0.0625rem transparent;
+      transition: all 175ms ease-in-out;
+      &:hover {
+        color: basic.$primary;
+        background: basic.$body-bg;
+      }
+      &:focus {
+        color: basic.$primary;
+        background: basic.$body-bg;
+        border: solid 0.0625rem basic.$secondary;
+        outline: basic.$secondary;
+      }
+    }
+
+    .seperator-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 1.875rem;
+      &::before {
+        content: '';
+        position: absolute;
+        background-color: basic.$body-bg;
+        height: 0.125rem;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .sep-line-txt {
+        display: flex;
+        border-radius: basic.$border-radius;
+        padding-inline: 0.9375rem;
+        background-color: basic.$body-bg;
+        z-index: 1;
+      }
+    }
+  }
+  .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3.75rem;
+    background-color: basic.$body-bg;
+    border-radius: basic.$border-radius; //3.125rem;
+    color: basic.$primary;
+    border: solid 0.0625rem transparent;
+    transition: all 175ms ease-in-out;
+    &:hover {
+      border: solid 0.0625rem basic.$secondary;
+      outline: basic.$secondary;
+      font-weight: 500;
+    }
+    &:focus {
+      border: solid 0.0625rem basic.$secondary;
+      outline: basic.$secondary;
+    }
+    img {
+      margin-right: 1rem;
+    }
+  }
+
+  p {
+    text-align: center;
+    margin-bottom: 1.875rem;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.875rem;
+    margin-bottom: 1.875rem;
+    width: 100%;
+
+    .login-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      max-width: 10.375rem;
+      width: 100%;
+      font-weight: 700;
+      font-size: 1.125rem;
+      gap: 0.625rem;
+      padding: 0.75rem 1.5625rem;
+      border-radius: basic.$border-radius;
+      color: basic.$thirteenth;
+    }
+    .e-mail-button {
+      width: fit-content;
+      margin-left: auto;
+    }
+    .login-btn {
+      background-color: basic.$primary;
+      border: solid 1px transparent;
+      transition: basic.$first-transition;
+      &:hover {
+        border: solid 1px basic.$primary;
+        background-color: basic.$body-bg;
+        color: basic.$primary;
+      }
+      &:focus {
+        border: solid 1px basic.$primary;
+        background-color: basic.$body-bg;
+        color: basic.$primary;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .main-content {
+    .btn-container {
+      gap: 0.875rem;
+      .login-btn,
+      .guest-btn {
+        padding: 0.625rem 0.3125rem;
+      }
+    }
+    .legal-imprint-container {
+      gap: 0;
+    }
+  }
+}

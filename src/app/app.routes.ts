@@ -1,25 +1,43 @@
 import { Routes } from '@angular/router';
-import { Customers } from './customers/customers';
-import { Apply } from './apply/apply';
-import { Invoices } from './invoices/invoices';
-import { Newcustomer } from './newcustomer/newcustomer';
-import { Dashboard } from './dashboard/dashboard';
-import { Algorithmus } from './algorithmus/algorithmus';
-import { Login } from './login/login';
+import { Apply } from './crm/apply/apply';
+import { Invoices } from './crm/invoices/invoices';
+import { Dashboard } from './crm/dashboard/dashboard';
+import { Algorithmus } from './crm/algorithmus/algorithmus';
 import { authGuard } from './guards/auth-guard';
-import { Layout } from './layout/layout';
-import { CustomerDetails } from './customers/customer-details/customer-details';
-import { CustomerComments } from './customers/customer-comments/customer-comments';
+import { Layout } from './crm/layout/layout';
+import { Customers } from './crm/customers/customers';
+import { CustomerDetails } from './crm/customers/customer-details/customer-details';
+import { CustomerComments } from './crm/customers/customer-comments/customer-comments';
+import { Newcustomer } from './crm/newcustomer/newcustomer';
+import { Login } from './crm/login/login';
+import { LoginCustomer } from './customer/login/login-customer';
+import { RegisterCustomer } from './customer/register-customer/register-customer';
+import { PwdResetCustomer } from './customer/pwd-reset-customer/pwd-reset-customer';
+import { PwdRecoveryCustomer } from './customer/pwd-recovery-customer/pwd-recovery-customer';
+import { Confirmation } from './shared/confirmation/confirmation';
+
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
 
-  // Public route
-  { path: 'login', component: Login, title: 'Login' },
+  { path: 'login', component: LoginCustomer },
+  { path: 'register', component: RegisterCustomer },
+  { path: 'reset-password', component: PwdResetCustomer },
+  { path: 'recovery-password', component: PwdRecoveryCustomer },
+  { path: 'confirmation', component: Confirmation },
 
-  // AUTHENTICATED AREA
+
+  { path: 'crm/login', component: Login },
+
+    {
+    path: 'client',
+    loadChildren: () =>
+      import('./customer/customer.routing').then(m => m.CLIENT_ROUTES),
+  },
+
+  // CRM
   {
-    path: '',
+    path: 'crm',
     component: Layout,
     canActivate: [authGuard],
     children: [
@@ -34,7 +52,7 @@ export const routes: Routes = [
       {
         path: 'einstellungen',
         loadChildren: () =>
-          import('./settings/settings.routing').then(m => m.default),
+          import('./crm/settings/settings.routing').then(m => m.default),
       },
     ],
   },

@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { stateService } from './services/state-service';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './services/auth-service';
+import { AuthService } from './crm/services/auth-service';
+import { stateService } from './crm/services/state-service';
 
 @Component({
   standalone: true,

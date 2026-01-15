@@ -1,0 +1,120 @@
+<section class="main-content-customer">
+  <a class="arrow-back" routerLink='/login'>
+    <app-back></app-back>
+  </a>
+
+  <div class="form-title ">
+
+
+        <h1 class="form-title-name">Konto erstellen</h1>
+
+
+      </div>
+        
+        <p class="description">Hast du schon ein Konto? <a class="new-user-link" routerLink="/login">Anmelden</a></p>
+      
+      
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    
+        <div class="input-container">
+          <label class="visually-hidden" for="email">Dein E-Mail</label>
+          <input name="email" id="email" autocomplete="email" formControlName="email"
+            class="input-field" type="email" placeholder="beispielname@email.com"/>
+            <div class="input-icon">
+              <img src="./assets/mail-icon-input-field.svg" alt="E-mail">
+
+            </div>
+
+          <div class="warn-txt">
+            <!-- @if(fb.errorMessageLogin()){
+              <span>{{ fb.errorMessageLogin() }}</span>
+              } -->
+            @if (myForm.controls['email'].invalid && (isFormSubmitted || myForm.controls['email'].touched ||
+            myForm.controls['email'].dirty)) {
+
+            @if (myForm.controls['email'].errors?.['required']) {
+            <span>E-Mail ist ein Pflichtfeld.</span>
+            }
+            @if (myForm.controls['email'].errors?.['email']) {
+            <span>E-Mail ist unvollständig/inkorrekt.</span>
+            }
+          }
+        </div>
+        </div>
+
+        <div class="input-container">
+          <label class="visually-hidden" for="password1">Passwort</label>
+          <input id="password1" autocomplete="password1" name="password1" [type]="isPasswordTopVisible ? 'text' : 'password'" formControlName="password1"
+            class="input-field input-field-pwd-icon" placeholder="Passwort"/>
+            
+            <button type="button" class="eye-button" (click)="togglePasswordVisibilityTop()">
+              <i class="pwd-eye" [ngClass]="{'eye-closed': !isPasswordTopVisible, 'eye-open': isPasswordTopVisible}"></i>
+            </button>
+            
+            <div class="input-icon">
+              <img src="./assets/pwd-lock-icon-input-field.svg" alt="password input">
+            </div>
+          
+          <div class="warn-txt">
+            @if (myForm.controls['password1'].invalid && (isFormSubmitted || myForm.controls['password1'].touched ||
+            myForm.controls['password1'].dirty)) {
+
+            @if (myForm.controls['password1'].errors?.['required']) {
+            <span>Password ist ein Pflichtfeld.</span>
+            }
+            @if (myForm.controls['password1'].errors?.['minlength']) {
+            <span>Mindestens 8 Zeichen erforderlich: ein Klein- u. ein
+              Großbuchstabe, eine Zahl und ein Sonderzeichen, siehe Info-box.</span>
+            }
+            @if ((myForm.controls['password1'].errors?.['pattern']) && !(myForm.controls['password1'].errors?.['minlength'])) {
+            <span>Mindestanforderungen nicht erfüllt, siehe Info-box.</span>
+            }
+            }
+          </div>
+
+        </div>
+        <div class="input-container">
+          <label class="visually-hidden" for="password2">Passwort</label>
+          <input name="password2" id="password2" autocomplete="password2" class="input-field" [type]="isPasswordBottomVisible ? 'text' : 'password'" placeholder="Passwort wiederholen" formControlName="password2" autocomplete="on"/>
+          
+          <button class="eye-button"  (click)="togglePasswordVisibilityBottom()">
+            <i class="pwd-eye" [ngClass]="{'eye-closed': !isPasswordBottomVisible, 'eye-open': isPasswordBottomVisible}"></i>
+          </button>
+          
+          
+          <div class="input-icon">
+            <img src="./assets/pwd-lock-icon-input-field.svg" alt="passwort input">
+          </div>
+          <div class="warn-txt">       
+            @if(myForm.errors?.['passwordMismatch'] && (myForm.controls['password2'].dirty || myForm.controls['password2'].touched)) {
+              <span>
+                Passwörter stimmen nicht überein.
+              </span>  
+            }
+          </div>
+        </div>
+
+        <div class="checkbox-container">
+          <div class="checkbox-content">
+            <input id="checkbox" type="checkbox" formControlName="term" name="term">
+          </div>
+
+          <div class="checkbox-description">
+            <label for="checkbox">Ich stimme der <a class="privacy" routerLink="/legal">Datenschutzerklärung</a> zu.</label>
+            <div class="checkbox-description warn-txt">
+              @if (myForm.controls['term'].invalid && (isFormSubmitted || myForm.controls['term'].touched ||
+              myForm.controls['term'].dirty)) {
+             @if (myForm.controls['term'].errors?.['required']) {
+              <span>Password ist ein Pflichtfeld.</span>
+            }
+          }
+        </div>
+      </div>
+        </div>
+
+        <div class="btn-container">
+          <button id="submit" type="submit" [disabled]="!myForm.valid" class="forward-btn">Weiter</button>
+        </div>
+    </form>
+    
+</section>

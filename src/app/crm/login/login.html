@@ -1,0 +1,78 @@
+  <section class="login-container">
+
+    <!-- LEFT SIDE -->
+    <div class="left-panel">
+      <div class="brand">
+        <div class="brand-icon">👤</div>
+        <span>CRM Pro</span>
+      </div>
+
+      <img 
+        src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=60"
+        class="promo-image"
+        alt="Promo"
+      >
+
+      <h2>Streamline your workflow and build lasting customer relationships.</h2>
+
+      <p class="promo-text">
+        Our powerful CRM helps you manage leads, track communication, and close deals faster.
+      </p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-panel">
+      <div class="form-wrapper">
+        <h1>Sign in to your account</h1>
+        <p class="subtitle">Manage Your Customer Relationships.</p>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="control-label required" for="username">Benutzer</label>
+            <input type="text" placeholder="Enter your email" id="username" formControlName="username">
+            <div class="text-requied">
+              @if (loginForm.get('username')?.touched && loginForm.get('username')?.invalid) {
+                <small>Benutzer ist erforderlich.</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label required" for="password">Passwort</label>
+            <div class="password-group">
+              <input type="password" placeholder="Enter your password" id="password" formControlName="password">
+            </div>
+            
+            <div class="text-requied">
+              @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+                <small>
+                  @if (loginForm.get('password')?.errors?.['required']) { 
+                    Passwort ist erforderlich. 
+                  }
+                </small>
+              }
+            </div>
+        </div>
+
+          <button type="submit" class="login-btn" [disabled]="!loginForm.valid">Login</button>
+        </form>
+
+        <a href="#" class="forgot">Forgot Password?</a>
+
+        <hr class="divider">
+
+        <p class="footer-text">
+          By signing in, you agree to our 
+          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <app-toast
+    [ngClass]="{
+      'show-success': stateService.showToast,
+      'show-error': stateService.showError
+    }"
+  ></app-toast>

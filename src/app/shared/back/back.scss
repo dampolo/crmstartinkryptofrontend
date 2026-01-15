@@ -1,0 +1,19 @@
+
+@use './../../../basic';
+
+::ng-deep .arrow-back {
+  background: none;
+  border: solid .0625rem transparent;
+  border-radius: basic.$border-radius;
+  align-self: baseline;
+  &:hover,
+  &:focus {
+    background: basic.$body-bg;
+    outline: none;
+  }
+  app-back {
+    &:hover svg path {
+      fill: basic.$primary;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<section class="main-content-customer">
+  <a class="arrow-back" routerLink="/login">
+    <app-back></app-back>
+  </a>
+  <h1 class="title">
+    Passwort zurücksetzen
+  </h1>  
+    <form [formGroup]="recoveryForm" (ngSubmit)="sendEmail($event, 'E-Mail gesendet')">
+      <div class="input-container">
+
+        <label for="name">Bitte gib deine E-Mail ein:</label>
+        <input class="input-field" type="email" placeholder="beispielname@email.com" formControlName="email" autocomplete="on"/>
+        <div class="input-icon">
+          <img src="./assets/mail-icon-input-field.svg" alt="e-mail">
+        </div>
+
+        <div class="warn-txt">
+        @if (recoveryForm.controls['email'].invalid && (isFormValid || recoveryForm.controls['email'].dirty || recoveryForm.controls['email'].touched)) {
+        @if (recoveryForm.controls['email'].errors?.['required']) {
+            <small>E-Mail ist ein Pflichtfeld.</small>
+          }
+          @if (recoveryForm.controls['email'].errors?.['email']) {
+            <small id="email-error">eMail ist unvollständig/inkorrekt.</small>
+          }
+        }
+      </div>
+
+    </div>
+      
+      <p>
+        Wir senden Dir eine E-Mail, <br> über die 
+        Du dein Passwort ändern kannst.
+      </p>
+
+      <div class="btn-container" >
+        <button class="forward-btn" type="submit" [disabled]="!recoveryForm.valid">E-Mail senden</button>
+      </div>
+    </form>
+</section>

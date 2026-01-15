@@ -1,61 +1,63 @@
-@use "./resets.css";
-@use "./basic";
+@use './resets.css';
+@use './basic';
 
 @font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Roboto";
-  src: url("/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
 
 main {
-    display: flex;
-    margin: 0 .0625rem .0625rem .0625rem;
+  display: flex;
+  margin: 0 0.0625rem 0.0625rem 0.0625rem;
 }
 
 .main-content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: basic.$body-bg;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: basic.$body-bg;
 }
 
-h1, h2, h3 {
-  font-family: "Montserrat", sans-serif;
+h1,
+h2,
+h3 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .title {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 app-header {
-    display: block;
-    margin: .0625rem .0625rem 0 .0625rem;
-    height: 4.5rem;
-    border-right: 1px solid basic.$border-color;
-    border-bottom: 1px solid basic.$border-color;
+  display: block;
+  margin: 0.0625rem 0.0625rem 0 0.0625rem;
+  height: 4.5rem;
+  border-right: 1px solid basic.$border-color;
+  border-bottom: 1px solid basic.$border-color;
 }
 
 app-navbar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    width: 20rem;
-    background: #ffff;
-    border-right: 1px solid basic.$border-color;
-    font-size: 1.25rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 20rem;
+  background: #ffff;
+  border-right: 1px solid basic.$border-color;
+  font-size: 1.25rem;
 }
 
 app-settings,
@@ -66,16 +68,16 @@ app-newcustomer,
 app-invoices,
 app-customers,
 app-customer-details {
-    margin: 1rem;
-    padding: 0 1rem 1rem 1rem;
+  margin: 1rem;
+  padding: 0 1rem 1rem 1rem;
 }
 
 app-header {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 app-company {
@@ -88,7 +90,7 @@ app-company {
 }
 
 a.new-invoice,
-button[type="button"],
+button[type='button'],
 a.new-customer,
 button.new-customer,
 button.edit,
@@ -105,7 +107,7 @@ button[type='button']:hover,
 a.new-customer:not(:disabled):hover,
 button.edit:not(:disabled):hover,
 button[type='submit']:not(:disabled):hover {
-  background: linear-gradient(180deg, #d6a65357, #8f59073f);
+  background: basic.$primary;
 }
 
 button.edit:disabled,
@@ -118,10 +120,10 @@ button[type='button'][disabled],
 button.edit:disabled,
 button[type='submit']:disabled,
 button[type='submit'][disabled] {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-  cursor: initial;
+  border: 1px solid #cccccc !important;
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: initial !important;
 }
 
 app-toast {
@@ -161,15 +163,43 @@ app-invoice {
   color: basic.$required;
 }
 
+.warn-txt {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  color: basic.$required;
+  min-height: 30px;
+  height: 100%;
+  font-size: 0.75rem;
+}
+
 .form-group .control-label.required::after {
-  content: " *";
+  content: ' *';
   color: red;
   font-weight: bold;
 }
 
+app-confirmation,
+app-pwd-recovery-customer,
+app-register-customer,
 app-login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100dvh;
+  background-color: basic.$body-bg;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
 }

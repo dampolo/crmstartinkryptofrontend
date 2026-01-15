@@ -1,0 +1,58 @@
+@use './../../../basic';
+
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+    height: 100%;
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.875rem;
+        background: none;
+        button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+            padding: 0.5rem;
+            &:hover {
+                transition: basic.$first-transition;
+                background: linear-gradient(180deg, #d6a65357, #8f59073f);
+            }
+            img {
+                width: 1.5625rem;
+                height: 1.5625rem;
+            }
+        }
+        button.active {
+            background-color: basic.$primary;
+        }
+        &:nth-child(2) {
+            margin-top: 1rem;
+        }
+        &:nth-last-child(-n + 1) {
+            margin-top: auto;
+        }
+    }
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    outline: transparent;
+    &:focus-visible {
+    border: 2px dotted basic.$primary;
+    outline: basic.$primary;
+    }
+    img {
+        &:hover {
+        filter: drop-shadow(2px 4px 6px basic.$primary);
+        }
+    }
+}
+
+
