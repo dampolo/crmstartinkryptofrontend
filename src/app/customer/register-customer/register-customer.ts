@@ -75,8 +75,12 @@ export class RegisterCustomer {
       },
     });
   }
-  togglePasswordVisibilityTop() {}
-  togglePasswordVisibilityBottom() {}
+  togglePasswordVisibilityTop() {
+    this.isPasswordTopVisible = !this.isPasswordTopVisible
+  }
+  togglePasswordVisibilityBottom() {
+    this.isPasswordBottomVisible = !this.isPasswordBottomVisible
+  }
 
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const formGroup = control as FormGroup;

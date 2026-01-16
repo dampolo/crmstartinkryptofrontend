@@ -64,11 +64,11 @@
       align-items: center;
       width: 100%;
       label {
-        margin-bottom: 1.875rem;
+        // margin-bottom: 1.875rem;
       }
       .input-icon {
         position: absolute;
-        top: .875rem;
+        top: 2.375rem;
         left: 0;
         padding: 0 25px;
         display: inline-flex;
@@ -82,24 +82,25 @@
 
       .eye-button {
         position: absolute;
-        top: 10px;
+        top: 2.275rem;
         right: 0;
         padding: 0 25px;
         display: inline-flex;
         justify-content: center;
         align-items: center;
+        background: none;
       }
     }
     .input-field {
       background-color: basic.$body-bg;
-      border: solid 0.0625rem transparent;
-      padding-left: 85px;
-      padding-top: 18px;
-      padding-bottom: 18px;
+      border: solid 0.0625rem basic.$body-bg;
+      padding-left: 5.3125rem;
+      padding-top: 1.125rem;
+      padding-bottom: 1.125rem;
       width: 100%;
       height: 3.07rem;
       border-radius: basic.$border-radius;
-      transition: border 175ms ease-in-out;
+       transition: basic.$first-transition;
       &:hover {
         border: solid 0.0625rem basic.$secondary;
       }
@@ -107,11 +108,10 @@
         border: solid 0.0625rem basic.$secondary;
         outline: basic.$secondary;
       }
-      input:-webkit-autofill {
-        background-color: basic.$body-bg;
-        box-shadow: 0 0 0px 1000px basic.$body-bg inset;
-        border: solid 0.0625rem transparent;
-      }
+    }
+    input:-webkit-autofill {
+      background-color: basic.$body-bg;
+      box-shadow: 0 0 0px 62.5rem basic.$body-bg inset;
     }
 
     .btn-password {
@@ -153,19 +153,22 @@
       font-size: 1.125rem;
       gap: 10px;
       padding: 12px 25px;
-      border: solid 0.0625rem transparent;
+      border: solid 1px transparent;
       border-radius: basic.$border-radius;
-      color: basic.$main;
+      color: basic.$thirteenth;
       background-color: basic.$primary;
       margin-left: auto;
       margin-top: auto;
       transition: all 175ms ease-in-out;
       &:hover {
-        background-color: basic.$primary;
+        border: solid 1px basic.$primary;
+        background-color: basic.$body-bg;
+        color: basic.$primary;
       }
       &:focus {
-        background-color: basic.$primary;
-        outline: basic.$primary;
+        border: solid 1px basic.$primary;
+        background-color: basic.$body-bg;
+        color: basic.$primary;
       }
     }
   }
@@ -210,10 +213,4 @@
       padding-block: 0.3125rem;
     }
   }
-}
-
-input:-webkit-autofill {
-  background-color: basic.$body-bg !important;
-  box-shadow: 0 0 0px 1000px basic.$body-bg inset !important;
-  border: solid 0.0625rem transparent;
 }

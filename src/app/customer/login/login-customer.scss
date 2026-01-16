@@ -52,11 +52,8 @@
       width: 100%;
     }
     .input-field {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
       background-color: basic.$body-bg;
-      border: solid 0.0625rem transparent;
+      border: solid 0.0625rem basic.$body-bg;
       padding-left: 5.3125rem;
       padding-top: 1.125rem;
       padding-bottom: 1.125rem;
@@ -72,15 +69,14 @@
         border: solid 0.0625rem basic.$secondary;
         outline: basic.$secondary;
       }
-      input:-webkit-autofill {
-        background-color: basic.$body-bg;
-        box-shadow: 0 0 0px 1000px basic.$body-bg inset;
-        border: solid 0.0625rem transparent;
-      }
+    }
+    input:-webkit-autofill {
+      background-color: basic.$body-bg;
+      box-shadow: 0 0 0px 62.5rem basic.$body-bg inset;
     }
     .input-icon {
       position: absolute;
-      top: 0.875rem;
+      top: 2.375rem;
       left: 0;
       padding: 0 1.5625rem;
       display: inline-flex;
@@ -98,7 +94,7 @@
       align-items: center;
       background: none;
       position: absolute;
-      top: 0.625rem;
+      top: 2.275rem;
       right: 0;
       padding: 0 1.5625rem;
     }

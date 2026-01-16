@@ -31,8 +31,8 @@ export class LoginCustomer {
     });
   }
 
-  togglePasswordVisibility(event: Event) {
-
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible
   }
 
   loginWithEmailAndPassword(text: string) {
