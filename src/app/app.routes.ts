@@ -11,20 +11,20 @@ import { CustomerComments } from './crm/customers/customer-comments/customer-com
 import { Newcustomer } from './crm/newcustomer/newcustomer';
 import { Login } from './crm/login/login';
 import { LoginCustomer } from './customer/login/login-customer';
-import { RegisterCustomer } from './customer/register-customer/register-customer';
 import { Confirmation } from './shared/confirmation/confirmation';
 import { ForgotPassword } from './customer/forgot-password/forgot-password';
 import { ResetPassword } from './customer/reset-password/reset-password';
+import { CreateAccount } from './customer/create-account/create-account';
 
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
 
-  { path: 'login', component: LoginCustomer },
-  { path: 'register', component: RegisterCustomer },
-  { path: 'reset-password', component: ResetPassword },
-  { path: 'forgot-password', component: ForgotPassword },
-  { path: 'confirmation', component: Confirmation },
+  { path: 'login', component: LoginCustomer, title: 'Anmelden'},
+  { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
+  { path: 'reset-password', component: ResetPassword, title: 'Passwort zurücksetzen' },
+  { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
+  { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
 
 
   { path: 'crm/login', component: Login },

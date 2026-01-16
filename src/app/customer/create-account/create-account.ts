@@ -14,12 +14,12 @@ import { User } from '../models/user.model';
 import { Back } from '../../shared/back/back';
 
 @Component({
-  selector: 'app-register-customer',
+  selector: 'app-create-account',
   imports: [CommonModule, ReactiveFormsModule, FormsModule, Back, RouterLink],
-  templateUrl: './register-customer.html',
-  styleUrl: './register-customer.scss',
+  templateUrl: './create-account.html',
+  styleUrl: './create-account.scss',
 })
-export class RegisterCustomer {
+export class CreateAccount {
   readonly router = inject(Router);
   authService = inject(AuthService);
 
