@@ -12,9 +12,9 @@ import { Newcustomer } from './crm/newcustomer/newcustomer';
 import { Login } from './crm/login/login';
 import { LoginCustomer } from './customer/login/login-customer';
 import { RegisterCustomer } from './customer/register-customer/register-customer';
-import { PwdResetCustomer } from './customer/pwd-reset-customer/pwd-reset-customer';
-import { PwdRecoveryCustomer } from './customer/pwd-recovery-customer/pwd-recovery-customer';
 import { Confirmation } from './shared/confirmation/confirmation';
+import { ForgotPassword } from './customer/forgot-password/forgot-password';
+import { ResetPassword } from './customer/reset-password/reset-password';
 
 
 export const routes: Routes = [
@@ -22,8 +22,8 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginCustomer },
   { path: 'register', component: RegisterCustomer },
-  { path: 'reset-password', component: PwdResetCustomer },
-  { path: 'recovery-password', component: PwdRecoveryCustomer },
+  { path: 'reset-password', component: ResetPassword },
+  { path: 'forgot-password', component: ForgotPassword },
   { path: 'confirmation', component: Confirmation },
 
 

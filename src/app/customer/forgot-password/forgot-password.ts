@@ -5,12 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import { Back } from '../../shared/back/back';
 
 @Component({
-  selector: 'app-pwd-recovery-customer',
+  selector: 'app-forgot-password',
   imports: [CommonModule, ReactiveFormsModule, FormsModule, Back, RouterLink],
-  templateUrl: './pwd-recovery-customer.html',
-  styleUrl: './pwd-recovery-customer.scss',
+  templateUrl: './forgot-password.html',
+  styleUrl: './forgot-password.scss',
 })
-export class PwdRecoveryCustomer {
+export class ForgotPassword {
   router = inject(Router);
   formBuilder = inject(FormBuilder);
   recoveryForm: FormGroup;
@@ -29,4 +29,5 @@ export class PwdRecoveryCustomer {
     // this.stateControl.isUserLoggedIn = false;
     this.router.navigate(['confirmation']);
   }
+
 }

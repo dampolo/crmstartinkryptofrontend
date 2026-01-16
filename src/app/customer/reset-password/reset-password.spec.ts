@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PwdRecoveryCustomer } from './pwd-recovery-customer';
+import { ResetPassword } from './reset-password';
 
-describe('PwdRecoveryCustomer', () => {
-  let component: PwdRecoveryCustomer;
-  let fixture: ComponentFixture<PwdRecoveryCustomer>;
+describe('ResetPassword', () => {
+  let component: ResetPassword;
+  let fixture: ComponentFixture<ResetPassword>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PwdRecoveryCustomer]
+      imports: [ResetPassword]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PwdRecoveryCustomer);
+    fixture = TestBed.createComponent(ResetPassword);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
