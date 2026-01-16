@@ -34,9 +34,9 @@
         @if (myForm.controls['email'].invalid && (isFormSubmitted ||
         myForm.controls['email'].touched || myForm.controls['email'].dirty)) { @if
         (myForm.controls['email'].errors?.['required']) {
-        <span>E-Mail ist ein Pflichtfeld.</span>
+        <small>E-Mail ist ein Pflichtfeld.</small>
         } @if (myForm.controls['email'].errors?.['email']) {
-        <span>E-Mail ist unvollständig/inkorrekt.</span>
+        <small>E-Mail ist unvollständig/inkorrekt.</small>
         } }
       </div>
     </div>
@@ -71,7 +71,7 @@
         @if (myForm.controls['password1'].invalid && (isFormSubmitted ||
         myForm.controls['password1'].touched || myForm.controls['password1'].dirty)) { @if
         (myForm.controls['password1'].errors?.['required']) {
-        <span>Password ist ein Pflichtfeld.</span>
+        <small>Password ist ein Pflichtfeld.</small>
         } @if (myForm.controls['password1'].errors?.['minlength']) {
         <span
           >Mindestens 8 Zeichen erforderlich: ein Klein- u. ein Großbuchstabe, eine Zahl und ein
@@ -79,7 +79,7 @@
         >
         } @if ((myForm.controls['password1'].errors?.['pattern']) &&
         !(myForm.controls['password1'].errors?.['minlength'])) {
-        <span>Mindestanforderungen nicht erfüllt, siehe Info-box.</span>
+        <small>Mindestanforderungen nicht erfüllt, siehe Info-box.</small>
         } }
       </div>
     </div>
@@ -112,7 +112,7 @@
       <div class="warn-txt">
         @if(myForm.errors?.['passwordMismatch'] && (myForm.controls['password2'].dirty ||
         myForm.controls['password2'].touched)) {
-        <span> Passwörter stimmen nicht überein. </span>
+        <small> Passwörter stimmen nicht überein. </small>
         }
       </div>
     </div>
@@ -130,7 +130,7 @@
           @if (myForm.controls['term'].invalid && (isFormSubmitted ||
           myForm.controls['term'].touched || myForm.controls['term'].dirty)) { @if
           (myForm.controls['term'].errors?.['required']) {
-          <span>Password ist ein Pflichtfeld.</span>
+          <small>Password ist ein Pflichtfeld.</small>
           } }
         </div>
       </div>

@@ -11,14 +11,14 @@
   width: 100%;
   background-color: #fff;
   border-radius: 1.25rem;
-  padding: 40px;
-  margin: 10px;
+  padding: 2.5rem;
+  margin: .625rem;
   .form-title {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 40px;
+    height: 2.5rem;
     margin-bottom: 1.875rem;
     .form-title-name {
       color: basic.$primary;
@@ -70,7 +70,7 @@
         position: absolute;
         top: 2.375rem;
         left: 0;
-        padding: 0 25px;
+        padding: 0 1.5625rem;
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -84,7 +84,7 @@
         position: absolute;
         top: 2.275rem;
         right: 0;
-        padding: 0 25px;
+        padding: 0 1.5625rem;
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -151,9 +151,9 @@
       width: 10.375rem;
       font-weight: 700;
       font-size: 1.125rem;
-      gap: 10px;
-      padding: 12px 25px;
-      border: solid 1px transparent;
+      gap: .625rem;
+      padding: .75rem 1.5625rem;
+      border: solid .0625rem transparent;
       border-radius: basic.$border-radius;
       color: basic.$thirteenth;
       background-color: basic.$primary;
@@ -161,12 +161,12 @@
       margin-top: auto;
       transition: all 175ms ease-in-out;
       &:hover {
-        border: solid 1px basic.$primary;
+        border: solid .0625rem basic.$primary;
         background-color: basic.$body-bg;
         color: basic.$primary;
       }
       &:focus {
-        border: solid 1px basic.$primary;
+        border: solid .0625rem basic.$primary;
         background-color: basic.$body-bg;
         color: basic.$primary;
       }
@@ -190,9 +190,9 @@
       }
     }
     label {
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 400;
-      line-height: 16.8px;
+      line-height: 1.05rem;
       text-align: left;
       .privacy {
         text-decoration: none;
@@ -202,15 +202,6 @@
           text-decoration: underline;
         }
       }
-    }
-    span {
-      display: flex;
-      text-align: left;
-      color: #ff0000;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 16.8px;
-      padding-block: 0.3125rem;
     }
   }
 }
