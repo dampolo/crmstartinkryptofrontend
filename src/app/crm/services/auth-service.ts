@@ -18,10 +18,10 @@ export class AuthService {
 
   // Dynamically build endpoint from config.json
 
-  login(username: string, password: string) {
+  login(email: string, password: string) {
     return this.http.post(
       this.baseUrl + 'token/',
-      { username, password },
+      { email, password },
       { withCredentials: true }
     );
   }

@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth-service';
 import { Toast } from '../shared/toast/toast';
 import { CommonModule } from '@angular/common';
+import { email } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class Login {
 
   constructor(private router: Router, private http: HttpClient) {
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
   }
@@ -40,12 +41,12 @@ export class Login {
     }
 
     const data = {
-      username: this.loginForm.value.username,
+      email: this.loginForm.value.email,
       password: this.loginForm.value.password
     };
 
     
-    this.authService.login(data.username, data.password).subscribe({
+    this.authService.login(data.email, data.password).subscribe({
       next: () => {
         this.authService.isAuthenticated.next(true);
         this.stateService.displayToast('Du bist angemeldet');
