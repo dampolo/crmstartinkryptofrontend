@@ -10,52 +10,56 @@ import { CustomerDetails } from './crm/customers/customer-details/customer-detai
 import { CustomerComments } from './crm/customers/customer-comments/customer-comments';
 import { Newcustomer } from './crm/newcustomer/newcustomer';
 import { Login } from './crm/login/login';
-import { LoginCustomer } from './customer/login/login-customer';
+import { LoginCustomer } from './customer/login-customer/login-customer';
 import { Confirmation } from './shared/confirmation/confirmation';
 import { ForgotPassword } from './customer/forgot-password/forgot-password';
 import { ResetPassword } from './customer/reset-password/reset-password';
 import { CreateAccount } from './customer/create-account/create-account';
+import { MyCourses } from './customer/my-courses/my-courses';
+import { DashboardCustomer } from './customer/dashboard-customer/dashboard-customer';
 
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+    { path: '', pathMatch: 'full', redirectTo: 'login' },
 
-  { path: 'login', component: LoginCustomer, title: 'Anmelden'},
-  { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
-  { path: 'reset-password', component: ResetPassword, title: 'Passwort zurücksetzen' },
-  { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
-  { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
+    { path: 'login', component: LoginCustomer, title: 'Anmelden' },
+    { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
+    { path: 'reset-password', component: ResetPassword, title: 'Passwort zurücksetzen' },
+    { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
+    { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
 
 
-  { path: 'crm/login', component: Login },
+    { path: 'crm/login', component: Login },
 
     {
-    path: 'client',
-    loadChildren: () =>
-      import('./customer/customer.routing').then(m => m.CLIENT_ROUTES),
-  },
+        path: 'customer',
+        children: [
+            { path: 'dashboard', component: DashboardCustomer },
+            { path: 'my-courses', component: MyCourses },
+        ],
+    },
 
-  // CRM
-  {
-    path: 'crm',
-    component: Layout,
-    canActivate: [authGuard],
-    children: [
-      { path: 'dashboard', component: Dashboard, title: 'Dashboard' },
-      { path: 'kunden', component: Customers, title: 'Alle Kunden'},
-      { path: 'kunden/:id', component: CustomerDetails },
-      { path: 'kunden/:id/comments', component: CustomerComments },
-      { path: 'bewerbungen', component: Apply, title: 'Bewerbungen' },
-      { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
-      { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
-      { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
-      {
-        path: 'einstellungen',
-        loadChildren: () =>
-          import('./crm/settings/settings.routing').then(m => m.default),
-      },
-    ],
-  },
+    // CRM
+    {
+        path: 'crm',
+        component: Layout,
+        canActivate: [authGuard],
+        children: [
+            { path: 'dashboard', component: Dashboard, title: 'Dashboard' },
+            { path: 'kunden', component: Customers, title: 'Alle Kunden' },
+            { path: 'kunden/:id', component: CustomerDetails },
+            { path: 'kunden/:id/comments', component: CustomerComments },
+            { path: 'bewerbungen', component: Apply, title: 'Bewerbungen' },
+            { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
+            { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
+            { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
+            {
+                path: 'einstellungen',
+                loadChildren: () =>
+                    import('./crm/settings/settings.routing').then(m => m.default),
+            },
+        ],
+    },
 
-  { path: '**', redirectTo: 'dashboard' },
+    { path: '**', redirectTo: 'dashboard' },
 ];

@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
-import { stateService } from './state-service';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environment/environment';
-import { User } from '../../customer/models/user.model';
+import { stateService } from '../../crm/services/state-service';
+import { HttpClient } from '@angular/common/http';
+import { Route, Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 @Injectable({
 	providedIn: 'root',
@@ -16,26 +16,11 @@ export class AuthService {
 
 	constructor(private http: HttpClient, private router: Router) { }
 
-	// Dynamically build endpoint from config.json
-
 	login(email: string, password: string) {
 		return this.http.post(
 			this.baseUrl + 'token/',
-			{ email, password },
+			{ email, password},
 			{ withCredentials: true }
-		);
-	}
-
-	checkAuth(): Observable<boolean> {
-		return this.http.get(this.baseUrl + 'me/', { withCredentials: true }).pipe(
-			map(() => {
-				this.isAuthenticated.next(true);
-				return true;
-			}),
-			catchError(() => {
-				this.isAuthenticated.next(false);
-				return of(false);
-			})
 		);
 	}
 
