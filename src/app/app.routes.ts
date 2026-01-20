@@ -24,7 +24,7 @@ export const routes: Routes = [
 
     { path: 'login', component: LoginCustomer, title: 'Anmelden' },
     { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
-    { path: 'reset-password', component: ResetPassword, title: 'Passwort zurücksetzen' },
+    { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
     { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
     { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
 

@@ -1,71 +1,96 @@
 import { Component, inject } from '@angular/core';
 import { Back } from '../../shared/back/back';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth-service';
+import { HttpClient } from '@angular/common/http';
+import { stateService } from '../../crm/services/state-service';
 
 @Component({
-  selector: 'app-reset-password',
-  imports: [Back, RouterModule, RouterLink, FormsModule, ReactiveFormsModule,],
-  templateUrl: './reset-password.html',
-  styleUrl: './reset-password.scss',
+	selector: 'app-reset-password',
+	imports: [Back, RouterModule, RouterLink, FormsModule, ReactiveFormsModule,],
+	templateUrl: './reset-password.html',
+	styleUrl: './reset-password.scss',
 })
 export class ResetPassword {
 
-    // fb = inject(FirebaseService);
-  formBuilder = inject(FormBuilder);
-  router = inject(Router);
-
-  /**
-   * Create the form group for the password reset form
-   */
-  isPasswordTopVisible: boolean = false;
-  isPasswordBottomVisible: boolean = false;
-
-  resetForm: FormGroup;
-
-  isFormValid: boolean = false;
+	authService = inject(AuthService)
+	stateService = inject(stateService);
+	formBuilder = inject(FormBuilder);
 
 
-    constructor() {
-    this.resetForm = new FormGroup(
-      {
-        password1: new FormControl('', [
-          Validators.required,
-          Validators.pattern(
-            '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[@$!%+-/*?&])[A-Za-z0-9@$!%+-/*?&]+$'
-          ),
-        ]),
-        password2: new FormControl('', [
-          Validators.required,
-          Validators.pattern(
-            '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[@$!%+-/*?&])[A-Za-z0-9@$!%+-/*?&]+$'
-          ),
-        ]),
-      },
-      { validators: this.passwordMatchValidator } // Validator als Referenz übergeben, ohne Klammern
-    );
-  }
+	/**
+	 * Create the form group for the password reset form
+	 */
+	isPasswordTopVisible: boolean = false;
+	isPasswordBottomVisible: boolean = false;
 
-  passwordMatchValidator(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
-    const formGroup = control as FormGroup;
-    const password1 = formGroup.get('password1')?.value;
-    const password2 = formGroup.get('password2')?.value;
-    return password1 === password2 ? null : { passwordMismatch: true };
-  }
+	resetForm: FormGroup;
 
-   pwdReset(text: string) {
-    const password = this.resetForm.get('password1')?.value;
-    // this.fb.confirmPassword(password, text);
-    this.isFormValid = true;
-  }
+	isFormValid: boolean = false;
 
-  togglePasswordVisibilityTop() {
-    this.isPasswordTopVisible = !this.isPasswordTopVisible;
-  }
+	uid!: string;
+	token!: string;
+	password = '';
 
-  togglePasswordVisibilityBottom() {
-    this.isPasswordBottomVisible = !this.isPasswordBottomVisible;
-  }
+
+	constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
+		this.resetForm = new FormGroup(
+			{
+				password1: new FormControl('', [
+					Validators.required,
+					Validators.pattern(
+						'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[@$!%+-/*?&])[A-Za-z0-9@$!%+-/*?&]+$'
+					),
+				]),
+				password2: new FormControl('', [
+					Validators.required,
+					Validators.pattern(
+						'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[@$!%+-/*?&])[A-Za-z0-9@$!%+-/*?&]+$'
+					),
+				]),
+			},
+			{ validators: this.passwordMatchValidator } // Validator als Referenz übergeben, ohne Klammern
+		);
+
+		this.uid = this.route.snapshot.params['uid'];
+		this.token = route.snapshot.params['token']
+		console.log(this.uid);
+		console.log(this.token);
+		
+		
+
+	}
+
+	passwordMatchValidator(
+		control: AbstractControl
+	): { [key: string]: boolean } | null {
+		const formGroup = control as FormGroup;
+		const password1 = formGroup.get('password1')?.value;
+		const password2 = formGroup.get('password2')?.value;
+		return password1 === password2 ? null : { passwordMismatch: true };
+	}
+
+	submit() {
+		const password = this.resetForm.get('password1')?.value;		
+		this.authService.resetPassword(password, this.uid, this.token).subscribe({
+			next: () => {
+				this.stateService.displayToast('Du bist angemeldet');
+				this.router.navigate(['customer/login'], { replaceUrl: true });
+				this.stateService.displayToast('Das Passwort wurde erfolgreich geändert.')
+			},
+			error: () => {
+				this.stateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+			}
+		});
+		this.isFormValid = true;
+	}
+
+	togglePasswordVisibilityTop() {
+		this.isPasswordTopVisible = !this.isPasswordTopVisible;
+	}
+
+	togglePasswordVisibilityBottom() {
+		this.isPasswordBottomVisible = !this.isPasswordBottomVisible;
+	}
 }

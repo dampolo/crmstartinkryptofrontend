@@ -33,4 +33,11 @@ export class AuthService {
 	createUser(email: string, password: string): Observable<User> {
 		return this.http.post<User>('api/users', { email, password });
 	}
+
+	resetPassword(password: string, uid: string, token: string) {
+		return this.http.post(
+			this.baseUrl + 'reset-password/',
+			{ password, uid, token},
+		);
+	}
 }
