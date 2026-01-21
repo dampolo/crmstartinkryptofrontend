@@ -9,9 +9,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../crm/services/auth-service';
 import { User } from '../models/user.model';
 import { Back } from '../../shared/back/back';
+import { stateService } from '../services/state-service';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-create-account',
@@ -22,6 +23,7 @@ import { Back } from '../../shared/back/back';
 export class CreateAccount {
   readonly router = inject(Router);
   authService = inject(AuthService);
+  stateService = inject(stateService);
 
   myForm: FormGroup; // name - just for now
   isFormSubmitted: boolean = false;
@@ -54,7 +56,7 @@ export class CreateAccount {
     );
   }
 
-  onSubmit() {
+  submit() {
     this.isFormSubmitted = true;
 
     if (!this.myForm.valid) {
@@ -64,11 +66,15 @@ export class CreateAccount {
 
     const email = this.myForm.get('email')?.value;
     const password = this.myForm.get('password1')?.value;
+    const repeated_password = this.myForm.get('password2')?.value;
 
-    this.authService.createUser(email, password).subscribe({
+
+    this.authService.createUser(email, password, repeated_password, 'customer').subscribe({
       next: (user: User) => {
         console.log('User successfully registered:', user);
-        // this.fb.currentUser.update(() => user);
+            this.stateService.showConfirmationText.set('Du bist erfolgreich registriert. Du kannst dich jetzt anmleden!')
+            this.stateService.showConfirmationLink.set(true)
+            this.router.navigate(['confirmation'])
       },
       error: (error) => {
         console.error('Error during user registration:', error);

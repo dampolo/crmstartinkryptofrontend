@@ -1,15 +1,15 @@
 <section class="main-content-customer">
-    <a class="arrow-back" routerLink="/login">
-      <app-back></app-back>
-    </a>
-    <div class="title-container">
-      <h1 class="form-title-name">Bestätigung</h1>
-    </div>
-  
-    <div class="content-section">
-      <p>
-        <!-- {{stateControl.showConfirmationText()}} -->
-      </p>
-    </div>
+  <a class="arrow-back" routerLink="/login">
+    <app-back></app-back>
+  </a>
+  <div class="title-container">
+    <h1 class="form-title-name">Bestätigung</h1>
+  </div>
 
-  </section>
+  <div class="content-section">
+    <p>
+      {{ stateService.showConfirmationText() }}
+    </p>
+      <a routerLink="/login">Anmelden</a>
+  </div>
+</section>

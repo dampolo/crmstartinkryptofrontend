@@ -11,6 +11,8 @@ export class stateService {
 
   showToastText = signal('');
   showConfirmationText = signal('');
+  showConfirmationLink = signal(false);
+
 
   removeShowToast() {
     setTimeout(() => {

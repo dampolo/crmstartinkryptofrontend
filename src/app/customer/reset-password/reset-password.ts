@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/route
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth-service';
 import { HttpClient } from '@angular/common/http';
-import { stateService } from '../../crm/services/state-service';
+import { stateService } from '../services/state-service';
 
 @Component({
 	selector: 'app-reset-password',
@@ -52,14 +52,8 @@ export class ResetPassword {
 			},
 			{ validators: this.passwordMatchValidator } // Validator als Referenz übergeben, ohne Klammern
 		);
-
 		this.uid = this.route.snapshot.params['uid'];
 		this.token = route.snapshot.params['token']
-		console.log(this.uid);
-		console.log(this.token);
-		
-		
-
 	}
 
 	passwordMatchValidator(
@@ -75,9 +69,9 @@ export class ResetPassword {
 		const password = this.resetForm.get('password1')?.value;		
 		this.authService.resetPassword(password, this.uid, this.token).subscribe({
 			next: () => {
-				this.stateService.displayToast('Du bist angemeldet');
-				this.router.navigate(['customer/login'], { replaceUrl: true });
-				this.stateService.displayToast('Das Passwort wurde erfolgreich geändert.')
+				this.stateService.showConfirmationText.set('Das Passwort wurde erfolgreich geändert.')
+				this.stateService.showConfirmationLink.set(true);
+				this.router.navigate(['confirmation']);
 			},
 			error: () => {
 				this.stateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
