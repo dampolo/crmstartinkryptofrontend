@@ -5,7 +5,7 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-invoice',
-  imports: [DecimalPipe, DatePipe],
+  imports: [],
   templateUrl: './invoice.html',
   styleUrl: './invoice.scss'
 })

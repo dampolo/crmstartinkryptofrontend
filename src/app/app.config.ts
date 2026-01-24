@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  importProvidersFrom,
   inject,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners
@@ -22,3 +23,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
   ],
 };
+
+
+// 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

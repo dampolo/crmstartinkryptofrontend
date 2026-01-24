@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { authGuard } from '../../guards/auth-guard';
 import { AuthService } from '../services/auth-service';
 import { stateService } from '../services/state-service';
 import { HttpClient } from '@angular/common/http';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { User } from '../models/user.model';
 
 @Component({
 	selector: 'app-login',
@@ -17,13 +19,15 @@ export class LoginCustomer {
 
 	authService = inject(AuthService);
 	stateService = inject(stateService);
+	socialAuthService = Inject(SocialAuthService)
 	loginForm: FormGroup;
 
 
 	isFormSubmitted: boolean = false;
 	isPasswordVisible = false;
 
-	constructor(private router: Router, private http: HttpClient) {
+	constructor(private router: Router,
+		private http: HttpClient) {
 		this.loginForm = new FormGroup({
 			userEmail: new FormControl('', [Validators.required, Validators.email]),
 			password: new FormControl('', [
@@ -52,7 +56,7 @@ export class LoginCustomer {
 		};
 
 		console.log(data);
-		
+
 		this.authService.login(data.email, data.password).subscribe({
 			next: () => {
 				this.authService.isAuthenticated.next(true);
@@ -67,8 +71,10 @@ export class LoginCustomer {
 		});
 	}
 
-	createNewUserWithGoogle() {
-	
+	createOrLoginWithGoogle() {
+		window.location.href =
+			'http://localhost:8000/api/accounts/google/login/?process=login';
+			localStorage.setItem('auth_provider', 'google'); 
 	}
 }
 

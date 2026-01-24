@@ -1,6 +1,8 @@
 export interface User {
-    email: string
-    password1: string
-    password2: string
-    type: string
+    id: string;
+    email: string;
+    name: string;
+    photoUrl: string;
+    idToken: string;
+    provider: 'GOOGLE';
 }

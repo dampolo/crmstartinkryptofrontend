@@ -27,16 +27,33 @@ export class AuthService {
 
 
 	logout() {
-		this.http.post(this.baseUrl + 'logout/', {}, { withCredentials: true }).subscribe(() => {
-			this.isAuthenticated.next(false);
-		});
+		const provider = localStorage.getItem('auth_provider');
+
+		if (provider === 'google' || provider === 'facebook') {
+			localStorage.removeItem('auth_provider')
+			return this.http.post(
+				this.baseUrl + 'social/logout/',
+				{},
+				{ withCredentials: true }).subscribe(() => {
+					this.isAuthenticated.next(false);
+				});
+		}
+
+
+		return this.http.post(
+			this.baseUrl + 'logout/',
+			{},
+			{ withCredentials: true }).subscribe(() => {
+				this.isAuthenticated.next(false);
+
+			});
 	}
 
 
-	createUser(email: string, password: string , repeated_password: string, type: string): Observable<User> {
+	createUser(email: string, password: string, repeated_password: string, type: string): Observable<User> {
 		debugger
 		return this.http.post<User>(
-			this.baseUrl + 'create-account/', 
+			this.baseUrl + 'create-account/',
 			{ email, password, repeated_password, type });
 	}
 
@@ -54,4 +71,12 @@ export class AuthService {
 			{ password, uid, token },
 		);
 	}
+
+	loginWithGoogle(idToken: string) {
+		return this.http.post(
+			this.baseUrl + 'auth/google/',
+			{ token: idToken }
+		);
+	}
+
 }
