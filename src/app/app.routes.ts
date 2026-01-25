@@ -17,6 +17,8 @@ import { ResetPassword } from './customer/reset-password/reset-password';
 import { CreateAccount } from './customer/create-account/create-account';
 import { MyCourses } from './customer/my-courses/my-courses';
 import { DashboardCustomer } from './customer/dashboard-customer/dashboard-customer';
+import { LayoutCustomer } from './customer/layout-customer/layout-customer';
+import { Courses } from './customer/courses/courses';
 
 
 export const routes: Routes = [
@@ -33,8 +35,11 @@ export const routes: Routes = [
 
     {
         path: 'customer',
+        component: LayoutCustomer,
         children: [
             { path: 'dashboard', component: DashboardCustomer },
+            { path: 'courses', component: Courses },
+
             { path: 'my-courses', component: MyCourses },
         ],
     },

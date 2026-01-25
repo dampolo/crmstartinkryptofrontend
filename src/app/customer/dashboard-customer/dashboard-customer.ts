@@ -18,7 +18,6 @@ export class DashboardCustomer {
 
   }
   logOut() {
-    debugger
     this.authService.logout()
     this.router.navigate(["/login"])
     this.stateService.isLoginPage = true;
