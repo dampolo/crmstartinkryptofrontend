@@ -189,6 +189,12 @@ app-login {
   background-color: basic.$body-bg;
 }
 
+app-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px !important;
@@ -201,4 +207,28 @@ app-login {
   clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
+}
+
+
+.hide-container {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: -100;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: all 0.5s ease;
+}
+.show-container {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1000;
+  pointer-events: auto;
+  // overflow-y: scroll;
 }

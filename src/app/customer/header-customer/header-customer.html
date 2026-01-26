@@ -1,5 +1,8 @@
 <img width="45px" height="45px" class="message" src="/assets/bell.svg" alt="Nachrichten">
 
-<button (click)="logOut()">
+<button (click)="showDialog()">
     <img width="40px" height="40px" class="profile-img" src="/assets/profile.svg" alt="Profile">
 </button>
+
+<app-user-customer (click)="closeDialog()" class="hide-container" [ngClass]="stateService.isProfileVisible ? 'show-container' : ''"></app-user-customer>
+
