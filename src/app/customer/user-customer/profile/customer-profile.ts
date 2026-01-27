@@ -1,19 +1,20 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CustomerControl } from '../../services/customer-control';
-import { CommonModule, DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CUSTOMER } from '../../../models/customer.model';
+import { UserService } from '../../services/user-service';
 import { stateService } from '../../services/state-service';
+import { CUSTOMER } from '../../../models/customer.model';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-customer-details',
-  imports: [DatePipe, CommonModule, ReactiveFormsModule],
-  templateUrl: './customer-details.html',
-  styleUrl: './customer-details.scss',
+  selector: 'app-customer-profile',
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './customer-profile.html',
+  styleUrl: './customer-profile.scss',
 })
-export class CustomerDetails {
-  customerControl = inject(CustomerControl);
+export class CustomerProfile {
+
+  customerService = inject(UserService);
   stateService = inject(stateService);
   customer = signal<CUSTOMER | null>(null);
   showEdit: boolean = false;
@@ -21,21 +22,21 @@ export class CustomerDetails {
 
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.customerControl.getCustomerById(id).subscribe({
-      next: (data) => {
-        console.log(data);
+    this.customerService.getCustomer().subscribe({
+      next: (profile) => {
+        console.log(profile);
         
-        this.customer.set(data)
+        this.customer.set(profile);
       },
       error: (err) => {
         console.error('Customer not found', err);
-      },
+        
+      }
     });
   }
 
   constructor(private route: ActivatedRoute,
-    private router: Router, 
+    private router: Router,
     private fb: FormBuilder) {
     this.customerForm = this.fb.group({
       photo: [null],
@@ -61,7 +62,7 @@ export class CustomerDetails {
       invoices: [0],
     });
 
-    effect(() => {      
+    effect(() => {
       this.customerForm.patchValue({
         customer_number: this.customer()?.customer_number,
         title: this.customer()?.title,
@@ -84,14 +85,14 @@ export class CustomerDetails {
   }
 
   onSubmit() {
-    if(this.customerForm.invalid) {
+    if (this.customerForm.invalid) {
       this.customerForm.markAllAsTouched();
       return
     }
     const id = Number(this.route.snapshot.paramMap.get('id'));
     const payload = this.customerForm.getRawValue();
 
-    this.customerControl.updateCustomerById(id, payload).subscribe({
+    this.customerService.updateCustomer(payload).subscribe({
       next: () => {
         this.showConfirmation('Der Kunde wurde aktualisiert');
       },
@@ -115,4 +116,5 @@ export class CustomerDetails {
   editDetails() {
     this.showEdit = true;
   }
+
 }

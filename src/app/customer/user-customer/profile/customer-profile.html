@@ -1,0 +1,365 @@
+<h1 class="title">Kunde - {{customer()?.first_name}} {{customer()?.last_name}}</h1>
+
+  <div class="main-wrapper">
+
+    <div class="wrapper-content" [ngClass]="showEdit ? 'show-edit' : ''">
+      <div class="container-customer">
+        
+    <address class="details">
+      <!-- Kundennr -->
+    <dl>
+      <dt>Kundennr.</dt>
+      <dd>{{ customer()?.customer_number }}</dd>
+    </dl>
+
+      <!-- Person -->
+    <dl>
+      <dt>Titel</dt>
+      <dd>{{ customer()?.title }}</dd>
+    </dl>
+    
+    <dl>
+      <dt>Vorname</dt>
+      <dd>{{ customer()?.first_name }}</dd>
+    </dl>
+    
+    <dl>
+      <dt>Nachname</dt>
+      <dd>{{ customer()?.last_name }}</dd>
+    </dl>
+
+    <!-- Contact -->
+    <dl>
+      <dt>E-Mail</dt>
+      <dd>
+        @if (customer()?.email) {
+          <a [href]="'mailto:' + customer()?.email">{{ customer()?.email }}</a>
+        } @else {
+          —
+        }
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>Telefon</dt>
+      <dd>
+        @if (customer()?.phone) {
+          <a [href]="'tel:' + customer()?.phone">{{ customer()?.phone }}</a>
+        } @else {
+          —
+        }
+      </dd>
+    </dl>
+
+    <!-- Address -->
+    <dl>
+      <dt>Straße & Nr.</dt>
+      <dd>{{ customer()?.street }} {{ customer()?.number }}</dd>
+    </dl>
+    
+    <dl>
+      <dt>PLZ & Stadt</dt>
+      <dd>{{ customer()?.postcode }} {{ customer()?.city }}</dd>
+    </dl>
+
+    <!-- Status -->
+    <dl>
+      <dt>Aktiv</dt>
+      <!-- <dd>{{ customer()?. ? 'Ja' : 'Nein' }}</dd> -->
+    </dl>
+
+    <dl>
+      <dt>Portfolio</dt>
+      <dd>{{ customer()?.has_portfolio ? 'Ja' : 'Nein' }}</dd>
+    </dl>
+
+    <dl>
+      <dt>Abo</dt>
+      <dd>{{ customer()?.has_subscription ? 'Ja' : 'Nein' }}</dd>
+    </dl>
+    
+    <!-- Meta -->
+    <dl>
+      <dt>Erstellt</dt>
+      <dd>{{ customer()?.created_at | date:'dd.MM.yyyy, HH:mm' }}</dd>
+    </dl>
+
+    <dl>
+      <dt>Zuletzt geändert</dt>
+      <dd>{{ customer()?.updated_at | date:'dd.MM.yyyy, HH:mm' }}</dd>
+    </dl>
+
+    <!-- Photo -->
+    <dl>
+      <dt>Foto</dt>
+      <dd>
+        @if (customer()?.photo) {
+          <img [src]="customer()?.photo" alt="Kundenfoto" />
+        } @else {
+          —
+        }
+      </dd>
+    </dl>
+    
+    <!-- Comments -->
+    <section class="comments">
+      <h2>Kommentare</h2>
+
+      @if (!customer()?.comments?.length) {
+        <p>Keine Kommentare vorhanden.</p>
+      } @else {
+        <ul class="comments-list">
+        @for (comment of customer()?.comments; track comment.id) {
+          <li class="comment-item">
+            <p class="comment-text">
+              “{{ comment.text }}”
+            </p>
+
+            <div class="comment-meta">
+              <span class="comment-date">
+                {{ comment.created_at | date:'dd.MM.yyyy, HH:mm' }}
+              </span>
+
+              @if (comment.user) {
+                <span class="comment-user">
+                  – Benutzer #{{ comment.user }}
+                </span>
+              }
+            </div>
+          </li>
+        }
+      </ul>
+      }
+    </section>
+
+  </address>
+
+    <div class="btn-container">
+      <a href="/crm/kunden" class="new-customer">Zurück</a>
+      <button (click)="editDetails()" class="new-customer">Bearbeiten</button>
+    </div>
+  </div>
+
+
+  <div class="container-edit">
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" [ngClass]="showEdit ? 'show-scroll' : ''">
+
+  <!-- Photo -->
+  <div class="form-group">
+    <label id="label-photo" for="photo">Photo:</label>
+    <input type="file" id="photo" formControlName="photo" accept="image/*">
+  </div>
+
+<!-- Anrede (Title) -->
+  <div class="form-group">
+    <label class="control-label required" id="label-title" for="title">Anrede:</label>
+    <select class="form-control" id="title" formControlName="title">
+      <option value="">Keine Angabe</option>
+      <option value="Herr">Herr</option>
+      <option value="Frau">Frau</option>
+      <option value="Divers">Divers</option>
+    </select>
+    @if (customerForm.get('title')?.invalid && (customerForm.get('title')?.touched || customerForm.get('first_name')?.dirty)) {
+      <div class="text-requied">
+      @if (customerForm.get('title')?.errors?.['required']) {
+          <small>Anrede ist erforderlich.</small>
+          }
+      </div>
+      }
+  </div>
+
+  <!-- First Name -->
+  <div class="form-group">
+    <label class="control-label required" id="label-first_name" for="first_name">Vorname:</label>
+    <input class="form-control" type="text" placeholder="Max" id="first_name" formControlName="first_name">
+     @if (customerForm.get('first_name')?.invalid && (customerForm.get('first_name')?.touched || customerForm.get('first_name')?.dirty)) {
+      <div class="text-requied">
+      @if (customerForm.get('first_name')?.errors?.['required']) {
+          <small>Vorname ist erforderlich.</small>
+          }
+          @if (customerForm.get('first_name')?.errors?.['minlength']) {
+          <small>Vorname muss mindestens 2 Zeichen lang sein.</small>
+        }
+         @if (customerForm.get('first_name')?.errors?.['pattern']) {
+        <small>Vorname darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      </div>
+      }
+  
+  </div>
+
+  <!-- Name -->
+  <div class="form-group">
+    <label class="control-label required" id="label-name" for="last_name">Nachname:</label>
+    <input class="form-control" type="text" placeholder="Mustermann" id="last_name" formControlName="last_name">
+    @if (customerForm.get('last_name')?.invalid && (customerForm.get('last_name')?.touched || customerForm.get('last_name')?.dirty)) {
+      <div class="text-requied">
+      @if (customerForm.get('last_name')?.errors?.['required']) {
+          <small>Nachname ist erforderlich.</small>
+          }
+          @if (customerForm.get('last_name')?.errors?.['minlength']) {
+          <small>Nachname muss mindestens 2 Zeichen lang sein.</small>
+        }
+         @if (customerForm.get('last_name')?.errors?.['pattern']) {
+        <small>Nachname darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      </div>
+      }
+  
+  </div>
+
+  <!-- Street -->
+  <div class="form-group">
+    <label class="control-label required" id="label-street" for="street">Straße:</label>
+    <input class="form-control" type="text" placeholder="Musterstrasse" id="street" formControlName="street">
+  @if (customerForm.get('street')?.invalid && (customerForm.get('street')?.touched || customerForm.get('street')?.dirty)) {
+      <div class="text-requied">
+      @if (customerForm.get('street')?.errors?.['required']) {
+          <small>Straße ist erforderlich.</small>
+          }
+      @if (customerForm.get('street')?.errors?.['pattern']) {
+        <small>Straße darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      </div>
+      }
+  
+  </div>
+
+  <!-- Number -->
+  <div class="form-group">
+    <label class="control-label required" id="label-number" for="number">Hausnummer:</label>
+    <input class="form-control" type="text" placeholder="123" id="number" formControlName="number">
+  @if (customerForm.get('number')?.invalid && (customerForm.get('number')?.touched || customerForm.get('number')?.dirty)) {
+    <div class="text-requied">
+      @if (customerForm.get('number')?.errors?.['required']) {
+        <small>Hausnummer ist erforderlich.</small>
+      }
+      @if (customerForm.get('number')?.errors?.['pattern']) {
+        <small>Hausnummer darf nur Zahlen, Buchstaben, Bindestriche oder Schrägstriche enthalten (z. B. 12A, 12-14, 12/1). Keine Leerzeichen</small>
+      }
+    </div>
+    }
+  
+  </div>
+
+  <!-- Postcode -->
+  <div class="form-group">
+    <label class="control-label required" id="label-postcode" for="postcode">Postleitzahl:</label>
+    <input class="form-control" type="text" placeholder="81500" id="postcode" formControlName="postcode">
+  @if (customerForm.get('postcode')?.invalid && (customerForm.get('postcode')?.touched || customerForm.get('postcode')?.dirty)) {
+        <div class="text-requied">
+        @if (customerForm.get('postcode')?.errors?.['required']) {
+        <small>Postleitzahl ist erforderlich.</small>
+        }
+        @if (customerForm.get('postcode')?.errors?.['pattern']) {
+        <small>Postleitzahl muss aus 4 oder 5 Ziffern bestehen.</small>
+        }
+        @if (customerForm.get('postcode')?.errors?.['pattern']) {
+        <small>Postleitzahl darf nicht nur aus Leerzeichen bestehen.</small>
+        }
+        </div>
+        }
+  
+  </div>
+
+  <!-- City -->
+  <div class="form-group">
+    <label class="control-label required" id="label-city" for="city">Stadt:</label>
+    <input class="form-control" type="text" placeholder="MusterStadt" id="city" formControlName="city">
+ @if (customerForm.get('city')?.invalid && (customerForm.get('city')?.touched || customerForm.get('city')?.dirty)) {
+  <div class="text-requied">
+
+    @if (customerForm.get('city')?.errors?.['required']) {
+      <small>Stadt ist erforderlich.</small>
+    }
+
+    @if (customerForm.get('city')?.errors?.['pattern']) {
+      <small>Stadt darf nur Buchstaben enthalten.</small>
+    }
+
+  </div>
+}
+  
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label class="control-label required" id="label-email" for="email">E-mail:</label>
+    <input class="form-control" type="email" placeholder="maxmusterman@email.com" id="email" formControlName="email">
+  @if (customerForm.get('email')?.invalid && (customerForm.get('email')?.touched || customerForm.get('email')?.dirty)) {
+    <div class="text-requied">
+      @if (customerForm.get('email')?.errors?.['required']) {
+        <small>E-Mail-Adresse ist erforderlich.</small>
+      }
+      @if (customerForm.get('email')?.errors?.['pattern']) {
+        <small>E-Mail-Adresse darf nicht nur aus Leerzeichen bestehen.</small>
+      }
+      @if (customerForm.get('email')?.errors?.['email']) {
+        <small>Bitte geben Sie eine gültige E-Mail-Adresse ein (z. B. max.mustermann@example.com).</small>
+      }
+    </div>
+  }
+  
+  </div>
+
+  <!-- Phone Number -->
+  <div class="form-group">
+    <label class="control-label" id="label-phone" for="phone">Telephone:</label>
+    <input class="form-control" type="tel" placeholder="+49 176 42 56 85 45" id="phone" formControlName="phone">
+  </div>
+
+  <!-- Receive Subscribtion -->
+  <div class="form-group">
+    <label class="control-label" id="label-has_subscription">Willst du unsere Mitteilungen per E-Mail bekommen?</label>
+    <div class="form-radio">
+        
+      <label for="has_subscriptionYes">
+      <input class="form-control" type="radio" id="has_subscriptionYes" formControlName="has_subscription" [value]="true">
+        Ja
+      </label>
+
+      <label for="has_subscriptionNo">
+        <input class="form-control" type="radio" id="has_subscriptionNo" formControlName="has_subscription" [value]="false">
+        Nein
+      </label>
+    </div>
+  </div>
+
+   <!-- Portofilo -->
+  <div class="form-group">
+    <label class="control-label" id="label-has_portfolio">Willst du ein Profolio bei uns haben?</label>
+    <div class="form-radio">
+        
+      <label for="has_portfolioYes">
+      <input class="form-control" type="radio" id="has_portfolioYes" formControlName="has_portfolio" [value]="true">
+        Ja
+      </label>
+
+      <label for="has_portfolioNo">
+        <input class="form-control" type="radio" id="has_portfolioNo" formControlName="has_portfolio" [value]="false">
+        Nein
+      </label>
+    </div>
+  </div>
+
+  <!-- Comment -->
+  <div class="form-group">
+    <label class="control-label" id="label-comment" for="comment">Kommentar:</label>
+    <textarea class="form-control" id="comment" formControlName="comment"></textarea>
+  </div>
+
+  <div class="btn-container">
+      <!-- Cancel Button -->
+      <button type="button" (click)="onCancel()">
+        Abbrechen
+      </button>
+      
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="!customerForm.valid">
+        Speichern
+      </button>
+    </div>
+</form>
+  </div>
+</div>
+</div>

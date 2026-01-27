@@ -1,11 +1,12 @@
 import { Component, Inject, inject } from '@angular/core';
 import { AuthService } from '../services/auth-service';
 import { stateService } from '../services/state-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-user-customer',
-    imports: [],
+    imports: [CommonModule],
     templateUrl: './user-customer.html',
     styleUrl: './user-customer.scss',
 })
@@ -26,6 +27,7 @@ export class UserCustomer {
     }
 
     openProfile() {
+        this.router.navigate(["/customer/customer-profile"])
 
     }
 
