@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { stateService } from '../../crm/services/state-service';
-import { Toast } from '../../crm/shared/toast/toast';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderCustomer } from '../header-customer/header-customer';
 import { NavbarCustomer } from '../navbar-customer/navbar-customer';
+import { stateService } from '../services/state-service';
+import { Toast } from '../../shared/toast/toast';
 
 @Component({
   selector: 'app-layout-customer',

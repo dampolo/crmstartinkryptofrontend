@@ -38,7 +38,7 @@ export class CustomerDetails {
     private router: Router, 
     private fb: FormBuilder) {
     this.customerForm = this.fb.group({
-      photo: [null],
+      image: [null],
       customer_number: [''],
       title: ['', Validators.required],
       first_name: [

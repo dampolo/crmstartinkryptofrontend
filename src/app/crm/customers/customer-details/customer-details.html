@@ -93,8 +93,8 @@
     <dl>
       <dt>Foto</dt>
       <dd>
-        @if (customer()?.photo) {
-          <img [src]="customer()?.photo" alt="Kundenfoto" />
+        @if (customer()?.image) {
+          <img [src]="customer()?.image" alt="Kundenfoto" />
         } @else {
           —
         }

@@ -1,5 +1,126 @@
 @use './../../../../basic.scss';
 
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  width: 37.5rem;
+  .avatar {
+    display: flex;
+    justify-content: center;
+    .avatar-img {
+      position: relative;
+      border-radius: basic.$border-radius;
+      .user-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 12.5rem;
+          height: 12.5rem;
+          object-fit: cover;
+        }
+        .online {
+          display: none;
+        }
+      }
+
+      .edit-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: none;
+        border: solid 0.0625rem transparent;
+        border-radius: basic.$border-radius;
+        z-index: 2;
+        transition: basic.$first-transition;
+        &:hover,
+        &:focus-visible {
+          background: basic.$body-bg;
+          outline: none;
+        }
+        &:hover svg path {
+          fill: basic.$primary;
+        }
+      }
+    }
+  }
+  .name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+    .edit,
+    .edit-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.5344rem;
+      color: basic.$primary;
+      background: none;
+      padding-inline: 0.625rem;
+      font-weight: 500;
+      border-radius: basic.$border-radius;
+      transition: basic.$first-transition;
+      &:hover,
+      &:focus-visible {
+        background: basic.$body-bg;
+        outline: none;
+      }
+      &:hover svg path {
+        fill: basic.$primary;
+      }
+    }
+    .edit-img {
+      display: none;
+    }
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    li {
+      .password,
+      .account {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: 2.1875rem;
+        width: 100%;
+        border-radius: basic.$border-radius;
+        font-size: 1.25rem;
+        background: none;
+        border: dotted 0.2rem transparent;
+        .icon {
+          padding-top: 0.125rem;
+        }
+        &:hover {
+          color: basic.$primary;
+          background: basic.$body-bg;
+          transform: scale(1.05);
+        }
+        &:focus-visible {
+          outline: none;
+          border: dotted 0.2rem basic.$primary;
+        }
+      }
+    }
+  }
+}
+
 dt {
   font-weight: bold;
   color: basic.$secondary;
@@ -52,7 +173,6 @@ dt {
   transition: basic.$first-transition;
 }
 
-
 .show-edit {
   transform: translateX(-50%);
 }
@@ -102,33 +222,41 @@ form {
   line-height: 1.25rem;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s,
+  -webkit-transition:
+    border-color ease-in-out 0.15s,
     -webkit-box-shadow ease-in-out 0.15s;
-  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -o-transition:
+    border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
+  transition:
+    border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
 }
 
 .form-control:focus {
   border-color: basic.$primary;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+  -webkit-box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.075),
     0 0 8px var(--primary);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px basic.$primary;
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px basic.$primary;
 }
 
 .form-radio {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .form-radio label {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-input[type="radio"] {
+input[type='radio'] {
   appearance: none;
   background-color: #fff;
   font: inherit;
@@ -141,8 +269,8 @@ input[type="radio"] {
   place-content: center;
 }
 
-input[type="radio"]::before {
-  content: "";
+input[type='radio']::before {
+  content: '';
   width: 0.65em;
   height: 0.65em;
   transform: scale(0);
@@ -152,14 +280,14 @@ input[type="radio"]::before {
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
-input[type="radio"]:checked::before {
+input[type='radio']:checked::before {
   transform: scale(1);
 }
 
 textarea {
-    height: 4.375rem;
+  height: 4.375rem;
 }
 
 .show-scroll {
-    overflow-y: scroll;
+  overflow-y: scroll;
 }

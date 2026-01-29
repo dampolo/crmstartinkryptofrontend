@@ -9,7 +9,7 @@ export interface Comment {
 
 export interface CUSTOMER {
     id: number;
-    photo: string;
+    image: string | null;
     customer_number: string;
     title: 'Herr' | 'Frau' | 'Divers' | string;
     first_name: string;
