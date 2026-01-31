@@ -30,20 +30,21 @@ export const routes: Routes = [
     { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
     { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
     { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
-    
-    
-    
+
+
+
     { path: 'crm/login', component: Login },
-    
+
     {
         path: 'customer',
         component: LayoutCustomer,
         children: [
             { path: 'dashboard', component: DashboardCustomer },
             { path: 'courses', component: Courses },
-            
+
             { path: 'my-courses', component: MyCourses },
             { path: 'customer-profile', component: CustomerProfile, title: 'Kunde' },
+            { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
         ],
     },
 

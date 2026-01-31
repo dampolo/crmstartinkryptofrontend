@@ -42,4 +42,9 @@ export class ForgotPassword {
             }
         })
     }
+
+    onCancel() {
+        this.router.navigate(["/customer/customer-profile"])
+    }
+
 }

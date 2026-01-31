@@ -5,10 +5,11 @@ import { CUSTOMER } from '../../../models/customer.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ForgotPassword } from '../../forgot-password/forgot-password';
 
 @Component({
     selector: 'app-customer-profile',
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, ForgotPassword],
     templateUrl: './customer-profile.html',
     styleUrl: './customer-profile.scss',
 })
@@ -120,7 +121,10 @@ export class CustomerProfile {
     }
 
     editAvatar() {
-        this.stateService.displayToast('Die Option ist noch nicht verfügbar')
+        this.stateService.displayToast('Die Option ist noch nicht verfügbar.')
     }
 
+    pwdRecovery(){
+        this.router.navigate(["/customer/forgot-password"])
+    }
 }

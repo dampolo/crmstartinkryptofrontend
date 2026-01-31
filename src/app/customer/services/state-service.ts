@@ -9,6 +9,7 @@ export class stateService {
   showArrow: boolean = false;
   isLoginPage: boolean = true;
   isProfileVisible: boolean = false
+  isForgotPasswordVisible: boolean = false;
 
   showToastText = signal('');
   showConfirmationText = signal('');

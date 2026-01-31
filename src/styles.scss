@@ -213,7 +213,6 @@ app-profile {
   overflow: hidden !important;
 }
 
-
 .hide-container {
   display: flex;
   opacity: 0;
@@ -235,4 +234,19 @@ app-profile {
   z-index: 1000;
   pointer-events: auto;
   // overflow-y: scroll;
+}
+
+.main-content {
+  .main-content-customer {
+    .arrow-back {
+      display: none;
+    }
+    form {
+      .btn-container {
+        .back-button {
+          visibility: visible !important;
+        }
+      }
+    }
+  }
 }
