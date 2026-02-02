@@ -250,3 +250,31 @@ app-profile {
     }
   }
 }
+
+.main-btn-start-in-krypto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  max-width: 10.375rem;
+  width: 100%;
+  font-weight: 700;
+  font-size: 1.125rem;
+  gap: 0.625rem;
+  padding: 0.75rem 1.5625rem;
+  border-radius: basic.$border-radius;
+  color: basic.$thirteenth;
+  background-color: basic.$primary;
+  border: solid 1px transparent;
+  transition: basic.$first-transition;
+  &:hover {
+    border: solid 1px basic.$primary;
+    background-color: basic.$body-bg;
+    color: basic.$primary;
+  }
+  &:focus {
+    border: solid 1px basic.$primary;
+    background-color: basic.$body-bg;
+    color: basic.$primary;
+  }
+}

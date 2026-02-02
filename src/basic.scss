@@ -11,8 +11,8 @@
   $ninth: rgb(6, 70, 6);
   $tenth: rgb(254, 226, 226);
   $eleventh: rgb(158, 17, 17);
-  $twelfth: rgb(161 157 154);
-  $thirteenth: rgb(255, 255, 255);
+  $twelfth: #a19d9a;
+  $thirteenth: rgb(244, 244, 244);
   $required: #ff0000;
   $border-color: #e4e5e5;
   $border-radius: 0.625rem;
@@ -24,3 +24,5 @@
   $content-color: #fafafa;
   $footer: #e1e1e1;
   $focus: 2px dotted $primary;
+
+  $test: rgb(244, 244, 244)

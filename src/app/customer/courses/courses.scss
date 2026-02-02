@@ -1,0 +1,169 @@
+@use './../../../basic';
+
+.pricing {
+  padding: 4rem 1rem;
+  margin: auto;
+  background-color: basic.$thirteenth;
+  padding: 7rem 1.5rem 32px 1.5rem;
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: basic.$twelfth;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+  }
+
+  .pricing-plans {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+.plan {
+  background: basic.$sixth;
+  border: 1px solid basic.$border-color;
+  border-radius: 14px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+
+  .plan-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .plan-subtitle {
+    color: basic.$primary;
+    font-size: 0.9rem;
+  }
+
+  .plan-price {
+    margin: 1.5rem 0;
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .period {
+      color: basic.$twelfth;
+      margin-left: 4px;
+    }
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    margin-left: 5.125rem;
+
+    li {
+      margin: 1rem 0;
+      color: #444;
+      position: relative;
+      text-align: left;
+      &::before {
+        content: '';
+        background-image: url(/assets/confirm.svg);
+        background-size: 30px 30px;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: -2.5rem;
+        top: 0rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  &.plan-features {
+    border: 2px solid basic.$primary;
+    transform: translateY(-10px);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: basic.$primary;
+  color: white;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.7rem;
+  border-radius: 999px;
+  font-weight: 600;
+
+  .badge-right {
+    left: auto;
+    right: 1rem;
+    transform: none;
+  }
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+
+  &.btn-primary {
+    background: basic.$primary;
+    color: white;
+  }
+
+  &.btn-light {
+    background: basic.$thirteenth;
+  }
+
+  &.btn-ghost {
+    background: transparent;
+    border: 1px solid basic.$border-color;
+  }
+}
+
+.cta {
+  background: #f1ede5;
+  padding: 4rem 1rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: basic.$twelfth;
+  }
+}
+
+.header,
+.welcome,
+.quote,
+.about-me,
+.service,
+.road,
+.contact,
+.imprint,
+.appointment,
+.legacy {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

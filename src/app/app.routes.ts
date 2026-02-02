@@ -25,6 +25,8 @@ import { CustomerProfile } from './customer/user-customer/profile/customer-profi
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
 
+    
+    { path: 'courses', component: Courses , title: 'Kurse' },
     { path: 'login', component: LoginCustomer, title: 'Anmelden' },
     { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
     { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
