@@ -11,9 +11,9 @@ import { stateService } from '../services/state-service';
 
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth-service';
-import { Toast } from '../shared/toast/toast';
 import { CommonModule } from '@angular/common';
 import { email } from '@angular/forms/signals';
+import { Toast } from '../../shared/toast/toast';
 
 @Component({
   selector: 'app-login',

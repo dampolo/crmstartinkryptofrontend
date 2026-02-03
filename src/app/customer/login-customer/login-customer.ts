@@ -58,12 +58,12 @@ export class LoginCustomer {
 			next: () => {
 				this.authService.isAuthenticated.next(true);
 				this.mainStateService.displayToast('Du bist angemeldet');
-				this.router.navigate(['customer/dashboard'], { replaceUrl: true });
+				this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
 			},
 
 			error: (err) => {
 				console.error(err);
-				this.mainStateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten');
 			}
 		});
 	}

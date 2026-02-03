@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Header } from '../header/header';
 import { Router, RouterOutlet } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
-import { Toast } from '../shared/toast/toast';
 import { stateService } from '../services/state-service';
+import { Toast } from '../../shared/toast/toast';
 
 @Component({
   selector: 'app-layout',

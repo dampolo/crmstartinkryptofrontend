@@ -27,7 +27,6 @@ export class CustomerProfile {
     ngOnInit(): void {
         this.customerService.getCustomer().subscribe({
             next: (profile) => {
-                console.log(profile);
 
                 this.customer.set(profile);
             },
@@ -124,7 +123,7 @@ export class CustomerProfile {
         this.mainStateService.displayToast('Die Option ist noch nicht verfügbar.')
     }
 
-    pwdRecovery(){
+    pwdRecovery() {
         this.router.navigate(["/customer/forgot-password"])
     }
 }

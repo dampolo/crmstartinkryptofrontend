@@ -12,6 +12,7 @@ export interface CUSTOMER {
     image: string | null;
     customer_number: string;
     title: 'Herr' | 'Frau' | 'Divers' | string;
+    type: 'business' | 'customer' | 'applicant';
     first_name: string;
     last_name: string;
     street: string;

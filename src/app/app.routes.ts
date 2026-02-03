@@ -26,12 +26,11 @@ import { LayoutAuth } from './customer/layout-auth/layout-auth';
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'courses' },
 
-    
     {
         path: 'courses',
         component: LayoutAuth,
         children: [
-            { path: '', component: Courses , title: 'Kurse' },
+            { path: '', component: Courses, title: 'Kurse' },
             { path: 'login', component: LoginCustomer, title: 'Anmelden' },
             { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
             { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
@@ -44,6 +43,7 @@ export const routes: Routes = [
     {
         path: 'customer',
         component: LayoutCustomer,
+        canActivate: [authGuard],
         children: [
             { path: 'dashboard', component: DashboardCustomer },
             { path: 'courses', component: Courses },
@@ -53,7 +53,7 @@ export const routes: Routes = [
             { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
         ],
     },
-    
+
     { path: 'crm/login', component: Login },
     // CRM
     {
