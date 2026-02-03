@@ -96,17 +96,18 @@ export class CustomerProfile {
 
         this.customerService.updateCustomer(payload).subscribe({
             next: () => {
-                this.showConfirmation('Der Kunde wurde aktualisiert');
+                this.mainStateService.displayToast('Deine Daten wurden aktualisiert.', true);
+                this.showConfirmation()
             },
             error: (err) => {
-                this.showConfirmation('!! Verusche noch einmal');
+                this.mainStateService.displayToast('!! Verusche noch einmal.', false);
+                this.showConfirmation()
             }
         })
     }
 
-    showConfirmation(message: string) {
+    showConfirmation() {
         const id = Number(this.route.snapshot.paramMap.get('id'));
-        this.mainStateService.displayToast(message);
         this.showEdit = false;
         this.ngOnInit();
     }
@@ -120,7 +121,7 @@ export class CustomerProfile {
     }
 
     editAvatar() {
-        this.mainStateService.displayToast('Die Option ist noch nicht verfügbar.')
+        this.mainStateService.displayToast('Die Option ist noch nicht verfügbar.', false)
     }
 
     pwdRecovery() {

@@ -26,9 +26,7 @@
         <img src="./assets/mail-icon-input-field.svg" alt="" />
       </div>
       <div class="warn-txt">
-        <!-- @if(fb.errorMessageLogin()){
-          <span>{{ fb.errorMessageLogin() }}</span>
-          } -->
+          <span>{{ errorResponse() }}</span>
         @if (loginForm.controls['userEmail'].invalid && (loginForm.controls['userEmail'].touched ||
         loginForm.controls['userEmail'].dirty)) { @if
         (loginForm.controls['userEmail'].errors?.['required']) {

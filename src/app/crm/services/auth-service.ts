@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 import { stateService } from './state-service';
 import { environment } from '../../../environment/environment';
 import { User } from '../../customer/models/user.model';
+import { CUSTOMER } from '../../models/customer.model';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
 	isAuthenticated = new BehaviorSubject<boolean>(false);
+	userType$ = new BehaviorSubject<'business' | 'customer' | 'applicant' | null>(null);
 	private baseUrl = environment.apiBaseUrl;
 	stateControl = inject(stateService);
 
@@ -27,13 +29,19 @@ export class AuthService {
 	}
 
 	checkAuth(): Observable<boolean> {
-		return this.http.get(this.baseUrl + 'me/', { withCredentials: true }).pipe(
-			map(() => {
+		return this.http
+		.get<CUSTOMER>(this.baseUrl + 'me/', { withCredentials: true })
+		.pipe(
+			tap((user) => {
 				this.isAuthenticated.next(true);
-				return true;
+				this.userType$.next(user.type)
+				console.log(user.type);
+				
 			}),
+			map(() => true),
 			catchError(() => {
 				this.isAuthenticated.next(false);
+				this.userType$.next(null)
 				return of(false);
 			})
 		);

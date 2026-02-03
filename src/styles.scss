@@ -179,6 +179,14 @@ app-invoice {
   font-size: 0.75rem;
 }
 
+.show-error {
+  background-color: basic.$required;
+}
+
+.show-arrow {
+  display: flex !important;
+}
+
 .form-group .control-label.required::after {
   content: ' *';
   color: red;

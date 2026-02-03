@@ -5,6 +5,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { stateService } from '../services/state-service';
 import { Toast } from '../../shared/toast/toast';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +14,7 @@ import { Toast } from '../../shared/toast/toast';
   styleUrl: './layout.scss',
 })
 export class Layout {
-  stateService = inject(stateService)
+  mainStateService = inject(MainStateService)
   
 
 }

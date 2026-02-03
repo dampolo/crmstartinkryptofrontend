@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { authGuard } from '../../guards/auth-guard';
@@ -18,9 +18,8 @@ export class LoginCustomer {
 
 	authService = inject(AuthService);
 	mainStateService = inject(MainStateService);
-	socialAuthService = Inject(SocialAuthService)
 	loginForm: FormGroup;
-
+	errorResponse = signal('')
 
 	isFormSubmitted: boolean = false;
 	isPasswordVisible = false;
@@ -45,7 +44,7 @@ export class LoginCustomer {
 
 	loginWithEmailAndPassword() {
 		if (this.loginForm.invalid) {
-			this.mainStateService.displayToast('Bitte alle Felder ausfüllen');
+			this.mainStateService.displayToast('Bitte alle Felder ausfüllen', false);
 			return;
 		}
 
@@ -56,14 +55,15 @@ export class LoginCustomer {
 
 		this.authService.login(data.email, data.password).subscribe({
 			next: () => {
+				debugger
 				this.authService.isAuthenticated.next(true);
-				this.mainStateService.displayToast('Du bist angemeldet');
+				this.mainStateService.displayToast('Du bist angemeldet', true);
 				this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
 			},
 
 			error: (err) => {
-				console.error(err);
-				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten');
+				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten', false);
+				this.errorResponse.set(err.statusText)
 			}
 		});
 	}

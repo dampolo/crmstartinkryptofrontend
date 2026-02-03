@@ -25,8 +25,10 @@ export class MainStateService {
     }, 2500);
   }
 
-  displayToast(message: string) {
+  displayToast(message: string, status: boolean) {
     this.showToast = true;
+    this.showArrow = status;
+    this.showError = !status
     this.showToastText.set(message);
     this.removeShowToast();
   }

@@ -74,7 +74,7 @@ export class ResetPassword {
 				this.router.navigate(['confirmation']);
 			},
 			error: () => {
-				this.mainStateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+				this.mainStateService.displayToast('Login fehlgeschlagen – prüfe deine Daten', false);
 			}
 		});
 		this.isFormValid = true;

@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth-service';
 import { CommonModule } from '@angular/common';
 import { email } from '@angular/forms/signals';
 import { Toast } from '../../shared/toast/toast';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ import { Toast } from '../../shared/toast/toast';
   styleUrl: './login.scss',
 })
 export class Login {
-  stateService = inject(stateService);
+  mainStateService = inject(MainStateService);
   authService = inject(AuthService);
   loginForm: FormGroup;
   isPasswordVisible = false;
@@ -36,7 +37,7 @@ export class Login {
 
  onSubmit() {
     if (this.loginForm.invalid) {
-      this.stateService.displayToast('Bitte alle Felder ausfüllen');
+      this.mainStateService.displayToast('Bitte alle Felder ausfüllen', false);
       return;
     }
 
@@ -49,13 +50,13 @@ export class Login {
     this.authService.login(data.email, data.password).subscribe({
       next: () => {
         this.authService.isAuthenticated.next(true);
-        this.stateService.displayToast('Du bist angemeldet');
+        this.mainStateService.displayToast('Du bist angemeldet', true);
         this.router.navigate(['crm/dashboard'], {replaceUrl: true});
       },
 
       error: (err) => {
         console.error(err);
-        this.stateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+        this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten', false);
       }
     });
   }

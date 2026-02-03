@@ -12,6 +12,4 @@ import { MainStateService } from '../../main-services/main-state-service';
 })
 export class Toast {
     mainStateService = inject(MainStateService);
-
-    showToastText: string = '';
 }

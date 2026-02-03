@@ -22,7 +22,7 @@ export class DashboardCustomer {
     this.authService.logout()
     this.router.navigate(["/login"])
     this.mainStateService.isLoginPage = true;
-    this.mainStateService.displayToast('Du bist erfolgreich abgemeldet')
+    this.mainStateService.displayToast('Du bist erfolgreich abgemeldet', true)
   }
 
 }

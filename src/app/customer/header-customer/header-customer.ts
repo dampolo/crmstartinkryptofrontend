@@ -26,7 +26,7 @@ export class HeaderCustomer {
 		this.authService.logout()
 		this.router.navigate(["/courses/login"])
 		this.mainStateService.isLoginPage = true;
-		this.mainStateService.displayToast('Du bist erfolgreich abgemeldet')
+		this.mainStateService.displayToast('Du bist erfolgreich abgemeldet', true)
 	}
 
 	showDialog() {
