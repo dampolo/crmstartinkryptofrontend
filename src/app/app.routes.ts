@@ -24,10 +24,10 @@ import { LayoutAuth } from './customer/layout-auth/layout-auth';
 
 
 export const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'courses' },
+    { path: '', pathMatch: 'full', redirectTo: 'kurse' },
 
     {
-        path: 'courses',
+        path: 'kurse',
         component: LayoutAuth,
         children: [
             { path: '', component: Courses, title: 'Kurse' },

@@ -3,13 +3,13 @@ import { UserService } from '../../services/user-service';
 import { stateService } from '../../services/state-service';
 import { CUSTOMER } from '../../../models/customer.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../../main-services/main-state-service';
 
 @Component({
     selector: 'app-customer-profile',
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
     templateUrl: './customer-profile.html',
     styleUrl: './customer-profile.scss',
 })
