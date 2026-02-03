@@ -20,22 +20,26 @@ import { DashboardCustomer } from './customer/dashboard-customer/dashboard-custo
 import { LayoutCustomer } from './customer/layout-customer/layout-customer';
 import { Courses } from './customer/courses/courses';
 import { CustomerProfile } from './customer/user-customer/profile/customer-profile';
+import { LayoutAuth } from './customer/layout-auth/layout-auth';
 
 
 export const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'login' },
+    { path: '', pathMatch: 'full', redirectTo: 'courses' },
 
     
-    { path: 'courses', component: Courses , title: 'Kurse' },
-    { path: 'login', component: LoginCustomer, title: 'Anmelden' },
-    { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
-    { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
-    { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
-    { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
+    {
+        path: 'courses',
+        component: LayoutAuth,
+        children: [
+            { path: '', component: Courses , title: 'Kurse' },
+            { path: 'login', component: LoginCustomer, title: 'Anmelden' },
+            { path: 'create-account', component: CreateAccount, title: 'Konto erstellen' },
+            { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
+            { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
+            { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
 
-
-
-    { path: 'crm/login', component: Login },
+        ]
+    },
 
     {
         path: 'customer',
@@ -49,7 +53,8 @@ export const routes: Routes = [
             { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
         ],
     },
-
+    
+    { path: 'crm/login', component: Login },
     // CRM
     {
         path: 'crm',

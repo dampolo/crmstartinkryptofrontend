@@ -4,10 +4,9 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { authGuard } from '../../guards/auth-guard';
 import { AuthService } from '../services/auth-service';
-import { stateService } from '../services/state-service';
 import { HttpClient } from '@angular/common/http';
-import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { User } from '../models/user.model';
+import { SocialAuthService} from '@abacritt/angularx-social-login';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
 	selector: 'app-login',
@@ -18,7 +17,7 @@ import { User } from '../models/user.model';
 export class LoginCustomer {
 
 	authService = inject(AuthService);
-	stateService = inject(stateService);
+	mainStateService = inject(MainStateService);
 	socialAuthService = Inject(SocialAuthService)
 	loginForm: FormGroup;
 
@@ -46,7 +45,7 @@ export class LoginCustomer {
 
 	loginWithEmailAndPassword() {
 		if (this.loginForm.invalid) {
-			this.stateService.displayToast('Bitte alle Felder ausfüllen');
+			this.mainStateService.displayToast('Bitte alle Felder ausfüllen');
 			return;
 		}
 
@@ -55,18 +54,16 @@ export class LoginCustomer {
 			password: this.loginForm.value.password,
 		};
 
-		console.log(data);
-
 		this.authService.login(data.email, data.password).subscribe({
 			next: () => {
 				this.authService.isAuthenticated.next(true);
-				this.stateService.displayToast('Du bist angemeldet');
+				this.mainStateService.displayToast('Du bist angemeldet');
 				this.router.navigate(['customer/dashboard'], { replaceUrl: true });
 			},
 
 			error: (err) => {
 				console.error(err);
-				this.stateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+				this.mainStateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
 			}
 		});
 	}

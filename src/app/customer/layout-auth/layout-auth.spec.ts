@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderStart } from './header-start';
+import { LayoutAuth } from './layout-auth';
 
-describe('HeaderStart', () => {
-  let component: HeaderStart;
-  let fixture: ComponentFixture<HeaderStart>;
+describe('LayoutAuth', () => {
+  let component: LayoutAuth;
+  let fixture: ComponentFixture<LayoutAuth>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderStart]
+      imports: [LayoutAuth]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeaderStart);
+    fixture = TestBed.createComponent(LayoutAuth);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

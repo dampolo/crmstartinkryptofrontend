@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth-service';
 import { CommonModule } from '@angular/common';
 import { stateService } from '../services/state-service';
 import { UserCustomer } from '../user-customer/user-customer';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
 	selector: 'app-header-customer',
@@ -15,7 +16,7 @@ export class HeaderCustomer {
 
 	isProfileVisible = false
 
-	stateService = inject(stateService);
+	mainStateService = inject(MainStateService);
 	authService = inject(AuthService);
 
 	constructor(private router: Router) {
@@ -23,17 +24,17 @@ export class HeaderCustomer {
 	}
 	logOut() {
 		this.authService.logout()
-		this.router.navigate(["/login"])
-		this.stateService.isLoginPage = true;
-		this.stateService.displayToast('Du bist erfolgreich abgemeldet')
+		this.router.navigate(["/courses/login"])
+		this.mainStateService.isLoginPage = true;
+		this.mainStateService.displayToast('Du bist erfolgreich abgemeldet')
 	}
 
 	showDialog() {
-        this.stateService.isProfileVisible = true;
+        this.mainStateService.isProfileVisible = true;
     }
 
     closeDialog() {
-        this.stateService.isProfileVisible = false;
+        this.mainStateService.isProfileVisible = false;
     }
 
 }

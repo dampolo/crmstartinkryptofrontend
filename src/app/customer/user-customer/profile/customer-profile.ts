@@ -5,18 +5,18 @@ import { CUSTOMER } from '../../../models/customer.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ForgotPassword } from '../../forgot-password/forgot-password';
+import { MainStateService } from '../../../main-services/main-state-service';
 
 @Component({
     selector: 'app-customer-profile',
-    imports: [CommonModule, ReactiveFormsModule, ForgotPassword],
+    imports: [CommonModule, ReactiveFormsModule],
     templateUrl: './customer-profile.html',
     styleUrl: './customer-profile.scss',
 })
 export class CustomerProfile {
 
     customerService = inject(UserService);
-    stateService = inject(stateService);
+    mainStateService = inject(MainStateService);
     customer = signal<CUSTOMER | null>(null);
     showEdit: boolean = false;
     showEditAvatar: boolean = false;
@@ -107,7 +107,7 @@ export class CustomerProfile {
 
     showConfirmation(message: string) {
         const id = Number(this.route.snapshot.paramMap.get('id'));
-        this.stateService.displayToast(message);
+        this.mainStateService.displayToast(message);
         this.showEdit = false;
         this.ngOnInit();
     }
@@ -121,7 +121,7 @@ export class CustomerProfile {
     }
 
     editAvatar() {
-        this.stateService.displayToast('Die Option ist noch nicht verfügbar.')
+        this.mainStateService.displayToast('Die Option ist noch nicht verfügbar.')
     }
 
     pwdRecovery(){

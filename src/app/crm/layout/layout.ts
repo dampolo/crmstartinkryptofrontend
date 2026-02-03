@@ -5,11 +5,10 @@ import { Router, RouterOutlet } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Toast } from '../shared/toast/toast';
 import { stateService } from '../services/state-service';
-import { HeaderStart } from '../../customer/header-start/header-start';
 
 @Component({
   selector: 'app-layout',
-  imports: [CommonModule, Header, Navbar, RouterOutlet, Toast, HeaderStart],
+  imports: [CommonModule, Header, Navbar, RouterOutlet, Toast],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })

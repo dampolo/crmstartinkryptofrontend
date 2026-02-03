@@ -13,6 +13,7 @@ import { User } from '../models/user.model';
 import { Back } from '../../shared/back/back';
 import { stateService } from '../services/state-service';
 import { AuthService } from '../services/auth-service';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   selector: 'app-create-account',
@@ -23,7 +24,7 @@ import { AuthService } from '../services/auth-service';
 export class CreateAccount {
   readonly router = inject(Router);
   authService = inject(AuthService);
-  stateService = inject(stateService);
+  mainStateService = inject(MainStateService);
 
   myForm: FormGroup; // name - just for now
   isFormSubmitted: boolean = false;
@@ -72,8 +73,8 @@ export class CreateAccount {
     this.authService.createUser(email, password, repeated_password, 'customer').subscribe({
       next: (user: User) => {
         console.log('User successfully registered:', user);
-            this.stateService.showConfirmationText.set('Du bist erfolgreich registriert. Du kannst dich jetzt anmleden!')
-            this.stateService.showConfirmationLink.set(true)
+            this.mainStateService.showConfirmationText.set('Du bist erfolgreich registriert. Du kannst dich jetzt anmleden!')
+            this.mainStateService.showConfirmationLink.set(true)
             this.router.navigate(['confirmation'])
       },
       error: (error) => {

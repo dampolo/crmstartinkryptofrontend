@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth-service';
 import { stateService } from '../services/state-service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
     selector: 'app-user-customer',
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class UserCustomer {
 
-    stateService = inject(stateService);
+    mainStateService = inject(MainStateService);
     authService = inject(AuthService);
 
     constructor(private router: Router) {
@@ -20,10 +21,10 @@ export class UserCustomer {
     }
     logOut() {
         this.authService.logout()
-        this.router.navigate(["/login"])
-        this.stateService.isLoginPage = true;
-        this.stateService.displayToast('Du bist erfolgreich abgemeldet')
-        this.stateService.isProfileVisible = false
+        this.router.navigate(["/courses/login"])
+        this.mainStateService.isLoginPage = true;
+        this.mainStateService.displayToast('Du bist erfolgreich abgemeldet')
+        this.mainStateService.isProfileVisible = false
     }
 
     openProfile() {

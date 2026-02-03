@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { stateService } from '../../customer/services/state-service';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   standalone: true,
@@ -10,7 +11,7 @@ import { stateService } from '../../customer/services/state-service';
   styleUrl: './toast.scss'
 })
 export class Toast {
-    stateService = inject(stateService);
+    mainStateService = inject(MainStateService);
 
     showToastText: string = '';
 }

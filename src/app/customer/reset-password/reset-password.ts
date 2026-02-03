@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/route
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth-service';
 import { HttpClient } from '@angular/common/http';
-import { stateService } from '../services/state-service';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
 	selector: 'app-reset-password',
@@ -15,7 +15,7 @@ import { stateService } from '../services/state-service';
 export class ResetPassword {
 
 	authService = inject(AuthService)
-	stateService = inject(stateService);
+	mainStateService = inject(MainStateService);
 	formBuilder = inject(FormBuilder);
 
 
@@ -69,12 +69,12 @@ export class ResetPassword {
 		const password = this.resetForm.get('password1')?.value;		
 		this.authService.resetPassword(password, this.uid, this.token).subscribe({
 			next: () => {
-				this.stateService.showConfirmationText.set('Das Passwort wurde erfolgreich geändert.')
-				this.stateService.showConfirmationLink.set(true);
+				this.mainStateService.showConfirmationText.set('Das Passwort wurde erfolgreich geändert.')
+				this.mainStateService.showConfirmationLink.set(true);
 				this.router.navigate(['confirmation']);
 			},
 			error: () => {
-				this.stateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
+				this.mainStateService.displayToast('Login fehlgeschlagen – prüfe deine Daten');
 			}
 		});
 		this.isFormValid = true;

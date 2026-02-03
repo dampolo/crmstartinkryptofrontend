@@ -1,10 +1,9 @@
 @use './../../../basic';
 
 .pricing {
-  padding: 4rem 1rem;
   margin: auto;
   background-color: basic.$thirteenth;
-  padding: 7rem 1.5rem 32px 1.5rem;
+  padding: 7rem 1.5rem 7.5rem;
 
   .pricing-header {
     text-align: center;
@@ -66,7 +65,7 @@
     list-style: none;
     padding: 0;
     margin-top: 1.5rem;
-    margin-left: 5.125rem;
+    margin-left: 2.125rem;
 
     li {
       margin: 1rem 0;
@@ -128,11 +127,6 @@
 
   &.btn-light {
     background: basic.$thirteenth;
-  }
-
-  &.btn-ghost {
-    background: transparent;
-    border: 1px solid basic.$border-color;
   }
 }
 

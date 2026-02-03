@@ -1,23 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Back } from '../../shared/back/back';
 import { AuthService } from '../services/auth-service';
-import { stateService } from '../services/state-service';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
     selector: 'app-forgot-password',
     imports: [CommonModule, ReactiveFormsModule, FormsModule, Back, RouterLink],
     templateUrl: './forgot-password.html',
     styleUrl: './forgot-password.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class ForgotPassword {
     router = inject(Router);
     formBuilder = inject(FormBuilder);
 
     authService = inject(AuthService)
-    stateService = inject(stateService);
+    mainStateService = inject(MainStateService);
 
     recoveryForm: FormGroup;
     isFormValid: boolean = false;
@@ -29,16 +30,16 @@ export class ForgotPassword {
     }
 
     submit() {
-        this.stateService.showConfirmationText.set('')
+        this.mainStateService.showConfirmationText.set('')
 
         const email = this.recoveryForm.get('email')?.value;
         this.authService.forgotPassword(email).subscribe({
             next: () => {
-                this.stateService.showConfirmationText.set('Du kannst jetzt dein E-Mail prüfen.')
+                this.mainStateService.showConfirmationText.set('Du kannst jetzt dein E-Mail prüfen.')
                 this.router.navigate(['confirmation'])
             },
             error: () => {
-                this.stateService.showConfirmationText.set('Versuche noch einmal')
+                this.mainStateService.showConfirmationText.set('Versuche noch einmal')
             }
         })
     }
