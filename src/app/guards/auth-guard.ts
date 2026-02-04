@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { combineLatest, map, take } from 'rxjs';
-import { AuthService } from '../crm/services/auth-service';
+import { AuthService } from '../main-services/auth-service';
 
 export const authGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
@@ -11,13 +11,14 @@ return combineLatest([
   auth.isAuthenticated,
   auth.userType$
 ]).pipe(
+  take(1),
   map(([isLoggedIn, userType]) => {
     if (isLoggedIn) return true;
 
-    return router.createUrlTree(        
+    return router.createUrlTree(
       userType === 'business'
         ? ['crm/login']
-        : ['courses/login']
+        : ['kurse/login']
     );
   })
 );

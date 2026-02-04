@@ -11,9 +11,8 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
 import { Back } from '../../shared/back/back';
-import { stateService } from '../services/state-service';
-import { AuthService } from '../services/auth-service';
 import { MainStateService } from '../../main-services/main-state-service';
+import { AuthService } from '../../main-services/auth-service';
 
 @Component({
   selector: 'app-create-account',

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { stateService } from '../../customer/services/state-service';
 import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({

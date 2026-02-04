@@ -54,6 +54,8 @@ export const routes: Routes = [
         ],
     },
 
+    { path: '', pathMatch: 'full', redirectTo: 'kurse' },
+
     { path: 'crm/login', component: Login },
     // CRM
     {

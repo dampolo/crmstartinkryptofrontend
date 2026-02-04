@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Back } from '../back/back';
 import { RouterLink } from '@angular/router';
-import { stateService } from '../../customer/services/state-service';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   selector: 'app-confirmation',
@@ -10,5 +10,5 @@ import { stateService } from '../../customer/services/state-service';
   styleUrl: './confirmation.scss',
 })
 export class Confirmation {
-  stateService = inject(stateService)
+  mainStateService = inject(MainStateService)
 }

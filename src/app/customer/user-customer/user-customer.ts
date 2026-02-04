@@ -1,9 +1,8 @@
 import { Component, Inject, inject } from '@angular/core';
-import { AuthService } from '../services/auth-service';
-import { stateService } from '../services/state-service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../main-services/main-state-service';
+import { AuthService } from '../../main-services/auth-service';
 
 @Component({
     selector: 'app-user-customer',

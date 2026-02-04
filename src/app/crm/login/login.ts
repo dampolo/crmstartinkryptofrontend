@@ -1,20 +1,17 @@
 import { Component, inject } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { stateService } from '../services/state-service';
 
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth-service';
 import { CommonModule } from '@angular/common';
-import { email } from '@angular/forms/signals';
 import { Toast } from '../../shared/toast/toast';
 import { MainStateService } from '../../main-services/main-state-service';
+import { AuthService } from '../../main-services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -49,7 +46,7 @@ export class Login {
     
     this.authService.login(data.email, data.password).subscribe({
       next: () => {
-        this.authService.isAuthenticated.next(true);
+        this.authService
         this.mainStateService.displayToast('Du bist angemeldet', true);
         this.router.navigate(['crm/dashboard'], {replaceUrl: true});
       },

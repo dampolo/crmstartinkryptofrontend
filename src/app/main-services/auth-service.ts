@@ -1,29 +1,49 @@
-import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../../environment/environment';
-import { stateService } from '../../crm/services/state-service';
 import { HttpClient } from '@angular/common/http';
-import { Route, Router } from '@angular/router';
-import { User } from '../models/user.model';
-import { email } from '@angular/forms/signals';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
+import { stateService } from '../crm/services/state-service';
+import { environment } from '../../environment/environment';
+import { User } from '../customer/models/user.model';
+import { CUSTOMER } from '../models/customer.model';
+import { MainStateService } from './main-state-service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
 	isAuthenticated = new BehaviorSubject<boolean>(false);
+	userType$ = new BehaviorSubject<'business' | 'customer' | 'applicant' | null>(null);
 	private baseUrl = environment.apiBaseUrl;
-	stateControl = inject(stateService);
+	mainStateService = inject(MainStateService);
 
 	constructor(private http: HttpClient, private router: Router) { }
 
-	login(email: string, password: string) {
+		login(email: string, password: string) {
 		return this.http.post(
 			this.baseUrl + 'token/',
 			{ email, password },
 			{ withCredentials: true }
 		);
 	}
+
+	checkAuth(): Observable<boolean> {
+		return this.http
+			.get<CUSTOMER>(this.baseUrl + 'me/', { withCredentials: true })
+			.pipe(
+				tap((user) => {
+					this.isAuthenticated.next(true);
+					this.userType$.next(user.type)
+				}),
+				map(() => true),
+				catchError(() => {
+					this.isAuthenticated.next(false);
+					this.userType$.next(null)
+					return of(false);
+				})
+			);
+	}
+
 
 
 	logout() {
@@ -78,5 +98,4 @@ export class AuthService {
 			{ token: idToken }
 		);
 	}
-
 }

@@ -3,8 +3,8 @@ import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Back } from '../../shared/back/back';
-import { AuthService } from '../services/auth-service';
 import { MainStateService } from '../../main-services/main-state-service';
+import { AuthService } from '../../main-services/auth-service';
 
 @Component({
     selector: 'app-forgot-password',

@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { authGuard } from '../../guards/auth-guard';
-import { AuthService } from '../services/auth-service';
 import { HttpClient } from '@angular/common/http';
-import { SocialAuthService} from '@abacritt/angularx-social-login';
 import { MainStateService } from '../../main-services/main-state-service';
+import { AuthService } from '../../main-services/auth-service';
 
 @Component({
 	selector: 'app-login',
@@ -70,7 +68,7 @@ export class LoginCustomer {
 	createOrLoginWithGoogle() {
 		window.location.href =
 			'http://localhost:8000/api/accounts/google/login/?process=login';
-			localStorage.setItem('auth_provider', 'google'); 
+			// localStorage.setItem('auth_provider', 'google'); 
 	}
 }
 
