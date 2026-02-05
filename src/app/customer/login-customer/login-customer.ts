@@ -65,6 +65,8 @@ export class LoginCustomer {
 			error: (err) => {
 				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten.', false);
 				this.errorResponse.set('E-Mail oder Passwort sind falsch.')
+				console.log(err);
+				
 			}
 		});
 	}

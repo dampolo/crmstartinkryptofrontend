@@ -46,13 +46,11 @@ export class Login {
     
     this.authService.login(data.email, data.password).subscribe({
       next: () => {
-        this.authService
         this.mainStateService.displayToast('Du bist angemeldet', true);
         this.router.navigate(['crm/dashboard'], {replaceUrl: true});
       },
 
       error: (err) => {
-        console.error(err);
         this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten', false);
       }
     });

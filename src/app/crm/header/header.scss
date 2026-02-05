@@ -1,6 +1,29 @@
+@use 'hamburgers/dist/hamburgers.css';
+
+a {
+  margin-right: auto;
+  display: none;
+}
 
 .profile-img,
 .message {
-    width: 2.5rem;
-    height: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 37.5rem) {
+  .hamburger {
+    display: flex;
+  }
+}
+
+@media (max-width: 37.5rem) {
+  a {
+    margin-right: auto;
+    display: flex;
+  }
 }

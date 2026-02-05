@@ -61,10 +61,11 @@ app-header {
 
 app-navbar-customer,
 app-navbar {
+  cursor: pointer;
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 20rem;
+  width: 15rem;
   background: #ffff;
   border-right: 1px solid basic.$border-color;
   font-size: 1.25rem;
@@ -115,6 +116,11 @@ button.edit:not(:disabled):hover,
 button[type='submit']:not(:disabled):hover {
   background: basic.$primary;
 }
+
+button[type='button'].hamburger:hover {
+    background-color: transparent;
+}
+
 
 button.edit:disabled,
 button[type='submit']:disabled {
@@ -297,5 +303,23 @@ app-profile {
     border: solid 1px basic.$primary;
     background-color: basic.$body-bg;
     color: basic.$primary;
+  }
+}
+
+@media (max-width: 37.5rem) {
+  .show-menu {
+    display: flex;
+  }
+
+  app-navbar {
+    display: none;
+    flex-direction: column;
+    height: auto;
+    z-index: 1;
+    left: 0;
+    padding: 0.5rem 0 2rem;
+    position: absolute;
+    top: 4.5rem;
+    width: 100%;
   }
 }
