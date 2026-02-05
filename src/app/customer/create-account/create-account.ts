@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -24,6 +24,7 @@ export class CreateAccount {
   readonly router = inject(Router);
   authService = inject(AuthService);
   mainStateService = inject(MainStateService);
+  errorResponse = signal('')
 
   myForm: FormGroup; // name - just for now
   isFormSubmitted: boolean = false;
@@ -74,10 +75,11 @@ export class CreateAccount {
         console.log('User successfully registered:', user);
             this.mainStateService.showConfirmationText.set('Du bist erfolgreich registriert. Du kannst dich jetzt anmleden!')
             this.mainStateService.showConfirmationLink.set(true)
-            this.router.navigate(['confirmation'])
+            this.router.navigate(['/kurse/confirmation'])
       },
       error: (error) => {
-        console.error('Error during user registration:', error);
+        this.errorResponse.set('Du bist schon registriert mit E-Mail oder Google.')
+        this.mainStateService.displayToast('Du bist schon registriert.', false)
       },
     });
   }

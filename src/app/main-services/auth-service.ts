@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, firstValueFrom, map, Observable, of, tap } from 'rxjs';
 import { stateService } from '../crm/services/state-service';
 import { environment } from '../../environment/environment';
 import { User } from '../customer/models/user.model';
 import { CUSTOMER } from '../models/customer.model';
 import { MainStateService } from './main-state-service';
+import { GoogleAuthService } from './google-auth';
 
 @Injectable({
 	providedIn: 'root',
@@ -17,9 +18,12 @@ export class AuthService {
 	private baseUrl = environment.apiBaseUrl;
 	mainStateService = inject(MainStateService);
 
-	constructor(private http: HttpClient, private router: Router) { }
+	constructor(private http: HttpClient,
+		private router: Router,
+		private googleAuth: GoogleAuthService
+	) { }
 
-		login(email: string, password: string) {
+	login(email: string, password: string) {
 		return this.http.post(
 			this.baseUrl + 'token/',
 			{ email, password },
@@ -71,7 +75,6 @@ export class AuthService {
 
 
 	createUser(email: string, password: string, repeated_password: string, type: string): Observable<User> {
-		debugger
 		return this.http.post<User>(
 			this.baseUrl + 'create-account/',
 			{ email, password, repeated_password, type });
@@ -92,10 +95,15 @@ export class AuthService {
 		);
 	}
 
-	loginWithGoogle(idToken: string) {
-		return this.http.post(
-			this.baseUrl + 'auth/google/',
-			{ token: idToken }
+	async loginWithGoogle(): Promise<void> {
+		const accessToken  = await this.googleAuth.getAccessToken();
+		await firstValueFrom(
+			this.http.post(
+				'http://127.0.0.1:8000/api/auth/google/',
+				{ access_token: accessToken  },
+				{ withCredentials: true }
+			)
 		);
+
 	}
 }

@@ -5,6 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
+import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../environment/environment';
 
 @Component({
 	selector: 'app-login',
@@ -18,6 +20,8 @@ export class LoginCustomer {
 	mainStateService = inject(MainStateService);
 	loginForm: FormGroup;
 	errorResponse = signal('')
+
+	private baseUrl = environment.apiBaseUrl;
 
 	isFormSubmitted: boolean = false;
 	isPasswordVisible = false;
@@ -54,21 +58,24 @@ export class LoginCustomer {
 		this.authService.login(data.email, data.password).subscribe({
 			next: () => {
 				this.authService.isAuthenticated.next(true);
-				this.mainStateService.displayToast('Du bist angemeldet', true);
+				this.mainStateService.displayToast('Du bist angemeldet.', true);
 				this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
 			},
 
 			error: (err) => {
-				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten', false);
-				this.errorResponse.set(err.statusText)
+				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten.', false);
+				this.errorResponse.set('E-Mail oder Passwort sind falsch.')
 			}
 		});
 	}
 
-	createOrLoginWithGoogle() {
-		window.location.href =
-			'http://localhost:8000/api/accounts/google/login/?process=login';
-			// localStorage.setItem('auth_provider', 'google'); 
+	async createOrLoginWithGoogle() {
+		try {
+			await this.authService.loginWithGoogle();
+			this.router.navigate(['/customer/dashboard']);
+		} catch (err) {
+			console.error('Google login failed', err);
+		}
 	}
 }
 

@@ -28,9 +28,7 @@
       </div>
 
       <div class="warn-txt">
-        <!-- @if(fb.errorMessageLogin()){
-              <span>{{ fb.errorMessageLogin() }}</span>
-              } -->
+              <span>{{ errorResponse() }}</span>
         @if (myForm.controls['email'].invalid && (isFormSubmitted ||
         myForm.controls['email'].touched || myForm.controls['email'].dirty)) { @if
         (myForm.controls['email'].errors?.['required']) {
