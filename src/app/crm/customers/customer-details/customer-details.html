@@ -78,17 +78,6 @@
       <dd>{{ customer()?.has_subscription ? 'Ja' : 'Nein' }}</dd>
     </dl>
     
-    <!-- Meta -->
-    <dl>
-      <dt>Erstellt</dt>
-      <dd>{{ customer()?.created_at | date:'dd.MM.yyyy, HH:mm' }}</dd>
-    </dl>
-
-    <dl>
-      <dt>Zuletzt geändert</dt>
-      <dd>{{ customer()?.updated_at | date:'dd.MM.yyyy, HH:mm' }}</dd>
-    </dl>
-
     <!-- Photo -->
     <dl>
       <dt>Foto</dt>
@@ -100,38 +89,7 @@
         }
       </dd>
     </dl>
-    
-    <!-- Comments -->
-    <section class="comments">
-      <h2>Kommentare</h2>
-
-      @if (!customer()?.comments?.length) {
-        <p>Keine Kommentare vorhanden.</p>
-      } @else {
-        <ul class="comments-list">
-        @for (comment of customer()?.comments; track comment.id) {
-          <li class="comment-item">
-            <p class="comment-text">
-              “{{ comment.text }}”
-            </p>
-
-            <div class="comment-meta">
-              <span class="comment-date">
-                {{ comment.created_at | date:'dd.MM.yyyy, HH:mm' }}
-              </span>
-
-              @if (comment.user) {
-                <span class="comment-user">
-                  – Benutzer #{{ comment.user }}
-                </span>
-              }
-            </div>
-          </li>
-        }
-      </ul>
-      }
-    </section>
-
+  
   </address>
 
     <div class="btn-container">

@@ -74,11 +74,8 @@ export class CustomerDetails {
         number: this.customer()?.number,
         postcode: this.customer()?.postcode,
         city: this.customer()?.city,
-
         has_portfolio: this.customer()?.has_portfolio,
-        comment: this.customer()?.comments,
         has_subscription: this.customer()?.has_subscription,
-        invoices: this.customer()?.invoices,
       });
     });
   }

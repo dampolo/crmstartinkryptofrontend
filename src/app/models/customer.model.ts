@@ -1,18 +1,29 @@
 
 export interface Comment {
-  id: number;
-  user: number | null;
-  text: string;
-  created_at: string;
-  updated_at: string;
+    id: number;
+    user: number | null;
+    text: string;
+    created_at: string;
+    updated_at: string;
 }
 
-export interface CUSTOMER {
-    id: number;
+export enum UserTitle {
+    HERR = 'Herr',
+    FRAU = 'Frau',
+    DIVERS = 'Divers',
+}
+
+export enum UserType {
+    BUSINESS = 'business',
+    CUSTOMER = 'customer',
+    APPLICANT = 'applicant',
+}
+
+export interface USER {
     image: string | null;
     customer_number: string;
-    title: 'Herr' | 'Frau' | 'Divers' | string;
-    type: 'business' | 'customer' | 'applicant';
+    title: UserTitle;
+    type: UserType;
     first_name: string;
     last_name: string;
     street: string;
@@ -21,10 +32,20 @@ export interface CUSTOMER {
     city: string;
     email: string;
     phone: string;
+}
+
+export interface CUSTOMER extends USER {
     has_portfolio: boolean;
     has_subscription: boolean;
     invoices: number;
-    updated_at: number;
+}
+
+export interface CUSTOMER_CRM extends CUSTOMER {
+    id: number;
+    has_portfolio: boolean;
+    has_subscription: boolean;
+    invoices: number;
     created_at: number;
+    updated_at: number;
     comments: Comment[];
 }

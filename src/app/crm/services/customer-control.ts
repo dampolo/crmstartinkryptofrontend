@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
-import { CUSTOMER } from '../../models/customer.model';
+import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +29,8 @@ export class CustomerControl {
   constructor(private http: HttpClient) {}
 
   // Fetch ALL customers
-  getCustomers():Observable<CUSTOMER[]> {
-    return this.http.get<CUSTOMER[]>(this.baseUrl + 'customers/', {
+  getCustomers():Observable<CUSTOMER_CRM[]> {
+    return this.http.get<CUSTOMER_CRM[]>(this.baseUrl + 'customers/', {
       withCredentials: true
     })
   } 

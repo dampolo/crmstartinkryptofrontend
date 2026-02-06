@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CUSTOMER } from '../../models/customer.model';
+import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
 import { ServiceCatalog } from '../../models/service-catalog.model';
 import {
   InvoiceCreate,
@@ -157,7 +157,7 @@ export class Algorithmus {
 
   // SEARCH
 
-  filteredCustomers: CUSTOMER[] = [];
+  filteredCustomers: CUSTOMER_CRM[] = [];
   showDropdown: boolean = false;
 
   get customerName() {
@@ -189,7 +189,7 @@ export class Algorithmus {
     });
   }
 
-  selectCustomer(customer: CUSTOMER) {
+  selectCustomer(customer: CUSTOMER_CRM) {
     const fullName = `${customer.first_name} ${customer.last_name}`;
 
     this.algorithmusForm.patchValue({

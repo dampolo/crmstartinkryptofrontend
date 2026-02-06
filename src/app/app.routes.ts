@@ -21,6 +21,7 @@ import { LayoutCustomer } from './customer/layout-customer/layout-customer';
 import { Courses } from './customer/courses/courses';
 import { CustomerProfile } from './customer/user-customer/profile/customer-profile';
 import { LayoutAuth } from './customer/layout-auth/layout-auth';
+import { UploadCourse } from './crm/upload-course/upload-course';
 
 
 export const routes: Routes = [
@@ -71,6 +72,8 @@ export const routes: Routes = [
             { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
             { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
             { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
+            { path: 'kurse', component: UploadCourse, title: 'Kurs hinzufügen' },
+
             {
                 path: 'einstellungen',
                 loadChildren: () =>
