@@ -1,5 +1,5 @@
 <main>
-  <app-navbar-customer></app-navbar-customer>
+  <app-navbar-customer [ngClass]="{'show-menu': mainStateService.isMenuOpen}"></app-navbar-customer>
 
   <div class="main-content">
     <app-header-customer></app-header-customer>

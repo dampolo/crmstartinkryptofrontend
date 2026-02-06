@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { UserCustomer } from '../user-customer/user-customer';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
+import { Logo } from '../../shared/logo/logo';
 
 @Component({
 	selector: 'app-header-customer',
-	imports: [UserCustomer, CommonModule],
+	imports: [UserCustomer, CommonModule, Logo],
 	templateUrl: './header-customer.html',
 	styleUrl: './header-customer.scss',
 })
@@ -17,6 +18,8 @@ export class HeaderCustomer {
 
 	mainStateService = inject(MainStateService);
 	authService = inject(AuthService);
+	posFixBurger = false;
+	posFixLogo = false;
 
 	constructor(private router: Router) {
 
@@ -29,11 +32,23 @@ export class HeaderCustomer {
 	}
 
 	showDialog() {
-        this.mainStateService.isProfileVisible = true;
-    }
+		this.mainStateService.isProfileVisible = true;
+	}
 
-    closeDialog() {
-        this.mainStateService.isProfileVisible = false;
-    }
+	closeDialog() {
+		this.mainStateService.isProfileVisible = false;
+	}
+
+		openMenu() {
+		this.mainStateService.isMenuOpen = !this.mainStateService.isMenuOpen;
+		this.posFixBurger = !this.posFixBurger;
+		this.posFixLogo = !this.posFixLogo;
+	}
+
+	closeMenu() {
+		this.mainStateService.isMenuOpen = false;
+		this.posFixBurger = false;
+		this.posFixLogo = false;
+	}
 
 }
