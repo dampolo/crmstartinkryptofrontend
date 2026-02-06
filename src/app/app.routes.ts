@@ -22,6 +22,7 @@ import { Courses } from './customer/courses/courses';
 import { CustomerProfile } from './customer/user-customer/profile/customer-profile';
 import { LayoutAuth } from './customer/layout-auth/layout-auth';
 import { UploadCourse } from './crm/upload-course/upload-course';
+import { AddNewVideo } from './crm/upload-course/add-new-video/add-new-video';
 
 
 export const routes: Routes = [
@@ -73,6 +74,12 @@ export const routes: Routes = [
             { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
             { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
             { path: 'kurse', component: UploadCourse, title: 'Kurs hinzufügen' },
+            {
+                path: 'kurse',
+                children: [
+                    {path: 'neue-video', component: AddNewVideo, title: 'Neue Video'}
+                ]
+            },
 
             {
                 path: 'einstellungen',

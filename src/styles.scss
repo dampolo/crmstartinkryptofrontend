@@ -246,12 +246,20 @@ app-profile {
   background-color: rgba(0, 0, 0, 0.9);
   transition: all 0.5s ease;
 }
+
 .show-container {
   opacity: 1;
   visibility: visible;
   z-index: 1000;
   pointer-events: auto;
   // overflow-y: scroll;
+}
+
+app-add-new-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .main-content:has(app-header-auth) {
@@ -294,6 +302,7 @@ app-profile {
   background-color: basic.$primary;
   border: solid 1px transparent;
   transition: basic.$first-transition;
+  cursor: pointer;
   &:hover {
     border: solid 1px basic.$primary;
     background-color: basic.$body-bg;

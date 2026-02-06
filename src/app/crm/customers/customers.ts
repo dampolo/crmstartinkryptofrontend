@@ -3,7 +3,7 @@ import { CustomerControl } from '../services/customer-control';
 import { stateService } from '../services/state-service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from "@angular/router";
-import { CUSTOMER } from '../../models/customer.model';
+import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
 
 @Component({
   standalone: true,
@@ -17,7 +17,7 @@ export class Customers {
   stateService = inject(stateService);
   openMenuId: number | null = null;
 
-  customers = signal<CUSTOMER[]>([]); // <-- SIGNAL
+  customers = signal<CUSTOMER_CRM[]>([]); // <-- SIGNAL
 
   ngOnInit() {
     this.customerControl.getCustomers().subscribe({
