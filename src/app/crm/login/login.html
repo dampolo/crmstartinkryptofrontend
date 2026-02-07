@@ -1,50 +1,72 @@
-  <section class="login-container">
+<section class="main-content">
+  <!-- RIGHT SIDE -->
 
-    <!-- RIGHT SIDE -->
-    <div class="right-panel">
-      <div class="form-wrapper">
-        <h1>Sign in to your account</h1>
-        <p class="subtitle">Manage Your Customer Relationships.</p>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- E-MAIL -->
+    <div class="input-container">
+      <label class="control-label required" for="email">E-Mail</label>
+      <input
+        class="input-field"
+        type="text"
+        placeholder="Enter your email"
+        id="email"
+        formControlName="email"
+      />
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label class="control-label required" for="email">E-Mail</label>
-            <input type="text" placeholder="Enter your email" id="email" formControlName="email">
-            <div class="text-requied">
-              @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
-                <small>Email ist erforderlich.</small>
-              }
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label required" for="password">Passwort</label>
-            <div class="password-group">
-              <input type="password" placeholder="Enter your password" id="password" formControlName="password">
-            </div>
-            
-            <div class="text-requied">
-              @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
-                <small>
-                  @if (loginForm.get('password')?.errors?.['required']) { 
-                    Passwort ist erforderlich. 
-                  }
-                </small>
-              }
-            </div>
-        </div>
-
-          <button type="submit" class="login-btn" [disabled]="!loginForm.valid">Login</button>
-        </form>
-
+      <div class="input-icon">
+        <img src="./assets/mail-icon-input-field.svg" alt="" />
+      </div>
+      <div class="warn-txt">
+        @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+          <small>Email ist erforderlich.</small>
+        }
       </div>
     </div>
 
-  </section>
+    <!-- PASSWORD -->
+    <div class="input-container">
+      <label class="control-label required" for="password">Passwort</label>
+      <input
+        autocomplete="current-password"
+        id="password"
+        class="input-field"
+        [type]="isPasswordVisible ? 'text' : 'password'"
+        placeholder="Enter your password"
+        formControlName="password"
+      />
+      <button type="button" class="eye-button" (click)="togglePasswordVisibility()">
+        <img
+          width="25"
+          height="25"
+          class="pwd-eye"
+          [src]="isPasswordVisible ? './assets/eye.svg' : './assets/eye-off.svg'"
+          alt=""
+        />
+      </button>
 
-  <app-toast
-    [ngClass]="{
-      'show-success': mainStateService.showToast,
-      'show-error': mainStateService.showError
-    }"
-  ></app-toast>
+      <div class="input-icon">
+        <img src="./assets/pwd-lock-icon-input-field.svg" alt="" />
+      </div>
+      <div class="warn-txt">
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+          <small>
+            @if (loginForm.get('password')?.errors?.['required']) {
+              Passwort ist erforderlich.
+            }
+          </small>
+        }
+      </div>
+    </div>
+
+    <button type="submit" class="main-btn-start-in-krypto" [disabled]="!loginForm.valid">
+      Login
+    </button>
+  </form>
+</section>
+
+<app-toast
+  [ngClass]="{
+    'show-success': mainStateService.showToast,
+    'show-error': mainStateService.showError,
+  }"
+></app-toast>

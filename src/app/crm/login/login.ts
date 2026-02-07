@@ -55,4 +55,7 @@ export class Login {
       }
     });
   }
+    togglePasswordVisibility() {
+      this.isPasswordVisible = !this.isPasswordVisible
+    }
 }
