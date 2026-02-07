@@ -260,6 +260,7 @@ app-add-new-video {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  margin: 1rem 1rem 3rem 1rem;
 }
 
 .main-content:has(app-header-auth) {

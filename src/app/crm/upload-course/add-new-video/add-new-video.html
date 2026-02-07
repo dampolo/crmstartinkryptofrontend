@@ -1,3 +1,6 @@
+<a class="arrow-back" routerLink="/crm/kurse">
+    <app-back></app-back>
+</a>
 <h1>Neue Video</h1>
 
 <section class="section-title">
@@ -17,6 +20,8 @@
     </button>
   </div>
 </section>
+
+<!-- Title and short describtion -->
 
 <section class="general-information">
   <div class="card">
@@ -39,6 +44,8 @@
   </div>
 </section>
 
+<!-- Video -->
+
 <section class="video-content">
   <div class="video-card">
     <div class="video-card-header">
@@ -49,13 +56,11 @@
     <div class="upload-area">
       <div class="dropzone">
         <div class="upload-icon">
-          <img src="./assets/upload.svg" alt="upload">
+          <img src="./assets/upload.svg" alt="upload" />
         </div>
 
         <div class="upload-title">Upload Lesson Video</div>
-        <div class="upload-subtitle">
-          Dateien für den Upload per Drag-and-drop hinzufügen
-        </div>
+        <div class="upload-subtitle">Dateien für den Upload per Drag-and-drop hinzufügen</div>
 
         <label class="main-btn-start-in-krypto">
           Select File
@@ -66,25 +71,80 @@
   </div>
 </section>
 
+<!-- Video long describtion -->
 <section class="lesson-long-description">
+  <div class="editor-card">
+    <div class="editor-header">Lange Beschreibung</div>
 
-    <div class="editor-card">
-  <div class="editor-header">
-    Lange Beschreibung
+    <div class="editor-toolbar">
+      <button><b>B</b></button>
+      <button><i>I</i></button>
+      <button>≡</button>
+      <button>🔗</button>
+    </div>
+
+    <div class="editor-body">
+      <textarea
+        placeholder="Enter the main text content, detailed explanations, or transcript for the lesson..."
+      ></textarea>
+    </div>
   </div>
+</section>
 
-  <div class="editor-toolbar">
-    <button><b>B</b></button>
-    <button><i>I</i></button>
-    <button>≡</button>
-    <button>🔗</button>
+<!-- Extra Material -->
+
+<section class="extra-material">
+  <div class="resources-card">
+    <div class="resources-header">
+      <div>Extra content</div>
+      <button class="add-resource">
+        <img src="./assets/add.svg" alt="Hinzufügen" />
+        Hinzufügen
+      </button>
+    </div>
+
+    <div class="resource-list">
+      <!-- Item 1 -->
+      <div class="resource-item">
+        <div class="resource-left">
+          <div class="file-icon pdf">PDF</div>
+          <div class="resource-info">
+            <div class="resource-name">Color-Theory-Guidebook.pdf</div>
+            <div class="resource-meta">2.4 MB • Added Nov 14, 2023</div>
+          </div>
+        </div>
+
+        <div class="resource-actions">
+          <button title="View">
+            <img src="./assets/eye.svg" alt="anzeigen" />
+          </button>
+
+          <button title="Delete">
+            <img src="./assets/trash.svg" alt="wegschmeißen" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="resource-item">
+        <div class="resource-left">
+          <div class="file-icon zip">ZIP</div>
+          <div class="resource-info">
+            <div class="resource-name">Design-Assets-Pack.zip</div>
+            <div class="resource-meta">14.8 MB • Added Nov 14, 2023</div>
+          </div>
+        </div>
+
+        <div class="resource-actions">
+          <button title="View">
+            <img src="./assets/eye.svg" alt="anzeigen" />
+          </button>
+
+          <button title="Delete">
+            <img src="./assets/trash.svg" alt="wegschmeißen" />
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="editor-body">
-    <textarea
-      placeholder="Enter the main text content, detailed explanations, or transcript for the lesson..."
-    ></textarea>
-  </div>
-</div>
-
 </section>

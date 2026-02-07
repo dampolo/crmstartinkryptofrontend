@@ -3,7 +3,8 @@
 .section-title,
 .general-information,
 .video-content,
-.lesson-long-description {
+.lesson-long-description,
+.extra-material {
   background: basic.$body-bg;
   max-width: 56.25rem;
   width: 100%;
@@ -13,7 +14,7 @@
   max-width: 900px;
   background: basic.$sixth;
   border: 1px solid basic.$border-color;
-  border-radius: 14px;
+  border-radius: basic.$border-radius;
   padding: 20px 24px;
   display: flex;
   align-items: center;
@@ -60,7 +61,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  border-radius: 8px;
+  border-radius: basic.$border-radius;
   background: basic.$sixth;
   border: 1px solid basic.$border-color;
   font-size: 14px;
@@ -87,7 +88,7 @@
   max-width: 900px;
   background: basic.$sixth;
   border: 1px solid basic.$border-color;
-  border-radius: 10px;
+  border-radius: basic.$border-radius;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
@@ -190,7 +191,6 @@ textarea {
   height: 56px;
   margin: 0 auto 16px;
   border-radius: 50%;
-  background: var(--accent-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,7 +205,6 @@ textarea {
 .upload-title {
   font-size: 16px;
   font-weight: 600;
-  color: var(--text-dark);
   margin-bottom: 6px;
 }
 
@@ -218,11 +217,10 @@ textarea {
 .upload-button {
   display: inline-block;
   padding: 10px 18px;
-  background: var(--accent);
   color: #fff;
   font-size: 14px;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: basic.$border-radius;
   cursor: pointer;
   transition:
     background 0.2s,
@@ -237,7 +235,7 @@ input[type='file'] {
   max-width: 900px;
   background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border-radius: basic.$border-radius;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
@@ -262,7 +260,7 @@ input[type='file'] {
   background: none;
   border: none;
   padding: 6px 8px;
-  border-radius: 6px;
+  border-radius: basic.$border-radius;
   cursor: pointer;
   font-size: 14px;
   color: #374151;
@@ -282,7 +280,7 @@ input[type='file'] {
   min-height: 220px;
   resize: vertical;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border-radius: basic.$border-radius;
   padding: 14px;
   font-size: 14px;
   line-height: 1.5;
@@ -295,4 +293,124 @@ input[type='file'] {
 
 .editor-body textarea:focus {
   @include basic.focus-input;
+}
+
+// Extra Material
+
+.resources-card {
+  max-width: 1000px;
+  border: 1px solid basic.$border-color;
+  border-radius: basic.$border-radius;
+  background: basic.$sixth;
+}
+
+.resources-header {
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid basic.$border-color;
+  font-weight: 600;
+  color: basic.$main;
+  background: basic.$thirteenth;
+}
+
+.add-resource {
+  font-size: 14px;
+  font-weight: 500;
+  color: basic.$primary;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.resource-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid basic.$border-color;
+  transition: background 0.2s;
+}
+
+.resource-item:last-child {
+  border-bottom: none;
+}
+
+.resource-item:hover {
+  background: var(--row-hover);
+}
+
+.resource-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.file-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: basic.$border-radius;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: basic.$sixth;
+}
+
+.file-icon.pdf {
+  background: #ef4444;
+}
+
+.file-icon.zip {
+  background: #3b82f6;
+}
+
+.resource-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.resource-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: basic.$main;
+}
+
+.resource-meta {
+  font-size: 12px;
+  color: basic.$main;
+}
+
+.resource-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: basic.$main;
+}
+
+.resource-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.resource-actions svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.resource-actions button:hover {
+  color: var(--text-dark);
 }
