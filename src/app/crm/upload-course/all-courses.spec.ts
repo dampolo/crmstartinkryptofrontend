@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadCourse } from './upload-course';
+import { AllCourses } from './all-courses';
 
-describe('UploadCourse', () => {
-  let component: UploadCourse;
-  let fixture: ComponentFixture<UploadCourse>;
+describe('AllCourse', () => {
+  let component: AllCourses;
+  let fixture: ComponentFixture<AllCourses>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UploadCourse]
+      imports: [AllCourses]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UploadCourse);
+    fixture = TestBed.createComponent(AllCourses);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,5 +1,5 @@
 <a class="arrow-back" routerLink="/crm/kurse">
-    <app-back></app-back>
+  <app-back></app-back>
 </a>
 <h1>Neue Video</h1>
 
@@ -7,16 +7,22 @@
   <div class="section-card">
     <div class="section-left">
       <div class="section-meta">
-        <span class="badge">Active Section</span>
+        <span class="badge">Name des Kurses</span>
         <span class="section-number">1.4</span>
       </div>
-      <div class="title">Einfühurng - Krypto</div>
+      <input id="title" name="title" [ngClass]="showEdit ? '' : 'show-edit'" type="text"/>
+      <h2 [ngClass]="showEdit ? 'show-edit' : ''"  class="title">Einfühurng - Krypto</h2>
     </div>
 
-    <button class="edit-button">
+    <button (click)="editTitle()" [ngClass]="showEdit ? 'show-edit' : ''" class="edit-button">
       <!-- Pencil Icon -->
       <img src="./assets/edit.svg" alt="edit" />
-      Edit Section Details
+      Ändern
+    </button>
+    <button (click)="saveTitle()" [ngClass]="showEdit ? '' : 'show-edit'" class="save-button">
+      <!-- Pencil Icon -->
+      <img src="./assets/check.svg" alt="ok" />
+      ok
     </button>
   </div>
 </section>
@@ -44,12 +50,39 @@
   </div>
 </section>
 
+<!-- Picture -->
+
+<section class="image-content">
+  <div class="video-card">
+    <div class="video-card-header">
+      <div>Bild</div>
+      <span>Max Size: 500MB (MP4, MOV)</span>
+    </div>
+
+    <div class="upload-area">
+      <div class="dropzone">
+        <div class="upload-icon">
+          <img src="./assets/upload-photo.svg" alt="upload" />
+        </div>
+
+        <div class="upload-title">Bild hochladen</div>
+        <div class="upload-subtitle">Bild für den Upload per Drag-and-drop hinzufügen</div>
+
+        <label class="main-btn-start-in-krypto">
+          Bild wählen
+          <input type="file" accept="video/mp4,video/mov" />
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Video -->
 
 <section class="video-content">
   <div class="video-card">
     <div class="video-card-header">
-      <div>Video Content</div>
+      <div>Video</div>
       <span>Max Size: 500MB (MP4, MOV)</span>
     </div>
 
@@ -59,11 +92,11 @@
           <img src="./assets/upload.svg" alt="upload" />
         </div>
 
-        <div class="upload-title">Upload Lesson Video</div>
-        <div class="upload-subtitle">Dateien für den Upload per Drag-and-drop hinzufügen</div>
+        <div class="upload-title">Video hochladen</div>
+        <div class="upload-subtitle">Video für den Upload per Drag-and-drop hinzufügen</div>
 
         <label class="main-btn-start-in-krypto">
-          Select File
+          Video wählen
           <input type="file" accept="video/mp4,video/mov" />
         </label>
       </div>
@@ -76,17 +109,8 @@
   <div class="editor-card">
     <div class="editor-header">Lange Beschreibung</div>
 
-    <div class="editor-toolbar">
-      <button><b>B</b></button>
-      <button><i>I</i></button>
-      <button>≡</button>
-      <button>🔗</button>
-    </div>
-
     <div class="editor-body">
-      <textarea
-        placeholder="Enter the main text content, detailed explanations, or transcript for the lesson..."
-      ></textarea>
+      <textarea placeholder="Geben Sie den Hauptinhalt des Textes..."></textarea>
     </div>
   </div>
 </section>
@@ -96,7 +120,7 @@
 <section class="extra-material">
   <div class="resources-card">
     <div class="resources-header">
-      <div>Extra content</div>
+      <div>Anhänge</div>
       <button class="add-resource">
         <img src="./assets/add.svg" alt="Hinzufügen" />
         Hinzufügen
@@ -111,27 +135,6 @@
           <div class="resource-info">
             <div class="resource-name">Color-Theory-Guidebook.pdf</div>
             <div class="resource-meta">2.4 MB • Added Nov 14, 2023</div>
-          </div>
-        </div>
-
-        <div class="resource-actions">
-          <button title="View">
-            <img src="./assets/eye.svg" alt="anzeigen" />
-          </button>
-
-          <button title="Delete">
-            <img src="./assets/trash.svg" alt="wegschmeißen" />
-          </button>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="resource-item">
-        <div class="resource-left">
-          <div class="file-icon zip">ZIP</div>
-          <div class="resource-info">
-            <div class="resource-name">Design-Assets-Pack.zip</div>
-            <div class="resource-meta">14.8 MB • Added Nov 14, 2023</div>
           </div>
         </div>
 

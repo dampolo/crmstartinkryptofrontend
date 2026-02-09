@@ -9,6 +9,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { AuthService } from './main-services/auth-service';
+import { QuillModule } from 'ngx-quill';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,9 +18,8 @@ export const appConfig: ApplicationConfig = {
       return auth.checkAuth();
     }),
 
-    AuthService,
+    QuillModule,
     provideRouter(routes),
-
     provideBrowserGlobalErrorListeners(),
   ],
 };

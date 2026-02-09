@@ -3,6 +3,7 @@
 .section-title,
 .general-information,
 .video-content,
+.image-content,
 .lesson-long-description,
 .extra-material {
   background: basic.$body-bg;
@@ -56,6 +57,7 @@
   color: basic.$main;
 }
 
+.save-button,
 .edit-button {
   display: inline-flex;
   align-items: center;
@@ -413,4 +415,13 @@ input[type='file'] {
 
 .resource-actions button:hover {
   color: var(--text-dark);
+}
+
+
+.show-edit {
+  display: none;
+}
+
+.hide-edit {
+  display: flex;
 }

@@ -21,8 +21,9 @@ import { LayoutCustomer } from './customer/layout-customer/layout-customer';
 import { Courses } from './customer/courses/courses';
 import { CustomerProfile } from './customer/user-customer/profile/customer-profile';
 import { LayoutAuth } from './customer/layout-auth/layout-auth';
-import { UploadCourse } from './crm/upload-course/upload-course';
 import { AddNewVideo } from './crm/upload-course/add-new-video/add-new-video';
+import { ListCourseLessons } from './crm/upload-course/list-course-lessons/list-course-lessons';
+import { AllCourses } from './crm/upload-course/all-courses';
 
 
 export const routes: Routes = [
@@ -73,10 +74,11 @@ export const routes: Routes = [
             { path: 'rechnungen', component: Invoices, title: 'Rechnungen' },
             { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
             { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
-            { path: 'kurse', component: UploadCourse, title: 'Kurs hinzufügen' },
+            { path: 'kurse', component: AllCourses, title: 'Kurs hinzufügen' },
             {
                 path: 'kurse',
                 children: [
+                    {path: 'list-lessons', component: ListCourseLessons, title: 'Basic - List'},
                     {path: 'neue-video', component: AddNewVideo, title: 'Neue Video'}
                 ]
             },
