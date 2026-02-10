@@ -1,0 +1,35 @@
+<h1>Deine Kurse</h1>
+
+  <div class="container">
+
+    <!-- Card -->
+     
+    @for(course of courses(); track course.id) {
+
+      <div class="card">
+        <div class="card-image bg-cream">
+          
+          <span class="badge published">PUBLISHED</span>
+          <span class="badge lessons">{{course.lessons_count}}</span>
+        </div>
+        
+        
+        <div class="card-body">
+          <h3>{{course.course.name}}</h3>
+          <p>{{course.course.description}}</p>
+
+        <div class="featured">
+          <span>FEATURED LESSON</span>
+          <strong>Working with Grids (Video)</strong>
+          <small>Lesson 4 · 12:45m</small>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="icons">
+        </div>
+        <button class="main-btn-start-in-krypto edit-button" (click)="openCourse(course.id)">Open</button>
+      </div>
+    </div>
+  }
+  </div>

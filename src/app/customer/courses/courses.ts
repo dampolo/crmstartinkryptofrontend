@@ -21,6 +21,8 @@ export class Courses {
         this.courseService.getCourses().subscribe({
             next:(courses) => {
                 this.courses.set(courses)
+                console.log(courses);
+                
             },
             error: (err) => {
                 this.mainStateService.displayToast('SystemFehler', false);

@@ -1,0 +1,28 @@
+  <a class="arrow-back" routerLink="/customer/my-courses">
+    <app-back></app-back>
+  </a>
+
+<h1> Kurs - Basic </h1>
+
+<div class="container">
+  <div class="header">
+    <h2>Course Curriculum</h2>
+  </div>
+
+  <ul class="lesson-list">
+    @for(lesson of lessons(); track lesson.id) {
+
+        <li class="lesson">
+            <div class="left">
+                <img src="./assets/movie.svg" alt="" />
+                <div>
+                    <strong>{{lesson.order | number: '1.0'}} - {{lesson.description}}</strong>
+                    <small>VIDEO LESSON</small>
+                </div>
+            </div>
+            <span class="meta">04:20</span>
+        </li>
+    }
+  </ul>
+
+</div>

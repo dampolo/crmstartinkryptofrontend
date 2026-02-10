@@ -14,3 +14,32 @@ export interface COURSE {
   badge: string | null;
   features: COURSE_FEATURE[];
 }
+
+export interface PURCHASED_COURSE {
+  id: number;
+  name: string;
+  description: string;
+  image: string | null;
+  order: string;      // DecimalField → string
+  language: string;
+}
+
+export interface PURCHASE {
+  id: number;
+  course: PURCHASED_COURSE;
+  lessons_count: number;
+  discount: number | null; // FK id or null
+  price: string;           // DecimalField → string
+  created_at: string;      // ISO datetime string
+}
+
+export interface LESSON {
+  id: number;
+  course: number;
+  title: string;
+  description: string;
+  video: string | null;
+  description_under_video: string;
+  order: string;
+  status: 'draft' | 'published';
+}

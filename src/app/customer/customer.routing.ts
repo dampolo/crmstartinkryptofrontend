@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutCustomer } from './layout-customer/layout-customer';
-import { MyCourses } from './my-courses/my-courses';
+import { MyCourses } from './courses/my-courses/my-courses';
 
 export const CLIENT_ROUTES: Routes = [
   {

@@ -21,17 +21,20 @@ export class CustomerDetails {
 
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.customerControl.getCustomerById(id).subscribe({
-      next: (data) => {
-        console.log(data);
-        
-        this.customer.set(data)
-      },
-      error: (err) => {
-        console.error('Customer not found', err);
-      },
-    });
+    const courseId = Number(this.route.snapshot.paramMap.get('id'));
+    if(courseId) {
+
+      this.customerControl.getCustomerById(courseId).subscribe({
+        next: (data) => {
+          console.log(data);
+          
+          this.customer.set(data)
+        },
+        error: (err) => {
+          console.error('Customer not found', err);
+        },
+      });
+    }
   }
 
   constructor(private route: ActivatedRoute,

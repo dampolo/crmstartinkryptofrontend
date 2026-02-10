@@ -15,7 +15,7 @@ import { Confirmation } from './shared/confirmation/confirmation';
 import { ForgotPassword } from './customer/forgot-password/forgot-password';
 import { ResetPassword } from './customer/reset-password/reset-password';
 import { CreateAccount } from './customer/create-account/create-account';
-import { MyCourses } from './customer/my-courses/my-courses';
+import { MyCourses } from './customer/courses/my-courses/my-courses';
 import { DashboardCustomer } from './customer/dashboard-customer/dashboard-customer';
 import { LayoutCustomer } from './customer/layout-customer/layout-customer';
 import { Courses } from './customer/courses/courses';
@@ -24,6 +24,7 @@ import { LayoutAuth } from './customer/layout-auth/layout-auth';
 import { AddNewVideo } from './crm/upload-course/add-new-video/add-new-video';
 import { ListCourseLessons } from './crm/upload-course/list-course-lessons/list-course-lessons';
 import { AllCourses } from './crm/upload-course/all-courses';
+import { ListOfLessons } from './customer/courses/list-of-lessons/list-of-lessons';
 
 
 export const routes: Routes = [
@@ -50,8 +51,13 @@ export const routes: Routes = [
         children: [
             { path: 'dashboard', component: DashboardCustomer },
             { path: 'courses', component: Courses },
-
             { path: 'my-courses', component: MyCourses },
+            {
+                path: 'my-courses',
+                children: [
+                    {path: 'list-of-lessons/:courseId', component: ListOfLessons, title: 'Basic - List'},
+                ]
+            },
             { path: 'customer-profile', component: CustomerProfile, title: 'Kunde' },
             { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
         ],
