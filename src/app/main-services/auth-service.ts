@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, firstValueFrom, map, Observable, of, tap } from 'rxjs';
-import { stateService } from '../crm/services/state-service';
 import { environment } from '../../environment/environment';
 import { User } from '../customer/models/user.model';
 import { CUSTOMER } from '../models/customer.model';

@@ -10,19 +10,22 @@
 
     <!-- BASIC -->
     <div class="plan">
-      <h3 class="plan-title">Basic</h3>
-      <span class="badge">Most Popular</span>
-      <span class="plan-subtitle">Basic Krypto für dich</span>
+      @for(course of courses(); track course.order) {
 
-      <div class="plan-price"><span class="price">49€</span><span class="period">/einmalig</span></div>
-
-      <button class="main-btn-start-in-krypto">Kaufen</button>
-
-      <ul class="plan-features">
-        <li>Introduction to Crypto</li>
-        <li>Basic market analysis</li>
-        <li>Community access</li>
-      </ul>
+        <h3 class="plan-title">{{course.name}}</h3>
+        <span class="badge">{{course.badge}}</span>
+        <span class="plan-subtitle">{{course.description}}</span>
+        
+        <div class="plan-price"><span class="price">{{course.price | number: '1.2-2'}}€</span><span class="period">/einmalig</span></div>
+        
+        <button class="main-btn-start-in-krypto">Kaufen</button>
+        
+        <ul class="plan-features">
+          @for(feature of course.features; track feature.id) {
+            <li>{{feature.text}}</li>
+          }
+        </ul>
+      }
     </div>
 
     <!-- PRO -->

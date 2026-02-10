@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { single } from 'rxjs';
+import { COURSE } from '../../models/course.model';
+import { CourseService } from '../../main-services/course-service';
+import { MainStateService } from '../../main-services/main-state-service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-courses',
-  imports: [],
-  templateUrl: './courses.html',
-  styleUrl: './courses.scss',
+    selector: 'app-courses',
+    imports: [DecimalPipe],
+    templateUrl: './courses.html',
+    styleUrl: './courses.scss',
 })
 export class Courses {
+    courseService = inject(CourseService)
+    courses = signal<COURSE[]>([])
+    mainStateService = inject(MainStateService);
 
+    ngOnInit(): void {
+        this.courseService.getCourses().subscribe({
+            next:(courses) => {
+                this.courses.set(courses)
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('SystemFehler', false);
+            }
+        })
+    }
 }

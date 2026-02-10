@@ -65,7 +65,7 @@ app-navbar {
   position: sticky;
   top: 0;
   height: 100vh;
-//   width: 15rem;
+  //   width: 15rem;
   background: #ffff;
   border-right: 1px solid basic.$border-color;
   font-size: 1.25rem;
@@ -88,6 +88,7 @@ app-customer-details {
   gap: 1rem;
   margin: 1rem;
   padding: 0 1rem 1rem 1rem;
+  height: 100%;
 }
 
 app-company {
@@ -303,9 +304,8 @@ app-add-new-video {
   border-radius: basic.$border-radius;
   color: basic.$thirteenth;
   background-color: basic.$primary;
-  border: solid 1px transparent;
+  border: solid 1px basic.$primary;
   transition: basic.$first-transition;
-  cursor: pointer;
   &:hover {
     border: solid 1px basic.$primary;
     background-color: basic.$body-bg;
