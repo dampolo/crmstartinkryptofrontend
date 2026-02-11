@@ -24,6 +24,12 @@ export class CourseService {
     })
   }
 
+  buyCourse(id:number): Observable<any> {
+    return this.http.post<PURCHASE[]>(`${this.baseUrl}purchases/`, 
+      {course_id: id},
+      {withCredentials: true})
+  }
+
   getLessons(courseId: number): Observable<LESSON[]> {
     return this.http.get<LESSON[]>(
       `${this.baseUrl}lessons/?course=${courseId}`,

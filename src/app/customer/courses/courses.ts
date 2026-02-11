@@ -19,13 +19,25 @@ export class Courses {
 
     ngOnInit(): void {
         this.courseService.getCourses().subscribe({
-            next:(courses) => {
+            next: (courses) => {
                 this.courses.set(courses)
                 console.log(courses);
-                
+
             },
             error: (err) => {
                 this.mainStateService.displayToast('SystemFehler', false);
+            }
+        })
+    }
+
+    buyCourse(id: number) {
+        this.courseService.buyCourse(id).subscribe({
+            next: () => {
+                this.mainStateService.displayToast('Der Kurse wurde gekauft', true);
+            },
+            error: (err) => {
+                const message = err?.error?.message || 'Kauf fehlgeschlagen';
+                this.mainStateService.displayToast(message, false);
             }
         })
     }

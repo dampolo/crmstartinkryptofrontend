@@ -1,0 +1,127 @@
+.dashboard-statistics {
+  display: flex;
+  gap: 2rem;
+}
+.dashboard-statistics .dashboard-single {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.625rem;
+  border: 1px solid #e4e5e5;
+  padding: 1rem;
+  width: 20rem;
+  height: 8rem;
+}
+.dashboard-statistics .dashboard-single h2 {
+  color: #8f5907;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.dashboard-statistics .dashboard-single .dashboard-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+.dashboard-statistics .dashboard-single .dashboard-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: baseline;
+  width: 1.875rem;
+  height: 1.875rem;
+  background: linear-gradient(180deg, rgba(214, 166, 83, 0.3411764706), rgba(143, 89, 7, 0.2470588235));
+  border-radius: 0.625rem;
+  padding: 0.5rem;
+  box-sizing: content-box;
+}
+
+.dashboard-list-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.dashboard-list-container .dashboard-list {
+  display: flex;
+  flex-direction: column;
+  color: #8f5907;
+}
+.dashboard-list-container .dashboard-list .dashboard-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 1rem;
+}
+.dashboard-list-container .dashboard-list .dashboard-title h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.dashboard-list-container .dashboard-list .dashboard-title span {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.dashboard-list-container .dashboard-list ul {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  gap: 1rem;
+}
+.dashboard-list-container .dashboard-list ul li {
+  border-radius: 0.625rem;
+  border: 1px solid #e4e5e5;
+  padding: 1rem;
+}
+.dashboard-list-container .dashboard-list ul li button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-single {
+  text-align: left;
+  line-height: 1.2;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-single h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-single span {
+  font-size: 0.8rem;
+  color: #a19d9a;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status {
+  display: flex;
+  border-radius: 0.625rem;
+  padding-inline: 0.3rem;
+  font-size: 0.75rem;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.paid {
+  background: #f3f4f6;
+  color: #4e65b8;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.unpaid {
+  background: #fef9c3;
+  color: #8f5907;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.standart {
+  background: #fef9c3;
+  color: #8f5907;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.optional {
+  background: linear-gradient(180deg, rgba(214, 166, 83, 0.3411764706), rgba(143, 89, 7, 0.2470588235));
+  color: #8f5907;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.premium {
+  background: #d6a553;
+  color: #ffffff;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.pending {
+  background: #fef9c3;
+  color: #8f5907;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.approved {
+  background: #dcfce7;
+  color: #064606;
+}
+.dashboard-list-container .dashboard-list ul li button .dashboard-list-status.rejected {
+  background: #fee2e2;
+  color: #9e1111;
+}/*# sourceMappingURL=dashboard.css.map */

@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  max-width: 1200px;
+  gap: 1rem;
+  margin: auto;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image {
+  height: 160px;
+  position: relative;
+}
+
+/* Backgrounds */
+.bg-cream {
+  background: #f2e6d8;
+}
+
+.bg-mint {
+  background: #cfe7db;
+}
+
+.bg-teal {
+  background: #c9e3e0;
+}
+
+/* Badges */
+.badge {
+  position: absolute;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.published {
+  background: #e7f6ee;
+  color: #1c7c54;
+  top: 12px;
+  left: 12px;
+}
+
+.draft {
+  background: #fef9c3;
+  color: #8f5907;
+  top: 12px;
+  left: 12px;
+}
+
+.lessons {
+  background: #000000;
+  color: #ffffff;
+  top: 12px;
+  right: 12px;
+}
+
+/* Body */
+.card-body {
+  padding: 20px;
+}
+
+.card-body h3 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* Featured */
+.featured {
+  background: #f8f9fb;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 13px;
+}
+
+.featured span {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #8f5907;
+  margin-bottom: 4px;
+}
+
+.featured small {
+  color: #888;
+}
+
+/* Footer */
+.card-footer {
+  margin-top: auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+}
+
+.icons span {
+  margin-right: 10px;
+  opacity: 0.6;
+}
+
+.edit-button {
+  max-width: 5rem;
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=all-courses.css.map */

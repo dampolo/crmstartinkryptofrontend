@@ -18,7 +18,7 @@
         
         <div class="plan-price"><span class="price">{{course.price | number: '1.2-2'}}€</span><span class="period">/einmalig</span></div>
         
-        <button class="main-btn-start-in-krypto">Kaufen</button>
+        <button class="main-btn-start-in-krypto" (click)="buyCourse(course.id)">Kaufen</button>
         
         <ul class="plan-features">
           @for(feature of course.features; track feature.id) {

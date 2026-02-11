@@ -1,0 +1,310 @@
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  width: 37.5rem;
+}
+.profile-content .avatar {
+  display: flex;
+  justify-content: center;
+}
+.profile-content .avatar .avatar-img {
+  position: relative;
+  border-radius: 0.625rem;
+}
+.profile-content .avatar .avatar-img .user-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-content .avatar .avatar-img .user-avatar img {
+  width: 12.5rem;
+  height: 12.5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.profile-content .avatar .avatar-img .user-avatar .online {
+  display: none;
+}
+.profile-content .avatar .avatar-img .edit-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: none;
+  border: solid 0.0625rem transparent;
+  border-radius: 0.625rem;
+  z-index: 2;
+  transition: all 200ms ease-in-out;
+}
+.profile-content .avatar .avatar-img .edit-avatar:hover, .profile-content .avatar .avatar-img .edit-avatar:focus-visible {
+  background: #f8f7f6;
+  outline: none;
+}
+.profile-content .avatar .avatar-img .edit-avatar:hover svg path {
+  fill: #d6a553;
+}
+.profile-content .name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile-content .name h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 500;
+}
+.profile-content .name .edit,
+.profile-content .name .edit-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5344rem;
+  color: #d6a553;
+  background: none;
+  padding-inline: 0.625rem;
+  font-weight: 500;
+  border-radius: 0.625rem;
+  transition: all 200ms ease-in-out;
+}
+.profile-content .name .edit:hover, .profile-content .name .edit:focus-visible,
+.profile-content .name .edit-img:hover,
+.profile-content .name .edit-img:focus-visible {
+  background: #f8f7f6;
+  outline: none;
+}
+.profile-content .name .edit:hover svg path,
+.profile-content .name .edit-img:hover svg path {
+  fill: #d6a553;
+}
+.profile-content .name .edit-img {
+  display: none;
+}
+.profile-content ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.profile-content ul li .password,
+.profile-content ul li .account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 2.1875rem;
+  width: 100%;
+  border-radius: 0.625rem;
+  font-size: 1.25rem;
+  background: none;
+  border: dotted 0.2rem transparent;
+}
+.profile-content ul li .password .icon,
+.profile-content ul li .account .icon {
+  padding-top: 0.125rem;
+}
+.profile-content ul li .password:hover,
+.profile-content ul li .account:hover {
+  color: #d6a553;
+  background: #f8f7f6;
+  transform: scale(1.05);
+}
+.profile-content ul li .password:focus-visible,
+.profile-content ul li .account:focus-visible {
+  outline: none;
+  border: dotted 0.2rem #d6a553;
+}
+
+.password,
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 2.1875rem;
+  width: 100%;
+  border-radius: 0.625rem;
+  font-size: 1.25rem;
+  background: none;
+  border: dotted 0.2rem transparent;
+  overflow: hidden;
+}
+.password .icon,
+.account .icon {
+  padding-top: 0.125rem;
+}
+.password:hover,
+.account:hover {
+  color: #d6a553;
+  transform: scale(1.05);
+}
+.password:focus-visible,
+.account:focus-visible {
+  outline: none;
+  border: dotted 0.2rem #d6a553;
+}
+
+dt {
+  font-weight: bold;
+  color: #8f5907;
+}
+
+.comments {
+  margin-top: 2rem;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-item {
+  padding: 0.75rem 1rem;
+  border-left: 3px solid #ccc;
+  margin-bottom: 0.75rem;
+  background: #fafafa;
+}
+
+.comment-text {
+  margin: 0;
+  font-style: italic;
+}
+
+.comment-meta {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.container-edit,
+.container-customer {
+  display: flex;
+  flex-direction: column;
+  width: 37.5rem;
+  padding: 1.875rem;
+  overflow: hidden;
+}
+
+.wrapper-content {
+  display: flex;
+  width: 75rem;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  transform: translateX(0%);
+  transition: all 200ms ease-in-out;
+}
+
+.show-edit {
+  transform: translateX(-50%);
+}
+
+.main-wrapper {
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  overflow-x: hidden;
+  border-radius: 0.75rem;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+form {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.control-label {
+  display: inline-block;
+  margin: 0rem 0rem 0.5rem;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.form-control {
+  height: 2.125rem;
+  padding: 0.375rem 0.75rem;
+  border: 0.063rem solid #ccc;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: #555;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.25rem;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.form-control:focus {
+  border-color: #d6a553;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #d6a553;
+}
+
+.form-radio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-radio label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fff;
+  font: inherit;
+  width: 20px;
+  height: 20px;
+  color: #8f5907;
+  border: 0.15em solid #8f5907;
+  border-radius: 0.15em;
+  display: grid;
+  place-content: center;
+}
+
+input[type=radio]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: all 200ms ease-in-out;
+  box-shadow: inset 1em 1em #8f5907;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type=radio]:checked::before {
+  transform: scale(1);
+}
+
+textarea {
+  height: 4.375rem;
+}
+
+.show-scroll {
+  overflow-y: scroll;
+}/*# sourceMappingURL=customer-profile.css.map */

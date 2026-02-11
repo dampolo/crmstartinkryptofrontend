@@ -1,0 +1,64 @@
+.main-button {
+  background: linear-gradient(180deg, #d6a553, #8f5907);
+  color: #000000;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  transition: var(--first-transition);
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 0.5rem;
+  text-decoration: none;
+  text-align: center;
+}
+
+.main-button.general-button {
+  position: fixed;
+  bottom: 1.5625rem;
+  right: 1.5625rem;
+  z-index: 1000;
+  opacity: 0.5;
+  transition: var(--first-transition);
+}
+
+.main-button.general-button:hover {
+  opacity: 1;
+}
+
+.main-button svg path {
+  color: #000000;
+  transition: var(--first-transition);
+}
+
+.main-button:focus-visible {
+  outline: var(--focus);
+}
+
+.main-button:hover {
+  color: white;
+}
+
+.main-button:hover svg path {
+  color: white;
+}
+
+.main-button svg {
+  min-width: 25px;
+  min-height: 25px;
+}
+
+.main-button span {
+  display: contents;
+  font-weight: bold;
+}
+
+.main-button.header-button span,
+.main-button.general-button span {
+  display: flex;
+}
+
+.main-button.header-button {
+  margin-left: 1rem;
+}/*# sourceMappingURL=appointment-button.css.map */
