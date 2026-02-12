@@ -40,7 +40,7 @@ export interface CUSTOMER extends USER {
     invoices: number;
 }
 
-export interface CUSTOMER_CRM extends CUSTOMER {
+export interface CUSTOMER_CRM extends USER {
     id: number;
     has_portfolio: boolean;
     has_subscription: boolean;

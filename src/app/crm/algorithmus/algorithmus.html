@@ -1,15 +1,29 @@
 <h1 class="title">Algorithmus</h1>
 
 <form [formGroup]="algorithmusForm">
-<search class="search-container">
-  <input
-    type="text"
-    placeholder="Kunden..."
-    formControlName="customerName"
-    (input)="onSearchChange()"
-    (focus)="onFocus()"
-    (blur)="hideDropdown()"
-  />
+  <search class="search-container">
+    <label for="Kunde">Kunde
+
+      <input
+      type="text"
+      id="Kunde"
+      placeholder="Kunden..."
+      formControlName="customerName"
+      (input)="onSearchChange()"
+      (focus)="onFocus()"
+      (blur)="hideDropdown()"
+      />
+      @if (showDropdown) {
+      <ul class="dropdown">
+        @for (customer of filteredCustomers; track customer.id) {
+          @if(customer.type === userType.CUSTOMER) {
+            
+            <li (click)="selectCustomer(customer)">{{ customer.first_name }} {{ customer.last_name }}</li>
+          }
+        }
+      </ul>
+      }
+    </label>
   @if (customerName?.touched && customerName?.invalid) {
     <div class="error">
       @if (customerName?.errors?.['required']) {
@@ -18,13 +32,6 @@
     </div>
   }
 
-  @if (showDropdown) {
-  <ul class="dropdown">
-    @for (customer of filteredCustomers; track customer.id) {
-    <li (click)="selectCustomer(customer)">{{ customer.first_name }} {{ customer.last_name }}</li>
-    }
-  </ul>
-  }
 </search>
 
   <div>

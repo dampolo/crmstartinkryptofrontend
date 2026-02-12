@@ -58,12 +58,12 @@ export interface Invoice {
   company_swift_code: string;
   company_logo?: string | null;
 
-  customer_first_name: string;
-  customer_last_name: string;
-  customer_street: string;
-  customer_number: string;
-  customer_postcode: string;
-  customer_city: string;
+  user_customer_first_name: string;
+  user_customer_last_name: string;
+  user_customer_street: string;
+  user_customer_number: string;
+  user_customer_postcode: string;
+  user_customer_city: string;
 
   pdf_file?: string | null;
 

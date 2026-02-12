@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { stateService } from '../../services/state-service';
 import { ProvisionType, ServiceCatalog } from '../../../models/service-catalog.model';
+import { MainStateService } from '../../../main-services/main-state-service';
 
 @Component({
   selector: 'app-algorithmus',
@@ -20,7 +21,7 @@ import { ProvisionType, ServiceCatalog } from '../../../models/service-catalog.m
 })
 export class Algorithmus {
   algorithmusControl = inject(AlgorithmusControl);
-  stateService = inject(stateService);
+  mainStateService = inject(MainStateService);
   showEdit: boolean = false;
   algorithmusForm!: FormGroup;
   serviceCatalog = signal<ServiceCatalog[]>([]);
@@ -41,10 +42,10 @@ export class Algorithmus {
       next: (data) => {
         this.serviceCatalog.set(data);
         this.loadServicesIntoForm(data);
-        this.stateService.displayToast('Die Daten wurden gelesen');
+        this.mainStateService.displayToast('Die Daten wurden gelesen', true);
       },
       error: (err) => {
-        this.stateService.displayToast('Du hast kein Internet');
+        this.mainStateService.displayToast('Du hast kein Internet', false);
       },
     });
   }
@@ -116,8 +117,8 @@ export class Algorithmus {
     if (type === 'percent') {
       percent.setValidators([
         Validators.required,
-        Validators.min(0.0001),
-        Validators.max(1),
+        Validators.min(0.01),
+        Validators.max(10),
         Validators.pattern(/^\d+(\.\d{1,4})?$/),
       ]);
 
@@ -138,18 +139,14 @@ export class Algorithmus {
     
     this.algorithmusControl.updateServices(payload.services).subscribe({
       next: () => {
-        this.showConfirmation('Der Kunde wurde erstellt');
+        this.mainStateService.displayToast('Die Leistungen wurden geändert', true);
       },
       error: (err) => {
-        this.showConfirmation('!! Verusche noch einmal');
+        this,this.mainStateService.displayToast('!! Verusche noch einmal', false);
       },
     });
   }
 
-  showConfirmation(message: string) {
-    this.stateService.displayToast(message);
-    this.stateService.removeShowToast();
-  }
 
   onCancel() {
     this.showEdit = false;
@@ -164,10 +161,10 @@ export class Algorithmus {
       this.algorithmusControl.deleteService(id).subscribe({
         next: () => {
           this.removeFromForm(service);
-          this.showConfirmation('!!! Der Service wurde gelöscht.')
+          this.mainStateService.displayToast('!!! Der Service wurde gelöscht.', true)
         },
         error: (err: any) => {
-          this.showConfirmation('!!! Versuche noch einmal')
+          this.mainStateService.displayToast('!!! Versuche noch einmal', false)
         }
       });
     } else {

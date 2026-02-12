@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
+import { CUSTOMER, CUSTOMER_CRM, UserType } from '../../models/customer.model';
 import { ServiceCatalog } from '../../models/service-catalog.model';
 import {
   InvoiceCreate,
@@ -36,7 +36,7 @@ export class Algorithmus {
   currentDate = new Date(); // stores the current date and time
   isInvoiceVisible: boolean = false;
   serviceCatalog = signal<ServiceCatalog[]>([]);
-
+  userType = UserType
   algorithmusForm: FormGroup;
   totalProvisonPercent: number = 0;
 
@@ -97,7 +97,6 @@ export class Algorithmus {
 
   onFormChange(): void {
     console.log(this.invoiceObject);
-    
     this.updateInvoice(this.algorithmusForm.value);
   }
 
@@ -118,7 +117,6 @@ export class Algorithmus {
       provision_amount = +service.provision_fixed;
       totalFixed += provision_amount;
     }
-
     if (service.provision_percent !== null) {
       provision_amount = (+service.provision_percent * summe) / 100;
       totalPercentAmount += provision_amount;
@@ -183,7 +181,7 @@ export class Algorithmus {
   }
 
   onFocus() {
-    this.customerControl.getCustomers().subscribe((customers) => {
+    this.customerControl.getCustomers().subscribe((customers) => {      
       this.filteredCustomers = [...customers];
       this.showDropdown = true;
     });
@@ -191,7 +189,6 @@ export class Algorithmus {
 
   selectCustomer(customer: CUSTOMER_CRM) {
     const fullName = `${customer.first_name} ${customer.last_name}`;
-
     this.algorithmusForm.patchValue({
       customerName: fullName,
     });
@@ -204,7 +201,7 @@ export class Algorithmus {
   }
 
   hideDropdown() {
-    setTimeout(() => (this.showDropdown = false), 150);
+    setTimeout(() => (this.showDropdown = false), 300);
   }
 
   onEvent(event: Event) {
@@ -212,6 +209,8 @@ export class Algorithmus {
   }
 
   createInvoice() {
+    console.log(this.invoiceObject);
+    
     this.invoiceService.createInvoice(this.invoiceObject).subscribe({
       next: () => {
         this.stateService.displayToast('Die Rechnung wurde erstellt.');

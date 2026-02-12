@@ -118,7 +118,7 @@
                   <small>Prozentwert ist erforderlich.</small>
                   } @if ( service.get('provision_percent')?.errors?.['min'] ||
                   service.get('provision_percent')?.errors?.['max'] ) {
-                  <small>Wert muss zwischen 0 und 1 liegen (z. B. 0.05).</small>
+                  <small>Wert muss zwischen 0,01 und 10 liegen (z. B. 0.05).</small>
                   } @if (service.get('provision_percent')?.errors?.['pattern']) {
                   <small>Ungültiges Dezimalformat.</small>
                   }
