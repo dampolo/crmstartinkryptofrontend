@@ -74,7 +74,7 @@ export class CustomerDetails {
         phone: this.customer()?.phone,
 
         street: this.customer()?.street,
-        number: this.customer()?.number,
+        street_number: this.customer()?.street_number,
         postcode: this.customer()?.postcode,
         city: this.customer()?.city,
         has_portfolio: this.customer()?.has_portfolio,

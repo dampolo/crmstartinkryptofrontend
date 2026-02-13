@@ -21,7 +21,7 @@
       </dl>
       <dl>
         <dt>Straße & Nr.</dt>
-        <dd>{{companyControl.company()?.street}} {{companyControl.company()?.number}}</dd>
+        <dd>{{companyControl.company()?.street}} {{companyControl.company()?.street_number}}</dd>
       </dl>
       <dl>
         <dt>Postleitzahl & Stadt</dt>
@@ -105,16 +105,16 @@
       }
     </div>
 
-    <!-- Number -->
+    <!-- Street Number -->
     <div class="form-group">
-      <label class="control-label" id="label-number" for="number">Hausnummer:</label>
-      <input class="form-control" type="text" placeholder="12A" id="number" formControlName="number" required>
-      @if (companyForm.get('number')?.invalid && (companyForm.get('number')?.touched || companyForm.get('number')?.dirty)) {
+      <label class="control-label" id="label-number" for="street_number">Hausnummer:</label>
+      <input class="form-control" type="text" placeholder="12A" id="street_number" formControlName="street_number" required>
+      @if (companyForm.get('street_number')?.invalid && (companyForm.get('street_number')?.touched || companyForm.get('street_number')?.dirty)) {
     <div class="text-requied">
-      @if (companyForm.get('number')?.errors?.['required']) {
+      @if (companyForm.get('street_number')?.errors?.['required']) {
         <small>Hausnummer ist erforderlich.</small>
       }
-      @if (companyForm.get('number')?.errors?.['pattern']) {
+      @if (companyForm.get('street_number')?.errors?.['pattern']) {
         <small>Hausnummer darf nur Zahlen, Buchstaben, Bindestriche oder Schrägstriche enthalten (z. B. 12A, 12-14, 12/1). Keine Leerzeichen</small>
       }
     </div>

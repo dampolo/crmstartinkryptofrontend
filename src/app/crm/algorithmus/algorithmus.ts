@@ -195,7 +195,7 @@ export class Algorithmus {
     this.showDropdown = false;
     this.customerNumber = customer.customer_number;
     this.customerNameInvoice = customer.first_name + ' ' + customer.last_name;
-    this.customerStreetInvoice = customer.street + ' ' + customer.number;
+    this.customerStreetInvoice = customer.street + ' ' + customer.street_number;
     this.customerCityInvoice = customer.postcode + ' ' + customer.city;
     this.invoiceObject.customer = customer.id;
   }

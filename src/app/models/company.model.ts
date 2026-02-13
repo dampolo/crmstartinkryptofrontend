@@ -2,7 +2,7 @@ export interface COMPANY {
   logo: string;
   name: string;
   street: string;
-  number: string;
+  street_number: string;
   postcode: string;
   city: string;
   owner_name: string;

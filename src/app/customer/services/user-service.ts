@@ -11,7 +11,7 @@ export class UserService {
 	private baseUrl = environment.apiBaseUrl;
 	constructor(private http: HttpClient) { }
 
-	// Get Customer
+	// This method show you all data from customer
 	getCustomer(): Observable<CUSTOMER> {
 		return this.http.get<CUSTOMER>(this.baseUrl + 'profile-customer/', {
 			withCredentials: true

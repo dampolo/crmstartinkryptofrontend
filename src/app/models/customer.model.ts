@@ -27,7 +27,7 @@ export interface USER {
     first_name: string;
     last_name: string;
     street: string;
-    number: string;
+    street_number: string;
     postcode: string;
     city: string;
     email: string;

@@ -53,7 +53,7 @@ export class CustomerProfile {
                 [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
             ],
             street: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
-            number: ['', [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)]],
+            street_number: ['', [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)]],
             postcode: ['', [Validators.required, Validators.pattern(/^[0-9]{4,6}$/)]],
             city: ['', [Validators.required, Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/)]],
             email: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/), Validators.email]],
@@ -74,7 +74,7 @@ export class CustomerProfile {
                 phone: this.customer()?.phone,
 
                 street: this.customer()?.street,
-                number: this.customer()?.number,
+                street_number: this.customer()?.street_number,
                 postcode: this.customer()?.postcode,
                 city: this.customer()?.city,
 

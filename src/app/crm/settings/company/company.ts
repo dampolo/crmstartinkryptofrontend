@@ -43,7 +43,7 @@ export class Company {
                 [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
             ],
             street: ['', [Validators.required, Validators.pattern(/^(?!\s*$).+/)]],
-            number: ['', [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)]],
+            street_number: ['', [Validators.required, Validators.pattern(/^[0-9]+[a-zA-Z0-9\/\-]*$/)]],
             postcode: [
                 '',
                 [
@@ -83,7 +83,7 @@ export class Company {
                     logo: company.logo,
                     name: company.name,
                     street: company.street,
-                    number: company.number,
+                    street_number: company.street_number,
                     postcode: company.postcode,
                     city: company.city,
                     owner_name: company.owner_name,

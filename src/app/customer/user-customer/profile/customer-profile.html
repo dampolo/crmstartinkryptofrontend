@@ -107,7 +107,7 @@
         <!-- Address -->
         <dl>
           <dt>Straße & Nr.</dt>
-          <dd>{{ customer()?.street }} {{ customer()?.number }}</dd>
+          <dd>{{ customer()?.street }} {{ customer()?.street_number }}</dd>
         </dl>
 
         <dl>
@@ -255,25 +255,25 @@
           }
         </div>
 
-        <!-- Number -->
+        <!-- Street Number -->
         <div class="form-group">
-          <label class="control-label required" id="label-number" for="number">Hausnummer:</label>
+          <label class="control-label required" id="label-number" for="street_number">Hausnummer:</label>
           <input
             class="form-control"
             type="text"
             placeholder="123"
-            id="number"
-            formControlName="number"
+            id="street_number"
+            formControlName="street_number"
           />
           @if (
-            customerForm.get('number')?.invalid &&
-            (customerForm.get('number')?.touched || customerForm.get('number')?.dirty)
+            customerForm.get('street_number')?.invalid &&
+            (customerForm.get('street_number')?.touched || customerForm.get('street_number')?.dirty)
           ) {
             <div class="text-requied">
-              @if (customerForm.get('number')?.errors?.['required']) {
+              @if (customerForm.get('street_number')?.errors?.['required']) {
                 <small>Hausnummer ist erforderlich.</small>
               }
-              @if (customerForm.get('number')?.errors?.['pattern']) {
+              @if (customerForm.get('street_number')?.errors?.['pattern']) {
                 <small
                   >Hausnummer darf nur Zahlen, Buchstaben, Bindestriche oder Schrägstriche enthalten
                   (z. B. 12A, 12-14, 12/1). Keine Leerzeichen</small
