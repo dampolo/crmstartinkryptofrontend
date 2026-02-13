@@ -40,7 +40,9 @@ export class Courses {
                 console.log(err);
                 
                 const message = err?.error?.message || 'Kauf fehlgeschlagen';
+                
                 this.mainStateService.displayToast(message, false);
+                
             }
         })
     }

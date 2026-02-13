@@ -1,0 +1,74 @@
+<div class="dashboard">
+  <div class="container">
+    <!-- Welcome Card -->
+    <section class="welcome-card">
+      <div class="welcome-content">
+        <span class="badge">WILLKOMEN ZURÜCK</span>
+        <h1>Hallo 
+        @if(customer()?.first_name === ""){
+            
+            Kunde, 
+        }
+        @else {
+            {{customer()?.first_name }},
+        }
+            
+            schön dass,<br />du wieder da bist.</h1>
+        <p>
+          Deine Reise in die Welt der Kryptowährungen beginnt hier. <br>
+          Viel Erfolg und viel Spaß!
+        </p>
+        @if(customer()?.first_name === ""){
+
+            <p>
+                Du kannst hier dein <a class="profile" routerLink="/customer/customer-profile">Profile</a> vervollständigen.
+            </p>
+        }
+
+        <div class="actions">
+          <button class="btn btn-primary">▶ Weiter</button>
+          <button class="btn btn-secondary">Fortschritt</button>
+        </div>
+      </div>
+
+      <div class="decor"></div>
+    </section>
+
+    <!-- Quick Access -->
+    <section class="quick-access">
+      <div class="quick-header">
+        <h2>Schnelle Zugang</h2>
+        <a href="#">Customize Shortcuts</a>
+      </div>
+
+      <div class="cards">
+        <a routerLink="/customer/my-courses/" class="card">
+          <div class="icon">
+            <img src="./assets/bitbulb.svg" alt="" />
+          </div>
+          <h3>Deine Kurse</h3>
+          <p>Setze deine aktiven Module fort und erweiter dein Kryptowissen.</p>
+          <span class="meta">0 ACTIVE MODULES →</span>
+        </a>
+
+        <a routerLink="/customer/customer-profile" class="card">
+          <div class="icon">
+            <img src="./assets/profile.svg" alt="" />
+          </div>
+          <h3>Profil</h3>
+          <p>Verwalte deine Zugangsdaten, aktualisiere deine Daten und behalte alles im Blick.</p>
+          <span class="meta">Einstellungen →</span>
+        </a>
+
+        <a (click)="logOut()" class="card danger">
+          <div class="icon">
+            <img src="./assets/log-out.svg" alt="" />
+          </div>
+          <h3>Abmelden</h3>
+          <p>Beende deine Sitzung sicher und lösche temporäre Daten aus dem Dashboard.</p>
+          <span class="meta">Sicher abmelden →</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
