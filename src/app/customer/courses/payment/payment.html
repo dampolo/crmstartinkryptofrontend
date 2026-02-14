@@ -1,0 +1,117 @@
+<div class="checkout">
+  <div class="container">
+    <div class="checkout__left">
+      <h1>Zahlung</h1>
+      <p class="subtitle">Schließe deinen Kauf ab, um deine Kryptolernreise mit uns zu beginnen.</p>
+
+      <!-- Payment Method -->
+      <h3>Zahlungmethoden</h3>
+
+      <div class="payment-methods">
+        <label class="method">
+          <input
+            type="radio"
+            name="payment"
+            value="paypal"
+            (change)="paymentMethod('paypal')"
+            checked
+          />
+
+          <img src="./assets/paypal.svg" alt="PayPal" />
+
+          <div class="method-info">
+            <strong>PayPal</strong>
+            <span>Schnell & Sicher</span>
+          </div>
+
+          <span class="custom-radio"></span>
+        </label>
+
+        <label class="method">
+          <input type="radio" name="payment" value="bank" (change)="paymentMethod('bank')" />
+
+          <div class="method-info">
+            <strong>Banküberweisung</strong>
+            <span>Manuelle Verifizierung</span>
+          </div>
+
+          <span class="custom-radio"></span>
+        </label>
+      </div>
+
+      <div class="payment-text" [ngClass]="{ 'show-text': selectedPayment === 'paypal' }">
+        Zum Abschluss dieser Transaktion wirst du auf die sicheren Server von PayPal weitergeleitet.
+      </div>
+      <div class="payment-text" [ngClass]="{ 'show-text': selectedPayment === 'bank' }">
+        Du erhältst von uns eine Rechnung. Sobald du uns die Überweisungsbestätigung sendest,
+        bekommst du sofort die Freischaltung.
+      </div>
+
+      <!-- Discount -->
+      <h3>Gutschein</h3>
+
+      <div class="discount">
+        <input type="text" placeholder="Dein Gutschein" #discountInput />
+        <button (click)="checkDiscountCode(discountInput.value)">Apply</button>
+      </div>
+
+      @if(showConfirmation) {
+        @if (discountCodeConfirmed) {
+          <div class="discount-success">✔ {{discountCode()}} aktiviert - 39,80 $ gespart!</div>
+        } @else {
+          <div class="discount-error">
+            <img src="./assets/xbox-x.svg" alt="">
+            {{discountCode()}} nicht aktiv</div>
+        }
+      }
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="checkout-right">
+      <div class="summary">
+        <h3>Order Summary</h3>
+
+        <div class="summary-product">
+          <div class="product-img"></div>
+          <div>
+            <strong>Mastering UI Design</strong>
+            <span>Lifetime access • 48 Lessons</span>
+          </div>
+        </div>
+
+        <div class="summary-prices">
+          <div>
+            <span>Course Price</span>
+            <span>$199.00</span>
+          </div>
+          <div class="discount">
+            <span>Discount (20%)</span>
+            <span>- $39.80</span>
+          </div>
+          <div>
+            <span>Tax (0%)</span>
+            <span>$0.00</span>
+          </div>
+        </div>
+
+        <div class="total">
+          <span>Total Amount</span>
+          <strong>$159.20</strong>
+        </div>
+
+        <button class="purchase-btn main-btn-start-in-krypto">Complete Purchase →</button>
+
+        <div class="guarantees">
+          <span class="icon-text">
+            <img width="25" height="25" src="./assets/secure.svg" alt="" />
+            SSL-verschlüsselte, sichere Zahlung</span
+          >
+          <span class="icon-text">
+            <img width="25" height="25" src="./assets/time.svg" alt="" />
+            30 Tage Geld-zurück-Garantie</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

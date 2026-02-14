@@ -43,3 +43,8 @@ export interface LESSON {
   order: string;
   status: 'draft' | 'published';
 }
+
+export interface DISCOUNT_CODE {
+  code: string
+  percent_value: number
+}

@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { COURSE, LESSON, PURCHASE, PURCHASED_COURSE } from '../models/course.model';
+import { COURSE, DISCOUNT_CODE, LESSON, PURCHASE, PURCHASED_COURSE } from '../models/course.model';
 import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,11 +9,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CourseService {
   private baseUrl = environment.apiBaseUrl;
- 
+
   constructor(private http: HttpClient) { }
 
   getCourses(): Observable<COURSE[]> {
     return this.http.get<COURSE[]>(`${this.baseUrl}courses/`, {
+      withCredentials: true
+    })
+  }
+
+  getCourse(courseId: number): Observable<COURSE[]> {
+    return this.http.get<COURSE[]>(`${this.baseUrl}courses/${courseId}`, {
       withCredentials: true
     })
   }
@@ -24,15 +30,23 @@ export class CourseService {
     })
   }
 
-  buyCourse(id:number): Observable<any> {
-    return this.http.post<PURCHASE[]>(`${this.baseUrl}purchases/`, 
-      {course_id: id},
-      {withCredentials: true})
+  buyCourse(id: number): Observable<any> {
+    return this.http.post<PURCHASE[]>(`${this.baseUrl}purchases/`,
+      { course_id: id },
+      { withCredentials: true })
   }
 
   getLessons(courseId: number): Observable<LESSON[]> {
     return this.http.get<LESSON[]>(
       `${this.baseUrl}lessons/?course=${courseId}`,
+      { withCredentials: true }
+    );
+  }
+
+  DiscountCode(code: string): Observable<DISCOUNT_CODE> {
+    return this.http.post<DISCOUNT_CODE>(
+      `${this.baseUrl}discount-codes/validate_code/`,
+      { code: code },
       { withCredentials: true }
     );
   }

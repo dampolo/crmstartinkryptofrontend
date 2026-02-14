@@ -25,6 +25,7 @@ import { AddNewVideo } from './crm/upload-course/add-new-video/add-new-video';
 import { ListCourseLessons } from './crm/upload-course/list-course-lessons/list-course-lessons';
 import { AllCourses } from './crm/upload-course/all-courses';
 import { ListOfLessons } from './customer/courses/list-of-lessons/list-of-lessons';
+import { Payment } from './customer/courses/payment/payment';
 
 
 export const routes: Routes = [
@@ -51,6 +52,7 @@ export const routes: Routes = [
         children: [
             { path: 'dashboard', component: DashboardCustomer },
             { path: 'courses', component: Courses },
+            { path: 'payment', component: Payment },
             { path: 'my-courses', component: MyCourses },
             {
                 path: 'my-courses',
