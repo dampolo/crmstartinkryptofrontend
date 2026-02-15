@@ -18,6 +18,8 @@ export class Courses {
     courses = signal<COURSE[]>([])
     mainStateService = inject(MainStateService);
 
+    constructor(private router: Router){}
+
     ngOnInit(): void {
         this.courseService.getCourses().subscribe({
             next: (courses) => {
@@ -31,19 +33,11 @@ export class Courses {
         })
     }
 
-    buyCourse(id: number) {
-        this.courseService.buyCourse(id).subscribe({
-            next: () => {
-                this.mainStateService.displayToast('Der Kurs wurde gekauft', true);
-            },
-            error: (err) => {
-                console.log(err);
-                
-                const message = err?.error?.message || 'Kauf fehlgeschlagen';
-                
-                this.mainStateService.displayToast(message, false);
-                
-            }
-        })
+    buyCourse(courseId: number) {
+        debugger
+        this.router.navigate([
+        'customer/courses/payment', courseId
+      ])
     }
 }
+

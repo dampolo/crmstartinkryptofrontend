@@ -55,13 +55,14 @@
         <button (click)="checkDiscountCode(discountInput.value)">Apply</button>
       </div>
 
-      @if(showConfirmation) {
+      @if (showConfirmation) {
         @if (discountCodeConfirmed) {
-          <div class="discount-success">✔ {{discountCode()}} aktiviert - 39,80 $ gespart!</div>
+          <div class="discount-success">✔ {{ discountCode() }} aktiviert - 39,80 $ gespart!</div>
         } @else {
           <div class="discount-error">
-            <img src="./assets/xbox-x.svg" alt="">
-            {{discountCode()}} nicht aktiv</div>
+            <img src="./assets/xbox-x.svg" alt="" />
+            {{ discountCode() }} nicht aktiv
+          </div>
         }
       }
     </div>
@@ -69,34 +70,34 @@
     <!-- ORDER SUMMARY -->
     <div class="checkout-right">
       <div class="summary">
-        <h3>Order Summary</h3>
+        <h3>Bestellübersicht</h3>
 
         <div class="summary-product">
           <div class="product-img"></div>
           <div>
-            <strong>Mastering UI Design</strong>
-            <span>Lifetime access • 48 Lessons</span>
+            <strong>{{course()?.name}}</strong>
+            <span>Beschrenkte Zugang • {{course()?.features?.length}} Lessons</span>
           </div>
         </div>
 
         <div class="summary-prices">
           <div>
-            <span>Course Price</span>
-            <span>$199.00</span>
+            <span>Kurspreis</span>
+            <span>{{course()?.price}}</span>
           </div>
           <div class="discount">
-            <span>Discount (20%)</span>
-            <span>- $39.80</span>
+            <span>Rabatt (20%)</span>
+            <span>- {{discountCode()?.percent_value}} €</span>
           </div>
           <div>
-            <span>Tax (0%)</span>
-            <span>$0.00</span>
+            <span>{{tax()?.name}} ({{tax()?.percent}}%)</span>
+            <span>{{calculateTax()}} €</span>
           </div>
         </div>
 
         <div class="total">
-          <span>Total Amount</span>
-          <strong>$159.20</strong>
+          <span>Gesamt</span>
+          <strong>{{calculatePrice()}} €</strong>
         </div>
 
         <button class="purchase-btn main-btn-start-in-krypto">Complete Purchase →</button>

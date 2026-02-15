@@ -51,9 +51,14 @@ export const routes: Routes = [
         // canActivate: [authGuard],
         children: [
             { path: 'dashboard', component: DashboardCustomer },
-            { path: 'courses', component: Courses },
-            { path: 'payment', component: Payment },
-            { path: 'my-courses', component: MyCourses },
+            { path: 'courses', component: Courses, title: 'Kurse' },
+            {
+                path: 'courses',
+                children: [
+                    { path: 'payment/:courseId', component: Payment, title: 'Kurs - Zahlung' },
+                ]
+            },
+            { path: 'my-courses', component: MyCourses, title: 'Meine Kurse' },
             {
                 path: 'my-courses',
                 children: [

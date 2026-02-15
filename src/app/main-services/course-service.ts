@@ -18,8 +18,8 @@ export class CourseService {
     })
   }
 
-  getCourse(courseId: number): Observable<COURSE[]> {
-    return this.http.get<COURSE[]>(`${this.baseUrl}courses/${courseId}`, {
+  getCourse(courseId: number): Observable<COURSE> {
+    return this.http.get<COURSE>(`${this.baseUrl}courses/${courseId}`, {
       withCredentials: true
     })
   }
