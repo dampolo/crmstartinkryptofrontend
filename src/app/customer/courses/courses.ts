@@ -34,7 +34,6 @@ export class Courses {
     }
 
     buyCourse(courseId: number) {
-        debugger
         this.router.navigate([
         'customer/courses/payment', courseId
       ])

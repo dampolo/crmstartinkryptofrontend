@@ -1,5 +1,5 @@
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
 import { single } from 'rxjs';
@@ -23,6 +23,7 @@ export class Payment {
     discountCodeConfirmed: boolean = true
     showConfirmation: boolean = false
     course = signal<COURSE | null>(null);
+
     constructor(private route: ActivatedRoute) { }
 
     paymentMethod(method: string) {
@@ -71,24 +72,68 @@ export class Payment {
         })
     }
 
-    calculateTax() {
-        const netPrice = Number(this.course()?.price) || 0;
-        const taxPercent = Number(this.tax()?.percent) || 0;
-        const taxPrice = (netPrice * (1 + taxPercent / 100)) - netPrice;
-        return +Number(taxPrice.toFixed(2))
-    }
+    netPrice = computed(() => Number(this.course()?.price) || 0);
 
-    calculatePrice() {
-        const netPrice = Number(this.course()?.price) || 0;
-        const taxPercent = Number(this.tax()?.percent) || 0;
-        const discountPercent = this.discountCode()?.percent_value ?? 0;
+    discountPercent = computed(() =>
+        this.discountCode()?.percent_value ?? 0
+    );
 
-        // Rabatt anwenden (wenn keiner da ist → 0%)
-        const discountedPrice = netPrice * (1 - discountPercent / 100);
+    taxPercent = computed(() => Number(this.tax()?.percent) || 0);
 
-        // MwSt hinzufügen
-        const grossPrice = discountedPrice * (1 + taxPercent / 100);
+    discountAmount = computed(() =>
+        Number(
+            (this.netPrice() * (this.discountPercent() / 100)).toFixed(2)
+        )
+    );
 
-        return Number(grossPrice.toFixed(2));
+    discountedNetPrice = computed(() =>
+        Number(
+            (this.netPrice() - this.discountAmount()).toFixed(2)
+        )
+    );
+
+
+    // Tax price without disocunt 
+    taxAmount = computed(() =>
+        Number(
+            (this.netPrice() * (this.taxPercent() / 100)).toFixed(2)
+        )
+    );
+
+    // Tax price with discount
+    taxAmountWithDiscount = computed(() =>
+        Number(
+            (this.discountedNetPrice() * (this.taxPercent() / 100)).toFixed(2)
+        )
+    );
+
+    // gross price without discount
+    grossPrice = computed(() =>
+        Number(
+            (this.netPrice() + this.taxAmount()).toFixed(2)
+        )
+    );
+
+    // gross price with discount
+    grossPriceWithDiscount = computed(() =>
+        Number(
+            (this.discountedNetPrice() + this.taxAmountWithDiscount()).toFixed(2)
+        )
+    );
+
+     buyCourse(id: number) {
+        this.courseService.buyCourse(id).subscribe({
+            next: () => {
+                this.mainStateService.displayToast('Der Kurs wurde gekauft', true);
+            },
+            error: (err) => {
+                console.log(err);
+                
+                const message = err?.error?.message || 'Kauf fehlgeschlagen';
+                
+                this.mainStateService.displayToast(message, false);
+                
+            }
+        })
     }
 }

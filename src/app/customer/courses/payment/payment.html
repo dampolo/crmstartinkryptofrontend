@@ -57,11 +57,14 @@
 
       @if (showConfirmation) {
         @if (discountCodeConfirmed) {
-          <div class="discount-success">✔ {{ discountCode() }} aktiviert - 39,80 $ gespart!</div>
+          <div class="discount-success">
+            ✔ {{ discountCode()?.code }} aktiviert -
+            {{ discountAmount() | number: '1.2-2' }} gespart!
+          </div>
         } @else {
           <div class="discount-error">
             <img src="./assets/xbox-x.svg" alt="" />
-            {{ discountCode() }} nicht aktiv
+            {{ discountCode()?.code }} nicht aktiv
           </div>
         }
       }
@@ -75,32 +78,43 @@
         <div class="summary-product">
           <div class="product-img"></div>
           <div>
-            <strong>{{course()?.name}}</strong>
-            <span>Beschrenkte Zugang • {{course()?.features?.length}} Lessons</span>
+            <strong>{{ course()?.name }}</strong>
+            <span>Beschrenkte Zugang • {{ course()?.features?.length }} Lessons</span>
           </div>
         </div>
 
         <div class="summary-prices">
           <div>
             <span>Kurspreis</span>
-            <span>{{course()?.price}}</span>
+
+            <span>{{ course()?.price | number: '1.2-2' }} €</span>
           </div>
           <div class="discount">
-            <span>Rabatt (20%)</span>
-            <span>- {{discountCode()?.percent_value}} €</span>
+            @if (discountCode()) {
+              <span>Rabatt ({{ discountCode()?.percent_value }}%)</span>
+              <span>- {{ discountAmount() | number: '1.2-2' }} €</span>
+            }
           </div>
           <div>
-            <span>{{tax()?.name}} ({{tax()?.percent}}%)</span>
-            <span>{{calculateTax()}} €</span>
+            <span>{{ tax()?.name }} ({{ tax()?.percent | number: '1.2-2' }}%)</span>
+            @if (discountCode()) {
+              <span>{{ taxAmountWithDiscount() | number: '1.2-2' }} €</span>
+            } @else {
+              <span>{{ taxAmount() | number: '1.2-2' }} €</span>
+            }
           </div>
         </div>
 
         <div class="total">
           <span>Gesamt</span>
-          <strong>{{calculatePrice()}} €</strong>
+          @if (discountCode()) {
+            <strong>{{ grossPriceWithDiscount() | number: '1.2-2' }} €</strong>
+          } @else {
+            <strong>{{ grossPrice() | number: '1.2-2' }} €</strong>
+          }
         </div>
 
-        <button class="purchase-btn main-btn-start-in-krypto">Complete Purchase →</button>
+        <button class="purchase-btn main-btn-start-in-krypto">KAUFEN →</button>
 
         <div class="guarantees">
           <span class="icon-text">
