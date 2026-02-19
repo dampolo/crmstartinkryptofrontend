@@ -142,8 +142,9 @@ export class Payment {
                 }
             })
         } else {
+            const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
             this.router.navigate([
-                'customer/my-courses/list-of-lessons'])
+                `customer/courses/payment/${courseId}/paypal`])
         }
     }
 }

@@ -26,6 +26,7 @@ import { ListCourseLessons } from './crm/upload-course/list-course-lessons/list-
 import { AllCourses } from './crm/upload-course/all-courses';
 import { ListOfLessons } from './customer/courses/list-of-lessons/list-of-lessons';
 import { Payment } from './customer/courses/payment/payment';
+import { Paypal } from './customer/courses/payment/paypal/paypal';
 
 
 export const routes: Routes = [
@@ -56,6 +57,8 @@ export const routes: Routes = [
                 path: 'courses',
                 children: [
                     { path: 'payment/:courseId', component: Payment, title: 'Kurs - Zahlung' },
+                    { path: 'payment/:courseId/paypal', component: Paypal, title: 'Kurs - Zahlung - Paypal' },
+
                 ]
             },
             { path: 'my-courses', component: MyCourses, title: 'Meine Kurse' },
