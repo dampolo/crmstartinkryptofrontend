@@ -45,6 +45,7 @@ export interface LESSON {
 }
 
 export interface DISCOUNT_CODE {
+    id: number
     code: string
     percent_value: number
 }

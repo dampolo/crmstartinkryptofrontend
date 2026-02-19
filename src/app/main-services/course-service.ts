@@ -30,9 +30,8 @@ export class CourseService {
     })
   }
 
-  buyCourse(id: number): Observable<any> {
-    return this.http.post<PURCHASE[]>(`${this.baseUrl}purchases/`,
-      { course_id: id },
+  buyCourse(payload: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}purchases/`, payload,
       { withCredentials: true })
   }
 

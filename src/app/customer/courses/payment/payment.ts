@@ -3,7 +3,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
 import { single } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { COURSE, DISCOUNT_CODE, TAX } from '../../../models/course.model';
 import { InvoiceService } from '../../../main-services/invoice-service';
 
@@ -23,13 +23,12 @@ export class Payment {
     discountCodeConfirmed: boolean = true
     showConfirmation: boolean = false
     course = signal<COURSE | null>(null);
+    paymentMethod = signal<string>('paypal');
 
-    constructor(private route: ActivatedRoute) { }
+    constructor(private route: ActivatedRoute, private router: Router) { }
 
-    paymentMethod(method: string) {
-        console.log(method);
-
-        this.selectedPayment = method;
+    setPaymentMethod(method: string) {
+        this.paymentMethod.set(method);
     }
 
     ngOnInit(): void {
@@ -38,7 +37,7 @@ export class Payment {
         this.courseService.getCourse(courseId).subscribe({
             next: (data) => {
                 this.course.set(data)
-                console.log(typeof data);
+                console.log(data);
             },
             error: (err) => {
                 this.mainStateService.displayToast('Systemfehler', false)
@@ -121,19 +120,30 @@ export class Payment {
         )
     );
 
-     buyCourse(id: number) {
-        this.courseService.buyCourse(id).subscribe({
-            next: () => {
-                this.mainStateService.displayToast('Der Kurs wurde gekauft', true);
-            },
-            error: (err) => {
-                console.log(err);
-                
-                const message = err?.error?.message || 'Kauf fehlgeschlagen';
-                
-                this.mainStateService.displayToast(message, false);
-                
-            }
-        })
+    checkoutPayload = computed(() => ({
+        course_id: this.course()?.id,
+        discount: this.discountCode()?.id ?? null
+    }))
+
+    submitOrder() {
+        const payload = this.checkoutPayload()
+        if (this.paymentMethod() === 'bank') {
+            this.courseService.buyCourse(payload).subscribe({
+                next: () => {
+                    this.mainStateService.displayToast('Der Kurs wurde gekauft', true);
+                },
+                error: (err) => {
+                    console.log(err);
+
+                    const message = err?.error?.message || 'Kauf fehlgeschlagen';
+
+                    this.mainStateService.displayToast(message, false);
+
+                }
+            })
+        } else {
+            this.router.navigate([
+                'customer/my-courses/list-of-lessons'])
+        }
     }
 }

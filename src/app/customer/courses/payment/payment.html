@@ -13,7 +13,7 @@
             type="radio"
             name="payment"
             value="paypal"
-            (change)="paymentMethod('paypal')"
+            (change)="setPaymentMethod('paypal')"
             checked
           />
 
@@ -28,7 +28,7 @@
         </label>
 
         <label class="method">
-          <input type="radio" name="payment" value="bank" (change)="paymentMethod('bank')" />
+          <input type="radio" name="payment" value="bank" (change)="setPaymentMethod('bank')" />
 
           <div class="method-info">
             <strong>Banküberweisung</strong>
@@ -114,7 +114,7 @@
           }
         </div>
 
-        <button class="purchase-btn main-btn-start-in-krypto">KAUFEN →</button>
+        <button type="submit" (click)="submitOrder()" class="purchase-btn main-btn-start-in-krypto">KAUFEN →</button>
 
         <div class="guarantees">
           <span class="icon-text">
