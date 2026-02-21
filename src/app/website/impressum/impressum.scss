@@ -1,0 +1,5 @@
+@use './../../../basic';
+
+.imprint-description p a[target="_blank"] {
+  word-break: break-all;
+}

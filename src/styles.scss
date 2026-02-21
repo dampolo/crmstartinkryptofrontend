@@ -22,7 +22,19 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
   margin: 0 0.0625rem 0.0625rem 0.0625rem;
+  background-color: basic.$content-color;
+  min-height: calc(100vh - 177px);
+  color: basic.$main;
+  padding-inline: 1rem;
+  gap: 1rem;
+}
+
+app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .main-content {
@@ -46,8 +58,7 @@ app-header-auth {
   z-index: 1;
 }
 
-app-header-customer,
-app-header {
+app-header-customer {
   display: flex;
   margin: 0.0625rem 0.0625rem 0 0.0625rem;
   height: 4.5rem;
@@ -57,6 +68,15 @@ app-header {
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
+}
+
+app-header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 app-navbar-customer,
@@ -102,6 +122,16 @@ app-company {
   overflow-x: hidden;
   border-radius: 0.75rem;
   gap: 1rem;
+}
+
+app-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: basic.$footer;
+  margin-bottom: 0;
 }
 
 a.new-invoice,
@@ -322,9 +352,98 @@ app-add-new-video {
   }
 }
 
+.faq,
+.appointment,
+.legacy,
+.imprint {
+  flex: 1;
+  margin-top: 0.5rem;
+}
+
+.faq,
+.legacy,
+.imprint {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  background-color: basic.$content-color;
+  padding: 2rem;
+  padding: 7rem 2rem 2rem 2rem;
+  position: relative;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.appointment-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 7rem 2rem 2rem 2rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.imprint-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.legacy-description p,
+.imprint-description p {
+  margin-bottom: 1rem;
+}
+
+.legacy-description h2,
+.imprint-description h2 {
+  font-size: 1.3rem;
+}
+
+.legacy-description h3,
+.imprint-description h3 {
+  font-size: 1.1rem;
+}
+
+.imprint-description p:nth-child(1),
+.imprint-description p:nth-child(2) {
+  font-weight: 700;
+}
+
+.faq a,
+.legacy a,
+.imprint a,
+.appointment-content a {
+  align-self: baseline;
+}
+
+.faq a .strong-arrow,
+.legacy a .strong-arrow,
+.imprint a .strong-arrow,
+.appointment-content a .strong-arrow {
+  transform: rotate(-180deg);
+  width: 2rem;
+}
+
 @media (max-width: 37.5rem) {
   .show-menu {
     display: flex;
+  }
+  .appointment-content,
+  .faq,
+  .legacy,
+  .imprint {
+    padding: 3rem 2rem 2rem 2rem;
   }
 
   app-navbar-customer,

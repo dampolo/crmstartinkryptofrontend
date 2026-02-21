@@ -1,0 +1,94 @@
+@use './../../../basic';
+
+.faq-list-content {
+  max-width: 62.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-block: 0.625rem;
+}
+
+
+summary {
+  position: relative;
+  text-align: start;
+  background: none;
+  background: linear-gradient(180deg, #d6a65357, #8f59073f);
+  border-radius: basic.$border-radius;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  font-weight: 500;
+  scale: 1;
+  cursor: pointer;
+  transition: basic.$first-transition;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-right: 2rem;
+}
+
+summary::after {
+  content: url("/assets/plus.svg");
+  position: absolute;
+  right: 1rem;
+}
+
+details[open] summary::after {
+  content: url("/assets/minus.svg");
+}
+
+summary::marker {
+  content: "";
+}
+
+/* For Safari */
+details::-webkit-details-marker {
+  display: none;
+}
+
+summary:hover {
+  scale: 1.02;
+}
+
+details {
+  position: relative;
+  padding: 10px;
+  interpolate-size: allow-keywords;
+  max-width: 1000px;
+  width: 100%;
+}
+
+details::details-content {
+  transition:
+    block-size 1s,
+    content-visibility 1s allow-discrete;
+  overflow: hidden;
+  block-size: 0;
+}
+
+details[open]::details-content {
+  block-size: auto;
+}
+
+.content-link {
+  padding: 0.5rem 1rem;
+  display: flex;
+  border-radius: basic.$border-radius;
+  background: linear-gradient(180deg, #d6a553, #8f5907);
+  max-width: 8rem;
+  width: 100%;
+  scale: 1;
+  transition: all ease-in-out 150ms;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  align-self: end;
+  margin-bottom: 1rem;
+}
+
+.content-link.cash {
+  max-width: 17rem;
+}
+
+.content-link:hover {
+  scale: 1.02;
+}

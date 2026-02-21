@@ -1,0 +1,241 @@
+@use 'hamburgers/dist/hamburgers.css';
+@use './../../../basic';
+
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.header.reveal {
+  animation: revealHeader 1000ms ease forwards;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+//   max-width: var(--max-width);
+  width: 100%;
+  padding-inline: 1.5rem;
+  box-shadow: basic.$box-shadow;
+  border-radius: basic.$border-radius;
+  margin-inline: 1rem;
+  background: basic.$sixth;
+}
+
+.main-nav .logo {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  font-weight: 600;
+  font-size: 1.4375rem;
+  color: basic.$main;
+  mix-blend-mode: multiply;
+  outline: transparent;
+  border: 2px solid transparent;
+}
+
+.main-nav .logo:focus {
+  border: 2px dotted basic.$primary;
+  outline: basic.$primary;
+}
+
+.logo:focus:not(:focus-visible) {
+  outline: none;
+  border: 2px solid transparent;
+}
+
+.main-nav .logo img {
+  height: 4rem;
+  padding: 0.2rem;
+}
+
+.main-nav .logo img:hover {
+  filter: drop-shadow(2px 4px 6px basic.$primary);
+}
+
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  list-style-type: none;
+}
+
+.main-nav ul li .nav-link {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-size: clamp(1rem, 0.5vw, 2rem);
+  height: 2rem;
+  line-height: 1.725rem;
+  color: inherit;
+  transition: all 125ms ease-in;
+  border: 0.125rem dotted transparent;
+}
+
+.main-nav ul li .nav-link:focus-visible {
+  border: 0.125rem dotted basic.$primary;
+  outline: basic.$primary;
+}
+
+.main-nav ul li .nav-link:active {
+  border: 0.125rem dotted transparent;
+}
+
+.main-nav ul li .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: basic.$main;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 125ms ease-in-out;
+}
+
+.main-nav ul li .nav-link:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.main-nav ul li {
+  opacity: 1;
+  transition: opacity 125ms ease-in-out;
+}
+
+.main-nav ul:hover > li:not(:hover) {
+  opacity: 0.3;
+}
+
+.main-nav ul .languages {
+  transform: translateY(-5px);
+  column-gap: 1.25rem;
+  display: flex;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4375rem;
+}
+
+.main-nav ul .languages button {
+  display: flex;
+  color: basic.$primary;
+  cursor: pointer;
+  border: solid 2px transparent;
+  border-radius: 0.5rem;
+  line-height: normal;
+  padding: 2px;
+}
+
+.main-nav ul .languages button:hover {
+  font-weight: 700;
+}
+
+.main-nav ul .languages button:focus {
+  font-weight: 700;
+}
+
+.main-nav ul .languages .selected {
+  border: solid 2px basic.$primary;
+  border-radius: 0.5rem;
+  line-height: normal;
+  padding: 2px;
+}
+
+.main-nav button {
+  display: none;
+  background: none;
+  z-index: 1;
+}
+
+@media (max-width: 950px) {
+  .main-nav {
+    padding-inline: 1rem;
+  }
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: 100%;
+    display: none;
+    padding-top: 3rem;
+    transition: all 175ms ease-in-out;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 1;
+    box-shadow: basic.$box-shadow;
+    background-color: basic.$content-color;
+    background-image: url("/assets/SK-favicon-colorless.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .main-nav button {
+    display: flex;
+    border: 2px dotted transparent;
+  }
+
+  .main-nav button:focus-visible {
+    border: 2px dotted basic.$primary;
+    outline: basic.$primary;
+  }
+
+  .main-nav .show-menu {
+    display: flex;
+  }
+
+  .main-nav .pos-fix-hamburger {
+    z-index: 4;
+  }
+
+  .remove-menu {
+    display: none;
+  }
+
+  .header-button {
+    display: none;
+  }
+
+  .main-nav .pos-fix-hamburger:focus-visible {
+    border: 2px dotted basic.$primary;
+    outline: basic.$primary;
+  }
+  .main-button-header {
+    display: none;
+  }
+}
+
+@media (max-height: 400px) {
+  .main-nav ul {
+    overflow-y: auto;
+    padding-block: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-nav {
+    height: 3rem;
+    padding-inline: 0;
+  }
+
+  .main-nav .logo img {
+    height: 3rem;
+  }
+
+  .main-nav .pos-fix-hamburger {
+    right: 16px;
+    top: -5px;
+  }
+}

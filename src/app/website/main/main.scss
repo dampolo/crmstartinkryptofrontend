@@ -1,0 +1,823 @@
+@use './../../../basic';
+
+:root {
+  --required: #ff0000;
+  --max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
+}
+
+.header,
+.welcome,
+.quote,
+.about-me,
+.service,
+.road,
+.contact,
+.imprint,
+.appointment,
+.legacy {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.welcome {
+  position: relative;
+}
+
+
+/* WELCOME */
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100svh;
+  width: 100%;
+  max-width: var(--max-width);
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 7rem 2rem 2rem 2rem;
+  margin-inline: 1rem;
+  position: relative;
+  background-color: basic.$content-color;
+  margin: 0.5rem auto 0 auto;
+  gap: 1rem;
+  overflow: hidden;
+  background-image: url("/assets/front-small.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bitcoin {
+  position: absolute;
+  left: 6rem;
+  top: 14rem;
+}
+
+.welcome .welcome-content {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  padding-inline: 2rem;
+  width: 100%;
+}
+
+.welcome-content h1 {
+  text-align: center;
+  font-size: clamp(2.5rem, 3.5vw, 6.5rem);
+  margin-top: -15rem;
+}
+
+.welcome-content p {
+  max-width: 31.25rem;
+  margin: auto;
+  font-size: clamp(0.5rem, 4vw, 1.5rem);
+}
+
+.start {
+  background: linear-gradient(180deg, basic.$primary, basic.$secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.krypto {
+  background: linear-gradient(180deg, basic.$primary, basic.$secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.top-left,
+.top-right,
+.bottom-left,
+.bottom-right {
+  width: 5rem;
+  height: fit-content;
+  margin: auto;
+}
+
+/* WHY WE */
+
+.why-start-in-krypto-content {
+  display: flex;
+}
+
+.why-start-in-krypto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  background-color: basic.$content-color;
+  padding: 2rem;
+  gap: 2rem;
+  margin: auto;
+  background: url("/assets/SK-favicon-colorless.svg") center no-repeat;
+}
+
+.about-me-img {
+  border: 0.25rem solid basic.$primary; /* Inner border */
+  box-shadow: 0 0 0 0.25rem basic.$secondary; /* Outer border */
+  border-radius: 50%;
+  width: 10.5rem;
+}
+
+.why-start-in-krypto-img {
+  object-fit: cover;
+  height: 60vh;
+}
+
+.why-start-in-krypto-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  z-index: 0;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.why-start-in-krypto-img-figcaption {
+  display: none;
+}
+
+/* ABOUT ME */
+
+.about-me {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  background-color: basic.$content-color;
+  padding: 2rem;
+  gap: 2rem;
+  margin: auto;
+}
+
+figcaption {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.why-we-content img {
+  border-radius: 50%;
+  width: 10.5rem;
+}
+
+.about-me-description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-inline: 2rem;
+  gap: 1rem;
+}
+
+.about-me-description {
+  text-align: center;
+  z-index: 0;
+  flex: 3;
+}
+
+.about-me-description p {
+  text-align: start;
+  hyphens: auto;
+  position: relative;
+}
+
+.service-description img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.about-me-description p::before {
+  content: "";
+  background-image: url("/assets/direct-hit.webp");
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -2.2875rem; /* Or however far you want it from the text */
+  top: 0.2rem;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.quote {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 2rem;
+  background-color: basic.$content-color;
+  gap: 1rem;
+  margin: auto;
+}
+.quote img {
+  align-self: flex-start;
+}
+
+blockquote {
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+}
+
+blockquote footer {
+  align-self: flex-end;
+  font-weight: 600;
+  font-style: normal;
+  text-align: end;
+}
+
+blockquote footer a:hover {
+  text-decoration: underline;
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 2rem;
+  background-color: basic.$content-color;
+  gap: 2rem;
+  margin: auto;
+  position: relative;
+}
+
+.our-partner-title,
+.why-start-title,
+.about-me-title,
+.service-title,
+.instagram-title {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.service .my-offer {
+  height: 15rem;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.service-description {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  flex: 3;
+}
+
+.service-description li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  padding: 1rem;
+  flex-basis: 40%;
+  max-width: 40%;
+  gap: 1rem;
+}
+
+.service-description .paragraph:nth-of-type(4) {
+  margin-bottom: 0;
+}
+
+.service-description .quote {
+  font-style: oblique;
+  margin-block: 1rem;
+}
+
+.strong-plus-container {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  margin: 1.5rem;
+  padding: 0.5rem;
+  gap: 1rem;
+  font-weight: 600;
+  z-index: 0;
+}
+
+.strong-plus-container:hover span {
+  filter: drop-shadow(2px 4px 6px basic.$primary);
+}
+
+.strong-plus-container:focus {
+  outline: basic.$focus;
+}
+
+.strong-plus-container:not(:focus-visible) {
+  outline: none;
+}
+
+.strong-arrow {
+  width: 2rem;
+}
+
+.strong-plus-container a:focus,
+.strong-plus-container a:focus-visible {
+  outline: basic.$focus;
+}
+
+.strong-help {
+  border: solid 0.1375rem;
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem;
+  box-shadow: basic.$box-shadow inset;
+  z-index: 0;
+}
+
+.service-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: 3rem;
+}
+
+.service-details li {
+  position: relative;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.service-details li::before {
+  content: "";
+  background-image: url("/assets/confirm.svg");
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -2.5rem;
+  top: 0rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.service span {
+  text-align: center;
+}
+
+/* ROAD */
+
+.road-title {
+  font-size: 1.5rem;
+  text-align: center;
+  z-index: 0;
+}
+
+.road-title-you-way {
+  font-size: 2.5rem;
+}
+
+.your-way {
+  border-radius: 50%;
+  height: 20rem;
+  object-fit: cover;
+  z-index: 0;
+  margin-bottom: 2rem;
+}
+
+.short-description {
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+}
+
+.road {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 2rem;
+  background-color: basic.$content-color;
+  position: relative;
+  background-image: url("/assets/schillernder-original.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  gap: 1rem;
+  margin: auto;
+  color: white;
+}
+
+.road-lists {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 0;
+  border-image: linear-gradoent();
+}
+
+.road::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0));
+  opacity: 0.6;
+  border-radius: basic.$border-radius;
+}
+
+.road-lists li {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-basis: 300px;
+}
+
+.road-lists li .coin {
+  height: 5rem;
+  width: auto;
+  align-self: flex-start;
+}
+
+.road-lists .question {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.service-lists .answer {
+  font-size: 1rem;
+}
+
+/* UNSERE PARTNER */
+
+.our-partners {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 2rem;
+  background-color: basic.$content-color;
+  margin: auto;
+  gap: 1rem;
+}
+
+.partner-list details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.partner-list-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.partner-list details::after {
+  position: absolute;
+  content: "";
+  height: 0.1rem;
+  width: 70%;
+  background: linear-gradient(180deg, #d6a553, #8f5907);
+  margin-inline: auto;
+  bottom: -0.5rem;
+  left: 0;
+  right: 0;
+}
+
+.partner-list details:last-child::after {
+  position: absolute;
+  content: "";
+  height: 0.1rem;
+  width: 70%;
+  background: transparent;
+  margin-inline: auto;
+  bottom: -3rem;
+  left: 0;
+  right: 0;
+}
+
+.partner-list details:last-child {
+  margin-bottom: 0;
+}
+
+/* REVIEW */
+.review {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  height: fit-content;
+  margin: auto;
+  max-width: var(--max-width);
+  gap: 1rem;
+}
+
+.review-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 2rem;
+  background-color: basic.$content-color;
+  gap: 1rem;
+  flex: 1 0 20rem;
+  border-top: 0.25rem solid #d6a553;
+  border-bottom: 0.25rem solid #8f5907;
+}
+
+.review-star {
+  display: flex;
+}
+
+/* INSTAGRAM */
+
+.instagram {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 2rem;
+  background-color: basic.$content-color;
+  margin: auto;
+  gap: 1rem;
+}
+
+.instagram a {
+  color: #2a6496;
+}
+.instagram a span {
+  color: #000000;
+}
+
+.instagram a:hover {
+  text-decoration: underline;
+}
+
+/* CONTACT */
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  max-width: var(--max-width);
+  width: 100%;
+  border-radius: basic.$border-radius;
+  box-shadow: basic.$box-shadow;
+  padding: 2rem;
+  background-color: basic.$content-color;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.telephone,
+.email {
+  display: flex;
+  gap: 1rem;
+  color: inherit;
+}
+
+.telephone,
+.email {
+  color: inherit;
+}
+
+.telephone:hover,
+.email:hover {
+  text-decoration: underline;
+}
+
+.telephone a:focus,
+.email a:focus {
+  outline: basic.$focus;
+}
+
+.qr-code {
+  width: 6rem;
+}
+
+.contact-appointment svg path {
+  color: #000000;
+  transition: basic.$first-transition;
+}
+
+.contact-appointment {
+  background: linear-gradient(180deg, #d6a553, #8f5907);
+  color: #000000;
+  border-radius: basic.$border-radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  transition: basic.$first-transition;
+  width: fit-content;
+  gap: 0.5rem;
+}
+
+.contact-appointment:focus {
+  outline: basic.$focus;
+}
+
+.contact-content .contact-appointment {
+  margin: 2rem;
+}
+
+.contact-appointment:hover {
+  color: #ffff;
+}
+
+.contact-appointment:hover svg path {
+  color: #ffff;
+}
+
+.contact-appointment svg {
+  min-width: 25px;
+  min-height: 25px;
+}
+
+.contact-appointment span {
+  display: contents;
+  font-weight: bold;
+}
+
+.error {
+  display: none;
+}
+
+.active {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: basic.$content-color;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 950px) {
+  .remove-menu {
+    display: none;
+  }
+
+  .header-button {
+    display: none;
+  }
+
+  .why-start-in-krypto-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .service-description {
+    justify-content: start;
+  }
+
+  .service-description li {
+    flex-direction: row;
+    flex-basis: auto;
+    max-width: none;
+  }
+
+  .why-start-in-krypto-img {
+    border: 0.25rem solid basic.$primary; /* Inner border */
+    box-shadow: 0 0 0 0.25rem basic.$primary; /* Outer border */
+    border-radius: 50%;
+    width: 168px;
+    height: 168px;
+  }
+}
+
+@media (max-height: 400px) {
+  .main-nav ul {
+    overflow-y: auto;
+    padding-block: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .welcome {
+    padding: 3rem 0rem 2rem; /*top block bottom */
+  }
+
+  .welcome .welcome-content {
+    padding-inline: 0;
+  }
+
+  .welcome .welcome-content p {
+    padding-inline: 0;
+  }
+  .bitcoin {
+    position: absolute;
+    left: 3rem;
+    top: 24rem;
+  }
+  .top-left,
+  .top-right,
+  .bottom-left,
+  .bottom-right {
+    width: 4rem;
+  }
+
+  .imprint-content,
+  .legacy-content {
+    padding: 5rem 2rem 2rem 2rem;
+  }
+
+  .service .service-description p {
+    line-height: 1.5;
+  }
+
+  .road-lists li {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .strong-plus-container {
+    margin: 0;
+  }
+
+  .contact-appointment {
+    text-align: center;
+  }
+
+  .faq,
+  .legacy,
+  .imprint {
+    padding: 5rem 2rem 2rem 2rem;
+  }
+}

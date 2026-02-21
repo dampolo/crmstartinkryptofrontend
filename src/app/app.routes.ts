@@ -27,10 +27,35 @@ import { AllCourses } from './crm/upload-course/all-courses';
 import { ListOfLessons } from './customer/courses/list-of-lessons/list-of-lessons';
 import { Payment } from './customer/courses/payment/payment';
 import { Paypal } from './customer/courses/payment/paypal/paypal';
+import { Main } from './website/main/main';
+import { Termin } from './website/termin/termin';
+import { Datenschutz } from './website/datenschutz/datenschutz';
+import { Impressum } from './website/impressum/impressum';
+import { Faq } from './website/faq/faq';
+import { LayoutWebsite } from './website/layout-website/layout-website';
+
 
 
 export const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'kurse' },
+
+    // Startseite (index.html)
+    {
+        path: '',
+        component: LayoutWebsite,
+        children: [
+
+            // Startseite (index.html)
+            { path: '', component: Main, title: 'Startseite' },
+
+            // Statische Seiten
+            { path: 'termin', component: Termin, title: 'Termin vereinbaren' },
+            { path: 'datenschutz', component: Datenschutz, title: 'Datenschutz' },
+            { path: 'impressum', component: Impressum, title: 'Impressum' },
+            { path: 'faq', component: Faq, title: 'FAQ' },
+
+        ]
+    },
+    // Kurse Bereich
 
     {
         path: 'kurse',
@@ -65,7 +90,7 @@ export const routes: Routes = [
             {
                 path: 'my-courses',
                 children: [
-                    {path: 'list-of-lessons/:courseId', component: ListOfLessons, title: 'Basic - List'},
+                    { path: 'list-of-lessons/:courseId', component: ListOfLessons, title: 'Basic - List' },
                 ]
             },
             { path: 'customer-profile', component: CustomerProfile, title: 'Kunde' },
@@ -94,8 +119,8 @@ export const routes: Routes = [
             {
                 path: 'kurse',
                 children: [
-                    {path: 'list-lessons', component: ListCourseLessons, title: 'Basic - List'},
-                    {path: 'neue-video', component: AddNewVideo, title: 'Neue Video'}
+                    { path: 'list-lessons', component: ListCourseLessons, title: 'Basic - List' },
+                    { path: 'neue-video', component: AddNewVideo, title: 'Neue Video' }
                 ]
             },
 

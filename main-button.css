@@ -1,41 +1,35 @@
-@use './../../../basic';
-
 .main-button {
-  background: linear-gradient(180deg, basic.$primary, basic.$secondary);
-  color: basic.$main;
-  border-radius: basic.$border-radius;
+  background: linear-gradient(180deg, #d6a553, #8f5907);
+  color: #000000;
+  border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  transition: basic.$first-transition;
+  transition: var(--first-transition);
   width: fit-content;
   gap: 0.5rem;
   text-decoration: none;
   text-align: center;
 }
 
-::ng-deep .main-button.general-button {
+
+.main-button.general-button {
   position: fixed;
   bottom: 1.5625rem;
   right: 1.5625rem;
   z-index: 1000;
   opacity: .5;
-  transition: basic.$first-transition;
+  transition: var(--first-transition);
 }
 
-::ng-deep .main-button.general-button:hover {
+.main-button.general-button:hover {
   opacity: 1;
 }
 
-::ng-deep .main-button-header .main-button-text,
-::ng-deep .main-button.general-button .main-button-text {
-  display: none !important;
-}
-
 .main-button svg path {
-  color: basic.$main;
-  transition: basic.$first-transition;
+  color: #000000;
+  transition: var(--first-transition);
 }
 
 
@@ -44,11 +38,11 @@
 }
 
 .main-button:hover {
-  color: basic.$sixth;
+  color: #ffff;
 }
 
 .main-button:hover svg path {
-  color: basic.$sixth;
+  color: #ffff;
 }
 
 .main-button svg {
@@ -60,7 +54,6 @@
   display: contents;
   font-weight: bold;
 }
-
 
 .main-button.header-button span,
 .main-button.general-button span {

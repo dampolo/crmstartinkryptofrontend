@@ -1,0 +1,11 @@
+@use './../../../basic';
+
+
+.legacy-description .legacy-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.legacy-description p a[target="_blank"] {
+  word-break: break-all;
+}

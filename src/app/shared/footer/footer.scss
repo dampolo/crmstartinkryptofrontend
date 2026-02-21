@@ -1,0 +1,45 @@
+@use './../../../basic';
+
+/* FOOTER */
+
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav a {
+  width: 4rem;
+}
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+nav ul li {
+  transform: scale(1);
+  transition: var(--first-transition);
+}
+
+nav ul li:hover {
+  transform: scale(1.02);
+}
+
+nav ul li a {
+  color: basic.$main;
+}
+
+nav ul li a:focus-visible {
+  outline: basic.$focus;
+}
+
+nav .social-media li a img {
+  width: 2rem;
+}
+
+.footer-copyright {
+  font-size: clamp(0.1rem, 3vw, 1rem);
+}
