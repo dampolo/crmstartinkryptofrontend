@@ -1,6 +1,5 @@
 import {
   ApplicationConfig,
-  importProvidersFrom,
   inject,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners
@@ -10,6 +9,10 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { AuthService } from './main-services/auth-service';
 import { QuillModule } from 'ngx-quill';
+import { provideHttpClient } from '@angular/common/http';
+import { provideTranslateHttpLoader, } from '@ngx-translate/http-loader';
+import { provideTranslateService } from '@ngx-translate/core';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +24,15 @@ export const appConfig: ApplicationConfig = {
     QuillModule,
     provideRouter(routes),
     provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
+    provideTranslateService({
+      lang: 'de',
+      fallbackLang: 'de',
+      loader: provideTranslateHttpLoader({
+        prefix: '/i18n/',
+        suffix: '.json'
+      })
+    }),
   ],
 };
 

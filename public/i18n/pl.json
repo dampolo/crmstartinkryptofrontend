@@ -1,0 +1,15 @@
+{
+  "MENU": {
+    "START": "Start",
+    "YOUR_WAY": "Twoja Droga",
+    "OFFER": "Oferta",
+    "ABOUT_ME": "O mnie",
+    "REVIEWS": "Recenzje",
+    "CONTACT": "Kontakt",
+    "FAQ": "FAQ"
+  },
+  "WELCOME":{
+    "WELCOME": "WITAM",
+    "IN": "na"
+  }
+}

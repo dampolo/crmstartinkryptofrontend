@@ -8,7 +8,7 @@ import { stateService } from '../../services/state-service';
 
 @Component({
   selector: 'app-customer-details',
-  imports: [DatePipe, CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './customer-details.html',
   styleUrl: './customer-details.scss',
 })

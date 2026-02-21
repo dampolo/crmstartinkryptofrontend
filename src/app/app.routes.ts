@@ -43,11 +43,7 @@ export const routes: Routes = [
         path: '',
         component: LayoutWebsite,
         children: [
-
-            // Startseite (index.html)
             { path: '', component: Main, title: 'Startseite' },
-
-            // Statische Seiten
             { path: 'termin', component: Termin, title: 'Termin vereinbaren' },
             { path: 'datenschutz', component: Datenschutz, title: 'Datenschutz' },
             { path: 'impressum', component: Impressum, title: 'Impressum' },
@@ -98,9 +94,10 @@ export const routes: Routes = [
         ],
     },
 
-    { path: '', pathMatch: 'full', redirectTo: 'kurse' },
+    // CRM Login
 
     { path: 'crm/login', component: Login },
+    
     // CRM
     {
         path: 'crm',
