@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
     imports: [CommonModule, AppointmentButton, TranslatePipe, RouterLink],
     templateUrl: './header.html',
     styleUrl: './header.scss',
+    
 })
 export class Header {
     posFixBurger = false;

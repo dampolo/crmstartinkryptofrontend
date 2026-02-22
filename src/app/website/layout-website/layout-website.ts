@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Footer } from '../../shared/footer/footer';
 import { Header } from '../../shared/header/header';
 import { CommonModule } from '@angular/common';
