@@ -3,7 +3,41 @@
     <img src="./assets/SK-logo.svg" alt="Start in Krypto" />
   </a>
 
-  <button
+  <div class="dropdown">
+    <button class="dropbtn" (click)="openLanguages()">
+      <img src="./assets/global.svg" alt="translate" />
+      {{selectedLanguage | uppercase }}
+    </button>
+
+    <ul
+      id="myDropdown"
+      class="languages dropdown-content"
+      [ngClass]="{
+        'show': isLanguagesOpen,
+      }"
+    >
+      <li>
+        <button
+          class="en"
+          (click)="changeLanguage('pl')"
+          [ngClass]="{ selected: selectedLanguage === 'pl' }"
+        >
+          PL
+        </button>
+      </li>
+      <li>
+        <button
+          class="de"
+          (click)="changeLanguage('de')"
+          [ngClass]="{ selected: selectedLanguage === 'de' }"
+        >
+          DE
+        </button>
+      </li>
+    </ul>
+  </div>
+
+    <button
     (click)="openMenu()"
     class="hamburger hamburger--collapse"
     type="button"
@@ -21,32 +55,46 @@
 
   <ul class="menu-list" [ngClass]="{ 'show-menu': isMenuOpen }">
     <li>
-      <a href="/#start" class="nav-link" #navLink (click)="closeMenu()"> {{"MENU.START" | translate}} </a>
+      <a href="/#start" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.START' | translate }}
+      </a>
     </li>
     <li>
-      <a href="/#dein-weg" class="nav-link" #navLink (click)="closeMenu()"> {{"MENU.YOUR_WAY" | translate}} </a>
+      <a href="/#dein-weg" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.YOUR_WAY' | translate }}
+      </a>
     </li>
     <li>
-      <a href="/#angebot" class="nav-link" #navLink (click)="closeMenu()"> {{"MENU.OFFER" | translate}} </a>
+      <a href="/#angebot" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.OFFER' | translate }}
+      </a>
     </li>
     <li>
-      <a href="/#uber-mich" class="nav-link" #navLink (click)="closeMenu()"> {{"MENU.ABOUT_ME" | translate}} </a>
+      <a href="/#uber-mich" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.ABOUT_ME' | translate }}
+      </a>
     </li>
     <li>
-      <a href="/#Rezensionen" class="nav-link" #navLink (click)="closeMenu()"> {{"MENU.REVIEWS" | translate}} </a>
+      <a href="/#Rezensionen" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.REVIEWS' | translate }}
+      </a>
     </li>
     <li>
-      <a href="/#kontakt" class="nav-link" #navLink (click)="closeMenu()"> {{"MENU.CONTACT" | translate}} </a>
+      <a href="/#kontakt" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.CONTACT' | translate }}
+      </a>
     </li>
     <li>
-      <a routerLink="faq" class="nav-link" #navLink (click)="closeMenu()"> {{"MENU.FAQ" | translate}} </a>
-    </li>
-    <li class="languages">
-                    <button class="en" (click)="changeLanguage('pl')" [ngClass]="{'selected': selectedLanguage === 'pl'}">PL</button>
-                    <button class="de" (click)="changeLanguage('de')" [ngClass]="{'selected': selectedLanguage === 'de'}">DE</button>
+      <a routerLink="faq" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.FAQ' | translate }}
+      </a>
     </li>
     <li>
-      <app-appointment-button class="main-button-header" #navLink (click)="closeMenu()"></app-appointment-button>
+      <app-appointment-button
+        class="main-button-header"
+        #navLink
+        (click)="closeMenu()"
+      ></app-appointment-button>
     </li>
   </ul>
 </nav>

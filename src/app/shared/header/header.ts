@@ -14,6 +14,8 @@ export class Header {
     posFixBurger = false;
     posFixLogo = false;
     isMenuOpen = false;
+    isLanguagesOpen = false;
+    selectedLanguage: string = 'de';
     mainStateService = inject(MainStateService);
     private translate = inject(TranslateService);
 
@@ -31,10 +33,16 @@ export class Header {
         this.posFixLogo = false;
     }
 
-    selectedLanguage: string = 'de';
+
+    openLanguages() {
+        this.isLanguagesOpen = !this.isLanguagesOpen;
+
+    }
 
 
     changeLanguage(language: string) {
+        this.selectedLanguage = language;
+        this.isLanguagesOpen = false
         this.translate.use(language);
     }
 }

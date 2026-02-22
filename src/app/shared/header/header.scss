@@ -1,7 +1,6 @@
 @use 'hamburgers/dist/hamburgers.css';
 @use './../../../basic';
 
-
 /* HEADER */
 .header {
   position: fixed;
@@ -20,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
   height: 5rem;
-//   max-width: var(--max-width);
+  //   max-width: var(--max-width);
   width: 100%;
   padding-inline: 1.5rem;
   box-shadow: basic.$box-shadow;
@@ -60,14 +59,14 @@
   filter: drop-shadow(2px 4px 6px basic.$primary);
 }
 
-.main-nav ul {
+.main-nav .menu-list {
   display: flex;
   align-items: center;
   gap: 1.25rem;
   list-style-type: none;
 }
 
-.main-nav ul li .nav-link {
+.main-nav .menu-list li .nav-link {
   position: relative;
   display: flex;
   justify-content: center;
@@ -80,16 +79,16 @@
   border: 0.125rem dotted transparent;
 }
 
-.main-nav ul li .nav-link:focus-visible {
+.main-nav .menu-list li .nav-link:focus-visible {
   border: 0.125rem dotted basic.$primary;
   outline: basic.$primary;
 }
 
-.main-nav ul li .nav-link:active {
+.main-nav .menu-list li .nav-link:active {
   border: 0.125rem dotted transparent;
 }
 
-.main-nav ul li .nav-link::before {
+.main-nav .menu-list li .nav-link::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -102,21 +101,25 @@
   transition: transform 125ms ease-in-out;
 }
 
-.main-nav ul li .nav-link:hover::before {
+.main-nav .menu-list li .nav-link:hover::before {
   transform: scaleX(1);
   transform-origin: left;
 }
 
-.main-nav ul li {
+.main-nav .menu-list li {
   opacity: 1;
   transition: opacity 125ms ease-in-out;
 }
 
-.main-nav ul:hover > li:not(:hover) {
-  opacity: 0.3;
+.main-nav .hamburger {
+  display: none;
+  background: none;
+  z-index: 1;
 }
 
-.main-nav ul .languages {
+// Languages
+
+.dropbtn .languages {
   transform: translateY(-5px);
   column-gap: 1.25rem;
   display: flex;
@@ -125,7 +128,7 @@
   font-size: 1.4375rem;
 }
 
-.main-nav ul .languages button {
+.dropdown .languages button {
   display: flex;
   color: basic.$primary;
   cursor: pointer;
@@ -135,32 +138,71 @@
   padding: 2px;
 }
 
-.main-nav ul .languages button:hover {
+.dropdown .languages button:hover {
   font-weight: 700;
 }
 
-.main-nav ul .languages button:focus {
+.dropdown .languages button:focus {
   font-weight: 700;
 }
 
-.main-nav ul .languages .selected {
+.dropdown .languages .selected {
   border: solid 2px basic.$primary;
   border-radius: 0.5rem;
   line-height: normal;
   padding: 2px;
 }
 
-.main-nav button {
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn img:hover,
+.dropbtn img:focus {
+    filter: drop-shadow(2px 4px 6px basic.$primary);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown .dropdown-content {
   display: none;
-  background: none;
-  z-index: 1;
+  position: absolute;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  border-radius: basic.$border-radius;
+}
+
+.dropdown .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown .dropdown a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block !important;
 }
 
 @media (max-width: 950px) {
   .main-nav {
     padding-inline: 1rem;
   }
-  .main-nav ul {
+  .main-nav .menu-list {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -177,17 +219,17 @@
     z-index: 1;
     box-shadow: basic.$box-shadow;
     background-color: basic.$content-color;
-    background-image: url("/assets/SK-favicon-colorless.svg");
+    background-image: url('/assets/SK-favicon-colorless.svg');
     background-position: center;
     background-repeat: no-repeat;
   }
 
-  .main-nav button {
+  .main-nav .hamburger {
     display: flex;
     border: 2px dotted transparent;
   }
 
-  .main-nav button:focus-visible {
+  .main-nav .hamburger:focus-visible {
     border: 2px dotted basic.$primary;
     outline: basic.$primary;
   }
@@ -218,7 +260,7 @@
 }
 
 @media (max-height: 400px) {
-  .main-nav ul {
+  .main-nav .menu-list {
     overflow-y: auto;
     padding-block: 50px;
   }
