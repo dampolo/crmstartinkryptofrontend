@@ -10,7 +10,9 @@ registerLocaleData(localeDe);
 
 bootstrapApplication(App, {
   ...appConfig,
-  providers: [ provideZoneChangeDetection(),provideHttpClient(),
+  providers: [ provideZoneChangeDetection(),
+    provideHttpClient(),
+    
     ...(appConfig.providers || []),
     { provide: LOCALE_ID, useValue: 'de-DE' } // 🇩🇪 Set locale globally
   ]
