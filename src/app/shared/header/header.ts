@@ -3,10 +3,11 @@ import { AppointmentButton } from '../appointment-button/appointment-button';
 import { MainStateService } from '../../main-services/main-state-service';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-header',
-    imports: [CommonModule, AppointmentButton, TranslatePipe],
+    imports: [CommonModule, AppointmentButton, TranslatePipe, RouterLink],
     templateUrl: './header.html',
     styleUrl: './header.scss',
 })
