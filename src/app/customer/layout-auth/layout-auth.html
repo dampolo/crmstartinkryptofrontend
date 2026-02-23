@@ -1,13 +1,11 @@
-<main>
-  <div class="main-content">
-    <app-header-auth></app-header-auth>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
-  </div>
+<app-header-auth></app-header-auth>
+<main class="main-auth">
+  <router-outlet></router-outlet>
   <app-toast
     [ngClass]="{
       'show-success': mainStateService.showToast,
-      'show-error': mainStateService.showError
+      'show-error': mainStateService.showError,
     }"
   ></app-toast>
 </main>
+<app-footer></app-footer>

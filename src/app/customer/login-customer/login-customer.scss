@@ -222,7 +222,11 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 31.25rem) {
+  .main-content-customer {
+    padding: 0.5rem;
+    margin: 0;
+  }
   .main-content {
     .btn-container {
       gap: 0.875rem;
