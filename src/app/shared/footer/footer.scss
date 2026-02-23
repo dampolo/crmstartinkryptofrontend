@@ -2,7 +2,6 @@
 
 /* FOOTER */
 
-
 nav {
   display: flex;
   flex-direction: column;
@@ -42,4 +41,5 @@ nav .social-media li a img {
 
 .footer-copyright {
   font-size: clamp(0.1rem, 3vw, 1rem);
+  text-align: center;
 }
