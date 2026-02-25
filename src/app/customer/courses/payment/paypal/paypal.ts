@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { PaypalService } from '../../../../main-services/paypal-service';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,13 +9,44 @@ import { HttpClient } from '@angular/common/http';
     styleUrl: './paypal.scss',
 })
 export class Paypal {
-     @ViewChild('paypalButton', { static: true }) paypalElement!: ElementRef;
 
-  constructor(
-    private paypalService: PaypalService,
-    private http: HttpClient
-  ) {}
+    paypalService = inject(PaypalService)
 
-  
+    @ViewChild('paypalButton', { static: true }) paypalElement!: ElementRef<HTMLElement>;
+
+    constructor(
+        private http: HttpClient
+    ) { }
+    async ngOnInit() {
+
+        const paypal = await this.paypalService.loadPayPal();
+
+        if (!paypal) {
+            console.error("PayPal SDK could not be loaded.");
+            return;
+        }
+
+        await paypal.Buttons!({
+            createOrder: () => {
+                return fetch('http://localhost:8000/api/paypal/create-order/', {
+                    method: 'POST'
+                })
+                    .then(res => res.json())
+                    .then(order => order.id);
+            },
+            onApprove: (data) => {
+                return fetch(
+                    `http://localhost:8000/api/paypal/capture-order/${data.orderID}/`,
+                    { method: 'POST' }
+                )
+                    .then(res => res.json())
+                    .then(details => {
+                        console.log("Payment successful:", details);
+                        alert("Payment completed!");
+                    });
+            }
+        }).render(this.paypalElement.nativeElement);
+    }
 
 }
+  
