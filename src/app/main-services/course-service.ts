@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { COURSE, DISCOUNT_CODE, LESSON, PURCHASE, PURCHASED_COURSE } from '../models/course.model';
-import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
