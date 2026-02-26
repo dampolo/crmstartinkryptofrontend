@@ -1,6 +1,8 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { PaypalService } from '../../../../main-services/paypal-service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environment/environment';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-paypal',
@@ -9,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
     styleUrl: './paypal.scss',
 })
 export class Paypal {
+    private baseUrl = environment.apiBaseUrl;
 
     paypalService = inject(PaypalService)
 
@@ -17,8 +20,8 @@ export class Paypal {
     constructor(
         private http: HttpClient
     ) { }
-    async ngOnInit() {
 
+    async ngOnInit() {
         const paypal = await this.paypalService.loadPayPal();
 
         if (!paypal) {
@@ -26,27 +29,35 @@ export class Paypal {
             return;
         }
 
-        await paypal.Buttons!({
-            createOrder: () => {
-                return fetch('http://localhost:8000/api/paypal/create-order/', {
-                    method: 'POST'
-                })
-                    .then(res => res.json())
-                    .then(order => order.id);
+        paypal.Buttons!({
+
+            createOrder: async () => {
+                const response: any = await firstValueFrom(
+                    this.http.post(
+                        `${this.baseUrl}paypal/create-order/`,
+                        {amount: 15},
+                        { withCredentials: true }
+                    )
+                );
+                console.log("orderID from PAYPAL: ", response.orderID);
+                
+                return response.orderID;
             },
-            onApprove: (data) => {
-                return fetch(
-                    `http://localhost:8000/api/paypal/capture-order/${data.orderID}/`,
-                    { method: 'POST' }
-                )
-                    .then(res => res.json())
-                    .then(details => {
-                        console.log("Payment successful:", details);
-                        alert("Payment completed!");
-                    });
+
+            onApprove: async (data: any) => {
+                const response: any = await firstValueFrom(
+                    this.http.post(
+                        `${this.baseUrl}paypal/capture-order/`,
+                        { orderID: data.orderID },
+                        { withCredentials: true }
+                    )
+                );
+
+                console.log("Payment completed:", response);
             }
+
         }).render(this.paypalElement.nativeElement);
     }
 
 }
-  
+
