@@ -128,6 +128,8 @@ export class Payment {
     submitOrder() {
         const payload = this.checkoutPayload()
         if (this.paymentMethod() === 'bank') {
+            console.log(payload);
+            
             this.courseService.buyCourse(payload).subscribe({
                 next: () => {
                     this.mainStateService.displayToast('Der Kurs wurde gekauft', true);
@@ -143,8 +145,14 @@ export class Payment {
             })
         } else {
             const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
-            this.router.navigate([
-                `customer/courses/payment/${courseId}/paypal`])
+            console.log(payload);
+            
+            this.router.navigate(
+                [`customer/courses/payment/${courseId}/paypal`],
+                {
+                    state: { payload: payload }   // 👈 forward here
+                }
+            )
         }
     }
 }
