@@ -1,28 +1,47 @@
-  <a class="arrow-back" routerLink="/customer/my-courses">
-    <app-back></app-back>
-  </a>
+<a class="arrow-back" routerLink="/customer/my-courses">
+  <app-back></app-back>
+</a>
 
-<h1> Kurs - Basic </h1>
+<h1>Kurs - Basic</h1>
 
-<div class="container">
-  <div class="header">
-    <h2>Course Curriculum</h2>
+<div class="main-container">
+  <!-- HERE -->
+  @if(selectedVideo) {
+
+  <div>
+    <h2>{{ title }}</h2>
+    <video [src]="selectedVideo" controls width="10000" ></video>
+    <p>
+      {{ description_under_video }}
+    </p>
   </div>
+  }
+  
+  <div class="container">
+    <div class="header">
+      <h2>Videos</h2>
+    </div>
 
-  <ul class="lesson-list">
-    @for(lesson of lessons(); track lesson.id) {
-
-        <li class="lesson">
+    <ul class="lesson-list">
+      @for (lesson of lessons(); track lesson.id) {
+        <li>
+          <a
+            (click)="
+              selectLesson(lesson.title, lesson.video, lesson.description); $event.preventDefault()
+            "
+            class="lesson"
+          >
             <div class="left">
-                <img src="./assets/movie.svg" alt="" />
-                <div>
-                    <strong>{{lesson.order | number: '1.0'}} - {{lesson.description}}</strong>
-                    <small>VIDEO LESSON</small>
-                </div>
+              <img src="./assets/movie.svg" alt="" />
+              <div>
+                <strong>{{ lesson.order | number: '1.0' }} - {{ lesson.title }}</strong>
+                <small>VIDEO LESSON</small>
+              </div>
             </div>
             <span class="meta">04:20</span>
+          </a>
         </li>
-    }
-  </ul>
-
+      }
+    </ul>
+  </div>
 </div>

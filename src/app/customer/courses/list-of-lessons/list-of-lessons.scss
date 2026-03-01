@@ -1,5 +1,10 @@
 @use './../../../../basic';
 
+.main-container {
+  display: flex;
+  gap: 1rem;
+}
+
 .container {
   max-width: 900px;
   width: 100%;
@@ -120,4 +125,8 @@ small.editing {
 
 .add-lesson:hover {
   background: #f9fafb;
+}
+
+video {
+  width: 150rem;
 }

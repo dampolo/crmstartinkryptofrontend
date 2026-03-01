@@ -7,27 +7,47 @@ import { DecimalPipe } from '@angular/common';
 import { Back } from '../../../shared/back/back';
 
 @Component({
-  selector: 'app-list-of-lessons',
-  imports: [DecimalPipe, Back, RouterLink],
-  templateUrl: './list-of-lessons.html',
-  styleUrl: './list-of-lessons.scss',
+    selector: 'app-list-of-lessons',
+    imports: [DecimalPipe, Back, RouterLink],
+    templateUrl: './list-of-lessons.html',
+    styleUrl: './list-of-lessons.scss',
 })
 export class ListOfLessons {
     lessons = signal<LESSON[]>([]);
     courseService = inject(CourseService)
-    mainStateService = inject(MainStateService);    
-    constructor(private route: ActivatedRoute){}
+    mainStateService = inject(MainStateService);
+    constructor(private route: ActivatedRoute) { }
+
+    selectedVideo: string | null = null
+    description_under_video: string = ""
+    title: string = ""
+
+
 
     ngOnInit(): void {
-      const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
-      this.courseService.getLessons(courseId).subscribe({
-        next: (data) => {
-          this.lessons.set(data)
-          console.log(data);
-        },
-        error: (err) => {
-          this.mainStateService.displayToast('Systemfehler', false)
-        }
-      })
+        const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
+        this.courseService.getLessons(courseId).subscribe({
+            next: (data) => {
+                this.lessons.set(data)
+                console.log(data);
+            },
+            error: (error: any) => {
+                console.log(error);
+
+
+                const message =
+                    error?.error?.message ||
+                    error?.error?.detail ||
+                    "Something went wrong";
+
+                this.mainStateService.displayToast(message, false);
+            }
+        })
+    }
+
+    selectLesson(title: string, videoUrl: string | null, description: string) {
+        this.title = title
+        this.selectedVideo = videoUrl;
+        this.description_under_video = description
     }
 }
