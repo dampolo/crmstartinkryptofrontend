@@ -5,10 +5,11 @@ import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { DecimalPipe } from '@angular/common';
 import { Back } from '../../../shared/back/back';
+import { DurationPipe } from '../../../pipes/duration-pipe';
 
 @Component({
     selector: 'app-list-of-lessons',
-    imports: [DecimalPipe, Back, RouterLink],
+    imports: [DecimalPipe, Back, RouterLink, DurationPipe],
     templateUrl: './list-of-lessons.html',
     styleUrl: './list-of-lessons.scss',
 })
@@ -21,8 +22,8 @@ export class ListOfLessons {
     selectedVideo: string | null = null
     description_under_video: string = ""
     title: string = ""
-
-
+    order: string = ""
+    videoDuration: string | null = null;
 
     ngOnInit(): void {
         const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
@@ -43,11 +44,19 @@ export class ListOfLessons {
                 this.mainStateService.displayToast(message, false);
             }
         })
+
     }
 
-    selectLesson(title: string, videoUrl: string | null, description: string) {
+    selectLesson(order: string, title: string, videoUrl: string | null, description: string, duration: number) {
+        this.order = order
         this.title = title
         this.selectedVideo = videoUrl;
         this.description_under_video = description
+    }
+
+    formatDuration(seconds: number){
+        const minutes = Math.floor(seconds / 60);
+        const remaining = seconds % 60;
+        return `${minutes}:${remaining.toString().padStart(2, '0')}`;
     }
 }

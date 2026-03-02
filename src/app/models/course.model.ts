@@ -42,6 +42,7 @@ export interface LESSON {
     description_under_video: string;
     order: string;
     status: 'draft' | 'published';
+    duration: number;
 }
 
 export interface DISCOUNT_CODE {
