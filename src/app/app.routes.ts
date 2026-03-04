@@ -87,11 +87,11 @@ export const routes: Routes = [
                 path: 'my-courses',
                 children: [
                     {
-                        path: 'list-of-lessons/:courseId',
+                        path: ':courseId/list-of-lessons',
                         component: ListOfLessons
                     },
                     {
-                        path: 'list-of-lessons/:courseId/lesson/:lessonId',
+                        path: ':courseId/list-of-lessons/lesson/:lessonId',
                         component: ListOfLessons
                     }
                 ]
