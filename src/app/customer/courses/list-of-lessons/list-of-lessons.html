@@ -6,14 +6,14 @@
 
 <div class="main-container">
   <!-- HERE -->
-  @if (selectedVideo) {
-    <div>
-      <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
-      <video #videoPlayer [src]="selectedVideo" controls width="10000"></video>
-      <p>
-        {{ description_under_video }}
-      </p>
-    </div>
+  @if (selectedLessonId) {
+  <div>
+    <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
+    <video #videoPlayer [src]="selectedVideo" controls width="10000"></video>
+    <p>
+      {{ description_under_video }}
+    </p>
+  </div>
   }
 
   <div class="container">
@@ -25,17 +25,18 @@
       @for (lesson of lessons(); track lesson.id) {
         <li>
           <a
-            (click)="
-              selectLesson(
-                lesson.order,
-                lesson.title,
-                lesson.video,
-                lesson.description,
-                lesson.duration
-              );
-              $event.preventDefault()
-            "
             class="lesson"
+            [routerLink]="[
+              '/customer',
+              'my-courses',
+              'list-of-lessons',
+              courseId,
+              'lesson',
+              lesson.id,
+            ]"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="selectLesson(lesson)"
           >
             <div class="left">
               <img src="./assets/movie.svg" alt="" />
@@ -45,7 +46,7 @@
               </div>
             </div>
             <span class="meta">
-              {{ lesson.duration | duration}}
+              {{ lesson.duration | duration }}
             </span>
           </a>
         </li>

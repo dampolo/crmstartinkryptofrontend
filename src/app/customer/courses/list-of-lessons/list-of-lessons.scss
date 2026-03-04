@@ -52,8 +52,10 @@
   background: basic.$fourteenth;
 }
 
-.lesson.active {
-  background: #fff7ed;
+.active.lesson {
+  background: #e0f0ff;
+  border-left: 4px solid #0078ff;
+  color: #0078ff;
 }
 
 .lesson.locked {

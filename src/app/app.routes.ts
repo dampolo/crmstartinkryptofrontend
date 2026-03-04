@@ -86,7 +86,14 @@ export const routes: Routes = [
             {
                 path: 'my-courses',
                 children: [
-                    { path: 'list-of-lessons/:courseId', component: ListOfLessons, title: 'Basic - List' },
+                    {
+                        path: 'list-of-lessons/:courseId',
+                        component: ListOfLessons
+                    },
+                    {
+                        path: 'list-of-lessons/:courseId/lesson/:lessonId',
+                        component: ListOfLessons
+                    }
                 ]
             },
             { path: 'customer-profile', component: CustomerProfile, title: 'Kunde' },
@@ -97,7 +104,7 @@ export const routes: Routes = [
     // CRM Login
 
     { path: 'crm/login', component: Login },
-    
+
     // CRM
     {
         path: 'crm',
