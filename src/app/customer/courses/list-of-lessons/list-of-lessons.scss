@@ -5,6 +5,11 @@
   gap: 1rem;
 }
 
+.video-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   max-width: 900px;
   width: 100%;
@@ -13,6 +18,22 @@
   border-radius: 14px;
   box-shadow: basic.$box-shadow;
   padding: 24px;
+}
+
+.pdf {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pdf:hover {
+  color: basic.$primary;
+}
+
+
+[href$=".pdf"]::before {
+  content: url('../../../../../public/assets/paperclip.svg');
+  transform: rotate(45deg);
 }
 
 .header {
@@ -49,13 +70,13 @@
 }
 
 .lesson:hover {
-  background: basic.$fourteenth;
+  background: basic.$third;
 }
 
 .active.lesson {
-  background: #e0f0ff;
-  border-left: 4px solid #0078ff;
-  color: #0078ff;
+  background: basic.$primary;
+  border-left: 4px solid basic.$secondary;
+  color: basic.$main;
 }
 
 .lesson.locked {
@@ -126,7 +147,7 @@ small.editing {
 }
 
 .add-lesson:hover {
-  background: #f9fafb;
+  background: basic.$fifth;
 }
 
 video {

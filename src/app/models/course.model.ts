@@ -24,6 +24,12 @@ export interface PURCHASED_COURSE {
     language: string;
 }
 
+export interface PDF {
+    id: number;
+    title: string;
+    file: string
+}
+
 export interface PURCHASE {
     id: number;
     course: PURCHASED_COURSE;
@@ -43,6 +49,7 @@ export interface LESSON {
     order: string;
     status: 'draft' | 'published';
     duration: number;
+    pdfs: PDF[]
 }
 
 export interface DISCOUNT_CODE {

@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { LESSON } from '../../../models/course.model';
+import { LESSON, PDF } from '../../../models/course.model';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { DecimalPipe } from '@angular/common';
 import { Back } from '../../../shared/back/back';
 import { DurationPipe } from '../../../pipes/duration-pipe';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-list-of-lessons',
@@ -18,7 +19,8 @@ export class ListOfLessons {
     courseService = inject(CourseService)
     mainStateService = inject(MainStateService);
     constructor(private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private sanitizer: DomSanitizer
     ) { }
 
     courseId?: number;
@@ -28,6 +30,7 @@ export class ListOfLessons {
     title: string = ""
     order: string = ""
     videoDuration: number | null = null;
+    pdfs: PDF[] = [];
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
@@ -72,9 +75,14 @@ export class ListOfLessons {
         this.selectedVideo = lesson.video;
         this.description_under_video = lesson.description
         this.videoDuration = lesson.duration
+        this.pdfs = lesson.pdfs
     }
 
     loadLesson(lesson: LESSON) {
         this.selectLesson(lesson);
+    }
+
+    getSafePdfUrl(url: string): SafeResourceUrl {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 }

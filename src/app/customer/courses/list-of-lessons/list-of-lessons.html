@@ -6,15 +6,29 @@
 
 <div class="main-container">
   <!-- HERE -->
-  @if (selectedLessonId) {
-  <div>
-    <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
-    <video #videoPlayer [src]="selectedVideo" controls width="10000"></video>
-    <p>
-      {{ description_under_video }}
-    </p>
+
+  <div class="video-content">
+    @if (selectedLessonId) {
+      <div>
+        <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
+        <video #videoPlayer [src]="selectedVideo" controls width="10000" loop></video>
+        <p>
+          {{ description_under_video }}
+        </p>
+      </div>
+
+      <!-- PDF Viewer (HTML only) -->
+      @for (pdf of pdfs; track pdf.id) {
+        <div class="pdf">
+          <object [data]="getSafePdfUrl(pdf.file)" type="application/pdf">
+            <a class="pdf" [href]="getSafePdfUrl(pdf.file)" target="_blank" rel="noopener">
+              {{ pdf.title }} 
+              </a>
+          </object>
+        </div>
+      }
+    }
   </div>
-  }
 
   <div class="container">
     <div class="header">
