@@ -9,24 +9,28 @@
 
   <div class="video-content">
     @if (selectedLessonId) {
-      <div>
-        <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
-        <video #videoPlayer [src]="selectedVideo" controls width="10000" loop></video>
-        <p>
-          {{ description_under_video }}
-        </p>
-      </div>
-
-      <!-- PDF Viewer (HTML only) -->
-      @for (pdf of pdfs; track pdf.id) {
-        <div class="pdf">
-          <object [data]="getSafePdfUrl(pdf.file)" type="application/pdf">
-            <a class="pdf" [href]="getSafePdfUrl(pdf.file)" target="_blank" rel="noopener">
-              {{ pdf.title }} 
-              </a>
-          </object>
+        <div class="video">
+            <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
+            <video #videoPlayer [src]="selectedVideo" controls width="10000" loop></video>
         </div>
-      }
+        <div class="video-info">
+            <input id="checkbox" type="checkbox">
+            <p class="description">{{ description }}</p>
+            <p class="description-under-video">
+            {{ description_under_video }}
+            <label class="but" for="checkbox">...mehr</label>
+            </p>
+            
+            @for (pdf of pdfs; track pdf.id) {
+                <div class="pdf">
+                    <a class="pdf" [href]="pdf.file" target="_blank" rel="noopener">
+                        {{ pdf.title }}
+                    </a>
+                </div>
+            }
+            
+            <label for="checkbox">Weniger anzeigen</label>
+        </div>
     }
   </div>
 

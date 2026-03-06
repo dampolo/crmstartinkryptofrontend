@@ -26,7 +26,9 @@ export class ListOfLessons {
     courseId?: number;
 
     selectedVideo: string | null = null
+    description: string = ""
     description_under_video: string = ""
+
     title: string = ""
     order: string = ""
     videoDuration: number | null = null;
@@ -73,7 +75,9 @@ export class ListOfLessons {
         this.order = lesson.order
         this.title = lesson.title
         this.selectedVideo = lesson.video;
-        this.description_under_video = lesson.description
+        this.description = lesson.description
+        this.description_under_video = lesson.description_under_video
+
         this.videoDuration = lesson.duration
         this.pdfs = lesson.pdfs
     }
@@ -82,7 +86,4 @@ export class ListOfLessons {
         this.selectLesson(lesson);
     }
 
-    getSafePdfUrl(url: string): SafeResourceUrl {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-    }
 }
