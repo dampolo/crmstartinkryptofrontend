@@ -172,6 +172,7 @@ video {
   border-radius: basic.$border-radius;
   padding: 0.625rem;
   transition: max-height 600ms ease;
+  position: relative;
 }
 
 #checkbox {
@@ -187,6 +188,17 @@ label {
   max-height: 62.5rem;
 }
 
-.video-info:has(#checkbox:checked) p label {
+.mehr {
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.5rem;
+}
+
+.less:hover,
+.mehr:hover {
+  color: basic.$secondary;
+}
+
+.video-info:has(#checkbox:checked) .mehr {
   display: none;
 }
