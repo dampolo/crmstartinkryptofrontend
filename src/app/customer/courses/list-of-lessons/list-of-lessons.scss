@@ -188,17 +188,17 @@ label {
   max-height: 62.5rem;
 }
 
-.mehr {
+.more {
   position: absolute;
   bottom: 0.2rem;
   right: 0.5rem;
 }
 
 .less:hover,
-.mehr:hover {
+.more:hover {
   color: basic.$secondary;
 }
 
-.video-info:has(#checkbox:checked) .mehr {
+.video-info:has(#checkbox:checked) .more {
   display: none;
 }
