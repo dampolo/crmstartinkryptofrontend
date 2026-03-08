@@ -9,28 +9,44 @@
 
   <div class="video-content">
     @if (selectedLessonId) {
-        <div class="video">
-            <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
-            <video #videoPlayer [src]="selectedVideo" controls width="10000" loop></video>
+      <h2>{{ order | number: '1.0' }} - {{ title }}</h2>
+      <div class="video" (mousemove)="showControls()" (mouseleave)="hideControls()">
+        <video
+          #videoPlayer
+          [src]="selectedVideo"
+          controls
+          loop
+        ></video>
+        <div class="custom-controls" [class.hidden]="controlsHidden">
+          @if (isPlaying) {
+            <button class="play" (click)="playVideo()">
+              <img src="./assets/play.svg" alt="play" />
+            </button>
+          } @else {
+            <button class="pause" (click)="pauseVideo()">
+              <img src="./assets/pause.svg" alt="pause" />
+            </button>
+          }
         </div>
-        <div class="video-info">
-            <input id="checkbox" type="checkbox">
-            <p class="description">{{ description }}</p>
-            <p class="description-under-video">
-            {{ description_under_video }}
-            <label class="more" for="checkbox">mehr</label>
-            </p>
-            
-            @for (pdf of pdfs; track pdf.id) {
-                <div class="pdf">
-                    <a class="pdf" [href]="pdf.file" target="_blank" rel="noopener">
-                        {{ pdf.title }}
-                    </a>
-                </div>
-            }
-            
-            <label class="less" for="checkbox">Weniger anzeigen</label>
-        </div>
+      </div>
+      <div class="video-info">
+        <input id="checkbox" type="checkbox" />
+        <p class="description">{{ description }}</p>
+        <p class="description-under-video">
+          {{ description_under_video }}
+          <label class="more" for="checkbox">mehr</label>
+        </p>
+
+        @for (pdf of pdfs; track pdf.id) {
+          <div class="pdf">
+            <a class="pdf" [href]="pdf.file" target="_blank" rel="noopener">
+              {{ pdf.title }}
+            </a>
+          </div>
+        }
+
+        <label class="less" for="checkbox">Weniger anzeigen</label>
+      </div>
     }
   </div>
 

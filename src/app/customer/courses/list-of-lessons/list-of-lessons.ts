@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild, viewChild } from '@angular/core';
 import { LESSON, PDF } from '../../../models/course.model';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
@@ -23,7 +23,12 @@ export class ListOfLessons {
         private sanitizer: DomSanitizer
     ) { }
 
+    @ViewChild("videoPlayer") videoPlayer!: ElementRef<HTMLVideoElement>
+
     courseId?: number;
+    isPlaying = true;
+    controlsHidden = false;
+    private hideTimer: any;
 
     selectedVideo: string | null = null
     description: string = ""
@@ -86,4 +91,34 @@ export class ListOfLessons {
         this.selectLesson(lesson);
     }
 
+    playVideo() {
+        this.videoPlayer.nativeElement.play();
+        this.isPlaying = false
+    }
+
+    pauseVideo() {
+        this.videoPlayer.nativeElement.pause();
+        this.isPlaying = true
+    }
+
+    stopVideo() {
+        const vid = this.videoPlayer.nativeElement;
+        vid.pause();
+        vid.currentTime = 0;
+    }
+
+
+    showControls() {
+        this.controlsHidden = false;
+
+        clearTimeout(this.hideTimer);
+
+        this.hideTimer = setTimeout(() => {
+            this.controlsHidden = true;
+        }, 2500);
+    }
+
+    hideControls() {
+        this.controlsHidden = true;
+    }
 }
