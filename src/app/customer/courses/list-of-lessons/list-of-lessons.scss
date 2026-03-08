@@ -13,12 +13,12 @@
 }
 
 .container {
-  max-width: 900px;
+  max-width: 56.25rem;
   width: 100%;
   background: basic.$sixth;
   border-radius: basic.$border-radius;
   box-shadow: basic.$box-shadow;
-  padding: 24px;
+  padding: 1.5rem;
 }
 
 .description {
@@ -51,7 +51,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .header h2 {
@@ -59,9 +59,9 @@
 }
 
 .header-actions .icon {
-  margin-left: 12px;
+  margin-left: .75rem;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .lesson-list {
@@ -74,9 +74,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 12px;
+  padding: .875rem .75rem;
   border-radius: basic.$border-radius;
-  margin-bottom: 8px;
+  margin-bottom: .5rem;
   transition: background 0.2s;
 }
 
@@ -86,7 +86,7 @@
 
 .active.lesson {
   background: basic.$primary;
-  border-left: 4px solid basic.$secondary;
+  border-left: .25rem solid basic.$secondary;
   color: basic.$main;
 }
 
@@ -97,27 +97,7 @@
 .left {
   display: flex;
   align-items: center;
-  gap: 14px;
-}
-
-.badge {
-  width: 36px;
-  height: 36px;
-  border-radius: basic.$border-radius;
-  display: grid;
-  place-items: center;
-  background: basic.$sixth;
-  font-size: 16px;
-}
-
-.badge.play {
-  background: #fef3c7;
-  color: #b45309;
-}
-
-.badge.play.active {
-  background: #f59e0b;
-  color: white;
+  gap: .875rem;
 }
 
 strong {
@@ -126,7 +106,7 @@ strong {
 }
 
 small {
-  font-size: 12px;
+  font-size: .75rem;
   color: #6b7280;
 }
 
@@ -136,7 +116,7 @@ small.editing {
 }
 
 .meta {
-  font-size: 14px;
+  font-size: .875rem;
   color: basic.$twelfth;
 }
 
@@ -148,10 +128,10 @@ small.editing {
 .add-lesson {
   display: block;
   width: 100%;
-  margin-top: 20px;
-  padding: 16px;
-  border: 2px dashed basic.$border-color;
-  border-radius: 12px;
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border: .125rem dashed basic.$border-color;
+  border-radius: .75rem;
   text-align: center;
   color: #6b7280;
   transition: background 0.2s;
@@ -163,6 +143,7 @@ small.editing {
 
 video {
   width: 150rem;
+  border-radius: basic.$border-radius;
 }
 
 .video {
@@ -178,7 +159,7 @@ video {
   transform: translateX(-50%) translateY(-50%);
   width: 100%;
   height: 85%;
-  margin-top: -30px;
+  margin-top: -1.875rem;
 }
 
 .custom-controls .play,
@@ -192,9 +173,9 @@ video {
 
 .custom-controls .play img,
 .custom-controls .pause img{
-  width: 50px;
-  height: 50px;
-  margin-top: 30px;
+  width: 3.125rem;
+  height: 3.125rem;
+  margin-top: 1.875rem;
 }
 .custom-controls.hidden {
   opacity: 0;
