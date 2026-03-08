@@ -199,7 +199,7 @@ video {
 .custom-controls.hidden {
   opacity: 0;
   scale: 0;
-  pointer-events: none;
+  cursor: none;
 }
 
 .video-info {
@@ -238,4 +238,11 @@ label {
 
 .video-info:has(#checkbox:checked) .more {
   display: none;
+}
+
+
+@media (max-width: 800px) {
+  .main-container {
+    flex-direction: column;
+  }
 }

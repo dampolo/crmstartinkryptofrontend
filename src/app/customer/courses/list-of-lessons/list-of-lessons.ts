@@ -101,13 +101,6 @@ export class ListOfLessons {
         this.isPlaying = true
     }
 
-    stopVideo() {
-        const vid = this.videoPlayer.nativeElement;
-        vid.pause();
-        vid.currentTime = 0;
-    }
-
-
     showControls() {
         this.controlsHidden = false;
 
@@ -115,6 +108,8 @@ export class ListOfLessons {
 
         this.hideTimer = setTimeout(() => {
             this.controlsHidden = true;
+            console.log('TEST');
+            
         }, 2500);
     }
 
