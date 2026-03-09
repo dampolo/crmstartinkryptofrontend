@@ -32,7 +32,7 @@
       </div>
       <div class="video-info">
         <input id="checkbox" type="checkbox" />
-        <p class="description">{{ description }}</p>
+        <h3 class="description">{{ description }}</h3>
         <p class="description-under-video">
           {{ description_under_video }}
           <label class="more" for="checkbox">mehr</label>
@@ -60,7 +60,7 @@
       @for (lesson of lessons(); track lesson.id) {
         <li>
           <a
-            class="lesson"
+            class="lesson-container"
             [routerLink]="[
               '/customer',
               'my-courses',
@@ -74,9 +74,9 @@
             (click)="selectLesson(lesson)"
           >
             <div class="left">
-              <img src="./assets/movie.svg" alt="" />
-              <div>
-                <strong>{{ lesson.order | number: '1.0' }} - {{ lesson.title }}</strong>
+              <img class="video-img" src="./assets/SK-favicon.svg" alt="" />
+              <div class="lesson">
+                <h2 class="lesson-title">{{ lesson.order | number: '1.0' }} - {{ lesson.title }}</h2>
                 <small>{{ lesson.description }}</small>
               </div>
             </div>

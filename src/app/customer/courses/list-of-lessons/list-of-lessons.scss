@@ -15,10 +15,11 @@
 .container {
   max-width: 56.25rem;
   width: 100%;
+  min-width: 19rem;
   background: basic.$sixth;
   border-radius: basic.$border-radius;
   box-shadow: basic.$box-shadow;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .description {
@@ -40,6 +41,7 @@
 
 .pdf:hover {
   color: basic.$secondary;
+  text-decoration: underline;
 }
 
 [href$='.pdf']::before {
@@ -51,7 +53,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem
 }
 
 .header h2 {
@@ -70,27 +72,27 @@
   margin: 0;
 }
 
-.lesson {
+.lesson-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .875rem .75rem;
+  padding: .75rem;
   border-radius: basic.$border-radius;
   margin-bottom: .5rem;
   transition: background 0.2s;
 }
 
-.lesson:hover {
+.lesson-container:hover {
   background: basic.$third;
 }
 
-.active.lesson {
+.active.lesson-container {
   background: basic.$primary;
   border-left: .25rem solid basic.$secondary;
   color: basic.$main;
 }
 
-.lesson.locked {
+.lesson-container.locked {
   opacity: 0.45;
 }
 
@@ -100,9 +102,24 @@
   gap: .875rem;
 }
 
-strong {
+.video-img {
+  max-width: 5rem;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background-color: basic.$main;
+  border-radius: basic.$border-radius;
+}
+
+.lesson {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-title {
   display: block;
   font-weight: 600;
+  font-size: .875rem;
 }
 
 small {
@@ -213,17 +230,26 @@ label {
   right: 0.5rem;
 }
 
+
+
 .less:hover,
 .more:hover {
   color: basic.$secondary;
+}
+
+.less {
+  display: none;
 }
 
 .video-info:has(#checkbox:checked) .more {
   display: none;
 }
 
+.video-info:has(#checkbox:checked) .less {
+  display: flex;
+}
 
-@media (max-width: 50rem) {
+@media (max-width: 62.5rem) {
   .main-container {
     flex-direction: column;
   }
