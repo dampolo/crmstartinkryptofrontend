@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment/environment';
-import { Invoice, InvoiceCreate } from '../../models/invoice.model';
+import { INVOICE, InvoiceCreate } from '../../models/invoice.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,8 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) {}
 
-  getInvoices():Observable<Invoice[]>{
-    return this.http.get<Invoice[]>(`${this.baseUrl}invoices/`,{
+  getInvoices():Observable<INVOICE[]>{
+    return this.http.get<INVOICE[]>(`${this.baseUrl}invoices/`,{
       withCredentials: true
     })
   }

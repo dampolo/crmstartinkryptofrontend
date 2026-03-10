@@ -33,6 +33,9 @@ import { Datenschutz } from './website/datenschutz/datenschutz';
 import { Impressum } from './website/impressum/impressum';
 import { Faq } from './website/faq/faq';
 import { LayoutWebsite } from './website/layout-website/layout-website';
+import { MyInvoices } from './customer/settings/my-invoices/my-invoices';
+import { Others } from './customer/settings/others/others';
+import { Settings } from './customer/settings/settings';
 
 
 
@@ -95,6 +98,12 @@ export const routes: Routes = [
                         component: ListOfLessons
                     }
                 ]
+            },
+            {
+                path: 'einstellungen',
+                loadChildren: () =>
+                    import('./customer/settings/settings.routing').then(m => m.default),
+
             },
             { path: 'customer-profile', component: CustomerProfile, title: 'Kunde' },
             { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },

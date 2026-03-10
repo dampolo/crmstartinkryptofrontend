@@ -7,7 +7,7 @@ export const CLIENT_ROUTES: Routes = [
     path: '',
     component: LayoutCustomer,
     children: [
-      { path: 'my-courses', component: MyCourses },
+      // { path: 'my-courses', component: MyCourses },
     ],
   },
 ];

@@ -1,35 +1,33 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { stateService } from '../services/state-service';
-import { InvoiceService } from '../services/invoice-service';
-import { INVOICE } from '../../models/invoice.model';
+import { INVOICE } from '../../../models/invoice.model';
+import { MainStateService } from '../../../main-services/main-state-service';
+import { InvoiceService } from '../../../main-services/invoice-service';
 
 @Component({
-  standalone: true,
-  selector: 'app-invoices',
+  selector: 'app-my-invoices',
   imports: [RouterLink, RouterOutlet],
-  templateUrl: './invoices.html',
-  styleUrl: './invoices.scss',
+  templateUrl: './my-invoices.html',
+  styleUrl: './my-invoices.scss',
 })
-export class Invoices {
+export class MyInvoices {
   invoiceService = inject(InvoiceService);
-  stateService = inject(stateService);
+  mainStateService = inject(MainStateService);
   openMenuId: number | null = null;
   invoices = signal<INVOICE[]>([]);
 
-  ngOnInit(): void {
+    ngOnInit(): void {
     this.invoiceService.getInvoices().subscribe({
       next: (invoices) => {
         this.invoices.set(invoices);
-        console.log(invoices);
       },
       error: (err) => {
-        this.stateService.displayToast('SystemFehler');
+        this.mainStateService.displayToast('SystemFehler', false);
       },
     });
   }
 
-  toggleMenu(id: number) {
+    toggleMenu(id: number) {
     this.openMenuId = this.openMenuId === id ? null : id;
   }
 }

@@ -33,7 +33,7 @@ export interface InvoiceCreate {
 }
 
 // GET
-export interface Invoice {
+export interface INVOICE {
   id: number;
   invoice_number: string;
 
