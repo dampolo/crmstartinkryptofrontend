@@ -17,7 +17,7 @@ export class MyInvoices {
   invoices = signal<INVOICE[]>([]);
 
     ngOnInit(): void {
-    this.invoiceService.getInvoices().subscribe({
+    this.invoiceService.getCustomerInvoices().subscribe({
       next: (invoices) => {
         this.invoices.set(invoices);
       },

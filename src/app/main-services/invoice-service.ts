@@ -19,8 +19,8 @@ export class InvoiceService {
     })
   }
 
-  getInvoices(): Observable<INVOICE[]> {
-    return this.http.get<INVOICE[]>(`${this.baseUrl}invoices/`, {
+  getCustomerInvoices(): Observable<INVOICE[]> {
+    return this.http.get<INVOICE[]>(`${this.baseUrl}my-invoices/`, {
       withCredentials: true
     })
   }
