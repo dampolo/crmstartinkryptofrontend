@@ -6,7 +6,7 @@ import { InvoiceService } from '../../../main-services/invoice-service';
 
 @Component({
   selector: 'app-my-invoices',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink],
   templateUrl: './my-invoices.html',
   styleUrl: './my-invoices.scss',
 })
