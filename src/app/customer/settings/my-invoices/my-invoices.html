@@ -5,37 +5,20 @@
         <thead class="">
             <tr>
                 <td class="">Rechnungsnr.</td>
-                <td class="">Typ</td>
-                <td class="">Name</td>
+                <td class="">Datum</td>
+                <td class="">Service</td>
                 <td class="">Status</td>
-                <td class="">Detail</td>
+                <td class="">PDF</td>
             </tr>
         </thead>
         <tbody class="">
              @for (invoice of invoices(); track invoice.id) {
             <tr class="table">
                 <td>{{ invoice.invoice_number }}</td>
-                <td>{{ invoice.invoice_type }}</td>
-                <td>{{ invoice.user_customer_first_name }} {{ invoice.user_customer_last_name }}</td>
+                <td>{{ invoice.created_at | date: 'dd.MM.yyyy' }}</td>
+                <td>{{ invoice.service_name }}</td>
                 <td>{{ invoice.invoice_status }}</td>
-                <td class="crmSK-td-edit">
-                    <button class="crmSK-icon-three-dots" (click)="toggleMenu(invoice.id)">
-                        <img src="/assets/three.svg" alt="edit">
-                    </button>
-
-                    <ul role="menu" class="crmSK-popper" [class.show]="openMenuId === invoice.id">
-                        <li class="crmSK-popper-li" [routerLink]="['/kunden', invoice.id]">
-                            Ansehen
-                        </li>
-                        <li class="crmSK-popper-li">
-                            Löschen
-                        </li>
-                        <li class="crmSK-popper-li" [routerLink]="['/kunden', invoice.id, 'comments']">
-                            Kommentar hin. 
-                        </li>
-                    </ul>
-
-                </td>
+                <td><a href="http://"></a>{{ invoice.id}}</td>
             </tr>
             }
 

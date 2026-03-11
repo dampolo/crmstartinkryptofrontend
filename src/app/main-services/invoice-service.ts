@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TAX } from '../models/course.model';
 import { environment } from '../../environment/environment';
-import { INVOICE } from '../models/invoice.model';
+import { INVOICE_CUSTOMER } from '../models/invoice.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +19,8 @@ export class InvoiceService {
     })
   }
 
-  getCustomerInvoices(): Observable<INVOICE[]> {
-    return this.http.get<INVOICE[]>(`${this.baseUrl}my-invoices/`, {
+  getCustomerInvoices(): Observable<INVOICE_CUSTOMER[]> {
+    return this.http.get<INVOICE_CUSTOMER[]>(`${this.baseUrl}my-invoices/`, {
       withCredentials: true
     })
   }

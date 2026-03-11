@@ -78,3 +78,11 @@ export interface INVOICE {
 
   services: ServiceCatalog[];
 }
+
+export interface INVOICE_CUSTOMER {
+  id: number;
+  invoice_number: string;
+  invoice_status: PaymentStatus;
+  service_name: string;
+  created_at: string;
+}
