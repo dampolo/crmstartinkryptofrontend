@@ -24,5 +24,4 @@ export class InvoiceService {
       withCredentials: true
     })
   }
-
 }

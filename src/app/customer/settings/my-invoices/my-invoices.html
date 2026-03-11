@@ -18,7 +18,9 @@
                 <td>{{ invoice.created_at | date: 'dd.MM.yyyy' }}</td>
                 <td>{{ invoice.service_name }}</td>
                 <td>{{ invoice.invoice_status }}</td>
-                <td><a href="http://"></a>{{ invoice.id}}</td>
+                <td>
+                    <a class="invoice" [href]="baseUrl + 'invoices/' + invoice.id + '/pdf/?download=true'">PDF</a>
+                </td>
             </tr>
             }
 
