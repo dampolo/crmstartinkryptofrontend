@@ -5,6 +5,11 @@ export enum InvoiceType {
   CREDIT_NOTE = 'credit_note',
 }
 
+export enum InvoiceCategory {
+  COURSE = 'course',
+  SERVICE = 'service',
+}
+
 export enum PaymentStatus {
   PENDING = 'pending',
   UNPAID = 'unpaid',
@@ -83,6 +88,7 @@ export interface INVOICE_CUSTOMER {
   id: number;
   invoice_number: string;
   invoice_status: PaymentStatus;
+  invoice_category: InvoiceCategory;
   service_name: string;
   created_at: string;
 }

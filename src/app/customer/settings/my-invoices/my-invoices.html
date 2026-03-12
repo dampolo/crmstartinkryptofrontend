@@ -19,7 +19,13 @@
                 <td>{{ invoice.service_name }}</td>
                 <td>{{ invoice.invoice_status }}</td>
                 <td>
-                    <a class="invoice" [href]="baseUrl + 'invoices/' + invoice.id + '/pdf/?download=true'">PDF</a>
+                    @if (invoice.invoice_category === "course") {
+                        <a class="invoice" [href]="baseUrl + 'invoices/' + invoice.id + '/pdf_course/?download=true'">PDF</a>
+                    }
+                    @else {
+                        <a class="invoice" [href]="baseUrl + 'invoices/' + invoice.id + '/pdf/?download=true'">PDF</a>
+
+                    }
                 </td>
             </tr>
             }
