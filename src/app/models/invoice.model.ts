@@ -5,6 +5,20 @@ export enum InvoiceType {
   CREDIT_NOTE = 'credit_note',
 }
 
+export enum PaymentMethod {
+    PAYPAL = 'paypal',
+    BANK_TRANSFER = 'bank_transfer',
+    CASH = 'cash',
+    PAYU = 'payu'
+}
+
+export const PaymentMethodLabel: Record<PaymentMethod, string> = {
+  [PaymentMethod.PAYPAL]: 'PayPal',
+  [PaymentMethod.BANK_TRANSFER]: 'Bank Transfer',
+  [PaymentMethod.CASH]: 'Cash',
+  [PaymentMethod.PAYU]: 'PayU',
+};
+
 export enum InvoiceCategory {
   COURSE = 'course',
   SERVICE = 'service',

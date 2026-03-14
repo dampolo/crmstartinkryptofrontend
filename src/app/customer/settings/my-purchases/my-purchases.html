@@ -1,0 +1,38 @@
+<h1 class="title">Rechnungen</h1>
+
+<section>
+    <table class="">
+        <thead class="">
+            <tr>
+                <td class="">Rechnungsnr.</td>
+                <td class="">Datum</td>
+                <td class="">Service</td>
+                <td class="">Status</td>
+                <td class="">Total</td>
+                <td class="">PDF</td>
+            </tr>
+        </thead>
+        <tbody class="">
+             @for (purchase of purchases(); track purchase.id) {
+            <tr class="table">
+                <td>{{ purchase.invoice_number }}</td>
+                <td>{{ purchase.status }}</td>
+                <td>{{ purchase.invoice_category }}</td>
+                <td>{{ PaymentMethodLabel[purchase.payment_method] }}</td>
+                <td>{{ purchase.total }}</td>
+
+                <td>
+                    @if (purchase.invoice_category === "course") {
+                        <a class="invoice" [href]="baseUrl + 'invoices/' + purchase.id + '/pdf_course/?download=true'">PDF</a>
+                    }
+                    @else {
+                        <a class="invoice" [href]="baseUrl + 'invoices/' + purchase.id + '/pdf/?download=true'">PDF</a>
+
+                    }
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</section>
