@@ -19,10 +19,16 @@ export const PaymentMethodLabel: Record<PaymentMethod, string> = {
   [PaymentMethod.PAYU]: 'PayU',
 };
 
+
 export enum InvoiceCategory {
   COURSE = 'course',
   SERVICE = 'service',
 }
+
+export const PaymentCategoryLabel: Record<InvoiceCategory, string> = {
+  [InvoiceCategory.COURSE]: 'Kurs',
+  [InvoiceCategory.SERVICE]: 'Dienstleistung',
+};
 
 export enum PaymentStatus {
   PENDING = 'pending',

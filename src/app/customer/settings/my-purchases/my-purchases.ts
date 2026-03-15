@@ -4,7 +4,7 @@ import { environment } from '../../../../environment/environment';
 import { DatePipe } from '@angular/common';
 import { PURCHASE_CUSTOMER } from '../../../models/purchase.model';
 import { PurchaseService } from '../../../main-services/purchase-service';
-import { PaymentMethodLabel } from '../../../models/invoice.model';
+import { PaymentCategoryLabel, PaymentMethodLabel } from '../../../models/invoice.model';
 
 @Component({
     selector: 'app-my-purchases',
@@ -18,6 +18,8 @@ export class MyPurchases {
     baseUrl = environment.apiBaseUrl;
     purchases = signal<PURCHASE_CUSTOMER[]>([]);
     PaymentMethodLabel = PaymentMethodLabel;
+    PaymentCategoryLabel = PaymentCategoryLabel;
+
 
         ngOnInit(): void {
         this.purchaseService.getCustomerPurchases().subscribe({

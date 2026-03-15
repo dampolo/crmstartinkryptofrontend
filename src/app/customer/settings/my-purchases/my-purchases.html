@@ -17,7 +17,7 @@
             <tr class="table">
                 <td>{{ purchase.invoice_number }}</td>
                 <td>{{ purchase.status }}</td>
-                <td>{{ purchase.invoice_category }}</td>
+                <td>{{ PaymentCategoryLabel[purchase.invoice_category] }}</td>
                 <td>{{ PaymentMethodLabel[purchase.payment_method] }}</td>
                 <td>{{ purchase.total }}</td>
 
