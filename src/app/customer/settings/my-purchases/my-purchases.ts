@@ -1,14 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { environment } from '../../../../environment/environment';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { PURCHASE_CUSTOMER } from '../../../models/purchase.model';
 import { PurchaseService } from '../../../main-services/purchase-service';
-import { PaymentCategoryLabel, PaymentMethodLabel } from '../../../models/invoice.model';
+import { PaymentCategoryLabel, PaymentMethodLabel, PaymentStatusLabels } from '../../../models/invoice.model';
 
 @Component({
     selector: 'app-my-purchases',
-    imports: [DatePipe],
+    imports: [DatePipe, DecimalPipe],
     templateUrl: './my-purchases.html',
     styleUrl: './my-purchases.scss',
 })
@@ -19,6 +19,7 @@ export class MyPurchases {
     purchases = signal<PURCHASE_CUSTOMER[]>([]);
     PaymentMethodLabel = PaymentMethodLabel;
     PaymentCategoryLabel = PaymentCategoryLabel;
+    PaymentStatusLabels = PaymentStatusLabels
 
 
         ngOnInit(): void {

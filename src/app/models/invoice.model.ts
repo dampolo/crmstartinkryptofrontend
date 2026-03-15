@@ -37,6 +37,13 @@ export enum PaymentStatus {
   CANCELED = 'canceled',
 }
 
+export const PaymentStatusLabels: Record<PaymentStatus, string> = {
+  [PaymentStatus.PENDING]: 'Ausstehend',
+  [PaymentStatus.UNPAID]: 'Unbezahlt',
+  [PaymentStatus.PAID]: 'Bezahlt',
+  [PaymentStatus.CANCELED]: 'Storniert',
+};
+
 export enum PriceType {
   FIXED = 'fixed',
   PERCENT = 'percent',

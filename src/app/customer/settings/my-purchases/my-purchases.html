@@ -10,7 +10,6 @@
                 <td class="">Service</td>
                 <td class="">Zahlung</td>
                 <td class="">Total</td>
-                <td class="">PDF</td>
             </tr>
         </thead>
         <tbody class="">
@@ -18,20 +17,10 @@
             <tr class="table">
                 <td>{{ purchase.invoice_number }}</td>
                 <td>{{ purchase.created_at | date: 'dd.MM.yyyy' }}</td>
-                <td>{{ purchase.status }}</td>
+                <td>{{ PaymentStatusLabels[purchase.status] }}</td>
                 <td>{{ PaymentCategoryLabel[purchase.invoice_category] }}</td>
                 <td>{{ PaymentMethodLabel[purchase.payment_method] }}</td>
-                <td>{{ purchase.total }}</td>
-
-                <td>
-                    @if (purchase.invoice_category === "course") {
-                        <a class="invoice" [href]="baseUrl + 'invoices/' + purchase.id + '/pdf_course/?download=true'">PDF</a>
-                    }
-                    @else {
-                        <a class="invoice" [href]="baseUrl + 'invoices/' + purchase.id + '/pdf/?download=true'">PDF</a>
-
-                    }
-                </td>
+                <td>{{ purchase.total | number: '1.2-2' }} € </td>
             </tr>
             }
 
