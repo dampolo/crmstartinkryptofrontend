@@ -8,4 +8,5 @@ export interface PURCHASE_CUSTOMER {
   payment_method: PaymentMethod;
   status: PaymentStatus;
   total: string;
+  created_at: string;
 }

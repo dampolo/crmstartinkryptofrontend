@@ -1,4 +1,4 @@
-<h1 class="title">Rechnungen</h1>
+<h1 class="title">Bestellungen</h1>
 
 <section>
     <table class="">
@@ -6,8 +6,9 @@
             <tr>
                 <td class="">Rechnungsnr.</td>
                 <td class="">Datum</td>
-                <td class="">Service</td>
                 <td class="">Status</td>
+                <td class="">Service</td>
+                <td class="">Zahlung</td>
                 <td class="">Total</td>
                 <td class="">PDF</td>
             </tr>
@@ -16,6 +17,7 @@
              @for (purchase of purchases(); track purchase.id) {
             <tr class="table">
                 <td>{{ purchase.invoice_number }}</td>
+                <td>{{ purchase.created_at | date: 'dd.MM.yyyy' }}</td>
                 <td>{{ purchase.status }}</td>
                 <td>{{ PaymentCategoryLabel[purchase.invoice_category] }}</td>
                 <td>{{ PaymentMethodLabel[purchase.payment_method] }}</td>
