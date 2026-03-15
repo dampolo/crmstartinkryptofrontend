@@ -2,7 +2,9 @@ import { InvoiceCategory, PaymentMethod, PaymentStatus } from "./invoice.model";
 
 
 export interface PURCHASE_CUSTOMER {
-  id: number;
+  id: string;
+  course_id: string;
+  discount: string;
   invoice_number: string;
   invoice_category: InvoiceCategory;
   payment_method: PaymentMethod;

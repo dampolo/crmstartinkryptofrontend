@@ -22,7 +22,6 @@ export class Paypal {
     constructor(
         private http: HttpClient,
         private router: Router,
-
     ) { }
 
     async ngOnInit() {

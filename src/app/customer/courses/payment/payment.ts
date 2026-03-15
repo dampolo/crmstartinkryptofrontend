@@ -150,7 +150,7 @@ export class Payment {
             this.router.navigate(
                 [`customer/courses/payment/${courseId}/paypal`],
                 {
-                    state: { payload: payload }   // 👈 forward here
+                    state: { payload: payload }   // forward here
                 }
             )
         }

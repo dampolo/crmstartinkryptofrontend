@@ -1,29 +1,39 @@
 <h1 class="title">Bestellungen</h1>
 
-<section>
+@if (purchases().length !== 0) {
+  <section>
     <table class="">
-        <thead class="">
-            <tr>
-                <td class="">Rechnungsnr.</td>
-                <td class="">Datum</td>
-                <td class="">Status</td>
-                <td class="">Service</td>
-                <td class="">Zahlung</td>
-                <td class="">Total</td>
-            </tr>
-        </thead>
-        <tbody class="">
-             @for (purchase of purchases(); track purchase.id) {
-            <tr class="table">
+      <thead class="">
+        <tr>
+          <td class="">Rechnungsnr.</td>
+          <td class="">Datum</td>
+          <td class="">Status</td>
+          <td class="">Service</td>
+          <td class="">Zahlung</td>
+          <td class="">Total</td>
+        </tr>
+      </thead>
+      <tbody class="">
+        @for (purchase of purchases(); track purchase.id) {
+          <tr class="table">
+            @if(purchase.invoice_number === null) {
+                <td>
+                    <button class="main-btn-start-in-krypto" (click)="buyCourse(purchase.course_id, purchase.discount)">Kaufen</button>
+                </td>
+            } @else {
                 <td>{{ purchase.invoice_number }}</td>
-                <td>{{ purchase.created_at | date: 'dd.MM.yyyy' }}</td>
-                <td>{{ PaymentStatusLabels[purchase.status] }}</td>
-                <td>{{ PaymentCategoryLabel[purchase.invoice_category] }}</td>
-                <td>{{ PaymentMethodLabel[purchase.payment_method] }}</td>
-                <td>{{ purchase.total | number: '1.2-2' }} € </td>
-            </tr>
             }
-
-        </tbody>
+            <td>{{ purchase.created_at | date: 'dd.MM.yyyy' }}</td>
+            <td>{{ PaymentStatusLabels[purchase.status] }}</td>
+            <td>{{ PaymentCategoryLabel[purchase.invoice_category] }}</td>
+            <td>{{ PaymentMethodLabel[purchase.payment_method] }}</td>
+            <td>{{ purchase.total | number: '1.2-2' }} €</td>
+          </tr>
+        }
+      </tbody>
     </table>
-</section>
+  </section>
+}
+@else { 
+    Du hast keine Bestellungen
+}
