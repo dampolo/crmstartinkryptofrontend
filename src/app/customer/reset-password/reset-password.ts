@@ -70,7 +70,7 @@ export class ResetPassword {
 		this.authService.resetPassword(password, this.uid, this.token).subscribe({
 			next: () => {
 				this.mainStateService.showConfirmationText.set('Das Passwort wurde erfolgreich geändert.')
-				this.mainStateService.showConfirmationLink.set(true);
+				this.mainStateService.showConfirmationLink.set('login');
 				this.router.navigate(['confirmation']);
 			},
 			error: () => {

@@ -10,6 +10,12 @@
     <p>
       {{ mainStateService.showConfirmationText() }}
     </p>
+    @if(mainStateService.showConfirmationLink() === 'login') {
       <a routerLink="/kurse/login">Anmelden</a>
+
+    } @else if (mainStateService.showConfirmationLink() === 'course') {
+      <a routerLink="/customer/my-courses">Deine Kurse</a>
+    }
+
   </div>
 </section>

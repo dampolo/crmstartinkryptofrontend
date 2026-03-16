@@ -76,13 +76,13 @@ export const routes: Routes = [
         // canActivate: [authGuard],
         children: [
             { path: 'dashboard', component: DashboardCustomer },
+            { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
             { path: 'courses', component: Courses, title: 'Kurse' },
             {
                 path: 'courses',
                 children: [
                     { path: 'payment/:courseId', component: Payment, title: 'Kurs - Zahlung' },
                     { path: 'payment/:courseId/paypal', component: Paypal, title: 'Kurs - Zahlung - Paypal' },
-
                 ]
             },
             { path: 'my-courses', component: MyCourses, title: 'Meine Kurse' },

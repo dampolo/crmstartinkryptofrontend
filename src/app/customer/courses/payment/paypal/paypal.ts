@@ -70,6 +70,9 @@ export class Paypal {
                     )
                 );
 
+                this.mainStateService.showConfirmationText.set('Die Bezahlung war erfolgreich.')
+				this.mainStateService.showConfirmationLink.set('course');
+				this.router.navigate(['/customer/confirmation']);
                 console.log("Payment completed:", response);
             }
 

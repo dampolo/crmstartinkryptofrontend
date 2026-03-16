@@ -73,7 +73,7 @@ export class CreateAccount {
     this.authService.createUser(email, password, repeated_password, 'customer').subscribe({
       next: (user: User) => {
             this.mainStateService.showConfirmationText.set('Du bist erfolgreich registriert. Du kannst dich jetzt anmleden!')
-            this.mainStateService.showConfirmationLink.set(true)
+            this.mainStateService.showConfirmationLink.set('login')
             this.router.navigate(['/kurse/confirmation'])
       },
       error: (error) => {

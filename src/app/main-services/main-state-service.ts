@@ -13,7 +13,7 @@ export class MainStateService {
   isForgotPasswordVisible: boolean = false;
   showToastText = signal('');
   showConfirmationText = signal('');
-  showConfirmationLink = signal(false);
+  showConfirmationLink = signal('');
 
 
   removeShowToast() {
