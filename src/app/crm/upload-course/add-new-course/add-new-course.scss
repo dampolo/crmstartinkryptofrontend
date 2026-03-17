@@ -120,6 +120,7 @@ label {
   color: basic.$main;
 }
 
+select,
 input[type='text'],
 textarea {
   width: 100%;
@@ -128,7 +129,6 @@ textarea {
   border: 1px solid basic.$border-color;
   background: basic.$sixth;
   font-size: 15px;
-  color: basic.$sixth;
   transition:
     border-color 0.2s,
     box-shadow 0.2s;

@@ -36,6 +36,7 @@ import { LayoutWebsite } from './website/layout-website/layout-website';
 import { MyInvoices } from './customer/settings/my-invoices/my-invoices';
 import { Others } from './customer/settings/others/others';
 import { Settings } from './customer/settings/settings';
+import { AddNewCourse } from './crm/upload-course/add-new-course/add-new-course';
 
 
 
@@ -133,7 +134,9 @@ export const routes: Routes = [
                 path: 'kurse',
                 children: [
                     { path: 'list-lessons', component: ListCourseLessons, title: 'Basic - List' },
-                    { path: 'neue-video', component: AddNewVideo, title: 'Neue Video' }
+                    { path: 'new-video', component: AddNewVideo, title: 'Neue Video' },
+                    { path: 'new-course', component: AddNewCourse, title: 'Neuer Kurs' }
+
                 ]
             },
 

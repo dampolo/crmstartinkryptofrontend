@@ -3,29 +3,80 @@
 </a>
 <h1>Neue Video</h1>
 
-<section class="section-title">
-  <div class="section-card">
-    <div class="section-left">
+<form class="section-title" [formGroup]="mainData" (ngSubmit)="sumbitMainData()">
+    <div class="section-card">
+        
+        <div class="section-left">
+        <div class="card-header">Name - Promotion - Rheinfolge</div>
       <div class="section-meta">
-        <span class="badge">Name des Kurses</span>
-        <span class="section-number">1.4</span>
+        <!-- Badge -->
+        <input
+          id="badge"
+          formControlName="badge"
+          placeholder="pro"
+          [ngClass]="showEdit ? '' : 'show-edit'"
+          type="text"
+        />
+        <span [ngClass]="showEdit ? 'show-edit' : ''" class="badge">{{ mainData.get('badge')?.value }}</span>
+
+        <!-- Order -->
+        <input
+          id="order"
+          formControlName="order"
+          placeholder="number"
+          [ngClass]="showEdit ? '' : 'show-edit'"
+          type="text"
+        />
+        <span [ngClass]="showEdit ? 'show-edit' : ''" class="section-number">{{ mainData.get('order')?.value }}</span>
       </div>
-      <input id="title" name="title" [ngClass]="showEdit ? '' : 'show-edit'" type="text"/>
-      <h2 [ngClass]="showEdit ? 'show-edit' : ''"  class="title">Einfühurng - Krypto</h2>
+      <input
+        id="title"
+        formControlName="title"
+        placeholder="title"
+        [ngClass]="showEdit ? '' : 'show-edit'"
+        type="text"
+      />
+      <h2 [ngClass]="showEdit ? 'show-edit' : ''" class="title">{{ mainData.get('title')?.value }}</h2>
     </div>
 
-    <button (click)="editTitle()" [ngClass]="showEdit ? 'show-edit' : ''" class="edit-button">
+    <button
+      type="button"
+      (click)="editTitle()"
+      [ngClass]="showEdit ? 'show-edit' : ''"
+      class="edit-button"
+    >
       <!-- Pencil Icon -->
       <img src="./assets/edit.svg" alt="edit" />
       Ändern
     </button>
-    <button (click)="saveTitle()" [ngClass]="showEdit ? '' : 'show-edit'" class="save-button">
+
+    <button type="submit" [ngClass]="showEdit ? '' : 'show-edit'" class="save-button">
       <!-- Pencil Icon -->
       <img src="./assets/check.svg" alt="ok" />
       ok
     </button>
   </div>
-</section>
+</form>
+
+<!-- Status -->
+
+<form class="general-information" [formGroup]="statusForm" (ngSubmit)="onSubmit()">
+  <div class="card">
+    <div class="card-header">Staus</div>
+
+    <div class="card-body">
+      <select class="form-group" id="status" formControlName="status">
+        <option value="draft">Draft</option>
+        <option value="published">Published</option>
+      </select>
+      <button type="submit" [ngClass]="showEdit ? '' : 'show-edit'" class="save-button">
+        <!-- Pencil Icon -->
+        <img src="./assets/check.svg" alt="ok" />
+        ok
+      </button>
+    </div>
+  </div>
+</form>
 
 <!-- Title and short describtion -->
 
