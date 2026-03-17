@@ -1,15 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Header } from '../header/header';
-import { Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
-import { stateService } from '../services/state-service';
 import { Toast } from '../../shared/toast/toast';
 import { MainStateService } from '../../main-services/main-state-service';
+import { HeaderCrm } from "../header-crm/header-crm";
 
 @Component({
   selector: 'app-layout',
-  imports: [CommonModule, Header, Navbar, RouterOutlet, Toast],
+  imports: [CommonModule, Navbar, RouterOutlet, Toast, HeaderCrm],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })

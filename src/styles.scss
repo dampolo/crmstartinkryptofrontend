@@ -81,6 +81,7 @@ app-header-auth {
   z-index: 1;
 }
 
+app-header-crm,
 app-header-customer {
   display: flex;
   margin: 0.0625rem 0.0625rem 0 0.0625rem;
@@ -93,14 +94,6 @@ app-header-customer {
   gap: 1rem;
 }
 
-app-header {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
 
 app-navbar-customer,
 app-navbar {
@@ -268,7 +261,7 @@ app-login {
   display: flex;
   justify-content: center;
   align-items: center;
-  // height: 100dvh;
+  height: 100dvh;
   background-color: basic.$body-bg;
 }
 

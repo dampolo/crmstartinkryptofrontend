@@ -8,13 +8,13 @@ import { Logo } from '../../shared/logo/logo';
 
 @Component({
 	standalone: true,
-	selector: 'app-header',
+	selector: 'app-header-crm',
 	imports: [CommonModule, Logo],
-	templateUrl: './header.html',
-	styleUrl: './header.scss'
+	templateUrl: './header-crm.html',
+	styleUrl: './header-crm.scss'
 })
 
-export class Header {
+export class HeaderCrm {
 	mainStateService = inject(MainStateService);
 	authService = inject(AuthService);
 	posFixBurger = false;
