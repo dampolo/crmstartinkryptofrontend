@@ -77,7 +77,6 @@ export class AddNewCourse {
     }
     editStatus() {
         this.showStatus = !this.showStatus;
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
     }
 
     submitStatus() {
