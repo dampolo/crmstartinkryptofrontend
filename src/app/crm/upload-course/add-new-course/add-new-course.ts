@@ -12,8 +12,18 @@ import { MainStateService } from '../../../main-services/main-state-service';
 })
 export class AddNewCourse {
     showEdit = true;
+    showDescription = true;
+    showPrice = true;
+    showStatus = true
+
+
     statusForm: FormGroup;
-    mainData: FormGroup;
+    mainDataForm: FormGroup;
+
+    shortDescriptionForm: FormGroup
+    featuresForm: FormGroup
+    priceForm: FormGroup
+
     mainStateService = inject(MainStateService);
 
 
@@ -24,32 +34,64 @@ export class AddNewCourse {
             status: new FormControl("draft")
         })
 
-        this.mainData = new FormGroup({
-            title: new FormControl(''),
+        this.mainDataForm = new FormGroup({
+            name: new FormControl(''),
             order: new FormControl(0),
-            badge: new FormControl('')
+            badge: new FormControl("")
 
         });
+
+        this.shortDescriptionForm = new FormGroup({
+            description: new FormControl("dddd")
+        })
+
+        this.featuresForm = new FormGroup({
+            features: new FormControl("")
+        })
+
+        this.priceForm = new FormGroup({
+            price: new FormControl('')
+        });
+
+
     }
 
-    editTitle() {
+    editDescription() {
+        this.showDescription = !this.showDescription
+    }
+
+    submitDescription() {
+        this.showDescription = !this.showDescription
+        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+
+    }
+
+    editPrice() {
+        this.showPrice = !this.showPrice
+    }
+
+    submitPrice() {
+        this.showPrice = !this.showPrice
+        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+
+    }
+    editStatus() {
+        this.showStatus = !this.showStatus;
+        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+    }
+
+    submitStatus() {
+        this.showStatus = !this.showStatus;
+        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+    }
+
+    editMainData() {
         this.showEdit = !this.showEdit;
     }
 
-    saveTitle() {
-    }
-
-    onSubmit() {
-        this.mainStateService.displayToast('Status wurde erfolgreich gespeichert.', true)
-
-    }
-
-    saveStatus() {
-
-    }
-
-    sumbitMainData() {        
+    sumbitMainData() {
         this.showEdit = !this.showEdit;
         this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
     }
+
 }

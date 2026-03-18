@@ -2,9 +2,7 @@
 
 .section-title,
 .general-information,
-.video-content,
 .image-content,
-.lesson-long-description,
 .extra-material {
   background: basic.$body-bg;
   max-width: 56.25rem;
@@ -27,13 +25,6 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-}
-
-.section-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
 }
 
 .badge {
@@ -120,8 +111,8 @@ label {
   color: basic.$main;
 }
 
-select,
 input[type='text'],
+input[type='number'],
 textarea {
   width: 100%;
   padding: 14px 16px;
@@ -149,9 +140,9 @@ textarea {
   resize: vertical;
 }
 
-// Video content
+// Image content
 
-.video-card {
+.image-card {
   max-width: 900px;
   background: basic.$sixth;
   border: 1px solid basic.$border-color;
@@ -159,7 +150,7 @@ textarea {
   overflow: hidden;
 }
 
-.video-card-header {
+.image-card-header {
   padding: 18px 24px;
   display: flex;
   justify-content: space-between;
@@ -233,22 +224,7 @@ input[type='file'] {
   display: none;
 }
 
-.editor-card {
-  max-width: 900px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: basic.$border-radius;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-}
 
-/* Header */
-.editor-header {
-  padding: 16px 20px;
-  font-weight: 600;
-  border-bottom: 1px solid basic.$border-color;
-  background: basic.$thirteenth;
-  border-radius: basic.$border-radius basic.$border-radius 0 0;
-}
 
 /* Toolbar */
 .editor-toolbar {
