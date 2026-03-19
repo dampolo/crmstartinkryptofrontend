@@ -95,8 +95,20 @@ export class EditCourse {
     }
 
     submitDescription() {
-        this.showDescription = !this.showDescription
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const payload = {
+            description: this.shortDescriptionForm.value.description,
+        }
+
+        this.courseService.updateCourse(id, payload).subscribe({
+            next: (data) => {
+                this.showDescription = !this.showDescription
+                this.mainStateService.displayToast('Die Beschreibung wurden erfolgreich gespeichert.', true)
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
 
     }
 
@@ -118,7 +130,6 @@ export class EditCourse {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
             }
         })
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
     }
 
     editStatus() {
@@ -141,6 +152,7 @@ export class EditCourse {
             order: this.mainDataForm.value.order,
             badge: this.mainDataForm.value.badge
         }
+
         this.courseService.updateCourse(id, payload).subscribe({
             next: (data) => {
                 this.showEdit = !this.showEdit;
