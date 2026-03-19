@@ -1,7 +1,7 @@
 <a class="arrow-back" routerLink="/crm/kurse">
   <app-back></app-back>
 </a>
-<h1>Neue Kurs</h1>
+<h1>Edit Kurs</h1>
 
 <form class="section-title" [formGroup]="mainDataForm" (ngSubmit)="sumbitMainData()">
   <div class="card">
@@ -50,7 +50,7 @@
           type="text"
         />
         <h2 [ngClass]="showEdit ? 'show-edit' : ''" class="title">
-          {{ mainDataForm.get('title')?.value }}
+          {{ mainDataForm.get('name')?.value }}
         </h2>
       </div>
 

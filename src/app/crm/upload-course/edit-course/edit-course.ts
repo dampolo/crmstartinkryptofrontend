@@ -3,17 +3,19 @@ import { Component, inject } from '@angular/core';
 import { Back } from '../../../shared/back/back';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainStateService } from '../../../main-services/main-state-service';
+import { ActivatedRoute } from '@angular/router';
+import { CourseService } from '../../../main-services/course-service';
 
 @Component({
-  selector: 'app-edit-course',
-  imports: [CommonModule, Back, ReactiveFormsModule, FormsModule],
+    selector: 'app-edit-course',
+    imports: [CommonModule, Back, ReactiveFormsModule, FormsModule],
 
-  templateUrl: './edit-course.html',
-  styleUrl: './edit-course.scss',
+    templateUrl: './edit-course.html',
+    styleUrl: './edit-course.scss',
 })
 export class EditCourse {
 
-      showEdit = true;
+    showEdit = true;
     showDescription = true;
     showPrice = true;
     showStatus = true
@@ -27,9 +29,10 @@ export class EditCourse {
     priceForm: FormGroup
 
     mainStateService = inject(MainStateService);
+    courseService = inject(CourseService)
 
 
-    constructor() {
+    constructor(private route: ActivatedRoute) {
 
         // Status
         this.statusForm = new FormGroup({
@@ -54,8 +57,37 @@ export class EditCourse {
         this.priceForm = new FormGroup({
             price: new FormControl('')
         });
+    }
 
+    ngOnInit() {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
 
+        this.courseService.getCourse(id).subscribe({
+            next: (data) => {
+                this.mainStateService.displayToast('Die Daten wurden gelesen', true)
+
+                this.mainDataForm.patchValue({
+                    name: data.name,
+                    order: data.order,
+                    badge: data.badge
+                });
+
+                this.shortDescriptionForm.patchValue({
+                    description: data.description
+                });
+
+                this.priceForm.patchValue({
+                    price: data.price
+                });
+
+                this.featuresForm.patchValue({
+                    features: data.features
+                });
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
     }
 
     editDescription() {
@@ -91,7 +123,21 @@ export class EditCourse {
     }
 
     sumbitMainData() {
-        this.showEdit = !this.showEdit;
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+
+        const payload = {
+            name: this.mainDataForm.value.name,
+            order: this.mainDataForm.value.order,
+            badge: this.mainDataForm.value.badge
+        }
+        this.courseService.updateCourse(id, payload).subscribe({
+            next: (data) => {
+                this.showEdit = !this.showEdit;
+                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
     }
 }

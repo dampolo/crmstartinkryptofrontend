@@ -37,6 +37,7 @@ import { MyInvoices } from './customer/settings/my-invoices/my-invoices';
 import { Others } from './customer/settings/others/others';
 import { Settings } from './customer/settings/settings';
 import { AddNewCourse } from './crm/upload-course/add-new-course/add-new-course';
+import { EditCourse } from './crm/upload-course/edit-course/edit-course';
 
 
 
@@ -134,7 +135,7 @@ export const routes: Routes = [
                 path: 'kurse',
                 children: [
                     { path: ':id/list-lessons', component: ListCourseLessons, title: 'Basic - List' },
-                    { path: ':id/edit-course', component: AddNewCourse, title: 'Edit - Kurs'},
+                    { path: ':id/edit-course', component: EditCourse, title: 'Edit - Kurs'},
                     { path: ':id/edit-features', component: AddNewCourse, title: 'Kurs - Eigenschaften'},
                     { path: 'new-video', component: AddNewVideo, title: 'Neue Video' },
                     { path: 'new-course', component: AddNewCourse, title: 'Neuer Kurs' },
