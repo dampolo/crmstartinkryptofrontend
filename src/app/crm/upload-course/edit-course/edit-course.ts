@@ -105,10 +105,22 @@ export class EditCourse {
     }
 
     submitPrice() {
-        this.showPrice = !this.showPrice
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const payload = {
+            price: this.priceForm.value.price,
+        }
+        this.courseService.updateCourse(id, payload).subscribe({
+            next: (data) => {
+                this.showPrice = !this.showPrice;
+                this.mainStateService.displayToast('Der Prise wurden erfolgreich gespeichert.', true)
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
         this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
-
     }
+
     editStatus() {
         this.showStatus = !this.showStatus;
     }
@@ -124,7 +136,6 @@ export class EditCourse {
 
     sumbitMainData() {
         const id = Number(this.route.snapshot.paramMap.get('id'));
-
         const payload = {
             name: this.mainDataForm.value.name,
             order: this.mainDataForm.value.order,
