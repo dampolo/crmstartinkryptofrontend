@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Back } from '../../../shared/back/back';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
+import { COURSE_FEATURE } from '../../../models/course.model';
 
 @Component({
     selector: 'app-edit-course',
@@ -24,8 +25,10 @@ export class EditCourse {
     statusForm: FormGroup;
     mainDataForm: FormGroup;
 
+    featuresForm: FormGroup;
+
     shortDescriptionForm: FormGroup
-    featuresForm: FormGroup
+    features: COURSE_FEATURE[] = []
     priceForm: FormGroup
 
     mainStateService = inject(MainStateService);
@@ -50,9 +53,10 @@ export class EditCourse {
             description: new FormControl("dddd")
         })
 
+
         this.featuresForm = new FormGroup({
-            features: new FormControl("")
-        })
+            features: new FormArray([])
+        });
 
         this.priceForm = new FormGroup({
             price: new FormControl('')
@@ -80,9 +84,9 @@ export class EditCourse {
                     price: data.price
                 });
 
-                this.featuresForm.patchValue({
-                    features: data.features
-                });
+               this.features = data.features;
+
+
             },
             error: (err) => {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
@@ -101,7 +105,7 @@ export class EditCourse {
         }
 
         this.courseService.updateCourse(id, payload).subscribe({
-            next: (data) => {                
+            next: (data) => {
                 this.showDescription = !this.showDescription
                 this.mainStateService.displayToast('Die Beschreibung wurden erfolgreich gespeichert.', true)
             },
