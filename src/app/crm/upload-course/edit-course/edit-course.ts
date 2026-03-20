@@ -101,7 +101,7 @@ export class EditCourse {
         }
 
         this.courseService.updateCourse(id, payload).subscribe({
-            next: (data) => {
+            next: (data) => {                
                 this.showDescription = !this.showDescription
                 this.mainStateService.displayToast('Die Beschreibung wurden erfolgreich gespeichert.', true)
             },
