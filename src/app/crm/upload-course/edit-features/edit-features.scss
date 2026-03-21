@@ -1,0 +1,141 @@
+@use './../../../../basic';
+
+.section-title,
+.general-information,
+.extra-material {
+  background: basic.$body-bg;
+  max-width: 56.25rem;
+  width: 100%;
+}
+
+.section-number {
+  color: basic.$main;
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: basic.$main;
+}
+
+.save-button,
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: basic.$border-radius;
+  background: basic.$sixth;
+  border: 1px solid basic.$border-color;
+  font-size: 14px;
+  font-weight: 500;
+  color: basic.$main;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.edit-button:hover {
+  background: #f9fafb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.edit-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+// General Information
+.card {
+  max-width: 900px;
+  background: basic.$sixth;
+  border: 1px solid basic.$border-color;
+  border-radius: basic.$border-radius;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.card-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid basic.$border-color;
+  background: basic.$thirteenth;
+  border-radius: basic.$border-radius basic.$border-radius 0 0;
+  font-weight: 600;
+  color: basic.$main;
+  font-size: 18px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: basic.$box-shadow;
+  border-radius: basic.$border-radius;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: basic.$primary;
+  border-radius: basic.$border-radius;
+  padding: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: basic.$main;
+}
+
+input[type='text'],
+input[type='number'],
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: basic.$border-radius;
+  border: 1px solid basic.$border-color;
+  background: basic.$sixth;
+  font-size: 15px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: basic.$twelfth;
+}
+
+input:focus,
+textarea:focus {
+  @include basic.focus-input;
+}
+
+/* Toolbar */
+.show-edit {
+  display: none;
+}
+
+.hide-edit {
+  display: flex;
+}

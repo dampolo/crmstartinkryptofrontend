@@ -1,0 +1,54 @@
+<h1 class="section-title">Themen editieren</h1>
+
+<section class="general-information">
+  <div class="card">
+    <div for="lesson-title" class="card-header">Themen</div>
+
+    <ul class="card-body">
+      @for (feature of features; track feature.id) {
+        <!-- Order -->
+
+        <li class="form-group">
+          <div class="order">
+            <span class="section-number"> {{ feature.order | number: '1.0-0' }}</span>
+          </div>
+
+          <!-- Name -->
+          <div class="text">
+            <span>
+              {{ feature.text }}
+            </span>
+          </div>
+
+          <div class="buttons">
+            <button
+              type="button"
+              (click)="editFeatures()"
+              [ngClass]="showEdit ? '' : 'show-edit'"
+              class="edit-button"
+            >
+              <!-- Pencil Icon -->
+              <img src="./assets/edit.svg" alt="edit" />
+              Ändern
+            </button>
+
+            <button
+              type="button"
+              (click)="editFeatures()"
+              [ngClass]="showEdit ? '' : 'show-edit'"
+              class="edit-button"
+            >
+              <img src="./assets/trash.svg" alt="wegschmeißen" />
+            </button>
+
+            <button type="submit" [ngClass]="showEdit ? 'show-edit' : ''" class="save-button">
+              <!-- Pencil Icon -->
+              <img src="./assets/check.svg" alt="ok" />
+              ok
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

@@ -154,49 +154,9 @@
   </div>
 </form>
 
-<!-- Features -->
-<!-- [formGroup]="featuresForm" -->
-<section class="general-information">
-  <div class="card">
-    <div for="lesson-title" class="card-header">Themen</div>
-
-    <ul class="card-body">
-      @for (feature of features; track feature.id) {
-        <!-- Order -->
-        <li class="form-group">
-          <span class="section-number"> {{ feature.order }}</span>
-
-          <!-- Name -->
-          <div class="form-group">
-            <span class="title">
-              {{ feature.text }}
-            </span>
-          </div>
-          <button
-            type="button"
-            (click)="editMainData()"
-            [ngClass]="showEdit ? '' : 'show-edit'"
-            class="edit-button"
-          >
-            <!-- Pencil Icon -->
-            <img src="./assets/edit.svg" alt="edit" />
-            Ändern
-          </button>
-
-          <button type="submit" [ngClass]="showEdit ? 'show-edit' : ''" class="save-button">
-            <!-- Pencil Icon -->
-            <img src="./assets/check.svg" alt="ok" />
-            ok
-          </button>
-        </li>
-      }
-    </ul>
-  </div>
-</section>
-
 <!-- Edit feature -->
 <!-- <div class="form-group"> -->
-  <!-- <label for="badge">Reihenfolge</label>
+<!-- <label for="badge">Reihenfolge</label>
             <input
               id="order"
               formControlName="order"
@@ -206,11 +166,11 @@
               step="0.01"
               min="0"
             /> -->
-  <!-- <span class="title"> EDIT </span> -->
+<!-- <span class="title"> EDIT </span> -->
 <!-- </div> -->
 
 <!-- <div class="form-group"> -->
-  <!-- <label for="text">Name</label>
+<!-- <label for="text">Name</label>
                 <input
                 id="text"
                 formControlName="text"
@@ -218,7 +178,7 @@
                 [ngClass]="showEdit ? '' : 'show-edit'"
                 type="text"
                 /> -->
-  <!-- <span class="title"> edit </span> -->
+<!-- <span class="title"> edit </span> -->
 <!-- </div> -->
 
 <!-- Price -->
@@ -326,3 +286,5 @@
     </div>
   </div>
 </section>
+<a class="main-btn-start-in-krypto" (click)="openFeatures()" > Themen </a>
+

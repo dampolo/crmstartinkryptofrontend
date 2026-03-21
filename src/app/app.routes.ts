@@ -38,6 +38,7 @@ import { Others } from './customer/settings/others/others';
 import { Settings } from './customer/settings/settings';
 import { AddNewCourse } from './crm/upload-course/add-new-course/add-new-course';
 import { EditCourse } from './crm/upload-course/edit-course/edit-course';
+import { EditFeatures } from './crm/upload-course/edit-features/edit-features';
 
 
 
@@ -136,7 +137,7 @@ export const routes: Routes = [
                 children: [
                     { path: ':id/list-lessons', component: ListCourseLessons, title: 'Basic - List' },
                     { path: ':id/edit-course', component: EditCourse, title: 'Edit - Kurs'},
-                    { path: ':id/edit-features', component: AddNewCourse, title: 'Kurs - Eigenschaften'},
+                    { path: ':id/edit-features', component: EditFeatures, title: 'Kurs - Themen'},
                     { path: 'new-video', component: AddNewVideo, title: 'Neue Video' },
                     { path: 'new-course', component: AddNewCourse, title: 'Neuer Kurs' },
 

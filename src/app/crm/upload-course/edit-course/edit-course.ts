@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Back } from '../../../shared/back/back';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainStateService } from '../../../main-services/main-state-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
 import { COURSE_FEATURE } from '../../../models/course.model';
 
@@ -35,7 +35,7 @@ export class EditCourse {
     courseService = inject(CourseService)
 
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private router: Router) {
 
         // Status
         this.statusForm = new FormGroup({
@@ -166,5 +166,11 @@ export class EditCourse {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
             }
         })
+    }
+
+        openFeatures() {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+
+        this.router.navigate(['/crm/kurse', id, 'edit-features'])
     }
 }
