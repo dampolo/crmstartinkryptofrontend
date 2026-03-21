@@ -49,7 +49,7 @@ export class CourseService {
             { withCredentials: true })
     }
     
-    delteFeature(featureId: any): Observable<any> {
+    deleteFeature(featureId: any): Observable<any> {
         return this.http.delete(`${this.baseUrl}courses-features/${featureId}/`,
             { withCredentials: true })
     }

@@ -75,7 +75,7 @@ export class EditFeatures {
     deleteFeature(featureId: number) {
         console.log(featureId);
         
-        this.courseService.delteFeature(featureId).subscribe({
+        this.courseService.deleteFeature(featureId).subscribe({
             next:() => {
                 this.ngOnInit()
             },
