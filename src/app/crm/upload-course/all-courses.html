@@ -57,21 +57,33 @@
             <li>{{ feature.text }}</li>
           }
         </ul>
+        <ul class="features-button">
+          <li>
+            <button
+              class="main-btn-start-in-krypto edit-button"
+              [routerLink]="['/crm/kurse', course.id, 'edit-features']"
+            >
+              Themen
+            </button>
+          </li>
+          <li>
+            <button
+              class="main-btn-start-in-krypto edit-button"
+              [routerLink]="['/crm/kurse', course.id, 'list-lessons']"
+            >
+              Videos
+            </button>
+          </li>
 
-        <button
-          class="main-btn-start-in-krypto edit-button"
-          [routerLink]="['/crm/kurse', course.id, 'list-lessons', 'edit-course']"
-        >
-          Eigsch.
-        </button>
-
-        <button class="main-btn-start-in-krypto edit-button" [routerLink]="['/crm/kurse', course.id, 'list-lessons']">
-          Videos
-        </button>
-
-        <button class="main-btn-start-in-krypto edit-button" [routerLink]="['/crm/kurse', course.id, 'edit-course']">
-          Edit
-        </button>
+          <li>
+            <button
+              class="main-btn-start-in-krypto edit-button"
+              [routerLink]="['/crm/kurse', course.id, 'edit-course']"
+            >
+              Edit
+            </button>
+          </li>
+        </ul>
       }
     </div>
   </div>

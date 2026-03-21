@@ -210,10 +210,6 @@
     }
   }
 
-  &.plan-features {
-    border: 2px solid basic.$primary;
-    transform: translateY(-10px);
-  }
   .badge {
     position: absolute;
     top: -12px;
@@ -230,6 +226,15 @@
       left: auto;
       right: 1rem;
       transform: none;
+    }
+  }
+  .features-button {
+    display: flex;
+    gap: 1rem;
+    li {
+      button {
+        padding: 0.3rem;
+      }
     }
   }
 }
