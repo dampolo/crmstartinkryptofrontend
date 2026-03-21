@@ -50,5 +50,38 @@
         </li>
       }
     </ul>
+
+    <form [formGroup]="featuresForm" (ngSubmit)="submitFeature()">
+      <!-- Add feature -->
+      <div class="add-feature">
+        <label for="order">Reihenfolge</label>
+        <input
+          id="order"
+          formControlName="order"
+          placeholder="e.g. 2"
+          [ngClass]="showEdit ? '' : 'show-edit'"
+          type="number"
+          step="0.01"
+          min="0"
+        />
+      </div>
+    
+      <div class="add-feature">
+        <label for="text">Name</label>
+        <input
+          id="text"
+          formControlName="text"
+          placeholder="text"
+          [ngClass]="showEdit ? '' : 'show-edit'"
+          type="text"
+        />
+      </div>
+    
+      <button type="submit" class="main-btn-start-in-krypto" [disabled]="!featuresForm.valid">Hinzufügen</button>
+    
+    </form>
   </div>
+  
+  
 </section>
+

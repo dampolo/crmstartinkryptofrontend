@@ -25,8 +25,6 @@ export class EditCourse {
     statusForm: FormGroup;
     mainDataForm: FormGroup;
 
-    featuresForm: FormGroup;
-
     shortDescriptionForm: FormGroup
     features: COURSE_FEATURE[] = []
     priceForm: FormGroup
@@ -52,11 +50,6 @@ export class EditCourse {
         this.shortDescriptionForm = new FormGroup({
             description: new FormControl("dddd")
         })
-
-
-        this.featuresForm = new FormGroup({
-            features: new FormArray([])
-        });
 
         this.priceForm = new FormGroup({
             price: new FormControl('')

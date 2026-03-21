@@ -169,8 +169,7 @@ a.new-invoice:hover,
 button.new-customer:hover,
 button[type='button']:hover,
 a.new-customer:not(:disabled):hover,
-button.edit:not(:disabled):hover,
-button[type='submit']:not(:disabled):hover {
+button.edit:not(:disabled):hover {
   background: basic.$primary;
 }
 

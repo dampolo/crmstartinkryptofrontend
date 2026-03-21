@@ -4,10 +4,11 @@ import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { ActivatedRoute } from '@angular/router';
 import { COURSE_FEATURE } from '../../../models/course.model';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-edit-features',
-    imports: [CommonModule],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
     templateUrl: './edit-features.html',
     styleUrl: './edit-features.scss',
 })
@@ -19,7 +20,17 @@ export class EditFeatures {
     mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
 
-    constructor(private route: ActivatedRoute) { }
+    featuresForm: FormGroup;
+
+
+    constructor(private route: ActivatedRoute) {
+
+        this.featuresForm = new FormGroup({
+            text: new FormControl("", Validators.required),
+            order: new FormControl(0, Validators.required)
+        });
+
+    }
 
     editFeatures() { }
 
@@ -40,5 +51,10 @@ export class EditFeatures {
             }
         })
     }
+
+    submitFeature() {
+
+    }
+
 
 }
