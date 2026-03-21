@@ -43,6 +43,17 @@ export class CourseService {
             { withCredentials: true })
     }
 
+    // add new feature to Course/Theme
+    postFeature(payload: any): Observable<any> {
+        return this.http.post(`${this.baseUrl}courses-features/`, payload,
+            { withCredentials: true })
+    }
+    
+    delteFeature(featureId: any): Observable<any> {
+        return this.http.delete(`${this.baseUrl}courses-features/${featureId}/`,
+            { withCredentials: true })
+    }
+
     getLessons(courseId: number): Observable<LESSON[]> {
         return this.http.get<LESSON[]>(
             `${this.baseUrl}lessons/?course=${courseId}`,

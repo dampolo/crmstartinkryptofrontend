@@ -53,8 +53,38 @@ export class EditFeatures {
     }
 
     submitFeature() {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const payload = {
+            course: id,
+            text: this.featuresForm.value.text,
+            order: this.featuresForm.value.order
+        }
 
+        this.courseService.postFeature(payload).subscribe({
+            next: (data) => {
+                this.mainStateService.displayToast('Das Thema wurden hinzugefügt', true)
+                this.featuresForm.reset()
+                this.ngOnInit()
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
     }
 
+    deleteFeature(featureId: number) {
+        console.log(featureId);
+        
+        this.courseService.delteFeature(featureId).subscribe({
+            next:() => {
+                this.ngOnInit()
+            },
 
+            error: () => {
+                this.mainStateService.displayToast('Versuche es noch einmal.', false)
+
+            }
+        })
+
+    }
 }
