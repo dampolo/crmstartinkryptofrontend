@@ -9,7 +9,10 @@ export class MainStateService {
   showError: boolean = false;
   showArrow: boolean = false;
   isLoginPage: boolean = true;
-  isProfileVisible: boolean = false
+  isProfileVisible: boolean = false;
+
+  isEditFeatureVisible: boolean = false;
+  
   isForgotPasswordVisible: boolean = false;
   showToastText = signal('');
   showConfirmationText = signal('');

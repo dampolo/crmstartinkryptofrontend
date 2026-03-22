@@ -140,7 +140,7 @@ form {
 
 .add-feature {
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
   padding: 1rem;
   box-shadow: basic.$box-shadow;
   border-radius: basic.$border-radius;
@@ -153,4 +153,51 @@ form {
 
 .hide-edit {
   display: flex;
+}
+
+// EDIT
+
+.hide-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    background: basic.$sixth;
+    border-radius: basic.$border-radius;
+    .add-feature {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      box-shadow: basic.$box-shadow;
+      border-radius: basic.$border-radius;
+    }
+  }
+}
+
+input[type='text'],
+input[type='number'],
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: basic.$border-radius;
+  border: 1px solid basic.$border-color;
+  background: basic.$sixth;
+  font-size: 15px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: basic.$twelfth;
+}
+
+input:focus,
+textarea:focus {
+  @include basic.focus-input;
 }

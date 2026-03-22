@@ -153,6 +153,12 @@ app-footer {
   margin-bottom: 0;
 }
 
+app-edit-single-feature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 a.new-invoice,
 button[type='button'],
 a.new-customer,

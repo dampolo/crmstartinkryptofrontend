@@ -19,6 +19,7 @@ export class EditFeatures {
 
     mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
+    editSingleFeature: FormGroup
 
     featuresForm: FormGroup;
 
@@ -30,9 +31,16 @@ export class EditFeatures {
             order: new FormControl(0, Validators.required)
         });
 
+        this.editSingleFeature = new FormGroup({
+            text: new FormControl("", Validators.required),
+            order: new FormControl(0, Validators.required)
+        });
     }
 
-    editFeatures() { }
+    editFeature(featureId: number) { 
+
+
+    }
 
     ngOnInit() {
         const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -40,11 +48,7 @@ export class EditFeatures {
         this.courseService.getCourse(id).subscribe({
             next: (data) => {
                 this.mainStateService.displayToast('Die Daten wurden gelesen', true)
-
-
                 this.features = data.features;
-
-
             },
             error: (err) => {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
@@ -74,9 +78,29 @@ export class EditFeatures {
 
     deleteFeature(featureId: number) {
         console.log(featureId);
-        
+
         this.courseService.deleteFeature(featureId).subscribe({
-            next:() => {
+            next: () => {
+                this.ngOnInit()
+            },
+
+            error: () => {
+                this.mainStateService.displayToast('Versuche es noch einmal.', false)
+
+            }
+        })
+
+    }
+
+    closeDialog() {
+        this.mainStateService.isEditFeatureVisible = false;
+    }
+
+
+
+    submitEditSingleFeature() {
+                this.courseService.deleteFeature(88).subscribe({
+            next: () => {
                 this.ngOnInit()
             },
 
