@@ -5,6 +5,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { ActivatedRoute } from '@angular/router';
 import { COURSE_FEATURE } from '../../../models/course.model';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CUSTOMER_CRM } from '../../../models/customer.model';
 
 @Component({
     selector: 'app-edit-features',
@@ -37,9 +38,12 @@ export class EditFeatures {
         });
     }
 
-    editFeature(featureId: number) { 
-
-
+    editFeature(feature: COURSE_FEATURE) {
+        this.mainStateService.isEditFeatureVisible = true
+        this.editSingleFeature.patchValue({
+            order: feature.order,
+            text: feature.text,
+        })
     }
 
     ngOnInit() {
