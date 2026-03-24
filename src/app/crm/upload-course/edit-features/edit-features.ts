@@ -2,7 +2,7 @@ import { CommonModule, DecimalPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { COURSE_FEATURE } from '../../../models/course.model';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CUSTOMER_CRM } from '../../../models/customer.model';
@@ -25,7 +25,7 @@ export class EditFeatures {
     featuresForm: FormGroup;
 
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private router: Router, private route: ActivatedRoute) {
 
         this.featuresForm = new FormGroup({
             text: new FormControl("", Validators.required),
@@ -39,9 +39,14 @@ export class EditFeatures {
     }
 
     editFeature(feature: COURSE_FEATURE) {
-        this.mainStateService.isEditFeatureVisible = true
-        console.log(feature);
-        
+        this.mainStateService.isEditFeatureVisible = true;
+
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { featureId: feature.id, featureText: feature.text, featureOrder: feature.order },
+            queryParamsHandling: 'merge', // keeps existing params
+        });
+
         this.editSingleFeature.patchValue({
             order: feature.order,
             text: feature.text,
@@ -60,6 +65,19 @@ export class EditFeatures {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
             }
         })
+
+        const featureId = this.route.snapshot.queryParamMap.get("featureId");
+        const featureText = this.route.snapshot.queryParamMap.get("featureText");
+        const featureOrder = this.route.snapshot.queryParamMap.get("featureOrder");
+
+        if (featureId) {
+            this.mainStateService.isEditFeatureVisible = true
+            this.editSingleFeature.patchValue({
+                order: featureOrder,
+                text: featureText,
+            })
+        }
+
     }
 
     submitFeature() {
@@ -100,12 +118,13 @@ export class EditFeatures {
 
     closeDialog() {
         this.mainStateService.isEditFeatureVisible = false;
+        this.resetPath();
     }
 
 
 
     submitEditSingleFeature() {
-        
+
         this.courseService.deleteFeature(88).subscribe({
             next: () => {
                 this.ngOnInit()
@@ -118,5 +137,13 @@ export class EditFeatures {
             }
         })
 
+    }
+
+    resetPath() {
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { featureId: null, featureText: null, featureOrder: null },
+            queryParamsHandling: 'merge',
+        });
     }
 }
