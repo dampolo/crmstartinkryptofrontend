@@ -40,6 +40,8 @@ export class EditFeatures {
 
     editFeature(feature: COURSE_FEATURE) {
         this.mainStateService.isEditFeatureVisible = true
+        console.log(feature);
+        
         this.editSingleFeature.patchValue({
             order: feature.order,
             text: feature.text,
@@ -103,9 +105,11 @@ export class EditFeatures {
 
 
     submitEditSingleFeature() {
-                this.courseService.deleteFeature(88).subscribe({
+        
+        this.courseService.deleteFeature(88).subscribe({
             next: () => {
                 this.ngOnInit()
+
             },
 
             error: () => {

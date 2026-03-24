@@ -81,16 +81,16 @@
         Hinzufügen
       </button>
     </form>
-  </div>>
+  </div>
+  >
 </section>
 
-<section class="hide-container"
-    [ngClass]="mainStateService.isEditFeatureVisible ? 'show-container' : ''">
-  <form
-    [formGroup]="editSingleFeature"
-    (ngSubmit)="submitEditSingleFeature()"
-    (click)="closeDialog()"
-  >
+<section
+  class="hide-container"
+  (click)="closeDialog()"
+  [ngClass]="mainStateService.isEditFeatureVisible ? 'show-container' : ''"
+>
+  <form [formGroup]="editSingleFeature" (click)="$event.stopPropagation()" (ngSubmit)="submitEditSingleFeature()">
     <!-- Add feature -->
     <div class="add-feature">
       <label for="order">Reihenfolge</label>
@@ -116,7 +116,7 @@
       />
     </div>
 
-    <button type="button" class="main-btn-start-in-krypto">Abbrechen</button>
+    <button type="button" type="button" (click)="closeDialog()" class="main-btn-start-in-krypto">Abbrechen</button>
 
     <button type="submit" class="main-btn-start-in-krypto" [disabled]="!editSingleFeature.valid">
       Hinzufügen
