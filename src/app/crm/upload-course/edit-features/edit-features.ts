@@ -44,7 +44,6 @@ export class EditFeatures {
         this.router.navigate([], {
             relativeTo: this.route,
             queryParams: { featureId: feature.id, featureText: feature.text, featureOrder: feature.order },
-            queryParamsHandling: 'merge', // keeps existing params
         });
 
         this.editSingleFeature.patchValue({
@@ -143,7 +142,8 @@ export class EditFeatures {
         this.router.navigate([], {
             relativeTo: this.route,
             queryParams: { featureId: null, featureText: null, featureOrder: null },
-            queryParamsHandling: 'merge',
         });
     }
+
+    
 }
