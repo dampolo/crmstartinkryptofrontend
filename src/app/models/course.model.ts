@@ -4,6 +4,12 @@ export interface COURSE_FEATURE {
     order: number;
 }
 
+export interface UPDATE_COURSE_FEATURE {
+  course: number;
+  order: number;
+  text: string;
+}
+
 export interface COURSE {
     id: number;
     name: string;

@@ -53,9 +53,11 @@ export class EditFeatures {
     }
 
     ngOnInit() {
-        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
 
-        this.courseService.getCourse(id).subscribe({
+        console.log(courseId);
+
+        this.courseService.getCourse(courseId).subscribe({
             next: (data) => {
                 this.mainStateService.displayToast('Die Daten wurden gelesen', true)
                 this.features = data.features;
@@ -80,11 +82,13 @@ export class EditFeatures {
     }
 
     submitFeature() {
-        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
+
+
         const payload = {
-            course: id,
+            course: courseId,
+            order: this.featuresForm.value.order,
             text: this.featuresForm.value.text,
-            order: this.featuresForm.value.order
         }
 
         this.courseService.postFeature(payload).subscribe({
@@ -124,10 +128,19 @@ export class EditFeatures {
 
     submitEditSingleFeature() {
 
-        this.courseService.deleteFeature(88).subscribe({
-            next: () => {
-                this.ngOnInit()
+        const featureId = Number(this.route.snapshot.queryParamMap.get("featureId"))
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
 
+        const payload = {
+            course: courseId,
+            order: this.editSingleFeature.value.order,
+            text: this.editSingleFeature.value.text,
+        }
+
+        this.courseService.patchFeature(payload, featureId).subscribe({
+            next: () => {
+                this.mainStateService.isEditFeatureVisible = false;
+                this.mainStateService.displayToast('Das Thema wurde geändert.', true)
             },
 
             error: () => {
@@ -145,5 +158,5 @@ export class EditFeatures {
         });
     }
 
-    
+
 }

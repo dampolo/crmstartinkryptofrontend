@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { COURSE, DISCOUNT_CODE, LESSON, PURCHASE, PURCHASED_COURSE } from '../models/course.model';
+import { COURSE, DISCOUNT_CODE, LESSON, PURCHASE, PURCHASED_COURSE, UPDATE_COURSE_FEATURE } from '../models/course.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 
@@ -53,6 +53,14 @@ export class CourseService {
         return this.http.delete(`${this.baseUrl}courses-features/${featureId}/`,
             { withCredentials: true })
     }
+
+    patchFeature(payload: UPDATE_COURSE_FEATURE, featureId:number): Observable<any> {
+        return this.http.patch(
+            `${this.baseUrl}courses-features/${featureId}/`, payload,
+            { withCredentials: true }
+        );
+    }
+
 
     getLessons(courseId: number): Observable<LESSON[]> {
         return this.http.get<LESSON[]>(
