@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Back } from '../../../shared/back/back';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainStateService } from '../../../main-services/main-state-service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
 import { COURSE_FEATURE } from '../../../models/course.model';
 
 @Component({
     selector: 'app-edit-course',
-    imports: [CommonModule, Back, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, Back, ReactiveFormsModule, FormsModule, RouterLink],
 
     templateUrl: './edit-course.html',
     styleUrl: './edit-course.scss',

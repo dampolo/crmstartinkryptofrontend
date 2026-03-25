@@ -2,14 +2,15 @@ import { CommonModule, DecimalPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { COURSE_FEATURE } from '../../../models/course.model';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CUSTOMER_CRM } from '../../../models/customer.model';
+import { Back } from '../../../shared/back/back';
 
 @Component({
     selector: 'app-edit-features',
-    imports: [CommonModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, Back, RouterLink],
     templateUrl: './edit-features.html',
     styleUrl: './edit-features.scss',
 })
