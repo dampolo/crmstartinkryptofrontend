@@ -50,9 +50,30 @@ export class EditFeatures {
             order: feature.order,
             text: feature.text,
         })
+
     }
 
     ngOnInit() {
+        this.renderFeatures();
+        this.renderOpenDialog();
+    }
+
+    renderOpenDialog() {
+        const featureId = this.route.snapshot.queryParamMap.get("featureId");
+        const featureText = this.route.snapshot.queryParamMap.get("featureText");
+        const featureOrder = this.route.snapshot.queryParamMap.get("featureOrder");
+
+        if (featureId) {
+            this.mainStateService.isEditFeatureVisible = true
+            this.editSingleFeature.patchValue({
+                order: featureOrder,
+                text: featureText,
+            })
+        }
+    }
+
+    renderFeatures() {
+
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
 
         console.log(courseId);
@@ -66,19 +87,6 @@ export class EditFeatures {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
             }
         })
-
-        const featureId = this.route.snapshot.queryParamMap.get("featureId");
-        const featureText = this.route.snapshot.queryParamMap.get("featureText");
-        const featureOrder = this.route.snapshot.queryParamMap.get("featureOrder");
-
-        if (featureId) {
-            this.mainStateService.isEditFeatureVisible = true
-            this.editSingleFeature.patchValue({
-                order: featureOrder,
-                text: featureText,
-            })
-        }
-
     }
 
     submitFeature() {
@@ -104,11 +112,11 @@ export class EditFeatures {
     }
 
     deleteFeature(featureId: number) {
-        console.log(featureId);
-
         this.courseService.deleteFeature(featureId).subscribe({
             next: () => {
-                this.ngOnInit()
+                this.renderFeatures();
+                this.mainStateService.displayToast('Das Thema wurde gelöscht.', true)
+
             },
 
             error: () => {
@@ -148,7 +156,8 @@ export class EditFeatures {
 
             }
         })
-
+        this.resetPath();
+        this.renderFeatures();
     }
 
     resetPath() {
@@ -157,6 +166,4 @@ export class EditFeatures {
             queryParams: { featureId: null, featureText: null, featureOrder: null },
         });
     }
-
-
 }
