@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Back } from '../../../shared/back/back';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { RouterLink } from '@angular/router';
 
@@ -19,12 +19,12 @@ export class AddNewCourse {
 
     constructor() {
         this.courseForm = new FormGroup({
-            name: new FormControl(''),
-            description: new FormControl("dddd"),
-            price: new FormControl(''),
-            order: new FormControl(0),
-            badge: new FormControl(""),
-            status: new FormControl("draft")
+            name: new FormControl("", Validators.required),
+            description: new FormControl("", Validators.required),
+            price: new FormControl("", Validators.required),
+            order: new FormControl(0, Validators.required),
+            badge: new FormControl("", Validators.required),
+            status: new FormControl("draft", Validators.required)
         });
 
     }

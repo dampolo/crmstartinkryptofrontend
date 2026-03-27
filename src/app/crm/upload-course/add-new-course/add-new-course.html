@@ -2,7 +2,9 @@
   <app-back></app-back>
 </a>
 <h1>Neue Kurs</h1>
-
+<p>
+    Alle Felder müssen ausgefüllt sein.
+</p>
 <form [formGroup]="courseForm" (ngSubmit)="sumbitMainData()">
   <section class="section-title">
     <div class="card">
@@ -111,7 +113,7 @@
     <div class="image-card">
       <div class="image-card-header">
         <div>Bild</div>
-        <span>Max Size: 500MB (MP4, MOV)</span>
+        <span>Max Size: 2MB (jpg, jpeg, png)</span>
       </div>
 
       <div class="upload-area">
@@ -125,7 +127,7 @@
 
           <label class="main-btn-start-in-krypto">
             Bild wählen
-            <input type="file" accept="video/mp4,video/mov" />
+            <input type="file" accept=".jpg, .jpeg, .png" />
           </label>
         </div>
       </div>
