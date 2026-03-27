@@ -3,10 +3,11 @@ import { Component, inject } from '@angular/core';
 import { Back } from '../../../shared/back/back';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainStateService } from '../../../main-services/main-state-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-add-new-course',
-    imports: [CommonModule, Back, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, Back, ReactiveFormsModule, FormsModule, RouterLink],
     templateUrl: './add-new-course.html',
     styleUrl: './add-new-course.scss',
 })
