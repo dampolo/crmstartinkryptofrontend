@@ -2,11 +2,17 @@
 
 .section-title,
 .general-information,
-.image-content,
-.extra-material {
+.image-content {
   background: basic.$body-bg;
   max-width: 56.25rem;
   width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
 }
 
 .section-card {

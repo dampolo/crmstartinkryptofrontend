@@ -1,3 +1,14 @@
+export enum STATUS {
+  DRAFT = 'DRAFT',
+  PUBLISHED = 'PUBLISHED',
+  ARCHIVED = 'ARCHIVED'
+}
+
+export enum LANGUAGE {
+  DE = 'DE',
+  PL = 'PL',
+}
+
 export interface COURSE_FEATURE {
     id: number;
     text: string;
@@ -16,9 +27,10 @@ export interface COURSE {
     description: string;
     price: string;        // DecimalField → string (IMPORTANT)
     image: string | null; // ImageField URL or null
-    order: string;        // DecimalField (e.g. "1.1")
+    order: string; 
     badge: string | null;
-    features: COURSE_FEATURE[];
+    status: STATUS;
+    features: COURSE_FEATURE[]
 }
 
 export interface PURCHASED_COURSE {

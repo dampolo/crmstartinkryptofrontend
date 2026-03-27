@@ -12,85 +12,36 @@ import { RouterLink } from '@angular/router';
     styleUrl: './add-new-course.scss',
 })
 export class AddNewCourse {
-    showEdit = true;
-    showDescription = true;
-    showPrice = true;
-    showStatus = true
-
-
-    statusForm: FormGroup;
-    mainDataForm: FormGroup;
-
-    shortDescriptionForm: FormGroup
-    featuresForm: FormGroup
-    priceForm: FormGroup
+    courseForm: FormGroup;
 
     mainStateService = inject(MainStateService);
 
 
     constructor() {
-
-        // Status
-        this.statusForm = new FormGroup({
-            status: new FormControl("draft")
-        })
-
-        this.mainDataForm = new FormGroup({
+        this.courseForm = new FormGroup({
             name: new FormControl(''),
+            description: new FormControl("dddd"),
+            price: new FormControl(''),
             order: new FormControl(0),
-            badge: new FormControl("")
-
+            badge: new FormControl(""),
+            status: new FormControl("draft")
         });
 
-        this.shortDescriptionForm = new FormGroup({
-            description: new FormControl("dddd")
-        })
-
-        this.featuresForm = new FormGroup({
-            features: new FormControl("")
-        })
-
-        this.priceForm = new FormGroup({
-            price: new FormControl('')
-        });
-
-
     }
 
-    editDescription() {
-        this.showDescription = !this.showDescription
-    }
 
-    submitDescription() {
-        this.showDescription = !this.showDescription
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
-
-    }
-
-    editPrice() {
-        this.showPrice = !this.showPrice
-    }
-
-    submitPrice() {
-        this.showPrice = !this.showPrice
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
-
-    }
-    editStatus() {
-        this.showStatus = !this.showStatus;
-    }
-
-    submitStatus() {
-        this.showStatus = !this.showStatus;
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
-    }
-
-    editMainData() {
-        this.showEdit = !this.showEdit;
-    }
 
     sumbitMainData() {
-        this.showEdit = !this.showEdit;
+        const payload = {
+            name: this.courseForm.value.name,
+            description: this.courseForm.value.description,
+            price: this.courseForm.value.price,
+            order: this.courseForm.value.order,
+            badge: this.courseForm.value.badge,
+            status: this.courseForm.value.status,
+        }
+        console.log(payload);
+        
         this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
     }
 

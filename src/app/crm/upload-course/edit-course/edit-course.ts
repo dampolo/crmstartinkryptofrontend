@@ -77,7 +77,7 @@ export class EditCourse {
                     price: data.price
                 });
 
-               this.features = data.features;
+            //    this.features = data.features;
 
 
             },
