@@ -39,20 +39,20 @@
 
   <div class="pricing-plans">
     <!-- BASIC -->
-    <div class="plan">
-      @for (course of courses(); track course.order) {
-        <h3 class="plan-title">{{ course.name }}</h3>
+    @for (course of courses(); track course.order) {
+    <div class="course">
+        <h3 class="course-title">{{ course.name }}</h3>
         <span class="badge">{{ course.badge }}</span>
-        <span class="plan-subtitle">{{ course.description }}</span>
+        <span class="course-description">{{ course.description }}</span>
 
-        <div class="plan-price">
+        <div class="course-price">
           <span class="price">{{ course.price | number: '1.2-2' }}€</span
           ><span class="period">/einmalig</span>
         </div>
 
         <!-- <button class="main-btn-start-in-krypto" (click)="buyCourse(course.id)">Kaufen</button> -->
 
-        <ul class="plan-features">
+        <ul class="course-features">
           @for (feature of course.features; track feature.id) {
             <li>{{ feature.text }}</li>
           }
@@ -76,7 +76,7 @@
           </li>
 
           <li>
-            <a 
+            <a
               class="main-btn-start-in-krypto edit-button"
               [routerLink]="['/crm/kurse', course.id, 'edit-course']"
             >
@@ -84,8 +84,8 @@
             </a>
           </li>
         </ul>
-      }
     </div>
+}
   </div>
 </section>
 
