@@ -18,10 +18,12 @@ export class CourseService {
         })
     }
 
-    postCourse(): Observable<COURSE[]> {
-        return this.http.get<COURSE[]>(`${this.baseUrl}courses/`, {
-            withCredentials: true
-        })
+    // Creat new course
+    postCourse(payload: any): Observable<COURSE[]> {
+        return this.http.post<COURSE[]>(`${this.baseUrl}courses/`,
+            payload,
+            { withCredentials: true }
+        )
     }
 
     getCourse(courseId: number): Observable<COURSE> {

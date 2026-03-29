@@ -4,6 +4,7 @@ import { Back } from '../../../shared/back/back';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { RouterLink } from '@angular/router';
+import { CourseService } from '../../../main-services/course-service';
 
 @Component({
     selector: 'app-add-new-course',
@@ -15,6 +16,8 @@ export class AddNewCourse {
     courseForm: FormGroup;
 
     mainStateService = inject(MainStateService);
+    courseService = inject(CourseService)
+    
 
 
     constructor() {
@@ -40,6 +43,18 @@ export class AddNewCourse {
             badge: this.courseForm.value.badge,
             status: this.courseForm.value.status,
         }
+
+        this.courseService.postCourse(payload).subscribe({
+            next: () => {
+                this.mainStateService.displayToast('Der Kurs wurde gespeichert', true)
+
+            },
+            error:  () => {
+                this.mainStateService.displayToast('Versuche es noch einmal.', false)
+            }
+        })
+
+
         console.log(payload);
         
         this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
