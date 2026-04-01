@@ -77,6 +77,14 @@ export class CourseService {
         );
     }
 
+    // Only for CRM
+    getLessonsCrm(courseId: number): Observable<LESSON[]> {
+        return this.http.get<LESSON[]>(
+            `${this.baseUrl}crm-lessons/?course=${courseId}`,
+            { withCredentials: true }
+        );
+    }
+
     DiscountCode(code: string): Observable<DISCOUNT_CODE> {
         return this.http.post<DISCOUNT_CODE>(
             `${this.baseUrl}discount-codes/validate_code/`,

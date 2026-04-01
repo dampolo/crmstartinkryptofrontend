@@ -10,27 +10,21 @@
   </div>
 
   <ul class="lesson-list">
-    <li class="lesson">
-      <div class="left">
-        <img src="./assets/movie.svg" alt="" />
-        <div>
-          <strong>01 - Intro</strong>
-          <small>VIDEO LESSON</small>
-        </div>
-      </div>
-      <span class="meta">04:20</span>
-    </li>
+     @for (lesson of lessons(); track lesson.id) { 
 
-    <li class="lesson">
+       
+       <li class="lesson">
       <div class="left">
         <img src="./assets/movie.svg" alt="" />
         <div>
-          <strong>02 - Kraken</strong>
-          <small>VIDEO LESSON</small>
+          <strong>{{lesson.order | number: '1.0'}} - {{ lesson.title}}</strong>
+          <small>{{ lesson.description}}</small>
         </div>
       </div>
-      <span class="meta">18:45</span>
+      <span class="meta">{{ lesson.duration | duration }}</span>
     </li>
+  }
+
   </ul>
 
   <a (click)="addNewVideo()" class="add-lesson"> + Add New Lesson </a>
