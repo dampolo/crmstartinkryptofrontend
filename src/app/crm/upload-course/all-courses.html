@@ -2,30 +2,31 @@
 
 <div class="container">
   <!-- Card -->
-  <div class="card">
-    <div class="card-image bg-cream">
-      <span class="badge published">PUBLISHED</span>
-      <span class="badge lessons">24 LESSONS</span>
-    </div>
+  @for (course of purchasedCourses(); track course.id) {
+    <div class="card">
+      <div class="card-image bg-cream">
+        <span class="badge published">Draft</span>
+        <span class="badge lessons">{{ course.lessons_count }}</span>
+      </div>
 
-    <div class="card-body">
-      <h3>Basic</h3>
-      <p>Master the fundamentals of layout, typography, and color theory.</p>
+      <div class="card-body">
+        <h3>{{ course.course.name }}</h3>
+        <p>{{ course.course.description}}</p>
+        <div class="featured">
+          <span>FEATURED LESSON</span>
+          <strong>Working with Grids (Video)</strong>
+          <small>Lesson 4 · 12:45m</small>
+        </div>
+      </div>
 
-      <div class="featured">
-        <span>FEATURED LESSON</span>
-        <strong>Working with Grids (Video)</strong>
-        <small>Lesson 4 · 12:45m</small>
+      <div class="card-footer">
+        <div class="icons"></div>
+        <button class="main-btn-start-in-krypto edit-button" routerLink="/crm/kurse/list-lessons">
+          Edit
+        </button>
       </div>
     </div>
-
-    <div class="card-footer">
-      <div class="icons"></div>
-      <button class="main-btn-start-in-krypto edit-button" routerLink="/crm/kurse/list-lessons">
-        Edit
-      </button>
-    </div>
-  </div>
+  }
 </div>
 
 <section class="pricing">
@@ -40,7 +41,7 @@
   <div class="pricing-plans">
     <!-- BASIC -->
     @for (course of courses(); track course.order) {
-    <div class="course">
+      <div class="course">
         <h3 class="course-title">{{ course.name }}</h3>
         <span class="badge">{{ course.badge }}</span>
         <span class="course-description">{{ course.description }}</span>
@@ -84,8 +85,8 @@
             </a>
           </li>
         </ul>
-    </div>
-}
+      </div>
+    }
   </div>
 </section>
 
