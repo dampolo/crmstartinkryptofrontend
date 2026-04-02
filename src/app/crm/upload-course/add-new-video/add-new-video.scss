@@ -11,6 +11,12 @@
   width: 100%;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
 .section-card {
   max-width: 900px;
   background: basic.$sixth;
@@ -121,6 +127,7 @@ label {
 }
 
 input[type='text'],
+input[type='number'],
 textarea {
   width: 100%;
   padding: 14px 16px;
@@ -128,7 +135,6 @@ textarea {
   border: 1px solid basic.$border-color;
   background: basic.$sixth;
   font-size: 15px;
-  color: basic.$sixth;
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
@@ -416,7 +422,6 @@ input[type='file'] {
 .resource-actions button:hover {
   color: var(--text-dark);
 }
-
 
 .show-edit {
   display: none;

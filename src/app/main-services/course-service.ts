@@ -77,6 +77,14 @@ export class CourseService {
         );
     }
 
+    postLesson(courseId: number, payload: any): Observable<LESSON[]> {
+        return this.http.post<LESSON[]>(
+            `${this.baseUrl}lessons/`,
+            payload,
+            { withCredentials: true }
+        );
+    }
+
     // Only for CRM
     getLessonsCrm(courseId: number): Observable<LESSON[]> {
         return this.http.get<LESSON[]>(
