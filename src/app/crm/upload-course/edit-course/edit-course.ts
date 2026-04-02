@@ -57,9 +57,9 @@ export class EditCourse {
     }
 
     ngOnInit() {
-        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
 
-        this.courseService.getCourse(id).subscribe({
+        this.courseService.getCourse(courseId).subscribe({
             next: (data) => {
                 this.mainStateService.displayToast('Die Daten wurden gelesen', true)
 
@@ -92,12 +92,12 @@ export class EditCourse {
     }
 
     submitDescription() {
-        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const payload = {
             description: this.shortDescriptionForm.value.description,
         }
 
-        this.courseService.updateCourse(id, payload).subscribe({
+        this.courseService.updateCourse(courseId, payload).subscribe({
             next: (data) => {
                 this.showDescription = !this.showDescription
                 this.mainStateService.displayToast('Die Beschreibung wurden erfolgreich gespeichert.', true)
@@ -114,11 +114,11 @@ export class EditCourse {
     }
 
     submitPrice() {
-        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const payload = {
             price: this.priceForm.value.price,
         }
-        this.courseService.updateCourse(id, payload).subscribe({
+        this.courseService.updateCourse(courseId, payload).subscribe({
             next: (data) => {
                 this.showPrice = !this.showPrice;
                 this.mainStateService.displayToast('Der Prise wurden erfolgreich gespeichert.', true)
@@ -143,14 +143,14 @@ export class EditCourse {
     }
 
     sumbitMainData() {
-        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const payload = {
             name: this.mainDataForm.value.name,
             order: this.mainDataForm.value.order,
             badge: this.mainDataForm.value.badge
         }
 
-        this.courseService.updateCourse(id, payload).subscribe({
+        this.courseService.updateCourse(courseId, payload).subscribe({
             next: (data) => {
                 this.showEdit = !this.showEdit;
                 this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
@@ -162,8 +162,8 @@ export class EditCourse {
     }
 
         openFeatures() {
-        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
 
-        this.router.navigate(['/crm/kurse', id, 'edit-features'])
+        this.router.navigate(['/crm/kurse', courseId, 'edit-features'])
     }
 }

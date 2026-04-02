@@ -134,7 +134,7 @@ export const routes: Routes = [
                 path: 'kurse',
                 children: [
                     { path: ':courseId/list-lessons', component: ListCourseLessons, title: 'Basic - List' },
-                    { path: ':id/edit-course', component: EditCourse, title: 'Edit - Kurs'},
+                    { path: ':courseId/edit-course', component: EditCourse, title: 'Edit - Kurs'},
                     { path: ':courseId/edit-features', component: EditFeatures, title: 'Kurs - Themen'},
                     { path: ':courseId/add-new-lesson', component: AddNewLesson, title: 'Neue Lektion' },
                     { path: ':courseId/edit-lesson/:lessonId', component: EditLesson, title: 'Edit Lektion' },
