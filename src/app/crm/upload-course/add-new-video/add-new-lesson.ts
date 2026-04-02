@@ -1,19 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
-import { Back } from '../../../shared/back/back';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
-import { Courses } from '../../../customer/courses';
+import { Back } from '../../../shared/back/back';
 
 @Component({
-    selector: 'app-add-new-video',
-    imports: [Back, ReactiveFormsModule, CommonModule],
-    templateUrl: './add-new-video.html',
-    styleUrl: './add-new-video.scss',
+    selector: 'app-add-new-lesson',
+    imports: [ReactiveFormsModule, CommonModule, Back],
+    templateUrl: './add-new-lesson.html',
+    styleUrl: './add-new-lesson.scss',
 })
-export class AddNewVideo {
+export class AddNewLesson {
     lessonForm: FormGroup;
 
     mainStateService = inject(MainStateService);
@@ -43,8 +42,6 @@ export class AddNewVideo {
             description_under_video: this.lessonForm.value.description_under_video,
         }
 
-
-
         this.courseService.postLesson(courseId, payload).subscribe({
             next: () => {
                 this.mainStateService.displayToast('Die Lektion wurde gespeichert', true)
@@ -54,9 +51,6 @@ export class AddNewVideo {
                 this.mainStateService.displayToast('Versuche es noch einmal.', false)
             }
         })
-
-
-        console.log(payload);
 
     }
 

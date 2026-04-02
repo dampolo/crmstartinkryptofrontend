@@ -21,7 +21,7 @@ import { LayoutCustomer } from './customer/layout-customer/layout-customer';
 import { Courses } from './customer/courses/courses';
 import { CustomerProfile } from './customer/user-customer/profile/customer-profile';
 import { LayoutAuth } from './customer/layout-auth/layout-auth';
-import { AddNewVideo } from './crm/upload-course/add-new-video/add-new-video';
+import { AddNewLesson } from './crm/upload-course/add-new-video/add-new-lesson';
 import { ListCourseLessons } from './crm/upload-course/list-course-lessons/list-course-lessons';
 import { AllCourses } from './crm/upload-course/all-courses';
 import { ListOfLessons } from './customer/courses/list-of-lessons/list-of-lessons';
@@ -33,9 +33,6 @@ import { Datenschutz } from './website/datenschutz/datenschutz';
 import { Impressum } from './website/impressum/impressum';
 import { Faq } from './website/faq/faq';
 import { LayoutWebsite } from './website/layout-website/layout-website';
-import { MyInvoices } from './customer/settings/my-invoices/my-invoices';
-import { Others } from './customer/settings/others/others';
-import { Settings } from './customer/settings/settings';
 import { AddNewCourse } from './crm/upload-course/add-new-course/add-new-course';
 import { EditCourse } from './crm/upload-course/edit-course/edit-course';
 import { EditFeatures } from './crm/upload-course/edit-features/edit-features';
@@ -138,7 +135,7 @@ export const routes: Routes = [
                     { path: ':courseId/list-lessons', component: ListCourseLessons, title: 'Basic - List' },
                     { path: ':id/edit-course', component: EditCourse, title: 'Edit - Kurs'},
                     { path: ':courseId/edit-features', component: EditFeatures, title: 'Kurs - Themen'},
-                    { path: ':courseId/add-new-video', component: AddNewVideo, title: 'Neue Video' },
+                    { path: ':courseId/add-new-lesson', component: AddNewLesson, title: 'Neue Lektion' },
                     { path: 'new-course', component: AddNewCourse, title: 'Neuer Kurs' },
 
                 ]
