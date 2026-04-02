@@ -22,7 +22,7 @@
         </div>
 
         <div class="right">
-            <button type="submit" class="main-btn-start-in-krypto">Edit</button>
+            <a (click)="editLesson(lesson.id)" class="main-btn-start-in-krypto">Edit</a>
             <span class="meta">{{ lesson.duration | duration }}</span>
         </div>
       </li>

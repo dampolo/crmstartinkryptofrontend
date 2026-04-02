@@ -139,7 +139,6 @@ export const routes: Routes = [
                     { path: ':courseId/add-new-lesson', component: AddNewLesson, title: 'Neue Lektion' },
                     { path: ':courseId/edit-lesson/:lessonId', component: EditLesson, title: 'Edit Lektion' },
                     { path: 'new-course', component: AddNewCourse, title: 'Neuer Kurs' },
-
                 ]
             },
 
