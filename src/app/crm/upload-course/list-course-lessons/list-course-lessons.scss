@@ -61,6 +61,12 @@
   gap: 14px;
 }
 
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .badge {
   width: 36px;
   height: 36px;

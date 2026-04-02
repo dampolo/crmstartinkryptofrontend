@@ -2,7 +2,7 @@
   <app-back></app-back>
 </a>
 
-<h1> Kurs - Basic </h1>
+<h1>Kurs - Basic</h1>
 
 <div class="container">
   <div class="header">
@@ -10,21 +10,23 @@
   </div>
 
   <ul class="lesson-list">
-     @for (lesson of lessons(); track lesson.id) { 
-
-       
-       <li class="lesson">
-      <div class="left">
-        <img src="./assets/movie.svg" alt="" />
-        <div>
-          <strong>{{lesson.order | number: '1.0'}} - {{ lesson.title}}</strong>
-          <small>{{ lesson.description}}</small>
+    @for (lesson of lessons(); track lesson.id) {
+      <li class="lesson">
+        
+        <div class="left">
+          <img src="./assets/movie.svg" alt="" />
+          <div>
+            <strong>{{ lesson.order | number: '1.0' }} - {{ lesson.title }}</strong>
+            <small>{{ lesson.description }}</small>
+          </div>
         </div>
-      </div>
-      <span class="meta">{{ lesson.duration | duration }}</span>
-    </li>
-  }
 
+        <div class="right">
+            <button type="submit" class="main-btn-start-in-krypto">Edit</button>
+            <span class="meta">{{ lesson.duration | duration }}</span>
+        </div>
+      </li>
+    }
   </ul>
 
   <a (click)="addNewVideo()" class="add-lesson"> + Add New Lesson </a>
