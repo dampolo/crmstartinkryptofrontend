@@ -1,1 +1,221 @@
-<p>edit-lesson works!</p>
+<a class="arrow-back" routerLink="/crm/kurse">
+  <app-back></app-back>
+</a>
+<h1>Edit Kurs</h1>
+
+<form class="section-title" [formGroup]="mainDataForm" (ngSubmit)="sumbitMainData()">
+  <div class="card">
+    <div class="card-header">Name - Badge - Reihenfolge</div>
+    <div class="card-body">
+      <!-- Badge -->
+      <div class="form-group">
+        <label for="badge">Badge</label>
+        <input
+          id="badge"
+          formControlName="badge"
+          placeholder="pro"
+          [ngClass]="showEdit ? '' : 'show-edit'"
+          type="text"
+        />
+        <span [ngClass]="showEdit ? 'show-edit' : ''" class="badge">{{
+          mainDataForm.get('badge')?.value
+        }}</span>
+      </div>
+
+      <!-- Order -->
+      <div class="form-group">
+        <label for="badge">Reihenfolge</label>
+        <input
+          id="order"
+          formControlName="order"
+          placeholder="e.g. 2"
+          [ngClass]="showEdit ? '' : 'show-edit'"
+          type="number"
+          step="0.01"
+          min="0"
+        />
+        <span [ngClass]="showEdit ? 'show-edit' : ''" class="section-number">{{
+          mainDataForm.get('order')?.value
+        }}</span>
+      </div>
+
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          formControlName="name"
+          placeholder="name"
+          [ngClass]="showEdit ? '' : 'show-edit'"
+          type="text"
+        />
+        <h2 [ngClass]="showEdit ? 'show-edit' : ''" class="title">
+          {{ mainDataForm.get('name')?.value }}
+        </h2>
+      </div>
+
+      <button
+        type="button"
+        (click)="editMainData()"
+        [ngClass]="showEdit ? 'show-edit' : ''"
+        class="edit-button"
+      >
+        <!-- Pencil Icon -->
+        <img src="./assets/edit.svg" alt="edit" />
+        Ändern
+      </button>
+
+      <button type="submit" [ngClass]="showEdit ? '' : 'show-edit'" class="save-button">
+        <!-- Pencil Icon -->
+        <img src="./assets/check.svg" alt="ok" />
+        ok
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- Status -->
+
+<form class="general-information" [formGroup]="statusForm" (ngSubmit)="submitStatus()">
+  <div class="card">
+    <div class="card-header">Status</div>
+
+    <div class="card-body">
+      <div class="form-group">
+        <select [ngClass]="showStatus ? '' : 'show-edit'" id="status" formControlName="status">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+        <h2 [ngClass]="showStatus ? 'show-edit' : ''" class="title">
+          {{ statusForm.get('status')?.value }}
+        </h2>
+      </div>
+      <button
+        type="button"
+        (click)="editStatus()"
+        [ngClass]="showStatus ? 'show-edit' : ''"
+        class="edit-button"
+      >
+        <!-- Pencil Icon -->
+        <img src="./assets/edit.svg" alt="edit" />
+        Ändern
+      </button>
+      <button type="submit" [ngClass]="showStatus ? '' : 'show-edit'" class="save-button">
+        <!-- Pencil Icon -->
+        <img src="./assets/check.svg" alt="ok" />
+        ok
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- Short describtion -->
+
+<form
+  class="general-information"
+  [formGroup]="shortDescriptionForm"
+  (ngSubmit)="submitDescription()"
+>
+  <div class="card">
+    <label for="short-description" class="card-header">Kurze Beschreibung</label>
+
+    <div class="card-body">
+      <div class="form-group">
+        <input
+          type="text"
+          id="short-description"
+          formControlName="description"
+          placeholder="...."
+          [ngClass]="showDescription ? '' : 'show-edit'"
+        />
+
+        <h2 [ngClass]="showDescription ? 'show-edit' : ''" class="title">
+          {{ shortDescriptionForm.get('description')?.value }}
+        </h2>
+      </div>
+
+      <button
+        type="button"
+        (click)="editDescription()"
+        [ngClass]="showEdit ? 'show-edit' : ''"
+        class="edit-button"
+      >
+        <!-- Pencil Icon -->
+        <img src="./assets/edit.svg" alt="edit" />
+        Ändern
+      </button>
+
+      <button type="submit" [ngClass]="showEdit ? '' : 'show-edit'" class="save-button">
+        <!-- Pencil Icon -->
+        <img src="./assets/check.svg" alt="ok" />
+        ok
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- Picture -->
+
+<section class="image-content">
+  <div class="image-card">
+    <div class="image-card-header">
+      <div>Bild</div>
+      <span>Max Size: 500MB (MP4, MOV)</span>
+    </div>
+
+    <div class="upload-area">
+      <div class="dropzone">
+        <div class="upload-icon">
+          <img src="./assets/upload-photo.svg" alt="upload" />
+        </div>
+
+        <div class="upload-title">Bild hochladen</div>
+        <div class="upload-subtitle">Bild für den Upload per Drag-and-drop hinzufügen</div>
+
+        <label class="main-btn-start-in-krypto">
+          Bild wählen
+          <input type="file" accept="video/mp4,video/mov" />
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Extra Material -->
+
+<section class="extra-material">
+  <div class="resources-card">
+    <div class="resources-header">
+      <div>Anhänge</div>
+      <button class="add-resource">
+        <img src="./assets/add.svg" alt="Hinzufügen" />
+        Hinzufügen
+      </button>
+    </div>
+
+    <div class="resource-list">
+      <!-- Item 1 -->
+      <div class="resource-item">
+        <div class="resource-left">
+          <div class="file-icon pdf">PDF</div>
+          <div class="resource-info">
+            <div class="resource-name">Color-Theory-Guidebook.pdf</div>
+            <div class="resource-meta">2.4 MB • Added Nov 14, 2023</div>
+          </div>
+        </div>
+
+        <div class="resource-actions">
+          <button title="View">
+            <img src="./assets/eye.svg" alt="anzeigen" />
+          </button>
+
+          <button title="Delete">
+            <img src="./assets/trash.svg" alt="wegschmeißen" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<a class="main-btn-start-in-krypto" (click)="openFeatures()" > Themen </a>
+
