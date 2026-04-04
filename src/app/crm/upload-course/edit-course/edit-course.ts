@@ -77,7 +77,7 @@ export class EditCourse {
                     price: data.price
                 });
 
-            //    this.features = data.features;
+                //    this.features = data.features;
 
 
             },
@@ -161,7 +161,7 @@ export class EditCourse {
         })
     }
 
-        openFeatures() {
+    openFeatures() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
 
         this.router.navigate(['/crm/kurse', courseId, 'edit-features'])

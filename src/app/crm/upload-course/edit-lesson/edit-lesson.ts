@@ -5,6 +5,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Back } from '../../../shared/back/back';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-edit-lesson',
@@ -29,39 +30,89 @@ export class EditLesson {
     longDescriptionForm: FormGroup
 
     // features: COURSE_FEATURE[] = []
-    priceForm: FormGroup
 
     mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
 
     constructor(private route: ActivatedRoute, private router: Router) {
+        this.mainDataForm = new FormGroup({
+            title: new FormControl(''),
+            order: new FormControl(0),
+        });
 
         // Status
         this.statusForm = new FormGroup({
             status: new FormControl("draft")
         })
 
-        this.mainDataForm = new FormGroup({
-            name: new FormControl(''),
-            order: new FormControl(0),
-        });
 
         this.shortDescriptionForm = new FormGroup({
             short_description: new FormControl("short")
         })
 
         this.longDescriptionForm = new FormGroup({
-            long_description: new FormControl("short")
+            long_description: new FormControl("long")
         })
-
-        this.priceForm = new FormGroup({
-            price: new FormControl('')
-        });
     }
 
-    editMainData() { }
+    ngOnInit(): void {
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
-    sumbitMainData() { }
+        this.courseService.getSingleLessonsCrm(lessonId).subscribe({
+            next: (data) => {
+                console.log(data);
+
+                this.mainDataForm.patchValue({
+                    title: data.title,
+                    order: data.order
+                });
+
+                this.statusForm.patchValue({
+                    status: data.status
+                });
+
+                this.shortDescriptionForm.patchValue({
+                    short_description: data.description
+                });
+
+                this.longDescriptionForm.patchValue({
+                    long_description: data.description_under_video
+                });
+
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
+
+    }
+
+
+
+    editMainData() {
+        this.showEdit = !this.showEdit
+    }
+
+    sumbitMainData() {
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+
+        const payload = {
+            title: this.mainDataForm.value.title,
+            order: this.mainDataForm.value.order,
+            course: courseId
+        }
+        this.courseService.patchSingleLessons(lessonId, payload).subscribe({
+            next: (data) => {
+                this.showEdit = !this.showEdit;
+                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
+    }
 
     editStatus() { }
 
@@ -70,8 +121,8 @@ export class EditLesson {
     submitShortDescription() { }
 
     editShortDescription() { }
-    
+
     submitLongDescription() { }
-    
-    editLongDescription() {}
+
+    editLongDescription() { }
 }

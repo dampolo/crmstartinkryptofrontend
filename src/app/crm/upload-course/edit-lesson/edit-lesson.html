@@ -26,16 +26,16 @@
 
       <!-- Name -->
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="title">Thema</label>
         <input
-          id="name"
-          formControlName="name"
-          placeholder="name"
+          id="title"
+          formControlName="title"
+          placeholder="title"
           [ngClass]="showEdit ? '' : 'show-edit'"
           type="text"
         />
         <h2 [ngClass]="showEdit ? 'show-edit' : ''" class="title">
-          {{ mainDataForm.get('name')?.value }}
+          {{ mainDataForm.get('title')?.value }}
         </h2>
       </div>
 
@@ -151,14 +151,13 @@
 
     <div class="card-body">
       <div class="form-group">
-        <input
-          type="text"
+        <textarea
           id="long_description"
           formControlName="long_description"
           placeholder="...."
           [ngClass]="showLongDescription ? '' : 'show-edit'"
-        />
-
+        >
+        </textarea>
         <h2 [ngClass]="showLongDescription ? 'show-edit' : ''" class="title">
           {{ shortDescriptionForm.get('description')?.value }}
         </h2>

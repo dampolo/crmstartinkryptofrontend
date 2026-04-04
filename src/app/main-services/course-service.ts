@@ -34,7 +34,7 @@ export class CourseService {
 
     updateCourse(courseId: number, payload: any): Observable<COURSE> {
         return this.http.patch<COURSE>(`
-            ${this.baseUrl}courses/${courseId}/`, 
+            ${this.baseUrl}courses/${courseId}/`,
             payload,
             { withCredentials: true }
         )
@@ -56,13 +56,13 @@ export class CourseService {
         return this.http.post(`${this.baseUrl}courses-features/`, payload,
             { withCredentials: true })
     }
-    
+
     deleteFeature(featureId: any): Observable<any> {
         return this.http.delete(`${this.baseUrl}courses-features/${featureId}/`,
             { withCredentials: true })
     }
 
-    patchFeature(payload: UPDATE_COURSE_FEATURE, featureId:number): Observable<any> {
+    patchFeature(payload: UPDATE_COURSE_FEATURE, featureId: number): Observable<any> {
         return this.http.patch(
             `${this.baseUrl}courses-features/${featureId}/`, payload,
             { withCredentials: true }
@@ -89,6 +89,23 @@ export class CourseService {
     getLessonsCrm(courseId: number): Observable<LESSON[]> {
         return this.http.get<LESSON[]>(
             `${this.baseUrl}crm-lessons/?course=${courseId}`,
+            { withCredentials: true }
+        );
+    }
+
+    // Only for CRM
+    getSingleLessonsCrm(lessonId: number): Observable<LESSON> {
+        return this.http.get<LESSON>(
+            `${this.baseUrl}crm-lessons/${lessonId}/`,
+            { withCredentials: true }
+        );
+    }
+
+    // PATH only for CRM 
+    patchSingleLessons(lessonId: number, payload: any): Observable<LESSON> {
+        return this.http.patch<LESSON>(
+            `${this.baseUrl}crm-lessons/${lessonId}/`, 
+            payload,
             { withCredentials: true }
         );
     }
