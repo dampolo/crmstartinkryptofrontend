@@ -15,7 +15,9 @@ import { Back } from '../../../shared/back/back';
 export class EditLesson {
 
     showEdit = true;
-    showDescription = true;
+    showLongDescription = true;
+    showShortDescription = true;
+
     showPrice = true;
     showStatus = true
 
@@ -24,6 +26,8 @@ export class EditLesson {
     mainDataForm: FormGroup;
 
     shortDescriptionForm: FormGroup
+    longDescriptionForm: FormGroup
+
     // features: COURSE_FEATURE[] = []
     priceForm: FormGroup
 
@@ -43,7 +47,11 @@ export class EditLesson {
         });
 
         this.shortDescriptionForm = new FormGroup({
-            description: new FormControl("dddd")
+            short_description: new FormControl("short")
+        })
+
+        this.longDescriptionForm = new FormGroup({
+            long_description: new FormControl("short")
         })
 
         this.priceForm = new FormGroup({
@@ -51,17 +59,19 @@ export class EditLesson {
         });
     }
 
-    editMainData() {}
+    editMainData() { }
 
-    sumbitMainData() {}
+    sumbitMainData() { }
 
-    editStatus() {}
+    editStatus() { }
 
-    submitStatus() {}
+    submitStatus() { }
 
-    submitShortDescription() {}
+    submitShortDescription() { }
+
+    editShortDescription() { }
     
-    submitLongDescription() {}
-
-    editDescription() {}
+    submitLongDescription() { }
+    
+    editLongDescription() {}
 }

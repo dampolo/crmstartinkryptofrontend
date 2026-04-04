@@ -74,19 +74,19 @@
         <input
           type="text"
           id="short-description"
-          formControlName="description"
+          formControlName="-short-description"
           placeholder="...."
-          [ngClass]="showDescription ? '' : 'show-edit'"
+          [ngClass]="showShortDescription ? '' : 'show-edit'"
         />
 
-        <h2 [ngClass]="showDescription ? 'show-edit' : ''" class="title">
+        <h2 [ngClass]="showShortDescription ? 'show-edit' : ''" class="title">
           {{ shortDescriptionForm.get('description')?.value }}
         </h2>
       </div>
 
       <button
         type="button"
-        (click)="editDescription()"
+        (click)="editShortDescription()"
         [ngClass]="showEdit ? 'show-edit' : ''"
         class="edit-button"
       >
@@ -139,34 +139,34 @@
   </div>
 </form>
 
-<!-- Short describtion -->
+<!-- Long describtion -->
 
 <form
   class="general-information"
-  [formGroup]="shortDescriptionForm"
+  [formGroup]="longDescriptionForm"
   (ngSubmit)="submitLongDescription()"
 >
   <div class="card">
-    <label for="short-description" class="card-header">Lange Beschreibung</label>
+    <label for="long-description" class="card-header">Lange Beschreibung</label>
 
     <div class="card-body">
       <div class="form-group">
         <input
           type="text"
-          id="short-description"
+          id="long-description"
           formControlName="description"
           placeholder="...."
-          [ngClass]="showDescription ? '' : 'show-edit'"
+          [ngClass]="showLongDescription ? '' : 'show-edit'"
         />
 
-        <h2 [ngClass]="showDescription ? 'show-edit' : ''" class="title">
+        <h2 [ngClass]="showLongDescription ? 'show-edit' : ''" class="title">
           {{ shortDescriptionForm.get('description')?.value }}
         </h2>
       </div>
 
       <button
         type="button"
-        (click)="editDescription()"
+        (click)="editLongDescription()"
         [ngClass]="showEdit ? 'show-edit' : ''"
         class="edit-button"
       >
