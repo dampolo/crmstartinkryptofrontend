@@ -66,7 +66,7 @@ export class AddNewLesson {
     backToListOfLessons() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
 
-        this.router.navigate(["/crm/kurse", courseId, "list-lessons"])
+        this.router.navigate(["/crm/kurse", courseId, "list-of-lessons"])
     }
 
 

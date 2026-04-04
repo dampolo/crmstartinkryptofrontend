@@ -45,7 +45,7 @@ export class ListCourseLessons {
 
     addNewVideo() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
-        this.router.navigate(["/crm/kurse", courseId, "add-new-video"])
+        this.router.navigate(["/crm/kurse", courseId, "add-new-lesson"])
     }
     
     editLesson(lessonId: number) {
