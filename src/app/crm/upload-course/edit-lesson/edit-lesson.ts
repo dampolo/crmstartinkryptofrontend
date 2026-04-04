@@ -59,7 +59,9 @@ export class EditLesson {
 
     submitStatus() {}
 
-    submitDescription() {}
+    submitShortDescription() {}
+    
+    submitLongDescription() {}
 
     editDescription() {}
 }
