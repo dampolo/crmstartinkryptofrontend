@@ -67,14 +67,14 @@
   (ngSubmit)="submitShortDescription()"
 >
   <div class="card">
-    <label for="short-description" class="card-header">Kurze Beschreibung</label>
+    <label for="short_description" class="card-header">Kurze Beschreibung</label>
 
     <div class="card-body">
       <div class="form-group">
         <input
           type="text"
-          id="short-description"
-          formControlName="-short-description"
+          id="short_description"
+          formControlName="short_description"
           placeholder="...."
           [ngClass]="showShortDescription ? '' : 'show-edit'"
         />
@@ -147,14 +147,14 @@
   (ngSubmit)="submitLongDescription()"
 >
   <div class="card">
-    <label for="long-description" class="card-header">Lange Beschreibung</label>
+    <label for="long_description" class="card-header">Lange Beschreibung</label>
 
     <div class="card-body">
       <div class="form-group">
         <input
           type="text"
-          id="long-description"
-          formControlName="description"
+          id="long_description"
+          formControlName="long_description"
           placeholder="...."
           [ngClass]="showLongDescription ? '' : 'show-edit'"
         />
