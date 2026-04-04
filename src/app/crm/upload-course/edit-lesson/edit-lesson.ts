@@ -17,7 +17,7 @@ export class EditLesson {
 
     showEdit = true;
     showLongDescription = true;
-    showShortDescription = true;
+    showDescription = true;
 
     showPrice = true;
     showStatus = true
@@ -26,7 +26,7 @@ export class EditLesson {
     statusForm: FormGroup;
     mainDataForm: FormGroup;
 
-    shortDescriptionForm: FormGroup
+    descriptionForm: FormGroup
     longDescriptionForm: FormGroup
 
     // features: COURSE_FEATURE[] = []
@@ -46,8 +46,8 @@ export class EditLesson {
         })
 
 
-        this.shortDescriptionForm = new FormGroup({
-            short_description: new FormControl("short")
+        this.descriptionForm = new FormGroup({
+            description: new FormControl("short")
         })
 
         this.longDescriptionForm = new FormGroup({
@@ -72,8 +72,8 @@ export class EditLesson {
                     status: data.status
                 });
 
-                this.shortDescriptionForm.patchValue({
-                    short_description: data.description
+                this.descriptionForm.patchValue({
+                    description: data.description
                 });
 
                 this.longDescriptionForm.patchValue({
@@ -118,9 +118,31 @@ export class EditLesson {
 
     submitStatus() { }
 
-    submitShortDescription() { }
+    submitDescription() { 
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
-    editShortDescription() { }
+        const payload = {
+            description: this.descriptionForm.value.description,
+            course: courseId
+        }
+
+        debugger
+        this.courseService.patchSingleLessons(lessonId, payload).subscribe({
+            next: (data) => {
+                this.showDescription = !this.showDescription
+                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
+    }
+
+    editShortDescription() { 
+        this.showDescription = !this.showDescription
+
+    }
 
     submitLongDescription() { }
 

@@ -63,8 +63,8 @@
 
 <form
   class="general-information"
-  [formGroup]="shortDescriptionForm"
-  (ngSubmit)="submitShortDescription()"
+  [formGroup]="descriptionForm"
+  (ngSubmit)="submitDescription()"
 >
   <div class="card">
     <label for="short_description" class="card-header">Kurze Beschreibung</label>
@@ -73,21 +73,21 @@
       <div class="form-group">
         <input
           type="text"
-          id="short_description"
-          formControlName="short_description"
+          id="description"
+          formControlName="description"
           placeholder="...."
-          [ngClass]="showShortDescription ? '' : 'show-edit'"
+          [ngClass]="showDescription ? '' : 'show-edit'"
         />
 
-        <h2 [ngClass]="showShortDescription ? 'show-edit' : ''" class="title">
-          {{ shortDescriptionForm.get('description')?.value }}
+        <h2 [ngClass]="showDescription ? 'show-edit' : ''" class="title">
+          {{ descriptionForm.get('description')?.value }}
         </h2>
       </div>
 
       <button
         type="button"
         (click)="editShortDescription()"
-        [ngClass]="showEdit ? 'show-edit' : ''"
+        [ngClass]="showDescription ? 'show-edit' : ''"
         class="edit-button"
       >
         <!-- Pencil Icon -->
@@ -95,7 +95,7 @@
         Ändern
       </button>
 
-      <button type="submit" [ngClass]="showEdit ? '' : 'show-edit'" class="save-button">
+      <button type="submit" [ngClass]="showDescription ? '' : 'show-edit'" class="save-button">
         <!-- Pencil Icon -->
         <img src="./assets/check.svg" alt="ok" />
         ok
@@ -159,7 +159,7 @@
         >
         </textarea>
         <h2 [ngClass]="showLongDescription ? 'show-edit' : ''" class="title">
-          {{ shortDescriptionForm.get('description')?.value }}
+          {{ longDescriptionForm.get('long_description')?.value }}
         </h2>
       </div>
 
