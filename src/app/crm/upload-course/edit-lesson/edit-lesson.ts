@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Back } from '../../../shared/back/back';
 import { Title } from '@angular/platform-browser';
+import { LESSON } from '../../../models/course.model';
 
 @Component({
     selector: 'app-edit-lesson',
@@ -29,7 +30,7 @@ export class EditLesson {
     descriptionForm: FormGroup
     longDescriptionForm: FormGroup
 
-    // features: COURSE_FEATURE[] = []
+    lesson = signal<LESSON | null>(null)
 
     mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
@@ -61,8 +62,9 @@ export class EditLesson {
 
         this.courseService.getSingleLessonsCrm(lessonId).subscribe({
             next: (data) => {
+                this.lesson.set(data)
                 console.log(data);
-
+                
                 this.mainDataForm.patchValue({
                     title: data.title,
                     order: data.order

@@ -61,11 +61,7 @@
 
 <!-- Short describtion -->
 
-<form
-  class="general-information"
-  [formGroup]="descriptionForm"
-  (ngSubmit)="submitDescription()"
->
+<form class="general-information" [formGroup]="descriptionForm" (ngSubmit)="submitDescription()">
   <div class="card">
     <label for="short_description" class="card-header">Kurze Beschreibung</label>
 
@@ -224,25 +220,28 @@
 
     <div class="resource-list">
       <!-- Item 1 -->
-      <div class="resource-item">
-        <div class="resource-left">
-          <div class="file-icon pdf">PDF</div>
-          <div class="resource-info">
-            <div class="resource-name">Color-Theory-Guidebook.pdf</div>
-            <div class="resource-meta">2.4 MB • Added Nov 14, 2023</div>
+
+      @for (pdf of lesson()?.pdfs; track pdf.id) {
+        <div class="resource-item">
+          <div class="resource-left">
+            <div class="file-icon pdf">PDF</div>
+            <div class="resource-info">
+              <div class="resource-name">{{pdf.title}}</div>
+              <div class="resource-meta">2.4 MB • Added Nov 14, 2023</div>
+            </div>
+          </div>
+
+          <div class="resource-actions">
+            <button title="View">
+              <img src="./assets/eye.svg" alt="anzeigen" />
+            </button>
+
+            <button title="Delete">
+              <img src="./assets/trash.svg" alt="wegschmeißen" />
+            </button>
           </div>
         </div>
-
-        <div class="resource-actions">
-          <button title="View">
-            <img src="./assets/eye.svg" alt="anzeigen" />
-          </button>
-
-          <button title="Delete">
-            <img src="./assets/trash.svg" alt="wegschmeißen" />
-          </button>
-        </div>
-      </div>
+      }
     </div>
   </div>
 </section>
