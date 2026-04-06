@@ -64,7 +64,7 @@ export class EditLesson {
             next: (data) => {
                 this.lesson.set(data)
                 console.log(data);
-                
+
                 this.mainDataForm.patchValue({
                     title: data.title,
                     order: data.order
@@ -120,7 +120,7 @@ export class EditLesson {
 
     submitStatus() { }
 
-    submitDescription() { 
+    submitDescription() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
@@ -129,7 +129,6 @@ export class EditLesson {
             course: courseId
         }
 
-        debugger
         this.courseService.patchSingleLessons(lessonId, payload).subscribe({
             next: (data) => {
                 this.showDescription = !this.showDescription
@@ -141,11 +140,32 @@ export class EditLesson {
         })
     }
 
-    editDescription() { 
+    editDescription() {
         this.showDescription = !this.showDescription
     }
 
-    submitLongDescription() { }
+    submitLongDescription() { 
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
-    editLongDescription() { }
+        const payload = {
+            description_under_video: this.descriptionForm.value.long_description,
+            course: courseId
+        }
+
+        this.courseService.patchSingleLessons(lessonId, payload).subscribe({
+            next: (data) => {
+                this.showLongDescription = !this.showLongDescription;
+                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false);
+            }
+        })
+
+    }
+
+    editLongDescription() {
+        this.showLongDescription = this.showLongDescription
+    }
 }
