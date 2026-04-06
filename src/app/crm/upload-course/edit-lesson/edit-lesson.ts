@@ -141,9 +141,8 @@ export class EditLesson {
         })
     }
 
-    editShortDescription() { 
+    editDescription() { 
         this.showDescription = !this.showDescription
-
     }
 
     submitLongDescription() { }
