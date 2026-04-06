@@ -42,10 +42,13 @@ export interface PURCHASED_COURSE {
     language: string;
 }
 
-export interface PDF {
-    id: number;
-    title: string;
-    file: string
+export interface LESSON_PDF {
+  id: number;
+  lesson: number;
+  title: string;
+  file: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface PURCHASE {
@@ -67,7 +70,7 @@ export interface LESSON {
     order: string;
     status: 'draft' | 'published';
     duration: number;
-    pdfs: PDF[]
+    pdfs: LESSON_PDF[]
 }
 
 export interface DISCOUNT_CODE {

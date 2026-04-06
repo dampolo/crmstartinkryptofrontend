@@ -104,8 +104,22 @@ export class CourseService {
     // PATH only for CRM 
     patchSingleLessons(lessonId: number, payload: any): Observable<LESSON> {
         return this.http.patch<LESSON>(
-            `${this.baseUrl}crm-lessons/${lessonId}/`, 
+            `${this.baseUrl}crm-lessons/${lessonId}/`,
             payload,
+            { withCredentials: true }
+        );
+    }
+
+    postSinglePdf(lessonId: number, file: File, title: string): Observable<any> {
+        const formData = new FormData();
+
+        formData.append('file', file);
+        formData.append('lesson', lessonId.toString());
+        formData.append('title', title);
+
+        return this.http.post(
+            `${this.baseUrl}crm-lesson-pdfs/`,
+            formData,
             { withCredentials: true }
         );
     }

@@ -213,15 +213,14 @@
     <div class="resources-header">
       <div>Anhänge</div>
       <label id="pdf" class="add-resource">
-        <input type="file" id="pdf" accept="pdf">
+        <input type="file" (change)="onFileSelected($event)" id="pdf" accept="application/pdf" />
         <img src="./assets/add.svg" alt="Hinzufügen" />
         Hinzufügen
       </label>
     </div>
 
     <div class="resource-list">
-      
-        <!-- PDFS -->
+      <!-- PDFS -->
       @for (pdf of lesson()?.pdfs; track pdf.id) {
         <div class="resource-item">
           <div class="resource-left">

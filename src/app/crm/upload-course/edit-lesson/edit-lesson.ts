@@ -144,7 +144,7 @@ export class EditLesson {
         this.showDescription = !this.showDescription
     }
 
-    submitLongDescription() { 
+    submitLongDescription() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
@@ -168,4 +168,27 @@ export class EditLesson {
     editLongDescription() {
         this.showLongDescription = this.showLongDescription
     }
+
+
+    onFileSelected(event: any) {
+        const file = event.target.files[0];
+        if (file) {
+            this.uploadPdf(file)
+        }
+    }
+
+    uploadPdf(file: File) {
+
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+
+        if (!file) return;
+
+
+        this.courseService.postSinglePdf(lessonId, file, "myPDF")
+            .subscribe({
+                next: (res) => console.log('Uploaded:', res),
+                error: (err) => console.error(err)
+            });
+    }
+
 }

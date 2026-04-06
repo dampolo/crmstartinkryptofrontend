@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, signal, ViewChild, viewChild } from '@angular/core';
-import { LESSON, PDF } from '../../../models/course.model';
+import { LESSON, LESSON_PDF } from '../../../models/course.model';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
@@ -37,7 +37,7 @@ export class ListOfLessons {
     title: string = ""
     order: string = ""
     videoDuration: number | null = null;
-    pdfs: PDF[] = [];
+    pdfs: LESSON_PDF[] = [];
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
