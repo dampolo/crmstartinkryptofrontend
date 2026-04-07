@@ -110,12 +110,7 @@ export class CourseService {
         );
     }
 
-    postSinglePdf(lessonId: number, file: File, title: string): Observable<any> {
-        const formData = new FormData();
-        debugger
-        formData.append('file', file);
-        formData.append('lesson', lessonId.toString());
-        formData.append('title', file.name);
+    postSinglePdf(lessonId: number, formData: any): Observable<any> {
 
         return this.http.post(
             `${this.baseUrl}crm-lesson-pdfs/`,

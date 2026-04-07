@@ -182,11 +182,23 @@ export class EditLesson {
 
         if (!file) return;
 
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('lesson', lessonId.toString());
+        formData.append('title', file.name);
 
-        this.courseService.postSinglePdf(lessonId, file, "myPDF")
+        this.courseService.postSinglePdf(lessonId, formData)
             .subscribe({
-                next: (res) => console.log('Uploaded:', res),
-                error: (err) => console.error(err)
+                next: (res) => {
+                    console.log('Uploaded:', res),
+                        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+                },
+
+                error: (err) => {
+                    console.error(err)
+                    this.mainStateService.displayToast('Du hast kein Internet', false);
+
+                }
             });
     }
 
