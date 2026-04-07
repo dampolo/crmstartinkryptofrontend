@@ -47,6 +47,7 @@ export interface LESSON_PDF {
   lesson: number;
   title: string;
   file: string;
+  file_size_display: string;
   created_at: string;
   updated_at: string;
 }
