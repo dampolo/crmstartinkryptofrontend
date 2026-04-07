@@ -56,9 +56,12 @@ export class EditLesson {
     }
 
     ngOnInit(): void {
+        this.renderLesson()
+    }
+
+    renderLesson() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
-
         this.courseService.getSingleLessonsCrm(lessonId).subscribe({
             next: (data) => {
                 this.lesson.set(data)
@@ -86,7 +89,6 @@ export class EditLesson {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
             }
         })
-
     }
 
 
@@ -190,21 +192,20 @@ export class EditLesson {
         this.courseService.postSinglePdf(formData)
             .subscribe({
                 next: (res) => {
-                    console.log('Uploaded:', res),
-                        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+                    this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+                    this.renderLesson();
                 },
                 error: (err) => {
-                    console.error(err)
                     this.mainStateService.displayToast('Du hast kein Internet', false);
                 }
             });
     }
 
     deletePdf(pdfId: number) {
-        console.log(pdfId);
         this.courseService.deleteSinglePdf(pdfId).subscribe({
             next: () => {
-                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+                this.mainStateService.displayToast('Pdf wurde erfolgreich gelöscht.', true);
+                this.renderLesson();
             },
             error: () => {
                 this.mainStateService.displayToast('Du hast kein Internet', false);
