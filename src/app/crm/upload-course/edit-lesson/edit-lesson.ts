@@ -187,7 +187,7 @@ export class EditLesson {
         formData.append('lesson', lessonId.toString());
         formData.append('title', file.name);
 
-        this.courseService.postSinglePdf(lessonId, formData)
+        this.courseService.postSinglePdf(formData)
             .subscribe({
                 next: (res) => {
                     console.log('Uploaded:', res),

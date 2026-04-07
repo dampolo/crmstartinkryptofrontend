@@ -110,7 +110,7 @@ export class CourseService {
         );
     }
 
-    postSinglePdf(lessonId: number, formData: any): Observable<any> {
+    postSinglePdf(formData: any): Observable<any> {
 
         return this.http.post(
             `${this.baseUrl}crm-lesson-pdfs/`,
