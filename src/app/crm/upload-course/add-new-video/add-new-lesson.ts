@@ -43,6 +43,7 @@ export class AddNewLesson {
             order: this.lessonForm.value.order,
             status: this.lessonForm.value.status,
             description_under_video: this.lessonForm.value.description_under_video,
+            pdfs: this.pdfs
         }
 
         this.courseService.postLesson(courseId, payload).subscribe({
