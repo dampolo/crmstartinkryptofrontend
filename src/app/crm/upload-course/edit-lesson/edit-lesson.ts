@@ -5,7 +5,6 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Back } from '../../../shared/back/back';
-import { Title } from '@angular/platform-browser';
 import { LESSON } from '../../../models/course.model';
 
 @Component({

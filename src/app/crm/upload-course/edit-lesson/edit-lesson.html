@@ -227,7 +227,7 @@
             <div class="file-icon pdf">PDF</div>
             <div class="resource-info">
               <div class="resource-name">{{ pdf.title }}</div>
-              <div class="resource-meta">2.4 MB • Added Nov 14, 2023</div>
+              <div class="resource-meta">{{ pdf.created_at | date: 'dd.MM.yyyy'  }}</div>
             </div>
           </div>
 
