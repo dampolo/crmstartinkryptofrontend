@@ -193,13 +193,22 @@ export class EditLesson {
                     console.log('Uploaded:', res),
                         this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
                 },
-
                 error: (err) => {
                     console.error(err)
                     this.mainStateService.displayToast('Du hast kein Internet', false);
-
                 }
             });
     }
 
+    deletePdf(pdfId: number) {
+        console.log(pdfId);
+        this.courseService.deleteSinglePdf(pdfId).subscribe({
+            next: () => {
+                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+            },
+            error: () => {
+                this.mainStateService.displayToast('Du hast kein Internet', false);
+            }
+        })
+    }
 }

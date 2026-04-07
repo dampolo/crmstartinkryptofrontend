@@ -119,6 +119,13 @@ export class CourseService {
         );
     }
 
+    deleteSinglePdf(pdfId: number): Observable<any> {
+        return this.http.delete(
+            `${this.baseUrl}crm-lesson-pdfs/${pdfId}/`,
+            { withCredentials: true }
+        );
+    }
+
     DiscountCode(code: string): Observable<DISCOUNT_CODE> {
         return this.http.post<DISCOUNT_CODE>(
             `${this.baseUrl}discount-codes/validate_code/`,
