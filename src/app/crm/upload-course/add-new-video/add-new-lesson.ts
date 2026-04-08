@@ -73,13 +73,6 @@ export class AddNewLesson {
         this.router.navigate(["/crm/kurse", courseId, "list-of-lessons"])
     }
 
-    deletePdf(pdfId: number) {
-    }
-
-    onFileSelected(event: any) {
-
-    }
-
     addVideo() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
         this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", "upload-video"])
