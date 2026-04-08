@@ -155,47 +155,6 @@
     </div>
   </section>
 
-  <!-- Extra Material -->
-
-  <section class="extra-material">
-    <div class="resources-card">
-      <div class="resources-header">
-        <div>Anhänge</div>
-        <label id="pdf" class="add-resource">
-          <input type="file" (change)="onFileSelected($event)" for="pdf" accept="application/pdf" />
-          <img src="./assets/add.svg" alt="Hinzufügen" />
-          Hinzufügen
-        </label>
-      </div>
-
-      <div class="resource-list">
-        <!-- PDF -->
-        @for (pdf of pdfs(); track pdf.id) {
-          <div class="resource-item">
-            <div class="resource-left">
-              <div class="file-icon pdf">PDF</div>
-              <div class="resource-info">
-                <div class="resource-name">{{ pdf.title }}</div>
-                <div class="resource-meta">
-                  {{ pdf.file_size_display }} - {{ pdf.created_at | date: 'medium' }}
-                </div>
-              </div>
-            </div>
-
-            <div class="resource-actions">
-              <a href="{{ pdf.file }}" target="_blank">
-                <img src="./assets/eye.svg" alt="anzeigen" />
-              </a>
-
-              <button title="Delete" (click)="deletePdf(pdf.id)">
-                <img src="./assets/trash.svg" alt="wegschmeißen" />
-              </button>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
-  </section>
   <button type="submit" class="main-btn-start-in-krypto" [disabled]="!lessonForm.valid">
     Erstellen
   </button>
