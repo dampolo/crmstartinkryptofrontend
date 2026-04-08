@@ -80,4 +80,10 @@ export class AddNewLesson {
 
     }
 
+    addVideo() {
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
+        this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", "upload-video"])
+
+    }
+
 }
