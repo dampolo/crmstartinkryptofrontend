@@ -76,30 +76,8 @@ export class AddNewLesson {
     deletePdf(pdfId: number) {
     }
 
-    formatFileSize(size: number): string {
-        if (size < 1024) return size + ' B';
-        if (size < 1024 * 1024) return (size / 1024).toFixed(1) + ' KB';
-        return (size / (1024 * 1024)).toFixed(1) + ' MB';
-    }
-
     onFileSelected(event: any) {
-        const file = event.target.files[0];
 
-        if (file) {
-            const newPdf: LESSON_PDF = {
-                id: Date.now(),
-                lesson: Date.now(),
-                title: file.name,
-                file: file,
-                file_size_display: this.formatFileSize(file.size),
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString(),
-            };
-
-            this.pdfs.update(pdfs => [...pdfs, newPdf]);
-            console.log(this.pdfs());
-            
-        }
     }
 
 }

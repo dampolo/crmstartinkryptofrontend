@@ -1,7 +1,7 @@
 <a class="arrow-back" (click)="backToListOfLessons()">
   <app-back></app-back>
 </a>
-<h1>Neue Video</h1>
+<h1>Neue Lektion</h1>
 
 <form [formGroup]="lessonForm" (ngSubmit)="sumbitMainData()">
   <section class="section-title">
@@ -198,5 +198,11 @@
   </section>
   <button type="submit" class="main-btn-start-in-krypto" [disabled]="!lessonForm.valid">
     Erstellen
+  </button>
+    <button type="button" class="main-btn-start-in-krypto">
+    + Video
+  </button>
+    <button type="button" class="main-btn-start-in-krypto" [disabled]="!lessonForm.valid">
+    + PDF
   </button>
 </form>
