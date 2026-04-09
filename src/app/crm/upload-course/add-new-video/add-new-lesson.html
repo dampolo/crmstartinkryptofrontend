@@ -155,13 +155,24 @@
     </div>
   </section>
 
-  <button type="submit" class="main-btn-start-in-krypto" [disabled]="!lessonForm.valid">
+  <button 
+  type="submit" 
+  class="main-btn-start-in-krypto" 
+  [disabled]="!lessonForm.valid || (lessonId$ | async)">
     Erstellen
   </button>
-    <button type="button" class="main-btn-start-in-krypto" (click)="addVideo()">
+    <button 
+    type="button" 
+    class="main-btn-start-in-krypto" 
+    [disabled]="!(lessonId$)"
+    (click)="addVideo()">
     + Video
   </button>
-    <button type="button" class="main-btn-start-in-krypto" [disabled]="!lessonForm.valid">
+    <button 
+    type="button" 
+    class="main-btn-start-in-krypto" 
+    [disabled]="!(lessonId$)"
+    >
     + PDF
   </button>
 </form>

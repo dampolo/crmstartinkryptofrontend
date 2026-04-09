@@ -6,6 +6,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
 import { Back } from '../../../shared/back/back';
 import { LESSON_PDF } from '../../../models/course.model';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 
 @Component({
     selector: 'app-add-new-lesson',
@@ -17,11 +18,11 @@ export class AddNewLesson {
     lessonForm: FormGroup;
 
     mainStateService = inject(MainStateService);
-    courseService = inject(CourseService)
+    courseService = inject(CourseService);
+    showEdit = false;
 
-    showEdit = false
-
-    pdfs = signal<LESSON_PDF[]>([])
+    lessonId$!: Observable<number | null>;
+    lessonId: number | null = null;
 
     constructor(private route: ActivatedRoute, private router: Router) {
         this.lessonForm = new FormGroup({
@@ -34,7 +35,7 @@ export class AddNewLesson {
     }
 
     sumbitMainData() {
-        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
 
         const payload = {
             course: courseId,
@@ -43,19 +44,21 @@ export class AddNewLesson {
             order: this.lessonForm.value.order,
             status: this.lessonForm.value.status,
             description_under_video: this.lessonForm.value.description_under_video,
-            pdfs: this.pdfs
-        }
+        };
 
-        this.courseService.postLesson(courseId, payload).subscribe({
-            next: () => {
-                this.mainStateService.displayToast('Die Lektion wurde gespeichert', true)
-
-            },
-            error: () => {
-                this.mainStateService.displayToast('Versuche es noch einmal.', false)
-            }
-        })
-
+        this.lessonId$ = this.courseService.postLesson(courseId, payload).pipe(
+            map(res => res.id),
+            tap(id => {
+                this.lessonId = id;
+            }),
+            tap(() => {
+                this.mainStateService.displayToast('Die Lektion wurde gespeichert', true);
+            }),
+            catchError((err) => {
+                this.mainStateService.displayToast('Versuche es noch einmal.', false);
+                return of(null);
+            })
+        );
     }
 
 
@@ -75,8 +78,9 @@ export class AddNewLesson {
 
     addVideo() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
-        this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", "upload-video"])
-
+        console.log(this.lessonId);
+        
+        this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", this.lessonId, "upload-video"])
     }
 
 }

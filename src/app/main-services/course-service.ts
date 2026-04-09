@@ -77,9 +77,10 @@ export class CourseService {
         );
     }
 
-    postLesson(courseId: number, payload: any): Observable<LESSON[]> {
-        return this.http.post<LESSON[]>(
-            `${this.baseUrl}lessons/`,
+    // Only for CRM
+    postLesson(courseId: number, payload: any): Observable<LESSON> {
+        return this.http.post<LESSON>(
+            `${this.baseUrl}crm-lessons/`,
             payload,
             { withCredentials: true }
         );
