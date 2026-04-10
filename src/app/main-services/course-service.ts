@@ -120,6 +120,13 @@ export class CourseService {
         );
     }
 
+    getSinglePdf(lessonId: any): Observable<any> {
+        return this.http.get(
+            `${this.baseUrl}crm-lessons/${lessonId}`,
+            { withCredentials: true }
+        );
+    }
+
     deleteSinglePdf(pdfId: number): Observable<any> {
         return this.http.delete(
             `${this.baseUrl}crm-lesson-pdfs/${pdfId}/`,

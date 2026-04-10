@@ -43,11 +43,26 @@ export class UploadPdf {
             .subscribe({
                 next: (res) => {
                     this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+                    this.renderPdfs()
                 },
                 error: (err) => {
                     this.mainStateService.displayToast('Du hast kein Internet', false);
                 }
             });
+    }
+
+    renderPdfs() {
+        debugger
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+        this.courseService.getSinglePdf(lessonId).subscribe({
+            next: (data) => {
+                this.pdfs.set(data)
+            },
+            error: (err) => {
+                console.log(err);
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
     }
 
     deletePdf(pdfId: number) {
