@@ -63,6 +63,7 @@ export class UploadPdf {
         })
     }
 
+    // Delete of PDF
     deletePdf(pdfId: number) {
         this.courseService.deleteSinglePdf(pdfId).subscribe({
             next: () => {
