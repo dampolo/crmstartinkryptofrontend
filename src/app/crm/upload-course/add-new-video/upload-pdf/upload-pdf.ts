@@ -68,6 +68,7 @@ export class UploadPdf {
         this.courseService.deleteSinglePdf(pdfId).subscribe({
             next: () => {
                 this.mainStateService.displayToast('Pdf wurde erfolgreich gelöscht.', true);
+                this.renderLesson();
             },
             error: () => {
                 this.mainStateService.displayToast('Du hast kein Internet', false);
