@@ -13,7 +13,7 @@
 
       <div class="resource-list">
         <!-- PDF -->
-        @for (pdf of pdfs(); track pdf.id) {
+        @for (pdf of lesson()?.pdfs; track pdf.id) {
           <div class="resource-item">
             <div class="resource-left">
               <div class="file-icon pdf">PDF</div>

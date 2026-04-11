@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { LESSON_PDF } from '../../../../models/course.model';
+import { LESSON, LESSON_PDF } from '../../../../models/course.model';
 import { MainStateService } from '../../../../main-services/main-state-service';
 import { CourseService } from '../../../../main-services/course-service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,15 +16,15 @@ export class UploadPdf {
     mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
 
-    pdfs = signal<LESSON_PDF[]>([])
+    lesson = signal<LESSON | null>(null)
 
     constructor(private route: ActivatedRoute, private router: Router) {
-
+        this.renderLesson();
     }
     onFileSelected(event: any) {
         const file = event.target.files[0];
         if (file) {
-            this.uploadPdf(file)
+            this.uploadPdf(file);
         }
     }
 
@@ -43,7 +43,7 @@ export class UploadPdf {
             .subscribe({
                 next: (res) => {
                     this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
-                    this.renderPdfs()
+                    this.renderLesson()
                 },
                 error: (err) => {
                     this.mainStateService.displayToast('Du hast kein Internet', false);
@@ -51,12 +51,11 @@ export class UploadPdf {
             });
     }
 
-    renderPdfs() {
-        debugger
+    renderLesson() {
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
-        this.courseService.getSinglePdf(lessonId).subscribe({
+        this.courseService.getSingleLessonsCrm(lessonId).subscribe({
             next: (data) => {
-                this.pdfs.set(data)
+                this.lesson.set(data)
             },
             error: (err) => {
                 console.log(err);
