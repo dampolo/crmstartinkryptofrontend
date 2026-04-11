@@ -9,7 +9,7 @@ import { LESSON } from '../../../models/course.model';
 
 @Component({
     selector: 'app-edit-lesson',
-    imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink, Back],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, Back],
     templateUrl: './edit-lesson.html',
     styleUrl: './edit-lesson.scss',
 })
