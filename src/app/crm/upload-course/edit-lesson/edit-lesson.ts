@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Back } from '../../../shared/back/back';
 import { LESSON } from '../../../models/course.model';
@@ -18,10 +18,8 @@ export class EditLesson {
     showEdit = true;
     showLongDescription = true;
     showDescription = true;
-
     showPrice = true;
     showStatus = true
-
 
     statusForm: FormGroup;
     mainDataForm: FormGroup;
