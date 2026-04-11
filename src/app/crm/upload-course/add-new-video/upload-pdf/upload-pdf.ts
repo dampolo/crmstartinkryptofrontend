@@ -58,7 +58,6 @@ export class UploadPdf {
                 this.lesson.set(data)
             },
             error: (err) => {
-                console.log(err);
                 this.mainStateService.displayToast('Du hast kein Internet', false)
             }
         })
