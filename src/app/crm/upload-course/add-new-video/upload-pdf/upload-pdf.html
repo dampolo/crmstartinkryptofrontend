@@ -5,7 +5,7 @@
       <div class="resources-header">
         <div>Anhänge</div>
         <label id="pdf" class="add-resource">
-          <input type="file" onchange="console.log(event.target.files)" for="pdf" accept="application/pdf" />
+          <input type="file" (change)="onFileSelected($event)" for="pdf" accept="application/pdf" />
           <img src="./assets/add.svg" alt="Hinzufügen" />
           Hinzufügen
         </label>
