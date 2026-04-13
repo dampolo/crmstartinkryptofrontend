@@ -111,8 +111,9 @@ export class CourseService {
         );
     }
 
-    postSinglePdf(formData: any): Observable<any> {
 
+    // CMR upload pdf
+    postSinglePdf(formData: any): Observable<any> {
         return this.http.post(
             `${this.baseUrl}crm-lesson-pdfs/`,
             formData,

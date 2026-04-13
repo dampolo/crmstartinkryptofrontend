@@ -5,13 +5,24 @@
       <div class="resources-header">
         <div>Anhänge</div>
         <label id="pdf" class="add-resource">
-          <input type="file" (change)="onFileSelected($event)" for="pdf" accept="application/pdf" />
+          <input type="file" 
+          (change)="onFileSelected($event)" 
+          for="pdf" 
+          accept="application/pdf" 
+          #fileUpload
+          />
           <img src="./assets/add.svg" alt="Hinzufügen" />
           Hinzufügen
         </label>
       </div>
 
+      
       <div class="resource-list">
+        @if(uploadProgress !== 0) {
+          <progress [value]="uploadProgress" max="100">
+          </progress>
+        }
+
         <!-- PDF -->
         @for (pdf of lesson()?.pdfs; track pdf.id) {
           <div class="resource-item">

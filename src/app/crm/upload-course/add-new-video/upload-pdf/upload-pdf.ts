@@ -4,6 +4,9 @@ import { MainStateService } from '../../../../main-services/main-state-service';
 import { CourseService } from '../../../../main-services/course-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { environment } from '../../../../../environment/environment';
+import { finalize, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-upload-pdf',
@@ -12,13 +15,17 @@ import { CommonModule } from '@angular/common';
     styleUrl: './upload-pdf.scss',
 })
 export class UploadPdf {
-
+    private baseUrl = environment.apiBaseUrl;
     mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
 
     lesson = signal<LESSON | null>(null)
 
-    constructor(private route: ActivatedRoute, private router: Router) {
+    uploadProgress: number = 0;
+    uploadSub: Subscription | null = null;
+
+    constructor(private route: ActivatedRoute, 
+        private router: Router, private http: HttpClient) {
         this.renderLesson();
     }
     onFileSelected(event: any) {
@@ -29,7 +36,6 @@ export class UploadPdf {
     }
 
     uploadPdf(file: File) {
-
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
         if (!file) return;
@@ -39,17 +45,27 @@ export class UploadPdf {
         formData.append('lesson', lessonId.toString());
         formData.append('title', file.name);
 
-        this.courseService.postSinglePdf(formData)
-            .subscribe({
-                next: (res) => {
-                    this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
-                    this.renderLesson()
-                },
-                error: (err) => {
-                    this.mainStateService.displayToast('Du hast kein Internet', false);
-                }
-            });
+        const upload$ = this.http.post(`${this.baseUrl}crm-lesson-pdfs/`, formData, {
+                reportProgress: true,
+                observe: 'events',
+                withCredentials: true 
+            })
+            .pipe(
+                finalize(() => this.reset())
+            );
+          
+            this.uploadSub = upload$.subscribe(event => {
+              if (event.type == HttpEventType.UploadProgress && event.total) {
+                this.uploadProgress = Math.round(100 * (event.loaded / event.total));
+              }
+            })
     }
+
+    reset() {
+    this.uploadProgress = 0;
+    this.uploadSub = null;
+  }
+
 
     renderLesson() {
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
