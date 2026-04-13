@@ -1,5 +1,4 @@
 @use './resets.css';
-@use './progress-bar.css';
 @use './basic';
 
 @font-face {
@@ -464,6 +463,37 @@ app-add-new-video {
   transform: rotate(-180deg);
   width: 2rem;
 }
+
+// PROGRESS BAR
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 16px 24px;
+}
+
+.progress-item {
+  width: 100%;
+  height: 10px;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: basic.$primary;
+  border-radius: 999px;
+}
+
+.progress-text {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
 
 @media (max-width: 37.5rem) {
   .main-auth {
