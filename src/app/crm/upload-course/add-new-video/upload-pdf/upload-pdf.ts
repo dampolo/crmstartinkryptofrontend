@@ -24,7 +24,7 @@ export class UploadPdf {
     uploadProgress: number = 0;
     uploadSub: Subscription | null = null;
 
-    constructor(private route: ActivatedRoute, 
+    constructor(private route: ActivatedRoute,
         private router: Router, private http: HttpClient) {
         this.renderLesson();
     }
@@ -46,25 +46,29 @@ export class UploadPdf {
         formData.append('title', file.name);
 
         const upload$ = this.http.post(`${this.baseUrl}crm-lesson-pdfs/`, formData, {
-                reportProgress: true,
-                observe: 'events',
-                withCredentials: true 
-            })
+            reportProgress: true,
+            observe: 'events',
+            withCredentials: true
+        })
             .pipe(
                 finalize(() => this.reset())
             );
-          
-            this.uploadSub = upload$.subscribe(event => {
-              if (event.type == HttpEventType.UploadProgress && event.total) {
+
+
+        this.uploadSub = upload$.subscribe(event => {
+            if (event.type == HttpEventType.UploadProgress && event.total) {
                 this.uploadProgress = Math.round(100 * (event.loaded / event.total));
-              }
-            })
+            }
+            if (event.type === HttpEventType.Response) {
+                this.renderLesson();
+            }
+        })
     }
 
     reset() {
-    this.uploadProgress = 0;
-    this.uploadSub = null;
-  }
+        this.uploadProgress = 0;
+        this.uploadSub = null;
+    }
 
 
     renderLesson() {
