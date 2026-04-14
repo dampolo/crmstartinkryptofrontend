@@ -11,6 +11,21 @@
         <div>Video</div>
         <span>Max Size: 500MB (MP4, MOV)</span>
       </div>
+      
+      <!-- Progress -->
+      @if (uploadProgress !== 0) {
+        <div class="progress-container">
+          <div class="progress-item">
+            <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+          </div>
+
+          <div class="progress-text">{{ uploadProgress }}%</div>
+          <button type="button" class="main-btn-start-in-krypto" (click)="cancelUpload()">
+            Abbrechen
+          </button>
+        </div>
+      }
+      <!-- Progress ENDE -->
 
       <div class="upload-area">
         <div class="dropzone">
