@@ -13,10 +13,8 @@ export class UploadVideo {
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
-  backToLessons() {
-    const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
-
-    this.router.navigate(["/crm/kurse", courseId, "add-new-lesson"])
+  backToPdf() {
+    this.addPdf();
   }
 
   addPdf() {
