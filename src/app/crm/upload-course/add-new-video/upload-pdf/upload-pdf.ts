@@ -39,7 +39,7 @@ export class UploadPdf {
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
         if (!file) return;
-
+        
         const formData = new FormData();
         formData.append('file', file);
         formData.append('lesson', lessonId.toString());
@@ -51,9 +51,10 @@ export class UploadPdf {
             withCredentials: true
         })
             .pipe(
-                finalize(() => this.reset())
+                finalize(() => {
+                    setTimeout(() => this.reset(), 1000);
+                })
             );
-
 
         this.uploadSub = upload$.subscribe(event => {
             if (event.type == HttpEventType.UploadProgress && event.total) {
@@ -65,6 +66,10 @@ export class UploadPdf {
         })
     }
 
+    cancelUpload() {
+        this.uploadSub?.unsubscribe();
+        this.reset();
+    }
     reset() {
         this.uploadProgress = 0;
         this.uploadSub = null;
