@@ -28,6 +28,7 @@ export class UploadPdf {
         private router: Router, private http: HttpClient) {
         this.renderLesson();
     }
+
     onFileSelected(event: any) {
         const file = event.target.files[0];
         if (file) {
@@ -46,10 +47,10 @@ export class UploadPdf {
         formData.append('title', file.name);
 
         const upload$ = this.courseService.postSinglePdf(formData).pipe(
-                finalize(() => {
-                    setTimeout(() => this.reset(), 1000);
-                })
-            );
+            finalize(() => {
+                setTimeout(() => this.reset(), 1000);
+            })
+        );
 
         this.uploadSub = upload$.subscribe(event => {
             if (event.type == HttpEventType.UploadProgress && event.total) {
@@ -94,6 +95,12 @@ export class UploadPdf {
                 this.mainStateService.displayToast('Du hast kein Internet', false);
             }
         })
+    }
+
+    addVideo() {
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"))
+        this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", lessonId, "upload-video"])
     }
 
 }
