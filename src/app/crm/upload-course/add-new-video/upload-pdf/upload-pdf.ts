@@ -39,18 +39,13 @@ export class UploadPdf {
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
         if (!file) return;
-        
+
         const formData = new FormData();
         formData.append('file', file);
         formData.append('lesson', lessonId.toString());
         formData.append('title', file.name);
 
-        const upload$ = this.http.post(`${this.baseUrl}crm-lesson-pdfs/`, formData, {
-            reportProgress: true,
-            observe: 'events',
-            withCredentials: true
-        })
-            .pipe(
+        const upload$ = this.courseService.postSinglePdf(formData).pipe(
                 finalize(() => {
                     setTimeout(() => this.reset(), 1000);
                 })

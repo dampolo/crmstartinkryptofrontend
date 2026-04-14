@@ -113,11 +113,15 @@ export class CourseService {
 
 
     // CMR upload pdf
-    postSinglePdf(formData: any): Observable<any> {
+    postSinglePdf(formData: FormData) {
         return this.http.post(
             `${this.baseUrl}crm-lesson-pdfs/`,
             formData,
-            { withCredentials: true }
+            {
+                reportProgress: true,
+                observe: 'events',
+                withCredentials: true
+            }
         );
     }
 
