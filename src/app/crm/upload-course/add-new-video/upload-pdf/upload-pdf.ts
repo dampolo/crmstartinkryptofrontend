@@ -98,9 +98,9 @@ export class UploadPdf {
     }
 
     addVideo() {
-        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
-        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"))
-        this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", lessonId, "upload-video"])
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+        this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", lessonId, "upload-video"]);
     }
 
 }

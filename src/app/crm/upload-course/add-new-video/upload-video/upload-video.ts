@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UploadVideo {
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   backToLessons() {
     const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
@@ -19,4 +19,9 @@ export class UploadVideo {
     this.router.navigate(["/crm/kurse", courseId, "add-new-lesson"])
   }
 
+  addPdf() {
+    const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
+    const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+    this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", lessonId, "upload-pdf"]);
+  }
 }
