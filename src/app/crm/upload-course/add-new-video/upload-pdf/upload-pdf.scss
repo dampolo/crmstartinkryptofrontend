@@ -24,14 +24,6 @@ textarea:focus {
   padding: 24px;
 }
 
-.dropzone {
-  border: 2px dashed basic.$border-color;
-  border-radius: 12px;
-  padding: 48px 20px;
-  text-align: center;
-  background: #fff;
-}
-
 .upload-icon {
   width: 56px;
   height: 56px;
@@ -96,6 +88,10 @@ input[type='file'] {
   color: basic.$main;
   background: basic.$thirteenth;
   border-radius: basic.$border-radius;
+}
+
+.resources-header.dragging {
+  background: basic.$eighth;
 }
 
 .add-resource {

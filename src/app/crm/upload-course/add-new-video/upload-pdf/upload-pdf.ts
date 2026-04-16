@@ -23,11 +23,37 @@ export class UploadPdf {
 
     uploadProgress: number = 0;
     uploadSub: Subscription | null = null;
+    isDragging = false;
 
     constructor(private route: ActivatedRoute,
         private router: Router, private http: HttpClient) {
         this.renderLesson();
     }
+
+    onDragOver(event: DragEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isDragging = true;
+    }
+
+    onDragLeave(event: DragEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isDragging = false;
+    }
+
+    onDrop(event: DragEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        this.isDragging = false;
+
+        if (event.dataTransfer?.files.length) {
+            const file = event.dataTransfer.files[0];
+            this.uploadPdf(file);
+        }
+    }
+
 
     onFileSelected(event: any) {
         const file = event.target.files[0];
