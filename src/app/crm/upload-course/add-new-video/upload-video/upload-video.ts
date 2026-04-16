@@ -119,4 +119,24 @@ export class UploadVideo {
             }
         })
     }
+
+    deleteVideo() {
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+        const payload = {
+            video: null
+        }
+
+        this.courseService.pathVideo(lessonId, payload).subscribe({
+            next: () => {
+                this.mainStateService.displayToast("Das Video wurde erfolgreich gelöscht", true);
+                this.renderLesson();
+            },
+            error: () => {
+                this.mainStateService.displayToast("Versuche es noch einmal.", true);
+
+            }
+        })
+
+    }
+    
 }

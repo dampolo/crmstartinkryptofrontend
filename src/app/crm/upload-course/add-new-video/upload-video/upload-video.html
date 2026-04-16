@@ -58,10 +58,15 @@
   </section>
 </form>
 
-@if(lesson()?.video !== null) {
-  <video [src]="lesson()?.video" controlsList="nodownload" controls loop></video>
-} @else {
-  Keine video wurde hochgeladen.
-}
+<div  class="video-content">
+  @if(lesson()?.video !== null) {
+    <video [src]="lesson()?.video" controlsList="nodownload" controls loop></video>
+  } @else {
+    Keine video wurde hochgeladen.
+  }
+</div>
+
+<button type="button" class="main-btn-start-in-krypto" (click)="deleteVideo()" [disabled]="lesson()?.video === null" >Löschen</button>
+
 
 <button type="button" class="main-btn-start-in-krypto" (click)="addPdf()">+ PDF</button>
