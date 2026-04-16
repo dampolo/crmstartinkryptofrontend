@@ -27,6 +27,10 @@ export class UploadVideo {
 
     constructor(private route: ActivatedRoute, private router: Router) { }
 
+    ngOnInit(): void {
+        this.renderLesson();
+    }
+
     onDragOver(event: DragEvent) {
         event.preventDefault();
         event.stopPropagation();
@@ -79,6 +83,7 @@ export class UploadVideo {
                 this.uploadProgress = Math.round(100 * (event.loaded / event.total));
             }
             if (event.type === HttpEventType.Response) {
+                this.renderLesson()
             }
         })
     }
@@ -101,5 +106,17 @@ export class UploadVideo {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
         this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", lessonId, "upload-pdf"]);
+    }
+
+    renderLesson() {
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
+        this.courseService.getSingleLessonsCrm(lessonId).subscribe({
+            next: (data) => {
+                this.lesson.set(data)
+            },
+            error: (err) => {
+                this.mainStateService.displayToast('Du hast kein Internet', false)
+            }
+        })
     }
 }
