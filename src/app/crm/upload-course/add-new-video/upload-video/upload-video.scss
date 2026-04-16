@@ -56,6 +56,11 @@ textarea {
     box-shadow 0.2s;
 }
 
+input[type='file'] {
+  // cursor: pointer;
+}
+
+
 input::placeholder,
 textarea::placeholder {
   color: basic.$twelfth;
@@ -144,10 +149,6 @@ textarea:focus {
   transition:
     background 0.2s,
     box-shadow 0.2s;
-}
-
-input[type='file'] {
-  display: none;
 }
 
 .editor-card {

@@ -23,8 +23,34 @@ export class UploadVideo {
 
     uploadProgress: number = 0;
     uploadSub: Subscription | null = null;
+    isDragging = false;
 
     constructor(private route: ActivatedRoute, private router: Router) { }
+
+    onDragOver(event: DragEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isDragging = true;
+    }
+
+    onDragLeave(event: DragEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.isDragging = false;
+    }
+
+    onDrop(event: DragEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        this.isDragging = false;
+
+        if (event.dataTransfer?.files.length) {
+            const file = event.dataTransfer.files[0];
+            this.uploadVideo(file);
+        }
+    }
+
 
     onFileSelected(event: any) {
         const file = event.target.files[0];
@@ -32,6 +58,8 @@ export class UploadVideo {
             this.uploadVideo(file);
         }
     }
+
+
     uploadVideo(file: File) {
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 

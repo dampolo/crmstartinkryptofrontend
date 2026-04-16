@@ -369,6 +369,7 @@ app-add-new-video {
   background-color: basic.$primary;
   border: solid 1px basic.$primary;
   transition: basic.$first-transition;
+  cursor: pointer;
   &:hover {
     border: solid 1px basic.$primary;
     background-color: basic.$body-bg;

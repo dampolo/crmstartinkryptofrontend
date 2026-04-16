@@ -28,7 +28,14 @@
       <!-- Progress ENDE -->
 
       <div class="upload-area">
-        <div class="dropzone">
+        <div
+          class="dropzone"
+          class="dropzone"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+          [class.dragging]="isDragging"
+        >
           <div class="upload-icon">
             <img src="./assets/upload.svg" alt="upload" />
           </div>
@@ -42,6 +49,7 @@
               type="file"
               (change)="onFileSelected($event)"
               accept="video/mp4,video/mov"
+              hidden
             />
           </label>
         </div>
