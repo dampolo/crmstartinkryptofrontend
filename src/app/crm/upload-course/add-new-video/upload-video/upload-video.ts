@@ -29,21 +29,18 @@ export class UploadVideo {
     onFileSelected(event: any) {
         const file = event.target.files[0];
         if (file) {
-            this.uploadPdf(file);
+            this.uploadVideo(file);
         }
     }
-
-    uploadPdf(file: File) {
+    uploadVideo(file: File) {
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
 
         if (!file) return;
 
         const formData = new FormData();
-        formData.append('file', file);
-        formData.append('lesson', lessonId.toString());
-        formData.append('title', file.name);
+        formData.append("video", file);
 
-        const upload$ = this.courseService.postSinglePdf(formData).pipe(
+        const upload$ = this.courseService.pathVideo(lessonId, formData).pipe(
             finalize(() => {
                 setTimeout(() => this.reset(), 1000);
             })

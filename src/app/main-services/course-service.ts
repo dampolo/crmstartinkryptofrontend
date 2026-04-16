@@ -125,6 +125,19 @@ export class CourseService {
         );
     }
 
+    // CMR only - Upload Video
+    pathVideo(lessonId: number, formData: any) {
+        return this.http.patch(
+            `${this.baseUrl}crm-lessons/${lessonId}/`,
+            formData,
+            {
+                reportProgress: true,
+                observe: 'events',
+                withCredentials: true
+            }
+        );
+    }
+
     getSinglePdf(lessonId: any): Observable<any> {
         return this.http.get(
             `${this.baseUrl}crm-lessons/${lessonId}`,

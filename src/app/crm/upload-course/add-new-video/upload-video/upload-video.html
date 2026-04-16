@@ -11,7 +11,7 @@
         <div>Video</div>
         <span>Max Size: 500MB (MP4, MOV)</span>
       </div>
-      
+
       <!-- Progress -->
       @if (uploadProgress !== 0) {
         <div class="progress-container">
@@ -38,7 +38,11 @@
 
           <label class="main-btn-start-in-krypto">
             Video wählen
-            <input type="file" (change)="onFileSelected($event)" accept="video/mp4,video/mov" />
+            <input
+              type="file"
+              (change)="onFileSelected($event)"
+              accept="video/mp4,video/mov"
+            />
           </label>
         </div>
       </div>
