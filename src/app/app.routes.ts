@@ -39,6 +39,7 @@ import { EditFeatures } from './crm/upload-course/edit-features/edit-features';
 import { EditLesson } from './crm/upload-course/edit-lesson/edit-lesson';
 import { UploadVideo } from './crm/upload-course/add-new-video/upload-video/upload-video';
 import { UploadPdf } from './crm/upload-course/add-new-video/upload-pdf/upload-pdf';
+import { EditVideo } from './crm/upload-course/edit-lesson/edit-video/edit-video';
 
 
 
@@ -142,7 +143,7 @@ export const routes: Routes = [
                     { path: ':courseId/add-new-lesson/:lessonId/upload-video', component: UploadVideo, title: 'Neue Video' },
                     { path: ':courseId/add-new-lesson/:lessonId/upload-pdf', component: UploadPdf, title: 'Neue Pdf' },
                     { path: ':courseId/edit-lesson/:lessonId', component: EditLesson, title: 'Edit Lektion' },
-                    { path: ':courseId/edit-lesson/:lessonId/upload-video', component: UploadVideo, title: 'Edit Video' },
+                    { path: ':courseId/edit-lesson/:lessonId/edit-video', component: EditVideo, title: 'Edit Video' },
 
                     { path: 'new-course', component: AddNewCourse, title: 'Neuer Kurs' },
                 ]
