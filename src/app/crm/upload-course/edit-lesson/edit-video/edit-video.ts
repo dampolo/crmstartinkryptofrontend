@@ -95,14 +95,10 @@ export class EditVideo {
   }
 
 
-  backToPdf() {
-    this.addPdf();
-  }
-
-  addPdf() {
+  backToEditLesson() {
     const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
     const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
-    this.router.navigate(["/crm/kurse", courseId, "add-new-lesson", lessonId, "upload-pdf"]);
+    this.router.navigate(["/crm/kurse", courseId, "edit-lesson", lessonId]);
   }
 
   renderLesson() {
