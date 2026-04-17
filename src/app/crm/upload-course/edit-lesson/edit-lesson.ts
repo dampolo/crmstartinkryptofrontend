@@ -217,4 +217,9 @@ export class EditLesson {
         this.router.navigate(["/crm/kurse", courseId, "list-of-lessons"])
     }
 
+    editVideo(){
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"))
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
+        this.router.navigate(["/crm/kurse", courseId, "edit-lesson", lessonId, "upload-video"])
+    }
 }

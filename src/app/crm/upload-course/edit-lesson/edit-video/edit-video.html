@@ -1,0 +1,71 @@
+<a class="arrow-back" (click)="backToPdf()">
+  <app-back></app-back>
+</a>
+
+<h1>Neue Video für "{{ lesson()?.title }}" Lektion</h1>
+
+<form>
+  <section class="video-content">
+    <div class="video-card">
+      <div class="video-card-header">
+        <div>Video</div>
+        <span>Max Size: 500MB (MP4, MOV)</span>
+      </div>
+
+      <!-- Progress -->
+      @if (uploadProgress !== 0) {
+        <div class="progress-container">
+          <div class="progress-item">
+            <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+          </div>
+
+          <div class="progress-text">{{ uploadProgress }}%</div>
+          <button type="button" class="main-btn-start-in-krypto" (click)="cancelUpload()">
+            Abbrechen
+          </button>
+        </div>
+      }
+      <!-- Progress ENDE -->
+
+      <div class="upload-area">
+        <div
+          class="dropzone"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+          [class.dragging]="isDragging"
+        >
+          <div class="upload-icon">
+            <img src="./assets/upload.svg" alt="upload" />
+          </div>
+
+          <div class="upload-title">Video hochladen</div>
+          <div class="upload-subtitle">Video für den Upload per Drag-and-drop hinzufügen</div>
+
+          <label class="main-btn-start-in-krypto">
+            Video wählen
+            <input
+              type="file"
+              (change)="onFileSelected($event)"
+              accept="video/mp4,video/mov"
+              hidden
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<div  class="video-content">
+  @if(lesson()?.video !== null) {
+    <video [src]="lesson()?.video" controlsList="nodownload" controls loop></video>
+  } @else {
+    Keine video wurde hochgeladen.
+  }
+</div>
+
+<button type="button" class="main-btn-start-in-krypto" (click)="deleteVideo()" [disabled]="lesson()?.video === null" >Löschen</button>
+
+
+<button type="button" class="main-btn-start-in-krypto" (click)="addPdf()">+ PDF</button>

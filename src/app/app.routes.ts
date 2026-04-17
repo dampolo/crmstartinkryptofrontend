@@ -142,7 +142,7 @@ export const routes: Routes = [
                     { path: ':courseId/add-new-lesson/:lessonId/upload-video', component: UploadVideo, title: 'Neue Video' },
                     { path: ':courseId/add-new-lesson/:lessonId/upload-pdf', component: UploadPdf, title: 'Neue Pdf' },
                     { path: ':courseId/edit-lesson/:lessonId', component: EditLesson, title: 'Edit Lektion' },
-                    { path: ':courseId/edit-lesson/:lessonId/upload-video', component: EditLesson, title: 'Edit Video' },
+                    { path: ':courseId/edit-lesson/:lessonId/upload-video', component: UploadVideo, title: 'Edit Video' },
 
                     { path: 'new-course', component: AddNewCourse, title: 'Neuer Kurs' },
                 ]
