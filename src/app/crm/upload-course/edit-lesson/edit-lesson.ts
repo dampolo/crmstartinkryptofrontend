@@ -152,10 +152,10 @@ export class EditLesson {
         this.courseService.patchSingleLessons(lessonId, payload).subscribe({
             next: (data) => {
                 this.showDescription = !this.showDescription
-                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+                this.mainStateService.displayToast("Daten wurden erfolgreich gespeichert.", true)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.mainStateService.displayToast("Du hast kein Internet", false)
             }
         })
     }
@@ -176,10 +176,10 @@ export class EditLesson {
         this.courseService.patchSingleLessons(lessonId, payload).subscribe({
             next: (data) => {
                 this.showLongDescription = !this.showLongDescription;
-                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+                this.mainStateService.displayToast("Daten wurden erfolgreich gespeichert.", true);
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false);
+                this.mainStateService.displayToast("Du hast kein Internet", false);
             }
         })
 
@@ -204,18 +204,18 @@ export class EditLesson {
         if (!file) return;
 
         const formData = new FormData();
-        formData.append('file', file);
-        formData.append('lesson', lessonId.toString());
-        formData.append('title', file.name);
+        formData.append("file", file);
+        formData.append("lesson", lessonId.toString());
+        formData.append("title", file.name);
 
         this.courseService.postSinglePdf(formData)
             .subscribe({
                 next: (res) => {
-                    this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true);
+                    this.mainStateService.displayToast("Daten wurden erfolgreich gespeichert.", true);
                     this.renderLesson();
                 },
                 error: (err) => {
-                    this.mainStateService.displayToast('Du hast kein Internet', false);
+                    this.mainStateService.displayToast("Du hast kein Internet", false);
                 }
             });
     }
@@ -223,11 +223,11 @@ export class EditLesson {
     deletePdf(pdfId: number) {
         this.courseService.deleteSinglePdf(pdfId).subscribe({
             next: () => {
-                this.mainStateService.displayToast('Pdf wurde erfolgreich gelöscht.', true);
+                this.mainStateService.displayToast("Pdf wurde erfolgreich gelöscht.", true);
                 this.renderLesson();
             },
             error: () => {
-                this.mainStateService.displayToast('Du hast kein Internet', false);
+                this.mainStateService.displayToast("Du hast kein Internet", false);
             }
         })
     }
