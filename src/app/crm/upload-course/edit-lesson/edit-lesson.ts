@@ -120,10 +120,23 @@ export class EditLesson {
     }
 
     submitStatus() { 
-        this.showStatus = !this.showStatus
+        const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
+        const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
         const payload = {
-            status: this.statusForm.value.status
+            status: this.statusForm.value.status,
+            course: courseId
         }
+        
+        this.courseService.patchSingleLessons(lessonId, payload).subscribe({
+            next: () => {
+                this.showStatus = !this.showStatus;
+                this.mainStateService.displayToast("Status wurde geändert", true)
+            },
+            error: () => {
+                this.mainStateService.displayToast("Versuche noch ein mal", false);
+            }
+        })
+
         
     }
 
