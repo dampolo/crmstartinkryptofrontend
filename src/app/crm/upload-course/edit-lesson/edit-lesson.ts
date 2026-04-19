@@ -115,9 +115,13 @@ export class EditLesson {
         })
     }
 
-    editStatus() { }
+    editStatus() { 
+        this.showStatus = !this.showStatus
+    }
 
-    submitStatus() { }
+    submitStatus() { 
+        this.showStatus = !this.showStatus
+    }
 
     submitDescription() {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
