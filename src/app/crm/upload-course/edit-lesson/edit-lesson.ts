@@ -107,10 +107,10 @@ export class EditLesson {
         this.courseService.patchSingleLessons(lessonId, payload).subscribe({
             next: (data) => {
                 this.showEdit = !this.showEdit;
-                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+                this.mainStateService.displayToast("Daten wurden erfolgreich gespeichert.", true)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.mainStateService.displayToast("Du hast kein Internet", false)
             }
         })
     }
