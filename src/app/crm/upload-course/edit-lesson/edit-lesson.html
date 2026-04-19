@@ -1,7 +1,7 @@
 <a class="arrow-back" (click)="backToListOfLessons()">
   <app-back></app-back>
 </a>
-<h1>Edit Lesson</h1>
+<h1>Edit Lesson  - "{{ lesson()?.title }}"</h1>
 
 <form class="section-title" [formGroup]="mainDataForm" (ngSubmit)="sumbitMainData()">
   <div class="card">
