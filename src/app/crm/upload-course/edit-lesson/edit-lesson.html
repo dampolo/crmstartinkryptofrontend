@@ -1,7 +1,7 @@
 <a class="arrow-back" (click)="backToListOfLessons()">
   <app-back></app-back>
 </a>
-<h1>Edit Lesson  - "{{ lesson()?.title }}"</h1>
+<h1>Edit Lesson - "{{ lesson()?.title }}"</h1>
 
 <form class="section-title" [formGroup]="mainDataForm" (ngSubmit)="sumbitMainData()">
   <div class="card">
@@ -107,15 +107,26 @@
     <div class="card-header">Status</div>
 
     <div class="card-body">
-      <div class="form-group">
-        <select [ngClass]="showStatus ? '' : 'show-edit'" id="status" formControlName="status">
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
-        </select>
-        <h2 [ngClass]="showStatus ? 'show-edit' : ''" class="title">
-          {{ statusForm.get('status')?.value }}
-        </h2>
+
+      <div class="status-methods">
+        <label class="method">
+          <input type="radio" formControlName="status" name="status" value="draft" />
+
+          <img src="./assets/edit.svg" alt="Status" />
+
+          <div class="method-info">Entwürf</div>
+          <span class="custom-radio"></span>
+        </label>
+
+        <label class="method">
+          <input type="radio" formControlName="status" name="status" value="published" />
+          <img src="./assets/check.svg" alt="Status" />
+
+          <div class="method-info">Freigeben</div>
+          <span class="custom-radio"></span>
+        </label>
       </div>
+
       <button
         type="button"
         (click)="editStatus()"
@@ -227,7 +238,9 @@
             <div class="file-icon pdf">PDF</div>
             <div class="resource-info">
               <div class="resource-name">{{ pdf.title }}</div>
-              <div class="resource-meta">{{pdf.file_size_display}} - {{ pdf.created_at | date:'medium'  }}</div>
+              <div class="resource-meta">
+                {{ pdf.file_size_display }} - {{ pdf.created_at | date: 'medium' }}
+              </div>
             </div>
           </div>
 
@@ -245,11 +258,5 @@
     </div>
   </div>
 
-  <button
-    type="button"
-    class="main-btn-start-in-krypto"
-    (click)="editVideo()"
-    >
-    Edit Video
-  </button>
+  <button type="button" class="main-btn-start-in-krypto" (click)="editVideo()">Edit Video</button>
 </section>

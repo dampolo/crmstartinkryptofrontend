@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CourseService } from '../../../main-services/course-service';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,8 +40,8 @@ export class EditLesson {
 
         // Status
         this.statusForm = new FormGroup({
-            status: new FormControl("draft")
-        })
+            status: new FormControl('draft', Validators.required),            
+        });
 
 
         this.descriptionForm = new FormGroup({
@@ -115,18 +115,21 @@ export class EditLesson {
         })
     }
 
-    editStatus() { 
+    editStatus() {
         this.showStatus = !this.showStatus
     }
 
-    submitStatus() { 
+    // Status
+    submitStatus() {
+        console.log(this.statusForm.value.status);
+        
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"));
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
         const payload = {
             status: this.statusForm.value.status,
             course: courseId
         }
-        
+
         this.courseService.patchSingleLessons(lessonId, payload).subscribe({
             next: () => {
                 this.showStatus = !this.showStatus;
@@ -137,7 +140,7 @@ export class EditLesson {
             }
         })
 
-        
+
     }
 
     submitDescription() {
@@ -238,7 +241,7 @@ export class EditLesson {
         this.router.navigate(["/crm/kurse", courseId, "list-of-lessons"])
     }
 
-    editVideo(){
+    editVideo() {
         const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"))
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
         this.router.navigate(["/crm/kurse", courseId, "edit-lesson", lessonId, "edit-video"])
