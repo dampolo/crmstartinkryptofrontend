@@ -14,7 +14,6 @@ import { InvoiceService } from '../../../main-services/invoice-service';
     styleUrl: './payment.scss',
 })
 export class Payment {
-    selectedPayment: string = "paypal";
     mainStateService = inject(MainStateService)
     courseService = inject(CourseService)
     invoiceService = inject(InvoiceService)

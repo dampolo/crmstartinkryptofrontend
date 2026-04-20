@@ -39,10 +39,10 @@
         </label>
       </div>
 
-      <div class="payment-text" [ngClass]="{ 'show-text': selectedPayment === 'paypal' }">
+      <div class="payment-text" [ngClass]="{ 'show-text': paymentMethod() === 'paypal' }">
         Zum Abschluss dieser Transaktion wirst du auf die sicheren Server von PayPal weitergeleitet.
       </div>
-      <div class="payment-text" [ngClass]="{ 'show-text': selectedPayment === 'bank' }">
+      <div class="payment-text" [ngClass]="{ 'show-text': paymentMethod() === 'bank' }">
         Du erhältst von uns eine Rechnung. Sobald du uns die Überweisungsbestätigung sendest,
         bekommst du sofort die Freischaltung.
       </div>
