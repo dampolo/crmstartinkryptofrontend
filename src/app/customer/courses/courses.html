@@ -2,68 +2,32 @@
   <div class="pricing-header">
     <h1>Wähle dein Kurs</h1>
     <p>
-        Meistere den Kryptomarkt mit unseren strukturierten Kursen. Wähle einen Plan, der zu deinen beruflichen Zielen und deinem Stil passt.
+      Meistere den Kryptomarkt mit unseren strukturierten Kursen. Wähle einen Plan, der zu deinen
+      beruflichen Zielen und deinem Stil passt.
     </p>
   </div>
 
   <div class="pricing-plans">
-
     <!-- BASIC -->
-    <div class="plan">
-      @for(course of courses(); track course.order) {
-
-        <h3 class="plan-title">{{course.name}}</h3>
-        <span class="badge">{{course.badge}}</span>
-        <span class="plan-subtitle">{{course.description}}</span>
-        
-        <div class="plan-price"><span class="price">{{course.price | number: '1.2-2'}}€</span><span class="period">/einmalig</span></div>
-        
-        <button class="main-btn-start-in-krypto" (click)="buyCourse(course.id)">Kaufen</button>
-        
-        <ul class="plan-features">
-          @for(feature of course.features; track feature.id) {
-            <li>{{feature.text}}</li>
-          }
-        </ul>
-      }
-    </div>
-
-    <!-- PRO -->
-    <div class="plan plan-featured">
-      <h3 class="plan-title">Pro</h3>
-      <span class="plan-subtitle">For serious traders</span>
-
-      <div class="plan-price"><span class="price">99€</span><span class="period">/einmalig</span></div>
-
-      <button class="btn btn-primary" type="button" disabled="true">Kaufen</button>
-
-      <ul class="plan-features">
-        <li>Everything in Basic</li>
-        <li>Live trading sessions</li>
-        <li>Advanced technical analysis</li>
-        <li>Portfolio reviews</li>
-      </ul>
-    </div>
-
-    <!-- PREMIUM -->
+    @for (course of courses(); track course.order) {
       <div class="plan">
-        <span class="badge badge-right">Best Value</span>
-
-        <h3 class="plan-title">Premium</h3>
-        <span class="plan-subtitle">Institutional grade</span>
+        <h3 class="plan-title">{{ course.name }}</h3>
+        <span class="badge">{{ course.badge }}</span>
+        <span class="plan-subtitle">{{ course.description }}</span>
 
         <div class="plan-price">
-          <span class="price">159€</span><span class="period">/einmalig</span>
+          <span class="price">{{ course.price | number: '1.2-2' }}€</span
+          ><span class="period">/einmalig</span>
         </div>
 
-        <button class="btn btn-light"  type="button" disabled="true">Kaufen</button>
+        <button class="main-btn-start-in-krypto" (click)="buyCourse(course.id)">Kaufen</button>
 
         <ul class="plan-features">
-          <li>Everything in Pro</li>
-          <li>1-on-1 mentorship</li>
-          <li>Institutional research</li>
-          <li>Lifetime updates</li>
+          @for (feature of course.features; track feature.id) {
+            <li>{{ feature.text }}</li>
+          }
         </ul>
       </div>
+    }
   </div>
 </section>
