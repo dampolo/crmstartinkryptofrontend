@@ -8,7 +8,7 @@
   </div>
 
   <div class="pricing-plans">
-    <!-- BASIC -->
+    <!-- Course -->
     @for (course of courses(); track course.order) {
       <div class="plan">
         <h3 class="plan-title">{{ course.name }}</h3>
@@ -29,5 +29,6 @@
         </ul>
       </div>
     }
+    <!-- Course End -->
   </div>
 </section>
