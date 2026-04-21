@@ -1,13 +1,21 @@
 export enum STATUS {
-  DRAFT = 'DRAFT',
-  PUBLISHED = 'PUBLISHED',
-  ARCHIVED = 'ARCHIVED'
+  DRAFT = 'draft',
+  PUBLISHED = 'published',
+  ARCHIVED = 'archived'
+}
+
+export const StatusLabel: Record<STATUS, string> = {
+    [STATUS.DRAFT]: 'Entwürf',
+    [STATUS.PUBLISHED]: 'Freigegeben',
+    [STATUS.ARCHIVED]: 'Archiviert',
 }
 
 export enum LANGUAGE {
   DE = 'DE',
   PL = 'PL',
 }
+
+
 
 export interface COURSE_FEATURE {
     id: number;

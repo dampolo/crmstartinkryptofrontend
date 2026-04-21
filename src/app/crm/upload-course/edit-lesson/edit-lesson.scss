@@ -394,15 +394,6 @@ input[type='file'] {
   color: var(--text-dark);
 }
 
-
-.show-edit {
-  display: none;
-}
-
-.hide-edit {
-  display: flex;
-}
-
 .status-methods {
   display: flex;
   gap: 1rem;
@@ -466,4 +457,13 @@ input[type='file'] {
       box-shadow: basic.$box-shadow;
     }
   }
+}
+
+
+.show-edit {
+  display: none;
+}
+
+.hide-edit {
+  display: flex;
 }
