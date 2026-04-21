@@ -81,26 +81,42 @@
     <div class="card-header">Status</div>
 
     <div class="card-body">
-      <div class="form-group">
-        <select [ngClass]="showStatus ? '' : 'show-edit'" id="status" formControlName="status">
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
-        </select>
-        <h2 [ngClass]="showStatus ? 'show-edit' : ''" class="title">
-          {{ statusForm.get('status')?.value }}
-        </h2>
+      <div class="status-methods" [ngClass]="showStatus ? 'show-edit' : ''">
+        <label class="method">
+          <input type="radio" formControlName="status" name="status" value="draft" />
+
+          <img src="./assets/edit.svg" alt="Status" />
+
+          <div class="method-info">Entwürf</div>
+          <span class="custom-radio"></span>
+        </label>
+
+        <label class="method">
+          <input type="radio" formControlName="status" name="status" value="published" />
+          <img src="./assets/check.svg" alt="Status" />
+
+          <div class="method-info">Freigeben</div>
+          <span class="custom-radio"></span>
+        </label>
       </div>
+
+      <h2 [ngClass]="showStatus ? '' : 'show-edit'" class="title">
+        {{ statusForm.get('status')?.value === 'draft' ? 'Entwürf' : 'Freigeben' }}
+      </h2>
+
+
       <button
         type="button"
         (click)="editStatus()"
-        [ngClass]="showStatus ? 'show-edit' : ''"
+        [ngClass]="showStatus ? '' : 'show-edit'"
         class="edit-button"
       >
         <!-- Pencil Icon -->
         <img src="./assets/edit.svg" alt="edit" />
         Ändern
       </button>
-      <button type="submit" [ngClass]="showStatus ? '' : 'show-edit'" class="save-button">
+
+      <button type="submit" [ngClass]="showStatus ? 'show-edit' : ''" class="save-button">
         <!-- Pencil Icon -->
         <img src="./assets/check.svg" alt="ok" />
         ok

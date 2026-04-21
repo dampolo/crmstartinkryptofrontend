@@ -224,8 +224,6 @@ input[type='file'] {
   display: none;
 }
 
-
-
 /* Toolbar */
 .editor-toolbar {
   display: flex;
@@ -393,6 +391,70 @@ input[type='file'] {
   color: var(--text-dark);
 }
 
+.status-methods {
+  display: flex;
+  gap: 1rem;
+
+  .method {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem;
+    border-radius: basic.$border-radius;
+    border: 2px solid basic.$border-color;
+    background: basic.$sixth;
+    cursor: pointer;
+    transition: basic.$first-transition;
+    position: relative;
+
+    img {
+      width: 32px;
+    }
+
+    &-info {
+      flex: 1;
+
+      span {
+        display: block;
+        font-size: 0.85rem;
+        color: basic.$twelfth;
+      }
+    }
+
+    /* echtes radio verstecken */
+    input[type='radio'] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    /* custom radio */
+    .custom-radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid basic.$border-color;
+      transition: basic.$first-transition;
+    }
+
+    /* checked state */
+    input[type='radio']:checked + img + .method-info + .custom-radio,
+    input[type='radio']:checked + .method-info + .custom-radio {
+      background: basic.$primary;
+      border-color: basic.$primary;
+      box-shadow: 0 0 0 4px rgba(basic.$primary, 0.2);
+    }
+
+    &:has(input:checked) {
+      border: 2px solid basic.$primary;
+      box-shadow: basic.$box-shadow;
+    }
+
+    &:hover {
+      box-shadow: basic.$box-shadow;
+    }
+  }
+}
 
 .show-edit {
   display: none;
