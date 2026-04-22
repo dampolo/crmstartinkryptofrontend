@@ -55,6 +55,7 @@ export const routes: Routes = [
             { path: 'datenschutz', component: Datenschutz, title: 'Datenschutz' },
             { path: 'impressum', component: Impressum, title: 'Impressum' },
             { path: 'faq', component: Faq, title: 'FAQ' },
+            { path: 'kurse', component: Courses, title: 'Kurse' },
 
         ]
     },

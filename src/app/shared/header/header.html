@@ -6,14 +6,14 @@
   <div class="dropdown">
     <button class="dropbtn" (click)="openLanguages()">
       <img src="./assets/global.svg" alt="translate" />
-      {{selectedLanguage | uppercase }}
+      {{ selectedLanguage | uppercase }}
     </button>
 
     <ul
       id="myDropdown"
       class="languages dropdown-content"
       [ngClass]="{
-        'show': isLanguagesOpen,
+        show: isLanguagesOpen,
       }"
     >
       <li>
@@ -37,7 +37,7 @@
     </ul>
   </div>
 
-    <button
+  <button
     (click)="openMenu()"
     class="hamburger hamburger--collapse"
     type="button"
@@ -85,8 +85,13 @@
       </a>
     </li>
     <li>
-      <a routerLink="/faq" class="nav-link" #navLink (click)="closeMenu()">
-        {{ 'MENU.FAQ' | translate }}
+      <a href="/#kontakt" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.CONTACT' | translate }}
+      </a>
+    </li>
+    <li>
+      <a routerLink="/kurse" class="nav-link" #navLink (click)="closeMenu()">
+        {{ 'MENU.COURSES' | translate }}
       </a>
     </li>
     <li>
