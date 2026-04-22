@@ -1,5 +1,11 @@
 <app-header></app-header>
 <main class="main-website">
   <router-outlet></router-outlet>
+    <app-toast
+    [ngClass]="{
+      'show-success': mainStateService.showToast,
+      'show-error': mainStateService.showError,
+    }"
+  ></app-toast>
 </main>
 <app-footer></app-footer>

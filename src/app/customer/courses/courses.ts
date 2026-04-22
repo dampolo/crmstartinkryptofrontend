@@ -6,6 +6,7 @@ import { CourseService } from '../../main-services/course-service';
 import { MainStateService } from '../../main-services/main-state-service';
 import { DecimalPipe } from '@angular/common';
 import { environment } from '../../../environment/environment';
+import { AuthService } from '../../main-services/auth-service';
 
 @Component({
     selector: 'app-courses',
@@ -17,15 +18,16 @@ export class Courses {
     courseService = inject(CourseService)
     courses = signal<COURSE[]>([])
     mainStateService = inject(MainStateService);
+    authService = inject(AuthService);
 
-    constructor(private router: Router){}
+    constructor(private router: Router) { }
 
     ngOnInit(): void {
         this.courseService.getCourses().subscribe({
             next: (courses) => {
                 this.courses.set(courses)
                 console.log(courses);
-                
+
             },
             error: (err) => {
                 this.mainStateService.displayToast('SystemFehler', false);
@@ -34,9 +36,18 @@ export class Courses {
     }
 
     buyCourse(courseId: number) {
-        this.router.navigate([
-        'customer/courses/payment', courseId
-      ])
+        this.authService.checkAuth().subscribe((isAuth) => {
+            debugger
+            if (isAuth) {
+                this.router.navigate([
+                    'customer/courses/payment',
+                    courseId
+                ]);
+            } else {
+                this.mainStateService.displayToast('Du muss dich anmelden', false);
+
+            }
+        });
     }
 }
 

@@ -78,7 +78,7 @@ export const routes: Routes = [
     {
         path: 'customer',
         component: LayoutCustomer,
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
         children: [
             { path: 'dashboard', component: DashboardCustomer },
             { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
