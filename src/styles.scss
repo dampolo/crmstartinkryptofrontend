@@ -81,6 +81,14 @@ app-header-auth {
   z-index: 1;
 }
 
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
 app-header-crm,
 app-header-customer {
   display: flex;
@@ -93,7 +101,6 @@ app-header-customer {
   justify-content: flex-end;
   gap: 1rem;
 }
-
 
 app-navbar-customer,
 app-navbar {
@@ -496,10 +503,8 @@ app-add-new-video {
   color: #374151;
 }
 
-
 @media (max-width: 37.5rem) {
   .main-auth {
-
     .main-content-customer {
       padding: 0.5rem;
       margin: 0;
