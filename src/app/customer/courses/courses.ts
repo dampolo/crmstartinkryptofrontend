@@ -36,8 +36,8 @@ export class Courses {
     }
 
     buyCourse(courseId: number) {
-        this.authService.checkAuth().subscribe((isAuth) => {
-            if (isAuth) {
+        this.authService.checkAuth().subscribe((isLoggedIn) => {
+            if (isLoggedIn) {
                 this.router.navigate([
                     'customer/courses/payment',
                     courseId
