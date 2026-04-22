@@ -37,15 +37,15 @@ export class Courses {
 
     buyCourse(courseId: number) {
         this.authService.checkAuth().subscribe((isAuth) => {
-            debugger
             if (isAuth) {
                 this.router.navigate([
                     'customer/courses/payment',
                     courseId
                 ]);
             } else {
-                this.mainStateService.displayToast('Du muss dich anmelden', false);
-
+                this.router.navigate([
+                    'kurse/information',
+                ]);
             }
         });
     }

@@ -40,6 +40,7 @@ import { EditLesson } from './crm/upload-course/edit-lesson/edit-lesson';
 import { UploadVideo } from './crm/upload-course/add-new-video/upload-video/upload-video';
 import { UploadPdf } from './crm/upload-course/add-new-video/upload-pdf/upload-pdf';
 import { EditVideo } from './crm/upload-course/edit-lesson/edit-video/edit-video';
+import { Information } from './shared/information/information';
 
 
 
@@ -71,6 +72,7 @@ export const routes: Routes = [
             { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
             { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
             { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
+            { path: 'information', component: Information, title: 'Meldung' },
 
         ]
     },
