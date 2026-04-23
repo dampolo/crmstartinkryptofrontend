@@ -81,6 +81,7 @@ export const routes: Routes = [
         path: 'customer',
         component: LayoutCustomer,
         canActivate: [authGuard],
+        data: { roles: ['customer', 'business'] },
         children: [
             { path: 'dashboard', component: DashboardCustomer },
             { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
@@ -126,6 +127,7 @@ export const routes: Routes = [
         path: 'crm',
         component: Layout,
         canActivate: [authGuard],
+        data: { roles: ['business'] },
         children: [
             { path: 'dashboard', component: Dashboard, title: 'Dashboard' },
             { path: 'kunden', component: Customers, title: 'Alle Kunden' },
@@ -140,8 +142,8 @@ export const routes: Routes = [
                 path: 'kurse',
                 children: [
                     { path: ':courseId/list-of-lessons', component: ListCourseLessons, title: 'Basic - List' },
-                    { path: ':courseId/edit-course', component: EditCourse, title: 'Edit - Kurs'},
-                    { path: ':courseId/edit-features', component: EditFeatures, title: 'Kurs - Themen'},
+                    { path: ':courseId/edit-course', component: EditCourse, title: 'Edit - Kurs' },
+                    { path: ':courseId/edit-features', component: EditFeatures, title: 'Kurs - Themen' },
                     { path: ':courseId/add-new-lesson', component: AddNewLesson, title: 'Neue Lektion' },
                     { path: ':courseId/add-new-lesson/:lessonId/upload-video', component: UploadVideo, title: 'Neue Video' },
                     { path: ':courseId/add-new-lesson/:lessonId/upload-pdf', component: UploadPdf, title: 'Neue Pdf' },

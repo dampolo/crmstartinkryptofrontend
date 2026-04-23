@@ -12,8 +12,8 @@ import { environment } from '../../environment/environment';
 	providedIn: 'root',
 })
 export class AuthService {
-	isAuthenticated = new BehaviorSubject<boolean>(false);
-	userType$ = new BehaviorSubject<'business' | 'customer' | 'applicant' | null>(null);
+	isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
+	userType$ = new BehaviorSubject<string | null>(null);
 	private baseUrl = environment.apiBaseUrl;
 	mainStateService = inject(MainStateService);
 
@@ -32,16 +32,20 @@ export class AuthService {
 
 	checkAuth(): Observable<boolean> {
 		return this.http
-			.get<CUSTOMER>(this.baseUrl + 'me/', { withCredentials: true })
+			.get<any>(this.baseUrl + 'me/', { withCredentials: true })
 			.pipe(
 				tap((user) => {
-					this.isAuthenticated.next(true);
-					this.userType$.next(user.type)
+					this.isAuthenticated$.next(true);
+					this.userType$.next(user.role);
+					console.log(this.userType$);
+					console.log(this.isAuthenticated$);
+
+					
 				}),
 				map(() => true),
 				catchError(() => {
-					this.isAuthenticated.next(false);
-					this.userType$.next(null)
+					this.isAuthenticated$.next(false);
+					this.userType$.next(null);
 					return of(false);
 				})
 			);
@@ -58,7 +62,7 @@ export class AuthService {
 				this.baseUrl + 'social/logout/',
 				{},
 				{ withCredentials: true }).subscribe(() => {
-					this.isAuthenticated.next(false);
+					this.isAuthenticated$.next(false);
 				});
 		}
 
@@ -67,7 +71,7 @@ export class AuthService {
 			this.baseUrl + 'logout/',
 			{},
 			{ withCredentials: true }).subscribe(() => {
-				this.isAuthenticated.next(false);
+				this.isAuthenticated$.next(false);
 
 			});
 	}
@@ -95,11 +99,11 @@ export class AuthService {
 	}
 
 	async loginWithGoogle(): Promise<void> {
-		const accessToken  = await this.googleAuth.getAccessToken();
+		const accessToken = await this.googleAuth.getAccessToken();
 		await firstValueFrom(
 			this.http.post(
 				'http://127.0.0.1:8000/api/auth/google/',
-				{ access_token: accessToken  },
+				{ access_token: accessToken },
 				{ withCredentials: true }
 			)
 		);
