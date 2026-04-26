@@ -141,3 +141,16 @@
   background: none;
   z-index: 1;
 }
+
+app-logo-text {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  app-logo-text {
+    display: none;
+  }
+  app-logo {
+    display: flex;
+  }
+}
