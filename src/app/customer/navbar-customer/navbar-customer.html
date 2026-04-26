@@ -6,7 +6,7 @@
     </a> 
   </li>
   <li>
-    <button routerLink="/customer/dashboard" routerLinkActive="active">
+    <button routerLink="/customer/dashboard" routerLinkActive="active" (click)="closeMenu()">
       <img src="./assets/dashboard.svg" alt="">
       <span class="nav-link-text">
         Dashboard
@@ -14,7 +14,7 @@
     </button>
   </li>
   <li>
-    <button routerLink="/customer/courses/" routerLinkActive="active">
+    <button routerLink="/customer/courses/" routerLinkActive="active" (click)="closeMenu()">
       <img src="./assets/courses.svg" alt="">
       <span class="nav-link-text">
         Kurse
@@ -23,7 +23,7 @@
   </li>
 
   <li>
-      <button routerLink="/customer/my-courses/" routerLinkActive="active">
+      <button routerLink="/customer/my-courses/" routerLinkActive="active" (click)="closeMenu()">
         <img src="./assets/bitbulb.svg" alt="">
         <span class="nav-link-text">
           Deine Kurse
@@ -32,7 +32,7 @@
   </li>
 
   <li>
-    <button routerLink="einstellungen" routerLinkActive="active">
+    <button routerLink="einstellungen" routerLinkActive="active" (click)="closeMenu()">
       <img width="25" height="25" src="./assets/settings.svg" alt="">
       <span class="nav-link-text">
         Einstellungen

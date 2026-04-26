@@ -18,8 +18,6 @@ export class HeaderCustomer {
 
 	mainStateService = inject(MainStateService);
 	authService = inject(AuthService);
-	posFixBurger = false;
-	posFixLogo = false;
 
 	constructor(private router: Router) {
 
@@ -39,16 +37,16 @@ export class HeaderCustomer {
 		this.mainStateService.isProfileVisible = false;
 	}
 
-		openMenu() {
+	openMenu() {
 		this.mainStateService.isMenuOpen = !this.mainStateService.isMenuOpen;
-		this.posFixBurger = !this.posFixBurger;
-		this.posFixLogo = !this.posFixLogo;
+		this.mainStateService.posFixBurger = !this.mainStateService.posFixBurger;
+		this.mainStateService.posFixLogo = !this.mainStateService.posFixLogo;
 	}
 
 	closeMenu() {
 		this.mainStateService.isMenuOpen = false;
-		this.posFixBurger = false;
-		this.posFixLogo = false;
+		this.mainStateService.posFixBurger = false;
+		this.mainStateService.posFixLogo = false;
 	}
 
 }
