@@ -27,6 +27,7 @@ main {
   min-height: calc(100vh - 177px);
   color: basic.$main;
   padding-inline: 1rem;
+  background-color: basic.$thirteenth;
   gap: 1rem;
 }
 
@@ -281,7 +282,6 @@ app-login {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100dvh;
   background-color: basic.$body-bg;
 }
 
