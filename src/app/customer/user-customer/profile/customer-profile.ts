@@ -25,9 +25,7 @@ export class CustomerProfile {
 
     ngOnInit(): void {
         this.customerService.getCustomer().subscribe({
-            next: (profile) => {
-                console.log(profile);
-                
+            next: (profile) => {                
                 this.customer.set(profile);
             },
             error: (err) => {

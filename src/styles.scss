@@ -27,7 +27,7 @@ main {
   min-height: calc(100vh - 177px);
   color: basic.$main;
   padding-inline: 1rem;
-  background-color: basic.$thirteenth;
+  background-color: basic.$body-bg;
   gap: 1rem;
 }
 
@@ -282,7 +282,6 @@ app-login {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: basic.$body-bg;
 }
 
 app-profile {

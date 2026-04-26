@@ -37,9 +37,6 @@ export class AuthService {
 				tap((user) => {
 					this.isAuthenticated$.next(true);
 					this.userType$.next(user.role);
-					console.log(this.userType$);
-					console.log(this.isAuthenticated$);
-
 					
 				}),
 				map(() => true),
