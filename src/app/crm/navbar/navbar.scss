@@ -30,6 +30,8 @@ ul {
         font-size: 1.04rem;
         padding-inline: 0.3125rem;
         width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       img {
         width: 1.5625rem;
