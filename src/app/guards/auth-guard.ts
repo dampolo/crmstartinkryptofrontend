@@ -16,21 +16,16 @@ export const authGuard: CanActivateFn = (route) => {
             const allowedRoles = route.data?.['roles'] as string[];
 
             // Not logged in
-            if (!isLoggedIn) {
+            if (!isLoggedIn || !userType) {
+                console.log("TEST1");   
                 return router.createUrlTree(["/kurse/login"])
             }
-
-            // Logged in but no role yet (edge case)
-            if (!userType) {
-                return router.createUrlTree(['kurse/login']);
-            }
-
             // Check role access
             if (allowedRoles && allowedRoles.includes(userType)) {
-                
+                console.log("TEST2");
+       
                 return true;
             }
-
             // Logged in but not allowed
             // If customer want to get in to crm portal and will redirected 
             return router.createUrlTree(['/']);

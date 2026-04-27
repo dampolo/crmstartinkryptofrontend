@@ -55,9 +55,8 @@ export class LoginCustomer {
 			password: this.loginForm.value.password,
 		};
 
-		this.authService.login(data.email, data.password).subscribe({
+		this.authService.loginAndFetchUser(data.email, data.password).subscribe({
 			next: () => {
-				this.authService.isAuthenticated$.next(true);
 				this.mainStateService.displayToast('Du bist angemeldet.', true);
 				this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
 			},

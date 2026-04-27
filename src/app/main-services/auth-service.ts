@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, firstValueFrom, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, firstValueFrom, map, Observable, of, switchMap, tap } from 'rxjs';
 import { User } from '../customer/models/user.model';
 import { CUSTOMER } from '../models/customer.model';
 import { MainStateService } from './main-state-service';
@@ -30,14 +30,39 @@ export class AuthService {
 		);
 	}
 
+	
+	/**
+	 * Logs in the user and then fetches the authenticated user data.
+	 *
+	 * This method first calls the login endpoint to authenticate the user.
+	 * After a successful login, it uses `switchMap` to immediately call `checkAuth()`,
+	 * ensuring that the user session (e.g. cookies) is fully established before
+	 * requesting the user details (like role).
+	 *
+	 * This prevents timing issues where the user data is requested too early
+	 * and authentication is not yet recognized by the backend.
+	 *
+	 * @param email - The user's email address
+	 * @param password - The user's password
+	 * @returns Observable<boolean> - Emits `true` if authentication and user fetch succeed,
+	 *                               otherwise `false`
+	 */
+	loginAndFetchUser(email: string, password: string) {
+		return this.login(email, password).pipe(
+			switchMap(() => this.checkAuth())
+		);
+	}
+
 	checkAuth(): Observable<boolean> {
 		return this.http
 			.get<any>(this.baseUrl + 'me/', { withCredentials: true })
 			.pipe(
 				tap((user) => {
+					console.log(user);
+
 					this.isAuthenticated$.next(true);
 					this.userType$.next(user.role);
-					
+
 				}),
 				map(() => true),
 				catchError(() => {
