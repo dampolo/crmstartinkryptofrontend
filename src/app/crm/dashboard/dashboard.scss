@@ -2,6 +2,8 @@
 
 .dashboard-statistics {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     .dashboard-single {
         display: flex;
@@ -38,6 +40,8 @@
 
 .dashboard-list-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     margin-top: 1rem;
     .dashboard-list {
