@@ -126,8 +126,8 @@ table tbody tr {
 .invoice {
   text-decoration: underline;
   color: basic.$secondary;
-  padding: .1rem .2rem;
-  border-radius: .2rem;
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.2rem;
   background-color: transparent;
   transition: basic.$first-transition;
 }
@@ -136,4 +136,15 @@ table tbody tr {
   background-color: basic.$primary;
   color: basic.$sixth;
   text-decoration: none;
+}
+
+@media (max-width: 37.5rem) {
+    table tbody tr td:nth-child(3),
+    table thead tr td:nth-child(3) {
+        display: none;
+    }
+
+    section {
+        overflow-x: auto;
+    }
 }
