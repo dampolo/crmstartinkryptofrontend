@@ -134,8 +134,8 @@
       </address>
 
       <div class="btn-container">
-        <a routerLink="/customer/dashboard" class="new-customer">Zurück</a>
-        <button (click)="editDetails()" class="new-customer">Bearbeiten</button>
+        <a routerLink="/customer/dashboard" class="edit-customer-btn">Zurück</a>
+        <button (click)="editDetails()" class="edit-customer-btn">Bearbeiten</button>
       </div>
     </div>
 
@@ -443,10 +443,10 @@
         </div>
         <div class="btn-container">
           <!-- Cancel Button -->
-          <button type="button" (click)="onCancel()">Abbrechen</button>
+          <button type="button" (click)="onCancel()" class="edit-customer-btn">Abbrechen</button>
 
           <!-- Submit Button -->
-          <button type="submit" [disabled]="!customerForm.valid">Speichern</button>
+          <button type="submit" [disabled]="!customerForm.valid" class="edit-customer-btn">Speichern</button>
         </div>
       </form>
     </div>

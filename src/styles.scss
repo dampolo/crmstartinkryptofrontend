@@ -174,8 +174,6 @@ app-edit-single-feature {
 
 a.new-invoice,
 button[type='button'],
-a.new-customer,
-button.new-customer,
 button.edit,
 button[type='submit'] {
   background-color: basic.$primary;
@@ -185,9 +183,6 @@ button[type='submit'] {
 }
 
 a.new-invoice:hover,
-button.new-customer:hover,
-// button[type='button']:hover,
-a.new-customer:not(:disabled):hover,
 button.edit:not(:disabled):hover {
   background: basic.$primary;
 }

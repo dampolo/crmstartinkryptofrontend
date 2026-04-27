@@ -184,9 +184,25 @@ dt {
   display: flex;
   flex-direction: column;
   width: 37.5rem;
-  // height: 50rem;
+  height: 38rem;
   padding: 1.875rem;
   overflow: hidden;
+  
+}
+
+.edit-customer-btn {
+  border-radius: basic.$border-radius;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: basic.$primary;
+  width: fit-content;
+  padding: 0.5rem;
+  align-self: center;
+  transition: background 200ms ease-in-out;
+}
+
+.edit-customer-btn:hover {
+  background: basic.$secondary
 }
 
 .wrapper-content {
