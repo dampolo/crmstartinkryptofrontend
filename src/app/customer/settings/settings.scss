@@ -11,6 +11,7 @@ ul {
     align-items: center;
     height: 1.875rem;
     background: none;
+    flex: 1;
     a {
       display: flex;
       align-items: center;
@@ -24,13 +25,36 @@ ul {
         transition: basic.$first-transition;
         background: linear-gradient(180deg, #d6a65357, #8f59073f);
       }
+      .nav-link-text {
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.04rem;
+        padding-inline: 0.3125rem;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       img {
         width: 1.5625rem;
         height: 1.5625rem;
+        margin-inline: auto;
       }
     }
     a.active {
       background-color: basic.$primary;
+    }
+  }
+}
+
+@media (max-width: 35rem) {
+  ul {
+    li {
+      a {
+        max-width: 11rem;
+        .nav-link-text {
+          display: none;
+        }
+      }
     }
   }
 }

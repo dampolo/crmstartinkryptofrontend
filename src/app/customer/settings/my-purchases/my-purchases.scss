@@ -137,3 +137,9 @@ table tbody tr {
   color: basic.$sixth;
   text-decoration: none;
 }
+
+@media (max-width: 37.5rem) {
+    section {
+        overflow-x: auto;
+    }
+}
