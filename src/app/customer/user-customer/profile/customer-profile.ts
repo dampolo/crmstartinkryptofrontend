@@ -5,10 +5,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../../main-services/main-state-service';
+import { Back } from '../../../shared/back/back';
 
 @Component({
     selector: 'app-customer-profile',
-    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, Back],
     templateUrl: './customer-profile.html',
     styleUrl: './customer-profile.scss',
 })

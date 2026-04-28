@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { COURSE, LESSON, PURCHASE, PURCHASED_COURSE } from '../../../models/course.model';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { Back } from '../../../shared/back/back';
 
 @Component({
     selector: 'app-my-courses',
-    imports: [],
+    imports: [Back, RouterLink],
     templateUrl: './my-courses.html',
     styleUrl: './my-courses.scss',
 })
