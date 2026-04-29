@@ -1,5 +1,5 @@
 <section class="main-content-customer">
-  <a class="arrow-back" routerLink="/kurse/login">
+  <a class="arrow-back" routerLink="/kurse/login" aria-label="Anmelden">
     <app-back></app-back>
   </a>
 
@@ -24,18 +24,22 @@
         placeholder="beispielname@email.com"
       />
       <div class="input-icon">
-        <img src="./assets/mail-icon-input-field.svg" alt="E-mail" />
+        <img width="25" height="25" src="./assets/mail-icon-input-field.svg" />
       </div>
 
       <div class="warn-txt">
-              <span>{{ errorResponse() }}</span>
-        @if (myForm.controls['email'].invalid && (isFormSubmitted ||
-        myForm.controls['email'].touched || myForm.controls['email'].dirty)) { @if
-        (myForm.controls['email'].errors?.['required']) {
-        <small>E-Mail ist ein Pflichtfeld.</small>
-        } @if (myForm.controls['email'].errors?.['email']) {
-        <small>E-Mail ist unvollständig/inkorrekt.</small>
-        } }
+        <span>{{ errorResponse() }}</span>
+        @if (
+          myForm.controls['email'].invalid &&
+          (isFormSubmitted || myForm.controls['email'].touched || myForm.controls['email'].dirty)
+        ) {
+          @if (myForm.controls['email'].errors?.['required']) {
+            <small>E-Mail ist ein Pflichtfeld.</small>
+          }
+          @if (myForm.controls['email'].errors?.['email']) {
+            <small>E-Mail ist unvollständig/inkorrekt.</small>
+          }
+        }
       </div>
     </div>
 
@@ -43,12 +47,12 @@
       <label class="" for="password1">Passwort</label>
       <input
         id="password1"
-        autocomplete="password1"
+        autocomplete="new-password"
         name="password1"
         [type]="isPasswordTopVisible ? 'text' : 'password'"
         formControlName="password1"
         class="input-field input-field-pwd-icon"
-        placeholder="Passwort"
+        placeholder="Deine neues Passwort"
       />
 
       <button type="button" class="eye-button" (click)="togglePasswordVisibilityTop()">
@@ -62,23 +66,33 @@
       </button>
 
       <div class="input-icon">
-        <img src="./assets/pwd-lock-icon-input-field.svg" alt="password input" />
+        <img           width="25"
+          height="25" src="./assets/pwd-lock-icon-input-field.svg"/>
       </div>
 
       <div class="warn-txt">
-        @if (myForm.controls['password1'].invalid && (isFormSubmitted ||
-        myForm.controls['password1'].touched || myForm.controls['password1'].dirty)) { @if
-        (myForm.controls['password1'].errors?.['required']) {
-        <small>Password ist ein Pflichtfeld.</small>
-        } @if (myForm.controls['password1'].errors?.['minlength']) {
-        <span
-          >Mindestens 8 Zeichen erforderlich: ein Klein- u. ein Großbuchstabe, eine Zahl und ein
-          Sonderzeichen, siehe Info-box.</span
-        >
-        } @if ((myForm.controls['password1'].errors?.['pattern']) &&
-        !(myForm.controls['password1'].errors?.['minlength'])) {
-        <small>Mindestanforderungen nicht erfüllt, siehe Info-box.</small>
-        } }
+        @if (
+          myForm.controls['password1'].invalid &&
+          (isFormSubmitted ||
+            myForm.controls['password1'].touched ||
+            myForm.controls['password1'].dirty)
+        ) {
+          @if (myForm.controls['password1'].errors?.['required']) {
+            <small>Password ist ein Pflichtfeld.</small>
+          }
+          @if (myForm.controls['password1'].errors?.['minlength']) {
+            <span
+              >Mindestens 8 Zeichen erforderlich: ein Klein- u. ein Großbuchstabe, eine Zahl und ein
+              Sonderzeichen, siehe Info-box.</span
+            >
+          }
+          @if (
+            myForm.controls['password1'].errors?.['pattern'] &&
+            !myForm.controls['password1'].errors?.['minlength']
+          ) {
+            <small>Mindestanforderungen nicht erfüllt, siehe Info-box.</small>
+          }
+        }
       </div>
     </div>
     <div class="input-container">
@@ -86,12 +100,11 @@
       <input
         name="password2"
         id="password2"
-        autocomplete="password2"
+        autocomplete="new-password"
         class="input-field"
         [type]="isPasswordBottomVisible ? 'text' : 'password'"
-        placeholder="Passwort wiederholen"
         formControlName="password2"
-        autocomplete="on"
+        autocomplete="new-password" placeholder="Wiederhole dein Passwort"
       />
 
       <button type="button" class="eye-button" (click)="togglePasswordVisibilityBottom()">
@@ -105,12 +118,14 @@
       </button>
 
       <div class="input-icon">
-        <img src="./assets/pwd-lock-icon-input-field.svg" alt="passwort input" />
+        <img width="25" height="25" src="./assets/pwd-lock-icon-input-field.svg" />
       </div>
       <div class="warn-txt">
-        @if(myForm.errors?.['passwordMismatch'] && (myForm.controls['password2'].dirty ||
-        myForm.controls['password2'].touched)) {
-        <small> Passwörter stimmen nicht überein. </small>
+        @if (
+          myForm.errors?.['passwordMismatch'] &&
+          (myForm.controls['password2'].dirty || myForm.controls['password2'].touched)
+        ) {
+          <small> Passwörter stimmen nicht überein. </small>
         }
       </div>
     </div>
@@ -125,11 +140,14 @@
           >Ich stimme der <a class="privacy" routerLink="/legal">Datenschutzerklärung</a> zu.</label
         >
         <div class="checkbox-description warn-txt">
-          @if (myForm.controls['term'].invalid && (isFormSubmitted ||
-          myForm.controls['term'].touched || myForm.controls['term'].dirty)) { @if
-          (myForm.controls['term'].errors?.['required']) {
-          <small>Password ist ein Pflichtfeld.</small>
-          } }
+          @if (
+            myForm.controls['term'].invalid &&
+            (isFormSubmitted || myForm.controls['term'].touched || myForm.controls['term'].dirty)
+          ) {
+            @if (myForm.controls['term'].errors?.['required']) {
+              <small>Password ist ein Pflichtfeld.</small>
+            }
+          }
         </div>
       </div>
     </div>
