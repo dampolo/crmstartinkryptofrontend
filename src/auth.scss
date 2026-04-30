@@ -33,8 +33,14 @@
     margin-bottom: 1.875rem;
     .new-user-link {
       color: basic.$primary;
+      border: 0.125rem dotted transparent;
+
       &:hover {
         text-decoration: underline;
+      }
+      &:focus-visible {
+        border: 0.125rem dotted basic.$primary;
+        outline: basic.$primary;
       }
     }
   }
@@ -73,6 +79,13 @@
         justify-content: center;
         align-items: center;
         background: none;
+        border: 0.0625rem solid transparent;
+        outline: none;
+        &:focus-visible {
+          border: 0.0625rem solid  basic.$secondary;
+          background-color: basic.$body-bg;
+          color: basic.$secondary;
+        }
       }
     }
 
@@ -230,7 +243,7 @@
         background-color: basic.$body-bg;
         color: basic.$primary;
       }
-      &:focus {
+      &:focus-visible {
         border: solid 1px basic.$primary;
         background-color: basic.$body-bg;
         color: basic.$primary;
