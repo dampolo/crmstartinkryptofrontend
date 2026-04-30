@@ -3,14 +3,17 @@
 
 // HEADER
 
-// 
+//
 
 .main-nav {
   width: 100%;
 }
 
-
 app-logo-text {
+  display: flex;
+}
+
+app-logo {
   display: none;
 }
 

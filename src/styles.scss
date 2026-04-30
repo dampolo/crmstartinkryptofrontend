@@ -373,13 +373,14 @@ app-add-new-video {
   background-color: basic.$primary;
   border: solid 1px basic.$primary;
   transition: basic.$first-transition;
+  outline: none;
   cursor: pointer;
   &:hover {
     border: solid 1px basic.$primary;
     background-color: basic.$body-bg;
     color: basic.$primary;
   }
-  &:focus {
+  &:focus-visible {
     border: solid 1px basic.$primary;
     background-color: basic.$body-bg;
     color: basic.$primary;
@@ -536,7 +537,11 @@ app-add-new-video {
     margin: 0;
   }
 
-  .main-btn-start-in-krypto {
-    padding: 0.5rem 0.5rem;
+  .menu-list-auth li:last-child {
+    margin-right: 0.2rem;
+  }
+
+  .menu-list-auth .main-btn-start-in-krypto {
+    padding: 0.2rem 0.2rem;
   }
 }
