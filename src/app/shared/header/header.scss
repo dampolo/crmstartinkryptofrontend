@@ -28,9 +28,10 @@
   gap: 0.5rem;
   text-decoration: none;
   text-align: center;
-  transition: basic.$sixth;
+  outline: none;
 }
 
+.main-button:focus-visible,
 .main-button:hover {
   color: white;
 }
@@ -147,6 +148,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 1.4375rem;
+  outline: none;
 }
 
 .dropdown .languages button {
@@ -177,13 +179,18 @@
 .dropbtn {
   padding: 1rem;
   font-size: 1rem;
-  border: none;
+  outline: none;
+  border: 0.125rem dotted transparent;
   cursor: pointer;
 }
 
-.dropbtn img:hover,
-.dropbtn img:focus {
+.dropbtn:hover {
   filter: drop-shadow(0.125rem 0.25rem 0.375rem basic.$primary);
+}
+
+.dropbtn:focus-visible {
+  border: 0.125rem dotted basic.$primary;
+  outline: basic.$primary;
 }
 
 .dropdown {
