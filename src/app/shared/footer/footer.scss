@@ -9,9 +9,16 @@ nav {
   gap: 1rem;
 }
 
-nav a {
+nav .logo {
   width: 4rem;
+  border: 0.125rem dotted transparent;
 }
+
+nav .logo:focus-visible {
+  border: 0.125rem dotted basic.$primary;
+  outline: basic.$primary;
+}
+
 nav ul {
   display: flex;
   justify-content: center;
