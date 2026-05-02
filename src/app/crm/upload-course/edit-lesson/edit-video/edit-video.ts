@@ -116,7 +116,8 @@ export class EditVideo {
   deleteVideo() {
     const lessonId = Number(this.route.snapshot.paramMap.get("lessonId"));
     const payload = {
-      video: null
+      video: null,
+      duration: 0
     }
 
     this.courseService.pathVideo(lessonId, payload).subscribe({
