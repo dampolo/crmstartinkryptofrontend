@@ -124,3 +124,10 @@ table tbody tr {
 .crmSK-popper-li:hover {
     background-color: basic.$body-bg;
 }
+
+.new-invoice {
+    max-width: fit-content;
+    align-self: center;
+    margin: 0;
+    margin-top: auto;
+}

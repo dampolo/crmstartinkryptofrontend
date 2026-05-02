@@ -173,7 +173,6 @@ app-edit-single-feature {
   align-items: center;
 }
 
-a.new-invoice,
 button[type='button'],
 button.edit,
 button[type='submit'] {
@@ -183,7 +182,6 @@ button[type='submit'] {
   align-self: center;
 }
 
-a.new-invoice:hover,
 button.edit:not(:disabled):hover {
   background: basic.$primary;
 }
