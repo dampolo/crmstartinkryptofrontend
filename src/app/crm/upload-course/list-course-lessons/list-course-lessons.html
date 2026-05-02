@@ -22,6 +22,9 @@
         </div>
 
         <div class="right">
+          @if(lesson.status === "published") {
+            <img width="40" height="40" src="/assets/confirm.svg" alt="Freigegeben" title="Freigegeben">
+          }
             <a (click)="editLesson(lesson.id)" class="main-btn-start-in-krypto">Edit</a>
             <span class="meta">{{ lesson.duration | duration }}</span>
         </div>
