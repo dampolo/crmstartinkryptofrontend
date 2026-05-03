@@ -138,6 +138,8 @@ export const routes: Routes = [
             { path: 'neu-kunde', component: Newcustomer, title: 'Neuer Kunde' },
             { path: 'algorithmus', component: Algorithmus, title: 'Algorithmus' },
             { path: 'kurse', component: AllCourses, title: 'Kurs hinzufügen' },
+            { path: 'profile', component: Profile, title: 'Profile' },
+
             {
                 path: 'kurse',
                 children: [

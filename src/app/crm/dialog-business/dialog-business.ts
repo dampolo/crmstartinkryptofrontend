@@ -7,10 +7,10 @@ import { AuthService } from '../../main-services/auth-service';
 @Component({
     selector: 'app-dialog-user',
     imports: [CommonModule],
-    templateUrl: './dialog-user.html',
-    styleUrl: './dialog-user.scss',
+    templateUrl: './dialog-business.html',
+    styleUrl: './dialog-business.scss',
 })
-export class DialogUser  {
+export class DialogBusiness  {
 
     mainStateService = inject(MainStateService);
     authService = inject(AuthService);
@@ -27,7 +27,7 @@ export class DialogUser  {
     }
 
     openProfile() {
-        this.router.navigate(["/customer/profile"])
+        this.router.navigate(["/crm/profile"])
 
     }
 

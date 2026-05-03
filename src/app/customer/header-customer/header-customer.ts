@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { Logo } from '../../shared/logo/logo';
-import { DialogUser } from '../../shared/dialog-user/dialog-user';
+import { DialogBusiness } from '../../crm/dialog-business/dialog-business';
 
 @Component({
 	selector: 'app-header-customer',
-	imports: [DialogUser, CommonModule, Logo],
+	imports: [DialogBusiness, CommonModule, Logo],
 	templateUrl: './header-customer.html',
 	styleUrl: './header-customer.scss',
 })

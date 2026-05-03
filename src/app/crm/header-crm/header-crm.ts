@@ -5,11 +5,12 @@ import { AuthService } from '../../main-services/auth-service';
 import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../main-services/main-state-service';
 import { Logo } from '../../shared/logo/logo';
+import { DialogBusiness } from '../dialog-business/dialog-business';
 
 @Component({
 	standalone: true,
 	selector: 'app-header-crm',
-	imports: [CommonModule, Logo],
+	imports: [CommonModule, Logo, DialogBusiness],
 	templateUrl: './header-crm.html',
 	styleUrl: './header-crm.scss'
 })
@@ -34,11 +35,12 @@ export class HeaderCrm {
 		this.posFixLogo = false;
 	}
 
-
-	logOut() {
-		this.authService.logout()
-		this.router.navigate(["/crm/login"])
-		this.mainStateService.isLoginPage = true;
-		this.mainStateService.displayToast('Du bist erfolgreich abgemeldet', true)
+	showDialog() {
+		this.mainStateService.isProfileVisible = true;
 	}
+
+	closeDialog() {
+		this.mainStateService.isProfileVisible = false;
+	}
+
 }
