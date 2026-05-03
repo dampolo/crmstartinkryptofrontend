@@ -5,7 +5,7 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 
 @Component({
-    selector: 'app-dialog-user',
+    selector: 'app-dialog-customer',
     imports: [CommonModule],
     templateUrl: './dialog-customer.html',
     styleUrl: './dialog-customer.scss',
