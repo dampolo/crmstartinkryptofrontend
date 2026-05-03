@@ -5,12 +5,12 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 
 @Component({
-    selector: 'app-user-customer',
+    selector: 'app-dialog-user',
     imports: [CommonModule],
-    templateUrl: './user-customer.html',
-    styleUrl: './user-customer.scss',
+    templateUrl: './dialog-user.html',
+    styleUrl: './dialog-user.scss',
 })
-export class UserCustomer {
+export class DialogUser  {
 
     mainStateService = inject(MainStateService);
     authService = inject(AuthService);

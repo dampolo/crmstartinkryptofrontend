@@ -8,7 +8,8 @@
     <img width="40px" height="40px" class="profile-img" src="/assets/profile.svg" alt="Profile">
 </button>
 
-<app-user-customer (click)="closeDialog()" class="hide-container" [ngClass]="mainStateService.isProfileVisible ? 'show-container' : ''"></app-user-customer>
+
+<app-dialog-user (click)="closeDialog()" class="hide-container" [ngClass]="mainStateService.isProfileVisible ? 'show-container' : ''"></app-dialog-user>
 
 <button (click)="openMenu()"
   class="hamburger hamburger--collapse"

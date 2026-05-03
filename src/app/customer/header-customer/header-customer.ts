@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { UserCustomer } from '../user-customer/user-customer';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { Logo } from '../../shared/logo/logo';
+import { DialogUser } from '../../shared/dialog-user/dialog-user';
 
 @Component({
 	selector: 'app-header-customer',
-	imports: [UserCustomer, CommonModule, Logo],
+	imports: [DialogUser, CommonModule, Logo],
 	templateUrl: './header-customer.html',
 	styleUrl: './header-customer.scss',
 })
