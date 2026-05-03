@@ -95,6 +95,7 @@ table tbody tr {
     visibility: visible;
     z-index: 1000;
     pointer-events: auto;
+    height: fit-content;
 }
 
 .crmSK-popper {
@@ -123,6 +124,7 @@ table tbody tr {
 
 .crmSK-popper-li:hover {
     background-color: basic.$body-bg;
+    border-radius: basic.$border-radius;
 }
 
 .new-invoice {

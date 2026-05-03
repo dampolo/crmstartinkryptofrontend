@@ -3,6 +3,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { stateService } from '../services/state-service';
 import { InvoiceService } from '../services/invoice-service';
 import { INVOICE } from '../../models/invoice.model';
+import { environment } from '../../../environment/environment';
 
 @Component({
   standalone: true,
@@ -16,6 +17,7 @@ export class Invoices {
   stateService = inject(stateService);
   openMenuId: number | null = null;
   invoices = signal<INVOICE[]>([]);
+  baseUrl = environment.apiBaseUrl;
 
   ngOnInit(): void {
     this.invoiceService.getInvoices().subscribe({
