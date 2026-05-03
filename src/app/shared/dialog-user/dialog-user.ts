@@ -27,7 +27,7 @@ export class DialogUser  {
     }
 
     openProfile() {
-        this.router.navigate(["/customer/customer-profile"])
+        this.router.navigate(["/customer/profile"])
 
     }
 

@@ -1,19 +1,19 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { UserService } from '../../services/user-service';
-import { CUSTOMER } from '../../../models/customer.model';
+import { UserService } from '../../customer/services/user-service';
+import { CUSTOMER } from '../../models/customer.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MainStateService } from '../../../main-services/main-state-service';
-import { Back } from '../../../shared/back/back';
+import { MainStateService } from '../../main-services/main-state-service';
+import { Back } from '../back/back';
 
 @Component({
-    selector: 'app-customer-profile',
+    selector: 'app-profile',
     imports: [CommonModule, ReactiveFormsModule, RouterLink, Back],
-    templateUrl: './customer-profile.html',
-    styleUrl: './customer-profile.scss',
+    templateUrl: './profile.html',
+    styleUrl: './profile.scss',
 })
-export class CustomerProfile {
+export class Profile {
 
     customerService = inject(UserService);
     mainStateService = inject(MainStateService);

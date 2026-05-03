@@ -19,7 +19,6 @@ import { MyCourses } from './customer/courses/my-courses/my-courses';
 import { DashboardCustomer } from './customer/dashboard-customer/dashboard-customer';
 import { LayoutCustomer } from './customer/layout-customer/layout-customer';
 import { Courses } from './customer/courses/courses';
-import { CustomerProfile } from './customer/user-customer/profile/customer-profile';
 import { LayoutAuth } from './customer/layout-auth/layout-auth';
 import { AddNewLesson } from './crm/upload-course/add-new-video/add-new-lesson';
 import { ListCourseLessons } from './crm/upload-course/list-course-lessons/list-course-lessons';
@@ -41,6 +40,7 @@ import { UploadVideo } from './crm/upload-course/add-new-video/upload-video/uplo
 import { UploadPdf } from './crm/upload-course/add-new-video/upload-pdf/upload-pdf';
 import { EditVideo } from './crm/upload-course/edit-lesson/edit-video/edit-video';
 import { Information } from './shared/information/information';
+import { Profile } from './shared/profile/profile';
 
 
 
@@ -113,7 +113,7 @@ export const routes: Routes = [
                     import('./customer/settings/settings.routing').then(m => m.default),
 
             },
-            { path: 'customer-profile', component: CustomerProfile, title: 'Kunde' },
+            { path: 'profile', component: Profile, title: 'Kunde' },
             { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
         ],
     },
