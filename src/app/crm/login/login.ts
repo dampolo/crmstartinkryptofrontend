@@ -44,7 +44,7 @@ export class Login {
     };
 
     
-    this.authService.login(data.email, data.password).subscribe({
+    this.authService.loginAndFetchUser(data.email, data.password).subscribe({
       next: () => {
         this.mainStateService.displayToast('Du bist angemeldet', true);
         this.router.navigate(['crm/dashboard'], {replaceUrl: true});
