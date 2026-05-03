@@ -131,3 +131,14 @@ table tbody tr {
     margin: 0;
     margin-top: auto;
 }
+
+@media (max-width: 37.5rem) {
+    table tbody tr td:nth-child(2),
+    table thead tr td:nth-child(2) {
+        display: none;
+    }
+
+    section {
+        overflow-x: auto;
+    }
+}
