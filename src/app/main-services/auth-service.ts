@@ -99,10 +99,10 @@ export class AuthService {
 	}
 
 
-	createUser(email: string, password: string, repeated_password: string, type: string): Observable<User> {
+	createUser(email: string, password: string, repeated_password: string, role: string): Observable<User> {
 		return this.http.post<User>(
 			this.baseUrl + 'create-account/',
-			{ email, password, repeated_password, type });
+			{ email, password, repeated_password, role });
 	}
 
 
