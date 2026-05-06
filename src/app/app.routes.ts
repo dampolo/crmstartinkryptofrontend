@@ -72,6 +72,7 @@ export const routes: Routes = [
             { path: 'reset-password/:uid/:token', component: ResetPassword, title: 'Passwort zurücksetzen' },
             { path: 'forgot-password', component: ForgotPassword, title: 'Passwort vergessen' },
             { path: 'confirmation', component: Confirmation, title: 'Bestätigung' },
+            { path: 'verify-email/:uidb64/:token', component: Confirmation, title: 'Bestätigung' },
             { path: 'information', component: Information, title: 'Meldung' },
 
         ]

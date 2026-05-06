@@ -131,4 +131,11 @@ export class AuthService {
 		);
 
 	}
+
+	verifyEmail(uidb64:string, token:string) {
+		return this.http.get(
+			`${this.baseUrl}verify-email/${uidb64}/${token}/`,
+				{ withCredentials: true }
+		)
+	}
 }
