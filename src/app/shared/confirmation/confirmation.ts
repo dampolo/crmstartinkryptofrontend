@@ -26,8 +26,8 @@ export class Confirmation {
   }
 
   sendVerification() {
-    const uidb64 = String(this.route.snapshot.paramMap.get("uidb64"))
-    const token = String(this.route.snapshot.paramMap.get("token"))
+    const uidb64 = this.route.snapshot.paramMap.get("uidb64")
+    const token = this.route.snapshot.paramMap.get("token")
 
     if (uidb64 && token) {
       this.authService.verifyEmail(uidb64, token).subscribe({
