@@ -49,3 +49,12 @@ export interface CUSTOMER_CRM extends USER {
     updated_at: number;
     comments: Comment[];
 }
+
+export interface PROFILE_INCOMPLETE_ERROR {
+  message: string;
+  missing_fields: string[];
+}
+
+export interface PROFILE_CHECK_RESPONSE {
+  message: string;
+}

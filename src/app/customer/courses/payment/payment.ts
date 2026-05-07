@@ -1,11 +1,14 @@
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, ErrorHandler, inject, signal } from '@angular/core';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
 import { single } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { COURSE, DISCOUNT_CODE, TAX } from '../../../models/course.model';
 import { InvoiceService } from '../../../main-services/invoice-service';
+import { AuthService } from '../../../main-services/auth-service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { PROFILE_INCOMPLETE_ERROR } from '../../../models/customer.model';
 
 @Component({
     selector: 'app-payment',
@@ -17,6 +20,7 @@ export class Payment {
     mainStateService = inject(MainStateService)
     courseService = inject(CourseService)
     invoiceService = inject(InvoiceService)
+    authService = inject(AuthService);
     discountCode = signal<DISCOUNT_CODE | null>(null)
     tax = signal<TAX | null>(null)
     discountCodeConfirmed: boolean = true
@@ -128,15 +132,14 @@ export class Payment {
         const payload = this.checkoutPayload()
         if (this.paymentMethod() === 'bank') {
             console.log(payload);
-            
+
             this.courseService.buyCourse(payload).subscribe({
                 next: () => {
                     this.mainStateService.displayToast('Der Kurs wurde gekauft', true);
                 },
-                error: (err) => {
-                    console.log(err);
-
-                    const message = err?.error?.message || 'Kauf fehlgeschlagen';
+                error: (error: HttpErrorResponse) => {
+                    const err = error.error as PROFILE_INCOMPLETE_ERROR
+                    const message = err?.message || 'Kauf fehlgeschlagen';
 
                     this.mainStateService.displayToast(message, false);
 
@@ -145,13 +148,27 @@ export class Payment {
         } else {
             const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
             console.log(payload);
-            
-            this.router.navigate(
-                [`customer/courses/payment/${courseId}/paypal`],
-                {
-                    state: { payload: payload }   // forward here
+
+            this.authService.checkProfileComplete().subscribe({
+                next: () => {
+                    console.log(payload);
+
+                    this.router.navigate(
+                        [`customer/courses/payment/${courseId}/paypal`],
+                        {
+                            state: { payload: payload }
+                        }
+                    );
+                },
+
+                error: (error: HttpErrorResponse) => {
+                    const err = error.error as PROFILE_INCOMPLETE_ERROR;
+
+                    const message = err?.message || 'Kauf fehlgeschlagen';
+                    this.mainStateService.displayToast(message, false);
+
                 }
-            )
+            });
         }
     }
 }

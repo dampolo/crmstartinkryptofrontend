@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, firstValueFrom, map, Observable, of, switchMap, tap } from 'rxjs';
 import { User } from '../customer/models/user.model';
-import { CUSTOMER } from '../models/customer.model';
+import { CUSTOMER, PROFILE_CHECK_RESPONSE, PROFILE_INCOMPLETE_ERROR } from '../models/customer.model';
 import { MainStateService } from './main-state-service';
 import { GoogleAuthService } from './google-auth';
 import { environment } from '../../environment/environment';
@@ -30,7 +30,7 @@ export class AuthService {
 		);
 	}
 
-	
+
 	/**
 	 * Logs in the user and then fetches the authenticated user data.
 	 *
@@ -132,10 +132,16 @@ export class AuthService {
 
 	}
 
-	verifyEmail(uidb64:string, token:string) {
+	verifyEmail(uidb64: string, token: string) {
 		return this.http.get(
 			`${this.baseUrl}verify-email/${uidb64}/${token}/`,
-				{ withCredentials: true }
+			{ withCredentials: true }
 		)
+	}
+
+	checkProfileComplete(): Observable<PROFILE_CHECK_RESPONSE> {
+		return this.http.get<PROFILE_CHECK_RESPONSE>(`${this.baseUrl}profile/check/`,
+			{ withCredentials: true })
+
 	}
 }
