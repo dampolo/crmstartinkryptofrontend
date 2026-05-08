@@ -5,16 +5,27 @@ import { Observable } from 'rxjs';
 import { PURCHASE_CUSTOMER } from '../models/purchase.model';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class PurchaseService {
-    private baseUrl = environment.apiBaseUrl;
+  private baseUrl = environment.apiBaseUrl;
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    getCustomerPurchases(): Observable<PURCHASE_CUSTOMER[]> {
-        return this.http.get<PURCHASE_CUSTOMER[]>(`${this.baseUrl}my-purchases/`, {
-          withCredentials: true
-        })
+  getCustomerPurchases(): Observable<PURCHASE_CUSTOMER[]> {
+    return this.http.get<PURCHASE_CUSTOMER[]>(`${this.baseUrl}my-purchases/`, 
+    {
+      withCredentials: true
+    })
+  }
+
+  checkPurchase(courseId: number) {
+    return this.http.get(
+      `${this.baseUrl}check-purchase/${courseId}/`, 
+      {
+        withCredentials: true
       }
+    );
+  }
+
 }

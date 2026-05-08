@@ -9,6 +9,7 @@ import { InvoiceService } from '../../../main-services/invoice-service';
 import { AuthService } from '../../../main-services/auth-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PROFILE_INCOMPLETE_ERROR } from '../../../models/customer.model';
+import { PurchaseService } from '../../../main-services/purchase-service';
 
 @Component({
     selector: 'app-payment',
@@ -21,6 +22,7 @@ export class Payment {
     courseService = inject(CourseService)
     invoiceService = inject(InvoiceService)
     authService = inject(AuthService);
+    purchaseService = inject(PurchaseService)
     discountCode = signal<DISCOUNT_CODE | null>(null)
     tax = signal<TAX | null>(null)
     discountCodeConfirmed: boolean = true
@@ -140,25 +142,21 @@ export class Payment {
                 error: (error: HttpErrorResponse) => {
                     const err = error.error as PROFILE_INCOMPLETE_ERROR
                     const message = err?.message || 'Kauf fehlgeschlagen';
-
                     this.mainStateService.displayToast(message, false);
-
                 }
             })
         } else {
             const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
             console.log(payload);
+            this.checkProfileComplete(courseId, payload)
+        }
+    }
 
-            this.authService.checkProfileComplete().subscribe({
-                next: () => {
-                    console.log(payload);
+    checkProfileComplete(courseId: number, payload: any) {
+        this.authService.checkProfileComplete().subscribe({
+            next: () => {
 
-                    this.router.navigate(
-                        [`customer/courses/payment/${courseId}/paypal`],
-                        {
-                            state: { payload: payload }
-                        }
-                    );
+                this.checkPurchase(courseId, payload)
                 },
 
                 error: (error: HttpErrorResponse) => {
@@ -169,6 +167,39 @@ export class Payment {
 
                 }
             });
+            
         }
-    }
+
+checkPurchase(courseId: number, payload: any) {
+
+    this.purchaseService.checkPurchase(courseId).subscribe({
+
+        next: () => {
+
+            // Navigate ONLY if purchase check succeeds
+            this.router.navigate(
+                [`customer/courses/payment/${courseId}/paypal`],
+                {
+                    state: { payload: payload }
+                }
+            );
+        },
+
+        error: (error: HttpErrorResponse) => {
+
+            const message =
+                error.error?.message ||
+                'Du hast diesen Kurs bereits gekauft';
+
+            this.mainStateService.displayToast(
+                message,
+                false
+            );
+        }
+    });
 }
+
+}
+
+
+
