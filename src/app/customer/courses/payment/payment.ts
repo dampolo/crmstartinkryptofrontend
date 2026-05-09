@@ -132,72 +132,73 @@ export class Payment {
 
     submitOrder() {
         const payload = this.checkoutPayload()
-        if (this.paymentMethod() === 'bank') {
-            console.log(payload);
-
-            this.courseService.buyCourse(payload).subscribe({
-                next: () => {
-                    this.mainStateService.displayToast('Der Kurs wurde gekauft', true);
-                },
-                error: (error: HttpErrorResponse) => {
-                    const err = error.error as PROFILE_INCOMPLETE_ERROR
-                    const message = err?.message || 'Kauf fehlgeschlagen';
-                    this.mainStateService.displayToast(message, false);
-                }
-            })
-        } else {
-            const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
-            console.log(payload);
-            this.checkProfileComplete(courseId, payload)
-        }
+        const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
+        this.checkProfileComplete(courseId, payload, this.paymentMethod())
     }
 
-    checkProfileComplete(courseId: number, payload: any) {
+    // Check if the profile is complieted because you cannot buy a course if
+    // the address is not complite
+    checkProfileComplete(courseId: number, payload: any, paymentMethod: string) {
         this.authService.checkProfileComplete().subscribe({
             next: () => {
+                this.checkPurchase(courseId, payload, paymentMethod)
+            },
+            error: (error: HttpErrorResponse) => {
+                const err = error.error as PROFILE_INCOMPLETE_ERROR;
+                const message = err?.message || 'Kauf fehlgeschlagen';
+                this.mainStateService.displayToast(message, false);
 
-                this.checkPurchase(courseId, payload)
-                },
+            }
+        });
 
-                error: (error: HttpErrorResponse) => {
-                    const err = error.error as PROFILE_INCOMPLETE_ERROR;
+    }
 
-                    const message = err?.message || 'Kauf fehlgeschlagen';
-                    this.mainStateService.displayToast(message, false);
+    checkPurchase(courseId: number, payload: any, paymentMethod: string) {
 
+        this.purchaseService.checkPurchase(courseId).subscribe({
+
+            next: () => {
+
+                // Navigate ONLY if purchase check succeeds
+                if (paymentMethod === 'paypal') {
+                    this.router.navigate(
+                        [`customer/courses/payment/${courseId}/paypal`],
+                        {
+                            state: { payload: payload }
+                        }
+                    );
+                } else {
+                    this.buyCourseWithBankTransfer(payload)
                 }
-            });
-            
-        }
+            },
 
-checkPurchase(courseId: number, payload: any) {
+            error: (error: HttpErrorResponse) => {
 
-    this.purchaseService.checkPurchase(courseId).subscribe({
+                const message =
+                    error.error?.message ||
+                    'Du hast diesen Kurs bereits gekauft';
 
-        next: () => {
+                this.mainStateService.displayToast(
+                    message,
+                    false
+                );
+            }
+        });
+    }
 
-            // Navigate ONLY if purchase check succeeds
-            this.router.navigate(
-                [`customer/courses/payment/${courseId}/paypal`],
-                {
-                    state: { payload: payload }
-                }
-            );
-        },
-
-        error: (error: HttpErrorResponse) => {
-
-            const message =
-                error.error?.message ||
-                'Du hast diesen Kurs bereits gekauft';
-
-            this.mainStateService.displayToast(
-                message,
-                false
-            );
-        }
-    });
-}
+    buyCourseWithBankTransfer(payload: any) {
+        this.courseService.buyCourse(payload).subscribe({
+            next: () => {
+                this.mainStateService.showConfirmationText.set('Du hast den Kurs erfoglreich gekauft.')
+                this.mainStateService.showConfirmationLink.set('course');
+                this.router.navigate(['/customer/confirmation']);
+            },
+            error: (error) => {
+                const message = error.error.message || 'Kauf fehlgeschlagen';
+                this.mainStateService.displayToast(message, false);
+            }
+        })
+    }
 
 }
 
