@@ -175,7 +175,7 @@ export class Payment {
             error: (error: HttpErrorResponse) => {
 
                 const message =
-                    error.error?.message ||
+                    error?.error?.message ||
                     'Du hast diesen Kurs bereits gekauft';
 
                 this.mainStateService.displayToast(
