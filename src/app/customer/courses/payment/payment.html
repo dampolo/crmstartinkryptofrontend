@@ -15,20 +15,20 @@
             value="paypal"
             (change)="setPaymentMethod('paypal')"
             checked
-          />
+          >
 
-          <img src="./assets/paypal.svg" alt="PayPal" />
+          <img src="./assets/paypal.svg" alt="PayPal" >
 
           <div class="method-info">
             <strong>PayPal</strong>
-            <span>Schnell & Sicher</span>
+            <span>Schnell &amp; Sicher</span>
           </div>
 
           <span class="custom-radio"></span>
         </label>
 
-        <label class="method">
-          <input type="radio" name="payment" value="bank" (change)="setPaymentMethod('bank')" />
+        <label for="bank" class="method">
+          <input type="radio" name="payment" value="bank" (change)="setPaymentMethod('bank')" >
 
           <div class="method-info">
             <strong>Banküberweisung</strong>
@@ -51,8 +51,8 @@
       <h3>Gutschein</h3>
 
       <div class="discount">
-        <input type="text" placeholder="Dein Gutschein" #discountInput />
-        <button (click)="checkDiscountCode(discountInput.value)">Apply</button>
+        <input type="text" id="discountInput" placeholder="Dein Gutschein" #discountInput>
+        <button type="button" (click)="checkDiscountCode(discountInput.value)" class="main-btn-start-in-krypto">Apply</button>
       </div>
 
       @if (showConfirmation) {
@@ -63,7 +63,7 @@
           </div>
         } @else {
           <div class="discount-error">
-            <img src="./assets/xbox-x.svg" alt="" />
+            <img src="./assets/xbox-x.svg" alt="" >
             {{ discountCode()?.code }} nicht aktiv
           </div>
         }
@@ -118,11 +118,11 @@
 
         <div class="guarantees">
           <span class="icon-text">
-            <img width="25" height="25" src="./assets/secure.svg" alt="" />
+            <img width="25" height="25" src="./assets/secure.svg" alt="" >
             SSL-verschlüsselte, sichere Zahlung</span
           >
           <span class="icon-text">
-            <img width="25" height="25" src="./assets/time.svg" alt="" />
+            <img width="25" height="25" src="./assets/time.svg" alt="" >
             30 Tage Geld-zurück-Garantie</span
           >
         </div>

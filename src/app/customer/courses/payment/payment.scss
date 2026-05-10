@@ -108,23 +108,13 @@
     border-radius: basic.$border-radius;
     border: 1px solid basic.$border-color;
     background: basic.$sixth;
-
-    &:focus {
-      outline: basic.$focus;
-    }
-  }
-
-  button {
-    padding: 0 1.5rem;
-    background: basic.$fourth;
-    border: none;
-    border-radius: basic.$border-radius;
-    cursor: pointer;
-    transition: basic.$first-transition;
-
     &:hover {
-      background: basic.$primary;
-      color: basic.$sixth;
+      border: solid 0.0625rem basic.$primary;
+      outline: basic.$secondary;
+    }
+    &:focus {
+      border: solid 0.0625rem basic.$primary;
+      outline: basic.$primary;
     }
   }
 }
