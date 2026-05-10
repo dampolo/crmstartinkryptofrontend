@@ -72,6 +72,15 @@ export class Payment {
             error: (error) => {
                 this.discountCodeConfirmed = false;
                 this.discountCode.set(null);
+
+                const message =
+                    error?.error?.message ||
+                    'Du hast diesen Kurs bereits gekauft';
+
+                this.mainStateService.displayToast(
+                    message,
+                    false
+                );
             }
         })
     }
