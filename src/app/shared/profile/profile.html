@@ -14,16 +14,16 @@
           @if (customer()?.image !== null) {
             <div class="user-avatar">
               <div class="pre-loader-small"></div>
-              <img [src]="customer()?.image" alt="avatar" />
+              <img [src]="customer()?.image" alt="avatar" >
             </div>
           } @else {
             <div class="user-avatar">
               <div class="pre-loader-small"></div>
-              <img src="./assets/profile.svg" alt="avatar" />
+              <img src="./assets/profile.svg" alt="avatar" >
             </div>
           }
           <button type="button" class="edit-avatar" (click)="editAvatar()">
-            <img src="./assets/edit.svg" alt="edit" />
+            <img src="./assets/edit.svg" alt="edit" >
           </button>
         </div>
       </div>
@@ -110,12 +110,12 @@
 
         <!-- Address -->
         <dl>
-          <dt>Straße & Nr.</dt>
+          <dt>Straße &amp; Nr.</dt>
           <dd>{{ customer()?.street }} {{ customer()?.street_number }}</dd>
         </dl>
 
         <dl>
-          <dt>PLZ & Stadt</dt>
+          <dt>PLZ &amp; Stadt</dt>
           <dd>{{ customer()?.postcode }} {{ customer()?.city }}</dd>
         </dl>
 
@@ -152,7 +152,7 @@
         <!-- Photo -->
         <div class="form-group">
           <label id="label-image" for="image">Photo:</label>
-          <input type="file" id="image" formControlName="image" accept="image/*" />
+          <input type="file" id="image" formControlName="image" accept="image/*" >
         </div>
 
         <!-- Anrede (Title) -->
@@ -165,7 +165,7 @@
             <option value="Divers">Divers</option>
           </select>
           @if (
-            customerForm.get('title')?.invalid &&
+            customerForm.get('title')?.invalid &amp;&amp;
             (customerForm.get('title')?.touched || customerForm.get('first_name')?.dirty)
           ) {
             <div class="text-requied">
@@ -187,7 +187,7 @@
             placeholder="Max"
             id="first_name"
             formControlName="first_name"
-          />
+          >
           @if (
             customerForm.get('first_name')?.invalid &&
             (customerForm.get('first_name')?.touched || customerForm.get('first_name')?.dirty)
@@ -215,7 +215,7 @@
             placeholder="Mustermann"
             id="last_name"
             formControlName="last_name"
-          />
+          >
           @if (
             customerForm.get('last_name')?.invalid &&
             (customerForm.get('last_name')?.touched || customerForm.get('last_name')?.dirty)
@@ -243,7 +243,7 @@
             placeholder="Musterstrasse"
             id="street"
             formControlName="street"
-          />
+          >
           @if (
             customerForm.get('street')?.invalid &&
             (customerForm.get('street')?.touched || customerForm.get('street')?.dirty)
@@ -298,7 +298,7 @@
             placeholder="81500"
             id="postcode"
             formControlName="postcode"
-          />
+          >
           @if (
             customerForm.get('postcode')?.invalid &&
             (customerForm.get('postcode')?.touched || customerForm.get('postcode')?.dirty)
@@ -326,7 +326,7 @@
             placeholder="MusterStadt"
             id="city"
             formControlName="city"
-          />
+          >
           @if (
             customerForm.get('city')?.invalid &&
             (customerForm.get('city')?.touched || customerForm.get('city')?.dirty)
@@ -352,7 +352,7 @@
             placeholder="maxmusterman@email.com"
             id="email"
             formControlName="email"
-          />
+          >
           @if (
             customerForm.get('email')?.invalid &&
             (customerForm.get('email')?.touched || customerForm.get('email')?.dirty)
@@ -383,7 +383,7 @@
             placeholder="+49 176 42 56 85 45"
             id="phone"
             formControlName="phone"
-          />
+          >
         </div>
 
         <!-- Receive Subscribtion -->
@@ -399,7 +399,7 @@
                 id="has_subscriptionYes"
                 formControlName="has_subscription"
                 [value]="true"
-              />
+              >
               Ja
             </label>
 
@@ -410,7 +410,7 @@
                 id="has_subscriptionNo"
                 formControlName="has_subscription"
                 [value]="false"
-              />
+              >
               Nein
             </label>
           </div>
@@ -440,7 +440,7 @@
                 id="has_portfolioNo"
                 formControlName="has_portfolio"
                 [value]="false"
-              />
+              >
               Nein
             </label>
           </div>
