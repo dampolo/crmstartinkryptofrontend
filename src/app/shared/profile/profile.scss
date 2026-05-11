@@ -184,7 +184,7 @@ dt {
   display: flex;
   flex-direction: column;
   width: 37.5rem;
-  height: 38rem;
+  height: 40rem;
   padding: 1.875rem;
   overflow: hidden;
 }
@@ -214,14 +214,17 @@ dt {
   transition: basic.$first-transition;
 }
 
+.wrapper-content.avatar {
+  width: 100%;
+}
 .show-edit {
   transform: translateX(-50%);
 }
 
 .main-wrapper {
   display: flex;
-  max-width: 600px;
-  width: 100%;
+  width: 37.5rem;
+  // width: 100%;
   overflow-x: hidden;
   border-radius: 0.75rem;
   gap: 1rem;
@@ -231,6 +234,7 @@ dt {
 .btn-container {
   display: flex;
   justify-content: space-between;
+  margin-top: 2.5rem;
 }
 
 form {
@@ -334,12 +338,29 @@ textarea {
   overflow-y: scroll;
 }
 
-@media (max-width: 40rem) {
-  .wrapper-content {
-    width: 40rem;
-    .container-edit,
-    .container-customer {
-      width: 20rem;
+@media (max-width: 600px) {
+  .main-wrapper {
+    width: 30rem;
+    .wrapper-content {
+      width: 60rem;
+      .container-edit,
+      .container-customer {
+        width: 30rem;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 500px) {
+  .main-wrapper {
+    width: 20rem;
+    .wrapper-content {
+      width: 40rem;
+      .container-edit,
+      .container-customer {
+        width: 20rem;
+      }
     }
   }
 }
