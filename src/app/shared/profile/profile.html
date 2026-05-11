@@ -165,7 +165,7 @@
             <option value="Divers">Divers</option>
           </select>
           @if (
-            customerForm.get('title')?.invalid &amp;&amp;
+            customerForm.get('title')?.invalid &&
             (customerForm.get('title')?.touched || customerForm.get('first_name')?.dirty)
           ) {
             <div class="text-requied">
@@ -268,7 +268,7 @@
             placeholder="123"
             id="street_number"
             formControlName="street_number"
-          />
+          >
           @if (
             customerForm.get('street_number')?.invalid &&
             (customerForm.get('street_number')?.touched || customerForm.get('street_number')?.dirty)
@@ -429,7 +429,7 @@
                 id="has_portfolioYes"
                 formControlName="has_portfolio"
                 [value]="true"
-              />
+              >
               Ja
             </label>
 

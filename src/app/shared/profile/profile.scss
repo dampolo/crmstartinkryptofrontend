@@ -187,7 +187,6 @@ dt {
   height: 38rem;
   padding: 1.875rem;
   overflow: hidden;
-  
 }
 
 .edit-customer-btn {
@@ -202,7 +201,7 @@ dt {
 }
 
 .edit-customer-btn:hover {
-  background: basic.$secondary
+  background: basic.$secondary;
 }
 
 .wrapper-content {
@@ -333,4 +332,14 @@ textarea {
 
 .show-scroll {
   overflow-y: scroll;
+}
+
+@media (max-width: 40rem) {
+  .wrapper-content {
+    width: 40rem;
+    .container-edit,
+    .container-customer {
+      width: 20rem;
+    }
+  }
 }
