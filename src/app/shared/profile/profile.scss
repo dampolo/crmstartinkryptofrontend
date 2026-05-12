@@ -355,8 +355,12 @@ textarea {
 @media (max-width: 500px) {
   .main-wrapper {
     width: 20rem;
+
     .wrapper-content {
       width: 40rem;
+      &.avatar {
+        width: 100%;
+      }
       .container-edit,
       .container-customer {
         width: 20rem;
