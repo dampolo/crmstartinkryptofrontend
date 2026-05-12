@@ -283,6 +283,10 @@ app-login{
   background-color: basic.$body-bg;
 }
 
+app-forgot-password {
+  height: 100%;
+}
+
 app-profile {
   display: flex;
   justify-content: center;
@@ -546,5 +550,9 @@ app-add-new-video {
 
   .menu-list-auth .main-btn-start-in-krypto {
     padding: 0.2rem 0.2rem;
+  }
+
+  app-profile {
+    padding: 0;
   }
 }
