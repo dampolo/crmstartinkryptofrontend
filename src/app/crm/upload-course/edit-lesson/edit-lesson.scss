@@ -48,8 +48,7 @@
   color: basic.$main;
 }
 
-.save-button,
-.edit-button {
+.save-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -74,6 +73,10 @@
 .edit-button svg {
   width: 16px;
   height: 16px;
+}
+
+.edit-video{
+  margin-top: 1rem;
 }
 
 // General Information
