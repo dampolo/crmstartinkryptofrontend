@@ -62,6 +62,7 @@ export class Algorithmus {
   }
 
   loadServicesIntoForm(services: ServiceCatalog[]): void {
+    this.services.clear()
     services.forEach((service) => {
       this.services.push(this.createServiceGroup(service));
     });
