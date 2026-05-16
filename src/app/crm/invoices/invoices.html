@@ -19,7 +19,7 @@
           <td>{{ invoice.user_customer_first_name }} {{ invoice.user_customer_last_name }}</td>
           <td>{{ invoice.invoice_status }}</td>
           <td class="crmSK-td-edit">
-            <button class="crmSK-icon-three-dots" (click)="toggleMenu(invoice.id)">
+            <button type="button" class="crmSK-icon-three-dots" (click)="toggleMenu(invoice.id, $event)">
               <img src="/assets/three.svg" alt="edit" />
             </button>
 

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { stateService } from '../services/state-service';
 import { InvoiceService } from '../services/invoice-service';
@@ -31,7 +31,15 @@ export class Invoices {
     });
   }
 
-  toggleMenu(id: number) {
+  toggleMenu(id: number, event: Event) {
+    event.stopPropagation();
     this.openMenuId = this.openMenuId === id ? null : id;
+  }
+
+  @HostListener('document:click')
+  closeMenu(): void {
+    this.openMenuId = null;
+    console.log("DUPA");
+    
   }
 }
