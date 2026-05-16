@@ -4,6 +4,7 @@ section {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-x: auto;
 }
 
 table {
@@ -137,7 +138,4 @@ table tbody tr {
     display: none;
   }
 
-  section {
-    overflow-x: auto;
-  }
 }

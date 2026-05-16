@@ -10,15 +10,10 @@
                 <td class="">Anrede</td>
                 <td class="">Vorname</td>
                 <td class="">Nachname</td>
-                <td class="">Straße</td>
-                <td class="">Nr</td>
-                <td class="">PLZ</td>
                 <td class="">Stadt</td>
-                <td class="">E-Mail</td>
                 <td class="">Handy</td>
                 <td class="">Portfolio</td>
                 <td class="">Abo</td>
-                <td class="">Rechnungen</td>
                 <td class="">Edit</td>
             </tr>
         </thead>
@@ -29,15 +24,10 @@
                 <td>{{ customer.title }}</td>
                 <td>{{ customer.first_name }}</td>
                 <td>{{ customer.last_name }}</td>
-                <td>{{ customer.street }}</td>
-                <td>{{ customer.street_number }}</td>
-                <td>{{ customer.postcode }}</td>
                 <td>{{ customer.city }}</td>
-                <td>{{ customer.email }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>{{ customer.has_portfolio }}</td>
                 <td>{{ customer.has_subscription }}</td>
-                <td>{{ customer.invoices }}</td>
                 <td class="crmSK-td-edit">
                     <button class="crmSK-icon-three-dots" (click)="toggleMenu(customer.id)">
                         <img src="/assets/three.svg" alt="edit">
