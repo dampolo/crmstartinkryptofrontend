@@ -249,6 +249,11 @@ label {
   display: flex;
 }
 
+[poster] {
+  width: 150rem;
+  background-color: black;
+}
+
 @media (max-width: 62.5rem) {
   .main-container {
     flex-direction: column;

@@ -101,6 +101,16 @@ export class ListOfLessons {
         this.isPlaying = true
     }
 
+    // Controle native element
+    onVideoPlay() {
+        this.isPlaying = false;
+    }
+
+    // Controle native element
+    onVideoPause() {
+        this.isPlaying = true;
+    }
+
     showControls() {
         this.controlsHidden = false;
 
@@ -109,7 +119,7 @@ export class ListOfLessons {
         this.hideTimer = setTimeout(() => {
             this.controlsHidden = true;
             console.log('TEST');
-            
+
         }, 2500);
     }
 
