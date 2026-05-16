@@ -23,7 +23,6 @@ export class Invoices {
     this.invoiceService.getInvoices().subscribe({
       next: (invoices) => {
         this.invoices.set(invoices);
-        console.log(invoices);
       },
       error: (err) => {
         this.stateService.displayToast('SystemFehler');
