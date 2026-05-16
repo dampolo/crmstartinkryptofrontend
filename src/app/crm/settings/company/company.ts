@@ -27,7 +27,7 @@ export class Company {
             next: (data) => {
                 this.mainStateService.displayToast('Die Daten wurden gelesen', true)
                 console.log(data);
-                
+
             },
             error: (err) => {
                 this.mainStateService.displayToast('Du hast kein Internet', false)
@@ -96,6 +96,20 @@ export class Company {
                 });
             }
         });
+    }
+
+    onFileSelected(event: Event): void {
+        const input = event.target as HTMLInputElement;
+
+        if (input.files && input.files.length > 0) {
+            const file = input.files[0];
+
+            this.companyForm.patchValue({
+                logo: file
+            });
+
+            this.companyForm.get('logo')?.updateValueAndValidity();
+        }
     }
 
     onCancel() {
