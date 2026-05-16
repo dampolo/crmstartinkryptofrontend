@@ -31,7 +31,7 @@ export class Invoices {
     });
   }
 
-  toggleMenu(id: number, event: Event) {
+  toggleMenu(id: number, event: Event):void {
     event.stopPropagation();
     this.openMenuId = this.openMenuId === id ? null : id;
   }
@@ -39,7 +39,6 @@ export class Invoices {
   @HostListener('document:click')
   closeMenu(): void {
     this.openMenuId = null;
-    console.log("DUPA");
     
   }
 }
