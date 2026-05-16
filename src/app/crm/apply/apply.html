@@ -17,37 +17,33 @@
 
     <tbody>
       @for (app of application.Applications; track app.email) {
-      <tr>
-        <td>{{ app.title || 'Keine Angabe' }}</td>
-        <td>{{ app.firstName }}</td>
-        <td>{{ app.lastName }}</td>
-        <td>{{ app.email }}</td>
-        <td>{{ app.phoneNumber }}</td>
+        <tr>
+          <td>{{ app.title || 'Keine Angabe' }}</td>
+          <td>{{ app.firstName }}</td>
+          <td>{{ app.lastName }}</td>
+          <td>{{ app.email }}</td>
+          <td>{{ app.phoneNumber }}</td>
 
-        <!-- Required CV file -->
-        <td>{{ app.file }}</td>
+          <!-- Required CV file -->
+          <td>
+            <a class="cv" [href]="baseUrl + 'invoices/pdf/?download=true'">PDF</a>
+          </td>
 
-        <!-- Optional attachments -->
-        <td>
-          <ul>
-            @if (app.file2) {
-            <li>{{ app.file2 }}</li>
-            } @if (app.file3) {
-            <li>{{ app.file3 }}</li>
-            } @if (!app.file2 && !app.file3) {
-            <li>Keine</li>
-            }
-          </ul>
-        </td>
+          <!-- Optional attachments -->
+          <td>
+            <ul>
+              <li>Keine</li>
+            </ul>
+          </td>
 
-        <td>
-          {{ app.privacyAccepted ? 'Ja' : 'Nein' }}
-        </td>
-      </tr>
+          <td>
+            {{ app.privacyAccepted ? 'Ja' : 'Nein' }}
+          </td>
+        </tr>
       } @empty {
-      <tr>
-        <td>Keine Bewerbungen vorhanden.</td>
-      </tr>
+        <tr>
+          <td>Keine Bewerbungen vorhanden.</td>
+        </tr>
       }
     </tbody>
   </table>
