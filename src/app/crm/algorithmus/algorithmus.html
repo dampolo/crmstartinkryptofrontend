@@ -12,11 +12,12 @@
       (input)="onSearchChange()"
       (focus)="onFocus()"
       (blur)="hideDropdown()"
-      />
+      autocomplete="off"
+      >
       @if (showDropdown) {
       <ul class="dropdown">
         @for (customer of filteredCustomers; track customer.id) {
-          @if(customer.type === userType.CUSTOMER) {
+          @if(customer.role === userRole.CUSTOMER) {
             
             <li (click)="selectCustomer(customer)">{{ customer.first_name }} {{ customer.last_name }}</li>
           }

@@ -13,7 +13,7 @@ export enum UserTitle {
     DIVERS = 'Divers',
 }
 
-export enum UserType {
+export enum UserRole {
     BUSINESS = 'business',
     CUSTOMER = 'customer',
     APPLICANT = 'applicant',
@@ -23,7 +23,7 @@ export interface USER {
     image: string | null;
     customer_number: string;
     title: UserTitle;
-    type: UserType;
+    role: UserRole;
     first_name: string;
     last_name: string;
     street: string;

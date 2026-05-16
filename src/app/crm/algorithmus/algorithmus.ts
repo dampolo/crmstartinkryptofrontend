@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CUSTOMER, CUSTOMER_CRM, UserType } from '../../models/customer.model';
+import { CUSTOMER, CUSTOMER_CRM, UserRole } from '../../models/customer.model';
 import { ServiceCatalog } from '../../models/service-catalog.model';
 import {
   InvoiceCreate,
@@ -36,7 +36,7 @@ export class Algorithmus {
   currentDate = new Date(); // stores the current date and time
   isInvoiceVisible: boolean = false;
   serviceCatalog = signal<ServiceCatalog[]>([]);
-  userType = UserType
+  userRole = UserRole
   algorithmusForm: FormGroup;
   totalProvisonPercent: number = 0;
 
@@ -181,9 +181,18 @@ export class Algorithmus {
   }
 
   onFocus() {
-    this.customerControl.getCustomers().subscribe((customers) => {      
-      this.filteredCustomers = [...customers];
-      this.showDropdown = true;
+    this.customerControl.getCustomers().subscribe({
+      next: (customers) => {
+        this.filteredCustomers = [...customers];
+        console.log(this.filteredCustomers);
+        
+        this.showDropdown = true;
+
+      },
+      error: (err) => {
+        this.showDropdown = false;
+
+      } 
     });
   }
 
