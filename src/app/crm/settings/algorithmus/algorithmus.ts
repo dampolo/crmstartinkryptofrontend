@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, Signal } from '@angular/core';
+import { Component, inject, OnInit, signal, Signal, ɵRender3ComponentRef } from '@angular/core';
 import { AlgorithmusControl } from '../../services/algorithmus-control';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import {
@@ -31,13 +31,19 @@ export class Algorithmus {
     { value: 'percent', label: 'Prozent' },
   ];
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
     this.algorithmusForm = this.fb.group({
       services: this.fb.array([]),
     });
+  }
 
+  ngOnInit(): void {
+    this.renderAllServices()
+  }
+
+  // Render all services
+
+  renderAllServices() {
     this.algorithmusControl.getServiceCatalog().subscribe({
       next: (data) => {
         this.serviceCatalog.set(data);
@@ -136,19 +142,20 @@ export class Algorithmus {
 
     const payload = this.algorithmusForm.getRawValue();
     console.log(payload.services);
-    
+
     this.algorithmusControl.updateServices(payload.services).subscribe({
       next: () => {
         this.mainStateService.displayToast('Die Leistungen wurden geändert', true);
       },
       error: (err) => {
-        this,this.mainStateService.displayToast('!! Verusche noch einmal', false);
+        this, this.mainStateService.displayToast('!! Verusche noch einmal', false);
       },
     });
   }
 
 
   onCancel() {
+    this.renderAllServices();
     this.showEdit = false;
   }
 
@@ -157,7 +164,7 @@ export class Algorithmus {
   deleteService(service: AbstractControl): void {
     const id = service.get('id')?.value;
 
-    if(id) {
+    if (id) {
       this.algorithmusControl.deleteService(id).subscribe({
         next: () => {
           this.removeFromForm(service);
@@ -172,9 +179,9 @@ export class Algorithmus {
     }
   }
 
-  removeFromForm(serivce: AbstractControl): void{
+  removeFromForm(serivce: AbstractControl): void {
     const index = this.services.controls.indexOf(serivce);
-    if(index > -1) {
+    if (index > -1) {
       this.services.removeAt(index)
     }
   }

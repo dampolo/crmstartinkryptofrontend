@@ -20,6 +20,11 @@ body {
   font-size: 16px;
 }
 
+.title {
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+
 main {
   display: flex;
   flex-direction: column;
@@ -175,7 +180,6 @@ app-edit-single-feature {
   align-items: center;
 }
 
-button.edit,
 button[type='submit'] {
   background-color: basic.$primary;
   width: fit-content;
@@ -183,9 +187,6 @@ button[type='submit'] {
   align-self: center;
 }
 
-button.edit:not(:disabled):hover {
-  background: basic.$primary;
-}
 
 button[type='button'].hamburger:hover {
   background-color: transparent;

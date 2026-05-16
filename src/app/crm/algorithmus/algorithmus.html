@@ -127,10 +127,10 @@
   </table>
 </section>
 <div class="btn-container">
-  <button (click)="openDialog()" type="submit">
+  <button (click)="openDialog()" type="submit" class="main-btn-start-in-krypto">
     Vorschau
   </button>
-  <button (click)="createInvoice()" type="submit" [disabled]="!algorithmusForm.valid">
+  <button (click)="createInvoice()" type="submit" class="main-btn-start-in-krypto" [disabled]="!algorithmusForm.valid">
     Erstellen
   </button>
 </div>
