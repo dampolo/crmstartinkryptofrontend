@@ -7,10 +7,11 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environment/environment';
+import { Preloader } from '../../shared/preloader/preloader';
 
 @Component({
 	selector: 'app-login',
-	imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink],
+	imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink, Preloader],
 	templateUrl: './login-customer.html',
 	styleUrl: './login-customer.scss',
 })
@@ -45,7 +46,10 @@ export class LoginCustomer {
 	}
 
 	loginWithEmailAndPassword() {
+		this.mainStateService.showPreloader = true
 		if (this.loginForm.invalid) {
+			this.mainStateService.showPreloader = false;
+
 			this.mainStateService.displayToast('Bitte alle Felder ausfüllen', false);
 			return;
 		}
@@ -57,15 +61,17 @@ export class LoginCustomer {
 
 		this.authService.loginAndFetchUser(data.email, data.password).subscribe({
 			next: () => {
+				this.mainStateService.showPreloader = false;
 				this.mainStateService.displayToast('Du bist angemeldet.', true);
 				this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
 			},
 
 			error: (err) => {
+				this.mainStateService.showPreloader = false;
 				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten.', false);
 				this.errorResponse.set('E-Mail oder Passwort sind falsch.')
 				console.log(err);
-				
+
 			}
 		});
 	}

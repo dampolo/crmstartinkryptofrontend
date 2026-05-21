@@ -20,7 +20,7 @@ export class Company {
     mainStateService = inject(MainStateService);
     currentYear = new Date().getFullYear();
     showEdit: boolean = false;
-
+    selectedFileName: string | null = null;
 
     ngOnInit() {
         this.companyControl.getCompany().subscribe({
@@ -100,10 +100,10 @@ export class Company {
 
     onFileSelected(event: Event): void {
         const input = event.target as HTMLInputElement;
-
+        debugger
         if (input.files && input.files.length > 0) {
             const file = input.files[0];
-
+            
             this.companyForm.patchValue({
                 logo: file
             });

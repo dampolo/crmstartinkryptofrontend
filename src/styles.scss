@@ -509,6 +509,14 @@ app-add-new-video {
   color: #374151;
 }
 
+.show-preloader {
+  display: block;
+}
+
+.hide-preloader {
+  display: none;
+}
+
 @media (max-width: 37.5rem) {
   .main-auth {
     .main-content-customer {

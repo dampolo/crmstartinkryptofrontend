@@ -10,6 +10,7 @@ export class MainStateService {
   showArrow: boolean = false;
   isLoginPage: boolean = true;
   isProfileVisible: boolean = false;
+  showPreloader: boolean = false;
 
   posFixBurger: boolean = false;
 	posFixLogo: boolean = false;
