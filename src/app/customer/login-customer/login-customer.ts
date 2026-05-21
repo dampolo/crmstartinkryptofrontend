@@ -77,10 +77,15 @@ export class LoginCustomer {
 	}
 
 	async createOrLoginWithGoogle() {
+		this.mainStateService.showPreloader = true
 		try {
 			await this.authService.loginWithGoogle();
 			this.router.navigate(['/customer/dashboard']);
+			this.mainStateService.showPreloader = false
+
 		} catch (err) {
+			this.mainStateService.showPreloader = false
+
 			console.error('Google login failed', err);
 		}
 	}

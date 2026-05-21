@@ -152,7 +152,7 @@
       width: fit-content;
       padding: 0.3125rem 0.9375rem;
       border-radius: basic.$border-radius;
-      margin-bottom: 30px;
+      margin-block: 1rem;
       border: solid 0.0625rem transparent;
       transition: all 175ms ease-in-out;
       &:hover {
@@ -222,7 +222,6 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    margin-block: 1.875rem;
     gap: 1rem;
     .back-button,
     .forward-btn {
