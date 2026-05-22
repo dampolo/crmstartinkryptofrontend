@@ -151,7 +151,8 @@
         </div>
       </div>
     </div>
-
+    <!-- Preloader -->
+    <app-preloader [ngClass]="mainStateService.showPreloader ? 'show-preloader' : 'hide-preloader'"></app-preloader>
     <div class="btn-container">
       <button id="submit" type="submit" [disabled]="!myForm.valid" class="forward-btn">
         Weiter
