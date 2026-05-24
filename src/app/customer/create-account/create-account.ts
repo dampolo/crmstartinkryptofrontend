@@ -64,7 +64,6 @@ export class CreateAccount {
     this.isFormSubmitted = true;
     this.mainStateService.showPreloader = true
     if (!this.myForm.valid) {
-      console.log('Form is invalid, go home! .. or else ..');
       return;
     }
 

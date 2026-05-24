@@ -1,5 +1,4 @@
 @use './basic';
-
 .main-content-customer {
   position: relative;
   display: flex;
@@ -82,7 +81,7 @@
         border: 0.0625rem solid transparent;
         outline: none;
         &:focus-visible {
-          border: 0.0625rem solid  basic.$secondary;
+          border: 0.0625rem solid basic.$secondary;
           background-color: basic.$body-bg;
           color: basic.$secondary;
         }
@@ -252,6 +251,10 @@
       visibility: visible;
     }
   }
+}
+
+.main-auth .main-content-customer .btn-container .back-button {
+  visibility: hidden;
 }
 
 @media (max-width: 31.25rem) {

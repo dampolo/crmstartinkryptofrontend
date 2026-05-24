@@ -14,7 +14,6 @@ import { AuthService } from '../../main-services/auth-service';
     encapsulation: ViewEncapsulation.None
 })
 export class ForgotPassword {
-    router = inject(Router);
     formBuilder = inject(FormBuilder);
 
     authService = inject(AuthService)
@@ -23,7 +22,7 @@ export class ForgotPassword {
     recoveryForm: FormGroup;
     isFormValid: boolean = false;
 
-    constructor() {
+    constructor(private router: Router,) {
         this.recoveryForm = new FormGroup({
             email: new FormControl('', [Validators.required, Validators.email]),
         });
@@ -42,10 +41,6 @@ export class ForgotPassword {
                 this.mainStateService.showConfirmationText.set('Versuche noch einmal')
             }
         })
-    }
-
-    onCancel() {
-        this.router.navigate(["/customer/customer-profile"])
     }
 
 }
