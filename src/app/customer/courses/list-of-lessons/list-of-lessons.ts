@@ -126,9 +126,4 @@ export class ListOfLessons {
     hideControls() {
         this.controlsHidden = true;
     }
-    
-    BackToListOfLessons() {
-        const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
-        this.router.navigate([`customer/my-courses/${courseId}/list-of-lessons`])
-    }
 }
