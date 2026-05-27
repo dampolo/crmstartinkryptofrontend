@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
-import { firstValueFrom } from 'rxjs';
+import { EMPTY, exhaustMap, finalize, firstValueFrom, Subject } from 'rxjs';
 import { environment } from '../../../environment/environment';
 import { Preloader } from '../../shared/preloader/preloader';
 
@@ -21,11 +21,9 @@ export class LoginCustomer {
 	mainStateService = inject(MainStateService);
 	loginForm: FormGroup;
 	errorResponse = signal('')
-
-	private baseUrl = environment.apiBaseUrl;
-
 	isFormSubmitted: boolean = false;
 	isPasswordVisible = false;
+	private loginClick$ = new Subject<void>();
 
 	constructor(private router: Router,
 		private http: HttpClient) {
@@ -46,34 +44,46 @@ export class LoginCustomer {
 	}
 
 	loginWithEmailAndPassword() {
-		this.mainStateService.showPreloader = true
-		if (this.loginForm.invalid) {
-			this.mainStateService.showPreloader = false;
+		this.mainStateService.showPreloader = true;
+		this.loginClick$.next();
+	}
 
-			this.mainStateService.displayToast('Bitte alle Felder ausfüllen', false);
-			return;
-		}
+	ngOnInit(): void {
+		this.loginClick$
+			.pipe(
+				exhaustMap(() => {
+					if (this.loginForm.invalid) {
+						this.mainStateService.displayToast('Bitte alle Felder ausfüllen', false);
+						return EMPTY;
+					}
 
-		const data = {
-			email: this.loginForm.value.userEmail,
-			password: this.loginForm.value.password,
-		};
+					this.mainStateService.showPreloader = true;
 
-		this.authService.loginAndFetchUser(data.email, data.password).subscribe({
-			next: () => {
-				this.mainStateService.showPreloader = false;
-				this.mainStateService.displayToast('Du bist angemeldet.', true);
-				this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
-			},
+					const data = {
+						email: this.loginForm.value.userEmail,
+						password: this.loginForm.value.password,
+					};
+					return this.authService.loginAndFetchUser(
+						data.email,
+						data.password
+					).pipe(
+						finalize(() => {
+							this.mainStateService.showPreloader = false
+						})
+					)
+				})
+			).subscribe({
+				next: () => {
+					this.mainStateService.displayToast('Du bist angemeldet.', true);
+					this.router.navigate(['/customer/dashboard'], { replaceUrl: false });
+				},
 
-			error: (err) => {
-				this.mainStateService.showPreloader = false;
-				this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten.', false);
-				this.errorResponse.set('E-Mail oder Passwort sind falsch.')
-				console.log(err);
+				error: (err) => {
+					this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten.', false);
+					this.errorResponse.set('E-Mail oder Passwort sind falsch.')
+				}
+			})
 
-			}
-		});
 	}
 
 	async createOrLoginWithGoogle() {

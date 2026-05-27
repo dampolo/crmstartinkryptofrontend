@@ -18,7 +18,6 @@ export class AuthService {
 	mainStateService = inject(MainStateService);
 
 	constructor(private http: HttpClient,
-		private router: Router,
 		private googleAuth: GoogleAuthService
 	) { }
 
