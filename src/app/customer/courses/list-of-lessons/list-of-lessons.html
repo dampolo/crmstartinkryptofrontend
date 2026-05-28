@@ -18,10 +18,11 @@
           [src]="selectedVideo"
           controlsList="nodownload"
           controls
-          loop
           poster="./assets/SK-favicon.svg"
           (play)="onVideoPlay()"
           (pause)="onVideoPause()"
+          (ended)="onVideoEnded()"
+          (timeupdate)="onTimeUpdate()"
         ></video>
         <div class="custom-controls" [class.hidden]="controlsHidden">
           @if (isPlaying) {

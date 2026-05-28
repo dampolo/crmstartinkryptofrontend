@@ -38,6 +38,7 @@ export class ListOfLessons {
     order: string = ""
     videoDuration: number | null = null;
     pdfs: LESSON_PDF[] = [];
+    lastSavedSecond = 0;
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
@@ -127,6 +128,25 @@ export class ListOfLessons {
         this.controlsHidden = true;
     }
 
+    onVideoEnded() {
+        const duration = Math.floor(this.videoPlayer.nativeElement.duration);
+        this.sendProgress(duration);
+    }
+
+    onTimeUpdate() {
+        const currentSecond = Math.floor(
+            this.videoPlayer.nativeElement.currentTime
+        );
+
+        // Save every 15 seconds
+        if (currentSecond - this.lastSavedSecond >= 15) {
+            this.lastSavedSecond = currentSecond;
+            console.log(this.lastSavedSecond);
+            
+            this.sendProgress(currentSecond);
+        }
+    }
+
     sendProgress(watchedSeconds: number) {
         const lessonId = Number(this.route.snapshot.paramMap.get('lessonId'));
         const payload = {
@@ -134,7 +154,7 @@ export class ListOfLessons {
             watched_seconds: watchedSeconds
         };
         this.courseService.sendProgress(payload).subscribe({
-        error: console.error
-    });
+            error: console.error
+        });
     }
 }
