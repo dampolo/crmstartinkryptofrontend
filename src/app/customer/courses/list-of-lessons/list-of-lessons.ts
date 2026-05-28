@@ -134,12 +134,7 @@ export class ListOfLessons {
             watched_seconds: watchedSeconds
         };
         this.courseService.sendProgress(payload).subscribe({
-            next: () => {
-
-            },
-            error: (error: any) => {
-
-            }
-        })
+        error: console.error
+    });
     }
 }
