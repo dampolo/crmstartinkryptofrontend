@@ -44,7 +44,6 @@ export class LoginCustomer {
 	}
 
 	loginWithEmailAndPassword() {
-		this.mainStateService.showPreloader = true;
 		this.loginClick$.next();
 	}
 

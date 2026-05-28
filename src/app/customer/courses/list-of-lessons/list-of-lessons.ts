@@ -108,6 +108,8 @@ export class ListOfLessons {
 
     // Controle native element
     onVideoPause() {
+        const watchedSeconds = Math.floor(this.videoPlayer.nativeElement.currentTime);
+        this.sendProgress(watchedSeconds)
         this.isPlaying = true;
     }
 
@@ -118,12 +120,26 @@ export class ListOfLessons {
 
         this.hideTimer = setTimeout(() => {
             this.controlsHidden = true;
-            console.log('TEST');
-
         }, 2500);
     }
 
     hideControls() {
         this.controlsHidden = true;
+    }
+
+    sendProgress(watchedSeconds: number) {
+        const lessonId = Number(this.route.snapshot.paramMap.get('lessonId'));
+        const payload = {
+            lesson: lessonId,
+            watched_seconds: watchedSeconds
+        };
+        this.courseService.sendProgress(payload).subscribe({
+            next: () => {
+
+            },
+            error: (error: any) => {
+
+            }
+        })
     }
 }

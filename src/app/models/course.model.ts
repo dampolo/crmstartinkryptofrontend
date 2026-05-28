@@ -93,3 +93,8 @@ export interface TAX {
     percent: string,
     active: boolean
 }
+
+export interface PROGRESS {
+    lesson: number
+    watched_seconds: number
+}

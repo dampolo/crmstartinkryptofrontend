@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { COURSE, DISCOUNT_CODE, LESSON, PURCHASE, PURCHASED_COURSE, UPDATE_COURSE_FEATURE } from '../models/course.model';
+import { COURSE, DISCOUNT_CODE, LESSON, PROGRESS, PURCHASE, PURCHASED_COURSE, UPDATE_COURSE_FEATURE } from '../models/course.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 
@@ -158,5 +158,12 @@ export class CourseService {
             { code: code },
             { withCredentials: true }
         );
+    }
+
+    sendProgress(payload: PROGRESS):Observable<PROGRESS> {
+        return this.http.post<PROGRESS>(
+            `${this.baseUrl}lesson-progress/`, payload,
+            {withCredentials: true}
+        )
     }
 }
