@@ -58,9 +58,6 @@ export class ListOfLessons {
                     }
                 },
                 error: (error: any) => {
-                    console.log(error);
-
-
                     const message =
                         error?.error?.message ||
                         error?.error?.detail ||
@@ -140,9 +137,7 @@ export class ListOfLessons {
 
         // Save every 15 seconds
         if (currentSecond - this.lastSavedSecond >= 15) {
-            this.lastSavedSecond = currentSecond;
-            console.log(this.lastSavedSecond);
-            
+            this.lastSavedSecond = currentSecond;            
             this.sendProgress(currentSecond);
         }
     }

@@ -78,6 +78,7 @@ export interface LESSON {
     description_under_video: string;
     order: string;
     status: 'draft' | 'published';
+    progress: PROGRESS;
     duration: number;
     pdfs: LESSON_PDF[]
 }
@@ -95,6 +96,7 @@ export interface TAX {
 }
 
 export interface PROGRESS {
-    lesson: number
-    watched_seconds: number
+    lesson: number,
+    watched_seconds: number,
+    completed?: boolean
 }

@@ -88,6 +88,9 @@
                 <small>{{ lesson.description }}</small>
               </div>
             </div>
+            @if(lesson.progress.completed) {
+              <img src="./assets/finished.svg" alt="fertig">
+            }
             <span class="meta">
               {{ lesson.duration | duration }}
             </span>
