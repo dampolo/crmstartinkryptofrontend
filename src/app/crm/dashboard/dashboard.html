@@ -1,246 +1,106 @@
 <h1 class="title">Dashboard</h1>
 
 <div class="dashboard-statistics">
-    <div class="dashboard-single">
-        <div>
-            <h2>Alle Kunden</h2>
-            <span class="dashboard-number">{{ dashboard()?.customers_count }}</span>
-        </div>
-        <span class="dashboard-img">
-            <img width="25" height="25" src="./assets/customers.svg" alt="">
-        </span>
+  <div class="dashboard-single">
+    <div>
+      <h2>Alle Kunden</h2>
+      <span class="dashboard-number">{{ dashboard()?.customers_count }}</span>
     </div>
+    <span class="dashboard-img">
+      <img width="25" height="25" src="./assets/customers.svg" alt="" />
+    </span>
+  </div>
 
-    <div class="dashboard-single">
-        <div>
-            <h2>Alle Rechnungen</h2>
-            <span class="dashboard-number">{{ dashboard()?.invioces_count }}</span>
-        </div>
-            <span class="dashboard-img">
-            <img width="25" height="25" src="./assets/invoices.svg" alt="">
-        </span>
+  <div class="dashboard-single">
+    <div>
+      <h2>Alle Rechnungen</h2>
+      <span class="dashboard-number">{{ dashboard()?.invioces_count }}</span>
     </div>
+    <span class="dashboard-img">
+      <img width="25" height="25" src="./assets/invoices.svg" alt="" />
+    </span>
+  </div>
 
-    <div class="dashboard-single">
-        <div>
-            <h2>Alle Bewerbungen</h2>
-            <span class="dashboard-number">{{ dashboard()?.applicants_count }}</span>
-        </div>
-        <span class="dashboard-img">
-            <img width="25" height="25" src="./assets/applies.svg" alt="">
-        </span>
+  <div class="dashboard-single">
+    <div>
+      <h2>Alle Bewerbungen</h2>
+      <span class="dashboard-number">{{ dashboard()?.applicants_count }}</span>
     </div>
+    <span class="dashboard-img">
+      <img width="25" height="25" src="./assets/applies.svg" alt="" />
+    </span>
+  </div>
 </div>
 
 <div class="dashboard-list-container">
-
-    <div class="dashboard-list">
-        <div class="dashboard-title" >
-            <h2>
-            Aktuelle Kunden
-            </h2>
-            <span>Sehe alle</span>
-        </div>
-
-        <ul>
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            Jozef Stary
-                        </h3>
-                        <span>
-                            jozefstary@gmail.com
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status standart">
-                        standart
-                    </span>
-                </button>
-            </li>
-
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            Kinga Mloda
-                        </h3>
-                        <span>
-                            kingamloda@gmail.com
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status optional">
-                        optional
-                    </span>
-                </button>
-            </li>
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            Anne Heller
-                        </h3>
-                        <span>
-                            AnnaHeller@gmail.com
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status premium">
-                        premium
-                    </span>
-                </button>
-            </li>
-        </ul>
+  <div class="dashboard-list">
+    <div class="dashboard-title">
+      <h2>Aktuelle Kunden</h2>
+      <span>Sehe alle</span>
     </div>
 
-        <div class="dashboard-list">
-        <div class="dashboard-title" >
-            <h2>
-            Aktuelle Rechnungen
-            </h2>
-            <span>Sehe alle</span>
-        </div>
+    <ul>
+      @for (customer of dashboard()?.latest_customers; track $index) {
+        <li>
+          <button>
+            <div class="dashboard-list-single">
+              <h3>{{customer.first_name}} {{customer.last_name}}</h3>
+              <span> {{customer.email}} </span>
+            </div>
+            <span class="dashboard-list-status standart"> {{customer.has_portfolio}} </span>
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
 
-        <ul>
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            #1234567
-                        </h3>
-                        <span>
-                            Jozef Stary
-                        </span>
-                        <span>
-                            -
-                        </span>
-                        <span>
-                            500€
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status paid">
-                        bezahlt
-                    </span>
-                </button>
-            </li>
-
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            #1234567
-                        </h3>
-                        <span>
-                            Kinga Mloda
-                        </span>
-                        <span>
-                            -
-                        </span>
-                        <span>
-                            500€
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status unpaid">
-                        unbezahlt
-                    </span>
-                </button>
-            </li>
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            #1234567
-                        </h3>
-                        <span>
-                            Anne Heller
-                        </span>
-                        <span>
-                            -
-                        </span>
-                        <span>
-                            500€
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status paid">
-                        bezahlt
-                    </span>
-                </button>
-            </li>
-        </ul>
+  <div class="dashboard-list">
+    <div class="dashboard-title">
+      <h2>Aktuelle Rechnungen</h2>
+      <span>Sehe alle</span>
     </div>
 
-        <div class="dashboard-list">
-        <div class="dashboard-title" >
-            <h2>
-            Aktuelle Bewerbungen
-            </h2>
-            <span>Sehe alle</span>
-        </div>
+    <ul>
 
-        <ul>
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            BEW6541235
-                        </h3>
-                        <span>
-                            Alek Wysoki
-                        </span>
-                        <span>
-                            -
-                        </span>
-                        <span>
-                            14.10.2025
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status approved">
-                        angenommen
-                    </span>
-                </button>
-            </li>
+        @for (invcoice of dashboard()?.latest_invoices; track $index) {
 
             <li>
                 <button>
                     <div class="dashboard-list-single">
-                        <h3>
-                            BEW1234564
-                        </h3>
-                        <span>
-                            Alek Wysoki
-                        </span>
-                        <span>
-                            -
-                        </span>
-                        <span>
-                            14.10.2025
-                        </span>
+                        <h3>{{invcoice.invoice_number}}</h3>
+                        <span> {{invcoice.user_customer_first_name}} {{invcoice.user_customer_last_name}} </span>
+                        <span> - </span>
+                        <span> {{invcoice.amount}} € </span>
                     </div>
-                    <span class="dashboard-list-status pending">
-                        ausstehend
-                    </span>
+                    <span class="dashboard-list-status paid"> {{ invcoice.invoice_status}} </span>
                 </button>
             </li>
-            <li>
-                <button>
-                    <div class="dashboard-list-single">
-                        <h3>
-                            BEW1234567
-                        </h3>
-                        <span>
-                            Ewa Potok
-                        </span>
-                        <span>
-                            -
-                        </span>
-                        <span>
-                            14.10.2025
-                        </span>
-                    </div>
-                    <span class="dashboard-list-status rejected">
-                        absage
-                    </span>
-                </button>
-            </li>
-        </ul>
+        }
+    </ul>
+  </div>
+
+  <div class="dashboard-list">
+    <div class="dashboard-title">
+      <h2>Aktuelle Bewerbungen</h2>
+      <span>Sehe alle</span>
     </div>
+
+    <ul>
+
+        @if (dashboard()?.latest_applicants?.length === 0) {
+            <span>Keine Bewerbungen</span>
+        }
+      <!-- <li>
+        <button>
+          <div class="dashboard-list-single">
+            <h3>BEW6541235</h3>
+            <span> Alek Wysoki </span>
+            <span> - </span>
+            <span> 14.10.2025 </span>
+          </div>
+          <span class="dashboard-list-status approved"> angenommen </span>
+        </button>
+      </li> -->
+    </ul>
+  </div>
 </div>
