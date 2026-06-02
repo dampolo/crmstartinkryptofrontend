@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutAuth } from './layout-auth';
+import { provideRouter } from '@angular/router';
 
 describe('LayoutAuth', () => {
   let component: LayoutAuth;
@@ -8,7 +9,9 @@ describe('LayoutAuth', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutAuth]
+      imports: [LayoutAuth],providers: [
+        provideRouter([])
+      ]
     })
     .compileComponents();
 
