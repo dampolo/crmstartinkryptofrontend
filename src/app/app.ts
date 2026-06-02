@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './main-services/auth-service';
@@ -11,9 +11,9 @@ import { AuthService } from './main-services/auth-service';
   styleUrl: './app.scss',
 })
 export class App {
-  
+
   constructor(private router: Router, private auth: AuthService) {
-    
+
   }
-  
+
 }
