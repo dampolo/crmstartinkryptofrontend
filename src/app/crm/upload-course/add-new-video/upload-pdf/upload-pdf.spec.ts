@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadPdf } from './upload-pdf';
+import { provideRouter } from '@angular/router';
 
 describe('UploadPdf', () => {
   let component: UploadPdf;
@@ -8,7 +9,9 @@ describe('UploadPdf', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UploadPdf]
+      imports: [UploadPdf],providers: [
+        provideRouter([])
+      ]
     })
     .compileComponents();
 
