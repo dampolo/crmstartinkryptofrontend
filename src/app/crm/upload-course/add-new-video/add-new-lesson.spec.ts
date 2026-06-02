@@ -1,14 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddNewLesson } from './add-new-lesson';
+import { provideRouter } from '@angular/router';
 
 
-describe('AddNewVideo', () => {
+describe('AddNewLesson', () => {
   let component: AddNewLesson;
   let fixture: ComponentFixture<AddNewLesson>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddNewLesson]
+      imports: [AddNewLesson],
+      providers: [
+        provideRouter([])
+      ]
     })
     .compileComponents();
 

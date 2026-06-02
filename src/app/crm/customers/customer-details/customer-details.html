@@ -43,11 +43,8 @@
     <dl>
       <dt>Telefon</dt>
       <dd>
-        @if (customer()?.phone) {
           <a [href]="'tel:' + customer()?.phone">{{ customer()?.phone }}</a>
-        } @else {
           —
-        }
       </dd>
     </dl>
 
@@ -104,8 +101,8 @@
 
   <!-- Photo -->
   <div class="form-group">
-    <label id="label-photo" for="photo">Photo:</label>
-    <input type="file" id="photo" formControlName="photo" accept="image/*">
+    <label id="label-image" for="image">Photo:</label>
+    <input type="file" id="image" formControlName="image" accept="image/*">
   </div>
 
 <!-- Anrede (Title) -->

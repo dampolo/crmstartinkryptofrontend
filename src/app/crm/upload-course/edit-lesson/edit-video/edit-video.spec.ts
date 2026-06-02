@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditVideo } from './edit-video';
+import { provideRouter } from '@angular/router';
 
 describe('EditVideo', () => {
   let component: EditVideo;
@@ -8,7 +9,10 @@ describe('EditVideo', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditVideo]
+      imports: [EditVideo],
+      providers: [
+        provideRouter([])
+      ]
     })
     .compileComponents();
 

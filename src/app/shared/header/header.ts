@@ -41,7 +41,6 @@ export class Header {
 
     }
 
-
     changeLanguage(language: string) {
         this.selectedLanguage = language;
         this.isLanguagesOpen = false

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutWebsite } from './layout-website';
+import { TranslateModule } from '@ngx-translate/core';
+import { ActivatedRoute, provideRouter } from '@angular/router';
 
 describe('LayoutWebsite', () => {
   let component: LayoutWebsite;
@@ -8,7 +10,10 @@ describe('LayoutWebsite', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutWebsite]
+      imports: [LayoutWebsite, TranslateModule.forRoot()],
+      providers: [
+        provideRouter([])
+      ]
     })
     .compileComponents();
 
