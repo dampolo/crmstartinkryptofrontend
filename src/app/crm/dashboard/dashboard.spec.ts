@@ -77,6 +77,11 @@ describe('Dashboard', () => {
     expect(mainStateServiceMock.displayToast).toHaveBeenCalledTimes(1);
   });
 
+  it('should initialize dashboard signal with loaded data', () => {
+    expect(component.dashboard()?.customers_count).toBe(10);
+    expect(component.dashboard()?.applicants_count).toBe(5);
+  });
+
   it('should show error toast and set dashboard to null when loading fails', () => {
     dashboardServiceMock.getDashboard.and.returnValue(
       throwError(() => new Error('Server Error'))
