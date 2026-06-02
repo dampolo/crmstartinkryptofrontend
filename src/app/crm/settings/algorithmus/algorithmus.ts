@@ -9,7 +9,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { stateService } from '../../services/state-service';
 import { ProvisionType, ServiceCatalog } from '../../../models/service-catalog.model';
 import { MainStateService } from '../../../main-services/main-state-service';
 

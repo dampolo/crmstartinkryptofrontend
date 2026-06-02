@@ -1,9 +1,9 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { stateService } from '../services/state-service';
 import { InvoiceService } from '../services/invoice-service';
 import { INVOICE } from '../../models/invoice.model';
 import { environment } from '../../../environment/environment';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   standalone: true,
@@ -14,7 +14,7 @@ import { environment } from '../../../environment/environment';
 })
 export class Invoices {
   invoiceService = inject(InvoiceService);
-  stateService = inject(stateService);
+  mainStateService = inject(MainStateService);
   openMenuId: number | null = null;
   invoices = signal<INVOICE[]>([]);
   baseUrl = environment.apiBaseUrl;
@@ -25,7 +25,7 @@ export class Invoices {
         this.invoices.set(invoices);
       },
       error: (err) => {
-        this.stateService.displayToast('SystemFehler');
+        this.mainStateService.displayToast('SystemFehler', false);
       },
     });
   }

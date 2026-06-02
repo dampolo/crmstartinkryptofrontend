@@ -4,7 +4,7 @@ import { CustomerControl } from '../../services/customer-control';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CUSTOMER } from '../../../models/customer.model';
-import { stateService } from '../../services/state-service';
+import { MainStateService } from '../../../main-services/main-state-service';
 
 @Component({
   selector: 'app-customer-details',
@@ -14,7 +14,7 @@ import { stateService } from '../../services/state-service';
 })
 export class CustomerDetails {
   customerControl = inject(CustomerControl);
-  stateService = inject(stateService);
+  mainStateService = inject(MainStateService);
   customer = signal<CUSTOMER | null>(null);
   showEdit: boolean = false;
   customerForm: FormGroup;
@@ -93,17 +93,17 @@ export class CustomerDetails {
 
     this.customerControl.updateCustomerById(id, payload).subscribe({
       next: () => {
-        this.showConfirmation('Der Kunde wurde aktualisiert');
+        this.showConfirmation('Der Kunde wurde aktualisiert', true);
       },
       error: (err) => {
-        this.showConfirmation('!! Verusche noch einmal');
+        this.showConfirmation('!! Verusche noch einmal', false);
       }
     })
   }
 
-  showConfirmation(message: string) {
+  showConfirmation(message: string, boolean: boolean) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.stateService.displayToast(message);
+    this.mainStateService.displayToast(message, boolean);
     this.showEdit = false;
     this.ngOnInit();
   }

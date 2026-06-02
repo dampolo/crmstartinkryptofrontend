@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { CustomerControl } from '../services/customer-control';
-import { stateService } from '../services/state-service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   standalone: true,
@@ -14,7 +14,7 @@ import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
 })
 export class Customers {
   customerControl = inject(CustomerControl);
-  stateService = inject(stateService);
+  mainStateService = inject(MainStateService);
   openMenuId: number | null = null;
 
   customers = signal<CUSTOMER_CRM[]>([]); // <-- SIGNAL
@@ -25,7 +25,7 @@ export class Customers {
         this.customers.set(customers);
       },
       error: (err) => {
-        this.stateService.displayToast('Systemfehler');
+        this.mainStateService.displayToast('Systemfehler', false);
       },
     });
   }

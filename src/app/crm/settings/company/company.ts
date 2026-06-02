@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { catchError, EMPTY, switchMap, tap } from 'rxjs';
 import { Logo } from '../../../shared/logo/logo';
 import { MainStateService } from '../../../main-services/main-state-service';
-import { stateService } from '../../services/state-service';
 
 @Component({
     standalone: true,

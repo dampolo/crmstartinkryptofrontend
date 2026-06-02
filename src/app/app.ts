@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './main-services/auth-service';
-import { stateService } from './crm/services/state-service';
 
 @Component({
   standalone: true,
@@ -13,7 +12,6 @@ import { stateService } from './crm/services/state-service';
 })
 export class App {
   protected readonly title = signal('crmstartinkryptofrontend');
-  stateService = inject(stateService);
 
   constructor(private router: Router, private auth: AuthService) {
     
