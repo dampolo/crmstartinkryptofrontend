@@ -11,8 +11,7 @@ import { AuthService } from './main-services/auth-service';
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('crmstartinkryptofrontend');
-
+  
   constructor(private router: Router, private auth: AuthService) {
     
   }
