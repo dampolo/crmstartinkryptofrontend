@@ -19,7 +19,7 @@ export class Dashboard {
     this.dashboardService.getDashboard().pipe(
       tap(() => {
         this.mainStateService.displayToast(
-          'Die Daten wurde geladen.',
+          'Die Daten wurden geladen.',
           true
         );
       }),

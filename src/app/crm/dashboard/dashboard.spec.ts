@@ -58,17 +58,23 @@ describe('Dashboard', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getDashboard', () => {
-    expect(dashboardServiceMock.getDashboard).toHaveBeenCalled();
+  it('should call getDashboard once', () => {
+    expect(dashboardServiceMock.getDashboard).toHaveBeenCalledTimes(1);
   });
 
   it('should set dashboard data on successful load', () => {
     expect(component.dashboard()).toEqual(mockDashboard);
   });
 
+  it('should initialize dashboard counts', () => {
+    expect(component.dashboard()?.customers_count).toBe(10);
+    expect(component.dashboard()?.applicants_count).toBe(5);
+    expect(component.dashboard()?.invioces_count).toBe(3);
+  });
+
   it('should show success toast when dashboard loads', () => {
     expect(mainStateServiceMock.displayToast).toHaveBeenCalledWith(
-      'Die Daten wurde geladen.',
+      'Die Daten wurden geladen.',
       true
     );
   });
@@ -77,12 +83,9 @@ describe('Dashboard', () => {
     expect(mainStateServiceMock.displayToast).toHaveBeenCalledTimes(1);
   });
 
-  it('should initialize dashboard signal with loaded data', () => {
-    expect(component.dashboard()?.customers_count).toBe(10);
-    expect(component.dashboard()?.applicants_count).toBe(5);
-  });
-
   it('should show error toast and set dashboard to null when loading fails', () => {
+    mainStateServiceMock.displayToast.calls.reset();
+    
     dashboardServiceMock.getDashboard.and.returnValue(
       throwError(() => new Error('Server Error'))
     );
