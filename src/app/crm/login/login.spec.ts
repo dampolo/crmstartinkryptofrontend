@@ -4,7 +4,7 @@ import { Login } from './login';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { Router } from '@angular/router';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 
 describe('Login', () => {
   let component: Login;
