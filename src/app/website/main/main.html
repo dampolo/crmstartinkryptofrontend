@@ -3,8 +3,9 @@
   <img class="bitcoin" width="100" height="100" src="./assets/bitcoin-coin.svg" alt="" />
   <div class="welcome-content">
     <h1>
-      <span>{{ "WELCOME.WELCOME" | translate }}</span> <br />
-      <span>{{ "WELCOME.IN" | translate}}</span><br />
+      <span>{{ 'WELCOME.WELCOME' | translate }}</span> <br />
+      <span>{{ 'WELCOME.IN' | translate }}</span
+      ><br />
       <span class="start">S</span>tart in <span class="krypto">K</span>rypto
     </h1>
 
@@ -18,35 +19,38 @@
   <div class="why-start-in-krypto-content">
     <ul class="service-description">
       <li>
-        <img src="./assets/currency-exchange.png" alt="" />
+        <img width="48" height="48" loading="lazy" src="./assets/currency-exchange.png" alt="" />
         <p class="paragraph">
           Du möchtest in Bitcoin oder andere Krypto-Assets investieren, weißt aber nicht, wo und wie
           du anfangen sollst?
         </p>
       </li>
       <li>
-        <img src="./assets/bitcoin-up.png" alt="" />
+        <img width="48" height="48" loading="lazy" src="./assets/bitcoin-up.png" alt="" />
         <p class="paragraph">
           Du hättest gerne jemanden, der dich persönlich in die Krypto-Welt einführt?
         </p>
       </li>
       <li>
-        <img src="./assets/money-bag.png" alt="" />
+        <img width="48" height="48" loading="lazy" src="./assets/money-bag.png" alt="" />
         <p class="paragraph">Du möchtest schnell und sicher in den Krypto-Space einsteigen?</p>
       </li>
       <li>
-        <img src="./assets/time.png" alt="" />
+        <img width="48" height="48" loading="lazy" src="./assets/time.png" alt="" />
         <p class="paragraph">Du möchtest, dass dir alles ruhig und geduldig erklärt wird?</p>
       </li>
     </ul>
     <figure class="why-start-in-krypto-figure">
-      <img
-        loading="lazy"
-        class="why-start-in-krypto-img"
-        srcset="./assets/ela2-small.jpg 512w, ./assets/ela2-mittle.jpg 950w, ./assets/ela2-big.png"
-        alt="Elisabeth"
-      />
-
+      <picture>
+        <source media="(max-width: 512px)" srcset="./assets/ela2-small.jpg" />
+        <source media="(max-width: 950px)" srcset="./assets/ela2-mittle.jpg" />
+        <img
+          loading="lazy"
+          class="why-start-in-krypto-img"
+          src="./assets/ela2-big.png"
+          alt="Elisabeth"
+        />
+      </picture>
       <figcaption class="why-start-in-krypto-img-figcaption">Elisabeth</figcaption>
     </figure>
   </div>
@@ -244,12 +248,47 @@
 <section class="review" id="Rezensionen">
   <h2 class="visually-hidden">Rezensionen</h2>
   <div class="review-content">
-    <div class="review-star" aria-label="5 Stärne">
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
+    <div class="review-star" role="img" aria-label="5 Sterne">
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
     <blockquote>
       <p>
@@ -273,12 +312,47 @@
   </div>
 
   <div class="review-content">
-    <div class="review-star" aria-label="5 Stärne">
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
+    <div class="review-star" role="img" aria-label="5 Sterne">
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
     <blockquote>
       <p>
@@ -296,12 +370,47 @@
     </blockquote>
   </div>
   <div class="review-content">
-    <div class="review-star" aria-label="5 Stärne">
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
+    <div class="review-star" role="img" aria-label="5 Sterne">
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
     <blockquote>
       <p>
@@ -324,12 +433,47 @@
     </blockquote>
   </div>
   <div class="review-content">
-    <div class="review-star" aria-label="5 Stärne">
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
+    <div class="review-star" role="img" aria-label="5 Sterne">
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
     <blockquote>
       <p>
@@ -360,12 +504,47 @@
     </blockquote>
   </div>
   <div class="review-content">
-    <div class="review-star" aria-label="5 Stärne">
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
-      <img height="24" width="24" loading="lazy" src="./assets/star.svg" alt="" />
+    <div class="review-star" role="img" aria-label="5 Sterne">
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        height="24"
+        width="24"
+        loading="lazy"
+        src="./assets/star.svg"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
     <blockquote>
       <p>
@@ -398,8 +577,16 @@
     elisabeth@startinkrypto.de
   </a>
 
-  <a class="whatsapp-link" href="https://wa.me/4915561672676" target="_blank">
+  <a
+    class="whatsapp-link"
+    href="https://wa.me/4915561672676"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Kontakt über WhatsApp starten"
+  >
     <svg
+      aria-hidden="true"
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
