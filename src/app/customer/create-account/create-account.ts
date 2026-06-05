@@ -91,6 +91,7 @@ export class CreateAccount {
   togglePasswordVisibilityTop() {
     this.isPasswordTopVisible = !this.isPasswordTopVisible
   }
+  
   togglePasswordVisibilityBottom() {
     this.isPasswordBottomVisible = !this.isPasswordBottomVisible
   }

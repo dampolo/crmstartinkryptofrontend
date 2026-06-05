@@ -244,7 +244,7 @@ describe('CreateAccount', () => {
 
     expect(result).toBeNull();
   });
-  
+
   it('should return passwordMismatch when passwords do not match', () => {
     const form = new FormGroup({
       password1: new FormControl('Test123!'),
@@ -256,5 +256,29 @@ describe('CreateAccount', () => {
     expect(result).toEqual({
       passwordMismatch: true
     });
+  });
+
+  it('should toggle password visibility Top', () => {
+    component.isPasswordTopVisible = false;
+
+    component.togglePasswordVisibilityTop();
+
+    expect(component.isPasswordTopVisible).toBeTrue();
+
+    component.togglePasswordVisibilityTop();
+
+    expect(component.isPasswordTopVisible).toBeFalse();
+  });
+
+  it('should toggle password visibility Bottom', () => {
+    component.isPasswordBottomVisible = false;
+
+    component.togglePasswordVisibilityBottom();
+
+    expect(component.isPasswordBottomVisible).toBeTrue();
+
+    component.togglePasswordVisibilityBottom();
+
+    expect(component.isPasswordBottomVisible).toBeFalse();
   });
 });
