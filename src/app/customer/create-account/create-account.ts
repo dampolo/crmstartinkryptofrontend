@@ -87,6 +87,7 @@ export class CreateAccount {
       },
     });
   }
+  
   togglePasswordVisibilityTop() {
     this.isPasswordTopVisible = !this.isPasswordTopVisible
   }
