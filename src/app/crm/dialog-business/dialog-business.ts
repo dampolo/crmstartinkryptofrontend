@@ -16,8 +16,8 @@ export class DialogBusiness  {
     authService = inject(AuthService);
 
     constructor(private router: Router) {
-
     }
+    
     logOut() {
         this.authService.logout()
         this.router.navigate(["/kurse/login"])
