@@ -19,9 +19,7 @@ export class HeaderCrm {
 	authService = inject(AuthService);
 	posFixBurger = false;
 	posFixLogo = false;
-
-	constructor(private router: Router) {
-	}
+	
 	openMenu() {
 		this.mainStateService.isMenuOpen = !this.mainStateService.isMenuOpen;
 		this.posFixBurger = !this.posFixBurger;

@@ -11,7 +11,6 @@ import { AuthService } from '../../main-services/auth-service';
     styleUrl: './dialog-business.scss',
 })
 export class DialogBusiness  {
-
     mainStateService = inject(MainStateService);
     authService = inject(AuthService);
     router = inject(Router);
