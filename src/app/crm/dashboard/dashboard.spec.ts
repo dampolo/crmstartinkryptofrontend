@@ -54,36 +54,24 @@ describe('Dashboard', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should call getDashboard once', () => {
-    expect(dashboardServiceMock.getDashboard).toHaveBeenCalledTimes(1);
-  });
-
-  it('should set dashboard data on successful load', () => {
+  
+  it('should load dashboard data and display success toast on init', () => {
     expect(component.dashboard()).toEqual(mockDashboard);
-  });
-
-  it('should initialize dashboard counts', () => {
     expect(component.dashboard()?.customers_count).toBe(10);
     expect(component.dashboard()?.applicants_count).toBe(5);
     expect(component.dashboard()?.invioces_count).toBe(3);
-  });
-
-  it('should show success toast when dashboard loads', () => {
+    expect(dashboardServiceMock.getDashboard).toHaveBeenCalledTimes(1);
+    expect(mainStateServiceMock.displayToast).toHaveBeenCalledTimes(1);
     expect(mainStateServiceMock.displayToast).toHaveBeenCalledWith(
       'Die Daten wurden geladen.',
       true
     );
   });
 
-  it('should show success toast once', () => {
-    expect(mainStateServiceMock.displayToast).toHaveBeenCalledTimes(1);
-  });
-
-  it('should show error toast and set dashboard to null when loading fails', () => {
+  it('should handle error and display error toast', () => {
     mainStateServiceMock.displayToast.calls.reset();
     
     dashboardServiceMock.getDashboard.and.returnValue(
