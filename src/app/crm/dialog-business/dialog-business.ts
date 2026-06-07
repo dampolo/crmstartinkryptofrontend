@@ -14,10 +14,8 @@ export class DialogBusiness  {
 
     mainStateService = inject(MainStateService);
     authService = inject(AuthService);
+    router = inject(Router);
 
-    constructor(private router: Router) {
-    }
-    
     logOut() {
         this.authService.logout()
         this.router.navigate(["/kurse/login"])
@@ -28,7 +26,6 @@ export class DialogBusiness  {
 
     openProfile() {
         this.router.navigate(["/crm/profile"])
-
     }
 
 }
