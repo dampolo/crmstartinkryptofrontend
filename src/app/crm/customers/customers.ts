@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
 import { MainStateService } from '../../main-services/main-state-service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, of, tap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -17,18 +19,25 @@ export class Customers {
   mainStateService = inject(MainStateService);
   openMenuId: number | null = null;
 
-  customers = signal<CUSTOMER_CRM[]>([]); // <-- SIGNAL
+  customers = toSignal(
+    this.customerControl.getCustomers().pipe(
+      tap(() => {
+        this.mainStateService.displayToast(
+          'Die Kunden wurden geladen.',
+          true
+        );
+      }),
+      catchError(error => {
+        this.mainStateService.displayToast(
+          'Der Server ist aktuell nicht erreichbar. Bitte versuche es später erneut.',
+          false
+        );
 
-  ngOnInit() {
-    this.customerControl.getCustomers().subscribe({
-      next: (customers) => {
-        this.customers.set(customers);
-      },
-      error: (err) => {
-        this.mainStateService.displayToast('Systemfehler', false);
-      },
-    });
-  }
+        return of(null);
+      })
+    ),
+    { initialValue: null }
+  )
 
   toggleMenu(id: number) {
     this.openMenuId = this.openMenuId === id ? null : id;
