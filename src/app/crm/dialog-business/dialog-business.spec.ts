@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../main-services/auth-service';
 
 
-fdescribe('Profile', () => {
+describe('Profile', () => {
   let component: DialogBusiness;
   let fixture: ComponentFixture<DialogBusiness>;
 
@@ -38,6 +38,7 @@ fdescribe('Profile', () => {
     spyOn(mainStateService, 'displayToast');
 
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
+    
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>
 
     fixture = TestBed.createComponent(DialogBusiness);
