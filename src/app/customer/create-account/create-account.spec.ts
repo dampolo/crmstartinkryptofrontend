@@ -176,7 +176,12 @@ describe('CreateAccount', () => {
       .toBeFalse();
   });
 
-  it('should show error toast when registration fails', () => {
+
+
+
+
+  // HIER
+  it('should handle registration errors, set error message and show toast', () => {
     authSpy.createUser.and.returnValue(
       throwError(() => new Error('User already exists'))
     );
@@ -195,40 +200,10 @@ describe('CreateAccount', () => {
         'Du bist schon registriert.',
         false
       );
-  });
-
-  it('should set error message when registration fails', () => {
-    authSpy.createUser.and.returnValue(
-      throwError(() => new Error())
-    );
-
-    component.myForm.patchValue({
-      email: 'test@test.de',
-      password1: 'Test123!',
-      password2: 'Test123!',
-      term: true
-    });
-
-    component.submit();
 
     expect(component.errorResponse()).toBe(
       'Du bist schon registriert mit E-Mail oder Google.'
     );
-  });
-
-  it('should hide preloader when registration fails', () => {
-    authSpy.createUser.and.returnValue(
-      throwError(() => new Error())
-    );
-
-    component.myForm.patchValue({
-      email: 'test@test.de',
-      password1: 'Test123!',
-      password2: 'Test123!',
-      term: true
-    });
-
-    component.submit();
 
     expect(mainStateService.showPreloader)
       .toBeFalse();
