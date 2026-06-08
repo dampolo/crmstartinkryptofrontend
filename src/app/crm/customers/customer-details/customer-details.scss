@@ -69,6 +69,7 @@ dt {
 .btn-container {
   display: flex;
   justify-content: space-between;
+  margin-inline: 1rem;
 }
 
 form {
@@ -162,4 +163,10 @@ textarea {
 
 .show-scroll {
     overflow-y: scroll;
+}
+
+.submit,
+.edit {
+  margin: 0;
+  max-width: 6.5rem;
 }

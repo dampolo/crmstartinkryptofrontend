@@ -409,6 +409,22 @@ app-add-new-video {
   }
 }
 
+.main-btn-start-in-krypto.back {
+  background-color: transparent;
+  color: basic.$primary;
+  margin: 0;
+    &:hover {
+    border: solid 1px basic.$primary;
+    background-color: basic.$primary;
+    color: white;
+  }
+  &:focus-visible {
+    border: solid 1px basic.$primary;
+    background-color: basic.$primary;
+    color: basic.$primary;
+  }
+}
+
 .faq,
 .appointment,
 .legacy,

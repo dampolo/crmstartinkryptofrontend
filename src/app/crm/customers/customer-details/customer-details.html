@@ -90,8 +90,8 @@
   </address>
 
     <div class="btn-container">
-      <a href="/crm/kunden" class="new-customer">Zurück</a>
-      <button (click)="editDetails()" class="new-customer">Bearbeiten</button>
+      <a href="/crm/kunden" class="main-btn-start-in-krypto back">Zurück</a>
+      <button (click)="editDetails()" class="main-btn-start-in-krypto edit">Bearbeiten</button>
     </div>
   </div>
 
@@ -305,12 +305,12 @@
 
   <div class="btn-container">
       <!-- Cancel Button -->
-      <button type="button" (click)="onCancel()">
+      <button class="main-btn-start-in-krypto back" type="button" (click)="onCancel()">
         Abbrechen
       </button>
       
       <!-- Submit Button -->
-      <button type="submit" [disabled]="!customerForm.valid">
+      <button class="main-btn-start-in-krypto submit" type="submit" [disabled]="!customerForm.valid">
         Speichern
       </button>
     </div>
