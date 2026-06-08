@@ -1,17 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AllCourses } from './all-courses';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
+import { MainStateService } from '../../main-services/main-state-service';
 
 describe('AllCourse', () => {
   let component: AllCourses;
   let fixture: ComponentFixture<AllCourses>;
 
+  let mainStateService: MainStateService;
+  let router: Router;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AllCourses],
       providers: [
-        provideRouter([])
+        provideRouter([]),
+        MainStateService,
+
       ]
     })
     .compileComponents();

@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { CustomerControl } from '../services/customer-control';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from "@angular/router";
-import { CUSTOMER, CUSTOMER_CRM } from '../../models/customer.model';
 import { MainStateService } from '../../main-services/main-state-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of, tap } from 'rxjs';
