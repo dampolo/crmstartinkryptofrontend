@@ -140,4 +140,17 @@ describe('Login', () => {
     expect(mainStateService.showPreloader)
       .toBeFalse();
   });
+
+  it('should toggle password visibility', () => {
+    component.isPasswordVisible = true;
+
+    component.togglePasswordVisibility();
+
+    expect(component.isPasswordVisible).toBeFalse();
+
+    component.togglePasswordVisibility();
+
+    expect(component.isPasswordVisible).toBeTrue();
+  });
+  
 });
