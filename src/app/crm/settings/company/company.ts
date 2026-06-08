@@ -36,7 +36,6 @@ export class Company {
 
     constructor(private fb: FormBuilder) {
         this.companyForm = this.fb.group({
-            logo: [null],
             name: [
                 '',
                 [Validators.required, Validators.minLength(2), Validators.pattern(/^(?!\s*$).+/)],
@@ -79,7 +78,6 @@ export class Company {
             const company = this.companyControl.company();
             if (company) {
                 this.companyForm.patchValue({
-                    logo: company.logo,
                     name: company.name,
                     street: company.street,
                     street_number: company.street_number,

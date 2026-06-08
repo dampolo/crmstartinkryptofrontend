@@ -124,6 +124,8 @@ input[type="file"] {
 .btn-container {
   display: flex;
   justify-content: space-between;
+  margin-inline: 1rem;
+
 }
 
 .form-group label::after {
@@ -133,5 +135,11 @@ input[type="file"] {
 }
 
 .edit {
-  margin-top: 1rem;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.submit {
+  margin: 0;
+  max-width: 6.5rem;
 }
