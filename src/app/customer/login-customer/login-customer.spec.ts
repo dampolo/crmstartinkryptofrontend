@@ -18,7 +18,7 @@ describe('Login', () => {
 
     const authSpy = jasmine.createSpyObj(
       'AuthService',
-      ['loginAndFetchUser']
+      ['loginAndFetchUser', 'loginWithGoogle']
     );
 
     const routerSpy = jasmine.createSpyObj('Router', [
@@ -152,5 +152,32 @@ describe('Login', () => {
 
     expect(component.isPasswordVisible).toBeTrue();
   });
-  
+
+  it('should login with Google, navigate to customer dashboard, hide preloader', async () => {
+    authService.loginWithGoogle.and.resolveTo();
+
+    await component.createOrLoginWithGoogle();
+
+    expect(authService.loginWithGoogle).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith([
+      '/customer/dashboard'
+    ]);
+    expect(mainStateService.showPreloader).toBeFalse();
+  });
+
+  it('should hide preloader when Google login fails', async () => {
+    authService.loginWithGoogle.and.rejectWith(
+      new Error('Google login failed')
+    );
+
+    await component.createOrLoginWithGoogle();
+
+    expect(authService.loginWithGoogle).toHaveBeenCalled();
+
+    expect(router.navigate).not.toHaveBeenCalled();
+    
+    expect(mainStateService.showPreloader).toBeFalse();
+
+  });
+
 });

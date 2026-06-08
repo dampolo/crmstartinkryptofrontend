@@ -78,5 +78,4 @@ describe('Login', () => {
 
     expect(component.isPasswordVisible).toBeTrue();
   });
-
 });

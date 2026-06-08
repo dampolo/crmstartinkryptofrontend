@@ -95,7 +95,6 @@ export class LoginCustomer {
 		} catch (err) {
 			this.mainStateService.showPreloader = false
 
-			console.error('Google login failed', err);
 		}
 	}
 }
