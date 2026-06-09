@@ -13,9 +13,13 @@ describe('AllCourse', () => {
   let fixture: ComponentFixture<AllCourses>;
   let courseService: jasmine.SpyObj<CourseService>;
 
-  let mainStateService: MainStateService;
+  let mainStateServiceMock: jasmine.SpyObj<MainStateService>;
 
   beforeEach(async () => {
+    mainStateServiceMock = jasmine.createSpyObj('MainStateService', [
+      'displayToast'
+    ]);
+    
     const courseSpy = jasmine.createSpyObj(
       'CourseService',
       ['getCourses']
@@ -25,14 +29,14 @@ describe('AllCourse', () => {
       imports: [AllCourses],
       providers: [
         provideRouter([]),
-        MainStateService,
-        { provide: CourseService, useValue: courseSpy }
+        { provide: CourseService, useValue: courseSpy },
+        {
+          provide: MainStateService,
+          useValue: mainStateServiceMock
+        }
       ]
     })
       .compileComponents();
-
-    mainStateService = TestBed.inject(MainStateService);
-    spyOn(mainStateService, 'displayToast');
 
     courseService = TestBed.inject(CourseService) as jasmine.SpyObj<CourseService>;
   });
@@ -86,7 +90,7 @@ describe('AllCourse', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    expect(mainStateService.displayToast)
+    expect(mainStateServiceMock.displayToast)
       .toHaveBeenCalledWith('SystemFehler', false);
 
     expect(component.courses()).toEqual([]);
