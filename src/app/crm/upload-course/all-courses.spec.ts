@@ -4,7 +4,7 @@ import { AllCourses } from './all-courses';
 import { provideRouter, Router } from '@angular/router';
 import { MainStateService } from '../../main-services/main-state-service';
 import { CourseService } from '../../main-services/course-service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { COURSE, STATUS } from '../../models/course.model';
 import { DecimalPipe } from '@angular/common';
 
@@ -12,6 +12,8 @@ describe('AllCourse', () => {
   let component: AllCourses;
   let fixture: ComponentFixture<AllCourses>;
   let courseService: jasmine.SpyObj<CourseService>;
+
+  let mainStateService: MainStateService;
 
   beforeEach(async () => {
     const courseSpy = jasmine.createSpyObj(
@@ -28,6 +30,9 @@ describe('AllCourse', () => {
       ]
     })
       .compileComponents();
+
+    mainStateService = TestBed.inject(MainStateService);
+    spyOn(mainStateService, 'displayToast');
 
     courseService = TestBed.inject(CourseService) as jasmine.SpyObj<CourseService>;
   });
@@ -70,5 +75,20 @@ describe('AllCourse', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component.courses()).toEqual(mockCourses);
+  });
+
+  it('should show toast on error', () => {
+    courseService.getCourses.and.returnValue(
+      throwError(() => new Error('Error'))
+    );
+
+    fixture = TestBed.createComponent(AllCourses);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(mainStateService.displayToast)
+      .toHaveBeenCalledWith('SystemFehler', false);
+
+    expect(component.courses()).toEqual([]);
   });
 });
