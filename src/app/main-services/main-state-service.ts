@@ -8,7 +8,6 @@ export class MainStateService {
   showToast: boolean = false;
   showError: boolean = false;
   showArrow: boolean = false;
-  isLoginPage: boolean = true;
   isProfileVisible: boolean = false;
   showPreloader: boolean = false;
 

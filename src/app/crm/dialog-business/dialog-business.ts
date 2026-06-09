@@ -18,7 +18,6 @@ export class DialogBusiness  {
     logOut() {
         this.authService.logout()
         this.router.navigate(["/kurse/login"])
-        this.mainStateService.isLoginPage = true;
         this.mainStateService.displayToast('Du bist erfolgreich abgemeldet', true)
         this.mainStateService.isProfileVisible = false
     }
