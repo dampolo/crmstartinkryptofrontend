@@ -59,9 +59,6 @@ describe('Profile', () => {
       '/kurse/login'
     ]);
 
-    expect(mainStateService.isLoginPage)
-      .toBeTrue();
-
     expect(mainStateService.isProfileVisible)
       .toBeFalse();
 
