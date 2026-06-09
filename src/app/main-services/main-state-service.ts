@@ -12,9 +12,6 @@ export class MainStateService {
   isProfileVisible: boolean = false;
   showPreloader: boolean = false;
 
-  posFixBurger: boolean = false;
-	posFixLogo: boolean = false;
-
   isEditFeatureVisible: boolean = false;
   
   isForgotPasswordVisible: boolean = false;

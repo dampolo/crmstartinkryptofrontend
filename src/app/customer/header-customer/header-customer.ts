@@ -39,14 +39,10 @@ export class HeaderCustomer {
 
 	openMenu() {
 		this.mainStateService.isMenuOpen = !this.mainStateService.isMenuOpen;
-		this.mainStateService.posFixBurger = !this.mainStateService.posFixBurger;
-		this.mainStateService.posFixLogo = !this.mainStateService.posFixLogo;
 	}
 
 	closeMenu() {
 		this.mainStateService.isMenuOpen = false;
-		this.mainStateService.posFixBurger = false;
-		this.mainStateService.posFixLogo = false;
 	}
 
 }

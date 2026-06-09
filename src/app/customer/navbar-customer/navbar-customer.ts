@@ -15,8 +15,6 @@ export class NavbarCustomer {
 
   closeMenu() {
     this.mainStateService.isMenuOpen = false;
-    this.mainStateService.posFixBurger = false;
-    this.mainStateService.posFixLogo = false;
   }
 
 }
