@@ -13,12 +13,37 @@ describe('AllCourse', () => {
   let courseService: jasmine.SpyObj<CourseService>;
   let mainStateServiceMock: jasmine.SpyObj<MainStateService>;
 
+  const mockCourses: COURSE[] = [
+    {
+      id: 1,
+      name: 'Angular',
+      description: 'Angular Kurs',
+      price: '99.99',
+      image: null,
+      order: '1',
+      badge: null,
+      status: STATUS.PUBLISHED, // oder ein anderer gültiger STATUS
+      features: []
+    },
+    {
+      id: 2,
+      name: 'Java',
+      description: 'Java Kurs',
+      price: '89.99',
+      image: null,
+      order: '2',
+      badge: null,
+      status: STATUS.PUBLISHED,
+      features: []
+    }
+  ];
+
   beforeEach(async () => {
 
     mainStateServiceMock = jasmine.createSpyObj('MainStateService', [
       'displayToast'
     ]);
-    
+
     const courseSpy = jasmine.createSpyObj(
       'CourseService',
       ['getCourses']
@@ -48,31 +73,6 @@ describe('AllCourse', () => {
   });
 
   it('should load courses', () => {
-    const mockCourses: COURSE[] = [
-      {
-        id: 1,
-        name: 'Angular',
-        description: 'Angular Kurs',
-        price: '99.99',
-        image: null,
-        order: '1',
-        badge: null,
-        status: STATUS.PUBLISHED, // oder ein anderer gültiger STATUS
-        features: []
-      },
-      {
-        id: 2,
-        name: 'Java',
-        description: 'Java Kurs',
-        price: '89.99',
-        image: null,
-        order: '2',
-        badge: null,
-        status: STATUS.PUBLISHED,
-        features: []
-      }
-    ];
-
     courseService.getCourses.and.returnValue(of(mockCourses));
     fixture = TestBed.createComponent(AllCourses);
     component = fixture.componentInstance;
