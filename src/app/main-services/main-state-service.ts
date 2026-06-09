@@ -4,7 +4,7 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class MainStateService {
-  isMenuOpen: boolean = false
+  isMenuOpen = signal(false)
   showToast: boolean = false;
   showError: boolean = false;
   showArrow: boolean = false;

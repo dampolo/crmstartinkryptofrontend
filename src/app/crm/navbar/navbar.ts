@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LogoText } from '../../shared/logo-text/logo-text';
 import { Logo } from '../../shared/logo/logo';
+import { MainStateService } from '../../main-services/main-state-service';
 
 @Component({
   standalone: true,
@@ -11,5 +12,9 @@ import { Logo } from '../../shared/logo/logo';
   styleUrl: './navbar.scss'
 })
 export class Navbar {
+  mainStateService = inject(MainStateService);
+  closeMenu() {
+    this.mainStateService.isMenuOpen.set(false);
+  }
 
 }

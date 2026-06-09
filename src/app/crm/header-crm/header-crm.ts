@@ -17,19 +17,13 @@ import { DialogBusiness } from '../dialog-business/dialog-business';
 export class HeaderCrm {
 	mainStateService = inject(MainStateService);
 	authService = inject(AuthService);
-	posFixBurger = false;
-	posFixLogo = false;
 	
 	openMenu() {
-		this.mainStateService.isMenuOpen = !this.mainStateService.isMenuOpen;
-		this.posFixBurger = !this.posFixBurger;
-		this.posFixLogo = !this.posFixLogo;
+		this.mainStateService.isMenuOpen.update(isOpen => !isOpen);
 	}
 
 	closeMenu() {
-		this.mainStateService.isMenuOpen = false;
-		this.posFixBurger = false;
-		this.posFixLogo = false;
+		this.mainStateService.isMenuOpen.set(false);
 	}
 
 	showDialog() {

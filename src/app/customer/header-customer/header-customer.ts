@@ -38,11 +38,11 @@ export class HeaderCustomer {
 	}
 
 	openMenu() {
-		this.mainStateService.isMenuOpen = !this.mainStateService.isMenuOpen;
+		this.mainStateService.isMenuOpen.update(isOpen => !isOpen);
 	}
 
 	closeMenu() {
-		this.mainStateService.isMenuOpen = false;
+		this.mainStateService.isMenuOpen.set(false);
 	}
 
 }

@@ -14,9 +14,9 @@
 <button (click)="openMenu()"
   class="hamburger hamburger--collapse"
   type="button"
-  [aria-label]="!mainStateService.isMenuOpen ? 'Öffne das Menu' : 'Schließe das Menu'"
-  [aria-expanded]="!mainStateService.isMenuOpen ? false : true"
-  [ngClass]="{'is-active': mainStateService.isMenuOpen}"
+  [aria-label]="!mainStateService.isMenuOpen() ? 'Öffne das Menu' : 'Schließe das Menu'"
+  [aria-expanded]="!mainStateService.isMenuOpen() ? false : true"
+  [ngClass]="{'is-active': mainStateService.isMenuOpen()}"
 >
   <span class="hamburger-box">
     <span class="hamburger-inner"></span>

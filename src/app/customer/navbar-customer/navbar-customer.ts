@@ -14,7 +14,7 @@ export class NavbarCustomer {
   mainStateService = inject(MainStateService);
 
   closeMenu() {
-    this.mainStateService.isMenuOpen = false;
+    this.mainStateService.isMenuOpen.set(false);
   }
 
 }
