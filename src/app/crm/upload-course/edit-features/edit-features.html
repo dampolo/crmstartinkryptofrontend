@@ -91,7 +91,7 @@
 <section
   class="hide-container"
   (click)="closeDialog()"
-  [ngClass]="mainStateService.isEditFeatureVisible ? 'show-container' : ''"
+  [ngClass]="mainStateService.isEditFeatureVisible() ? 'show-container' : ''"
 >
   <form [formGroup]="editSingleFeature" (click)="$event.stopPropagation()" (ngSubmit)="submitEditSingleFeature()">
     <!-- Add feature -->

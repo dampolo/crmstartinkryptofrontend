@@ -11,9 +11,9 @@ export class MainStateService {
   isProfileVisible: boolean = false;
   showPreloader: boolean = false;
 
-  isEditFeatureVisible: boolean = false;
+  // Open the dialog when you can edit a feature
+  isEditFeatureVisible =signal(false);
   
-  isForgotPasswordVisible: boolean = false;
   showToastText = signal('');
   showConfirmationText = signal('');
   showConfirmationLink = signal('');

@@ -40,7 +40,7 @@ export class EditFeatures {
     }
 
     editFeature(feature: COURSE_FEATURE) {
-        this.mainStateService.isEditFeatureVisible = true;
+        this.mainStateService.isEditFeatureVisible.set(true);
 
         this.router.navigate([], {
             relativeTo: this.route,
@@ -65,7 +65,7 @@ export class EditFeatures {
         const featureOrder = this.route.snapshot.queryParamMap.get("featureOrder");
 
         if (featureId) {
-            this.mainStateService.isEditFeatureVisible = true
+            this.mainStateService.isEditFeatureVisible.set(true);
             this.editSingleFeature.patchValue({
                 order: featureOrder,
                 text: featureText,
@@ -129,7 +129,7 @@ export class EditFeatures {
     }
 
     closeDialog() {
-        this.mainStateService.isEditFeatureVisible = false;
+        this.mainStateService.isEditFeatureVisible.set(false);
         this.resetPath();
     }
 
@@ -148,7 +148,7 @@ export class EditFeatures {
 
         this.courseService.patchFeature(payload, featureId).subscribe({
             next: () => {
-                this.mainStateService.isEditFeatureVisible = false;
+                this.mainStateService.isEditFeatureVisible .set(false);
                 this.mainStateService.displayToast('Das Thema wurde geändert.', true)
             },
 
