@@ -6,16 +6,15 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { CourseService } from '../../main-services/course-service';
 import { of, throwError } from 'rxjs';
 import { COURSE, STATUS } from '../../models/course.model';
-import { DecimalPipe } from '@angular/common';
 
 describe('AllCourse', () => {
   let component: AllCourses;
   let fixture: ComponentFixture<AllCourses>;
   let courseService: jasmine.SpyObj<CourseService>;
-
   let mainStateServiceMock: jasmine.SpyObj<MainStateService>;
 
   beforeEach(async () => {
+
     mainStateServiceMock = jasmine.createSpyObj('MainStateService', [
       'displayToast'
     ]);
