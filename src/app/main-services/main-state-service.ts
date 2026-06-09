@@ -12,7 +12,7 @@ export class MainStateService {
   showPreloader: boolean = false;
 
   // Open the dialog when you can edit a feature
-  isEditFeatureVisible =signal(false);
+  isEditFeatureVisible = signal(false);
   
   showToastText = signal('');
   showConfirmationText = signal('');
