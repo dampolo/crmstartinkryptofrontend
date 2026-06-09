@@ -44,7 +44,7 @@ describe('AllCourse', () => {
       'displayToast'
     ]);
 
-    const courseSpy = jasmine.createSpyObj(
+    courseService  = jasmine.createSpyObj(
       'CourseService',
       ['getCourses']
     );
@@ -53,7 +53,7 @@ describe('AllCourse', () => {
       imports: [AllCourses],
       providers: [
         provideRouter([]),
-        { provide: CourseService, useValue: courseSpy },
+        { provide: CourseService, useValue: courseService  },
         {
           provide: MainStateService,
           useValue: mainStateServiceMock
@@ -62,7 +62,6 @@ describe('AllCourse', () => {
     })
       .compileComponents();
 
-    courseService = TestBed.inject(CourseService) as jasmine.SpyObj<CourseService>;
   });
 
   it('should create component', () => {
