@@ -57,6 +57,16 @@ describe('ForgotPassword', () => {
         expect(component).toBeTruthy();
     });
 
+    it('should clear confirmation text before submitting', () => {
+        authServiceMock.forgotPassword.and.returnValue(of(true));
+        component.recoveryForm.setValue({
+            email: 'test@test.de'
+        });
+
+        expect(mainStateServiceMock.showConfirmationText.set)
+        .toHaveBeenCalledWith('');
+    })
+
     it('should navigate to confirmation page and show text with confirmation', () => {
         authServiceMock.forgotPassword.and.returnValue(of(true))
 
@@ -65,6 +75,12 @@ describe('ForgotPassword', () => {
         })
 
         component.submit()
+
+        expect(authServiceMock.forgotPassword)
+            .toHaveBeenCalledTimes(1);
+
+        expect(authServiceMock.forgotPassword)
+            .toHaveBeenCalledWith('test@test.de');
 
         expect(mainStateServiceMock.showConfirmationText.set)
             .toHaveBeenCalledWith('Du kannst jetzt dein E-Mail prüfen.')
@@ -86,8 +102,14 @@ describe('ForgotPassword', () => {
 
         component.submit()
 
-        expect(mainStateServiceMock.showConfirmationText.set)
-            .toHaveBeenCalledWith('Versuche noch einmal')
+        expect(authServiceMock.forgotPassword)
+            .toHaveBeenCalledTimes(1);
+
+        expect(authServiceMock.forgotPassword)
+            .toHaveBeenCalledWith('test@test.de');
+
+        expect(mainStateServiceMock.displayToast)
+            .toHaveBeenCalledWith('Versuche noch einmal', false)
 
     })
 });
