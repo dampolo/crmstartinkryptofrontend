@@ -63,6 +63,8 @@ describe('ForgotPassword', () => {
             email: 'test@test.de'
         });
 
+        component.submit();
+
         expect(mainStateServiceMock.showConfirmationText.set)
         .toHaveBeenCalledWith('');
     })
