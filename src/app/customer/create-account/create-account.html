@@ -24,7 +24,13 @@
         placeholder="beispielname@email.com"
       />
       <div class="input-icon">
-        <img width="24" height="24" aria-hidden="true" src="./assets/mail-icon-input-field.svg" alt="" />
+        <img
+          width="24"
+          height="24"
+          aria-hidden="true"
+          src="./assets/mail-icon-input-field.svg"
+          alt=""
+        />
       </div>
 
       <div class="warn-txt">
@@ -66,8 +72,13 @@
       </button>
 
       <div class="input-icon">
-        <img width="24"
-          height="24" aria-hidden="true" src="./assets/pwd-lock-icon-input-field.svg" alt=""/>
+        <img
+          width="24"
+          height="24"
+          aria-hidden="true"
+          src="./assets/pwd-lock-icon-input-field.svg"
+          alt=""
+        />
       </div>
 
       <div class="warn-txt">
@@ -104,7 +115,8 @@
         class="input-field"
         [type]="isPasswordBottomVisible ? 'text' : 'password'"
         formControlName="password2"
-        autocomplete="new-password" placeholder="Wiederhole dein Passwort"
+        autocomplete="new-password"
+        placeholder="Wiederhole dein Passwort"
       />
 
       <button type="button" class="eye-button" (click)="togglePasswordVisibilityBottom()">
@@ -118,7 +130,7 @@
       </button>
 
       <div class="input-icon">
-        <img width="24" height="24" src="./assets/pwd-lock-icon-input-field.svg" alt=""/>
+        <img width="24" height="24" src="./assets/pwd-lock-icon-input-field.svg" alt="" />
       </div>
       <div class="warn-txt">
         @if (
@@ -152,7 +164,9 @@
       </div>
     </div>
     <!-- Preloader -->
-    <app-preloader [ngClass]="mainStateService.showPreloader ? 'show-preloader' : 'hide-preloader'"></app-preloader>
+    <app-preloader
+      [ngClass]="mainStateService.showPreloader ? 'show-preloader' : 'hide-preloader'"
+    ></app-preloader>
     <div class="btn-container">
       <button id="submit" type="submit" [disabled]="!myForm.valid" class="forward-btn">
         Weiter

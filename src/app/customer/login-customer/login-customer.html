@@ -24,7 +24,13 @@
         autocomplete="email"
       />
       <div class="input-icon">
-        <img width="24" height="24" aria-hidden="true" src="./assets/mail-icon-input-field.svg" alt=""/>
+        <img
+          width="24"
+          height="24"
+          aria-hidden="true"
+          src="./assets/mail-icon-input-field.svg"
+          alt=""
+        />
       </div>
       <div class="warn-txt">
         <span>{{ errorResponse() }}</span>
@@ -64,7 +70,13 @@
       </button>
 
       <div class="input-icon">
-        <img width="24" height="24" aria-hidden="true" src="./assets/pwd-lock-icon-input-field.svg" alt=""/>
+        <img
+          width="24"
+          height="24"
+          aria-hidden="true"
+          src="./assets/pwd-lock-icon-input-field.svg"
+          alt=""
+        />
       </div>
       <div class="warn-txt warn-txt-hight">
         @if (
@@ -92,7 +104,9 @@
       </div>
     </div>
     <!-- Preloader -->
-    <app-preloader [ngClass]="mainStateService.showPreloader ? 'show-preloader' : 'hide-preloader'"></app-preloader>
+    <app-preloader
+      [ngClass]="mainStateService.showPreloader ? 'show-preloader' : 'hide-preloader'"
+    ></app-preloader>
     <div class="btn-container">
       <button class="forward-btn main-btn-start-in-krypto" type="submit">Anmelden</button>
     </div>
@@ -112,5 +126,3 @@
     Anmeldung mit Google
   </a>
 </section>
-
-
