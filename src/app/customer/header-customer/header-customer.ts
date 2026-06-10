@@ -22,6 +22,7 @@ export class HeaderCustomer {
 	constructor(private router: Router) {
 
 	}
+	
 	logOut() {
 		this.authService.logout()
 		this.router.navigate(["/kurse/login"])

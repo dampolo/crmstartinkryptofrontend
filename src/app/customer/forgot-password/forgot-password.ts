@@ -35,10 +35,10 @@ export class ForgotPassword {
         this.authService.forgotPassword(email).subscribe({
             next: () => {
                 this.mainStateService.showConfirmationText.set('Du kannst jetzt dein E-Mail prüfen.')
-                this.router.navigate(['confirmation'])
+                this.router.navigate(['/kurse/confirmation'])
             },
             error: () => {
-                this.mainStateService.showConfirmationText.set('Versuche noch einmal')
+                this.mainStateService.displayToast('Versuche noch einmal', false)
             }
         })
     }
