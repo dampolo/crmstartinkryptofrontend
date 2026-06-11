@@ -7,6 +7,7 @@ import { LESSON } from '../../../../models/course.model';
 import { finalize, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
+import { ToastService } from '../../../../main-services/toast-service';
 
 @Component({
   selector: 'app-edit-video',
@@ -15,7 +16,7 @@ import { HttpEventType } from '@angular/common/http';
   styleUrl: './edit-video.scss',
 })
 export class EditVideo {
-  mainStateService = inject(MainStateService);
+  toastService = inject(ToastService);
   courseService = inject(CourseService)
 
   lesson = signal<LESSON | null>(null)
@@ -108,7 +109,7 @@ export class EditVideo {
         this.lesson.set(data)
       },
       error: (err) => {
-        this.mainStateService.displayToast('Du hast kein Internet', false)
+        this.toastService.displayToast('Du hast kein Internet', false)
       }
     })
   }
@@ -122,11 +123,11 @@ export class EditVideo {
 
     this.courseService.pathVideo(lessonId, payload).subscribe({
       next: () => {
-        this.mainStateService.displayToast("Das Video wurde erfolgreich gelöscht", true);
+        this.toastService.displayToast("Das Video wurde erfolgreich gelöscht", true);
         this.renderLesson();
       },
       error: () => {
-        this.mainStateService.displayToast("Versuche es noch einmal.", true);
+        this.toastService.displayToast("Versuche es noch einmal.", true);
 
       }
     })

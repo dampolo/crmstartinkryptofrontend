@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -12,51 +12,52 @@ import { CommonModule } from '@angular/common';
 import { Toast } from '../../shared/toast/toast';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
-  selector: 'app-login',
-  imports: [ReactiveFormsModule, Toast, CommonModule],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+    selector: 'app-login',
+    imports: [ReactiveFormsModule, Toast, CommonModule],
+    templateUrl: './login.html',
+    styleUrl: './login.scss',
 })
 export class Login {
-  mainStateService = inject(MainStateService);
-  authService = inject(AuthService);
-  loginForm: FormGroup;
-  isPasswordVisible = false;
+    authService = inject(AuthService);
+    toastService = inject(ToastService);
+    loginForm: FormGroup;
+    isPasswordVisible = false;
 
-  constructor(private router: Router, private http: HttpClient) {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    });
-  }
-
- onSubmit() {
-    if (this.loginForm.invalid) {
-      this.mainStateService.displayToast('Bitte alle Felder ausfüllen', false);
-      return;
+    constructor(private router: Router, private http: HttpClient) {
+        this.loginForm = new FormGroup({
+            email: new FormControl('', Validators.required),
+            password: new FormControl('', Validators.required),
+        });
     }
 
-    const data = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
-    };
+    onSubmit() {
+        if (this.loginForm.invalid) {
+            this.toastService.displayToast('Bitte alle Felder ausfüllen', false);
+            return;
+        }
 
-    
-    this.authService.loginAndFetchUser(data.email, data.password).subscribe({
-      next: () => {
-        this.mainStateService.displayToast('Du bist angemeldet', true);
-        this.router.navigate(['crm/dashboard'], {replaceUrl: true});
-      },
+        const data = {
+            email: this.loginForm.value.email,
+            password: this.loginForm.value.password
+        };
 
-      error: (err) => {
-        this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten', false);
-      }
-    });
-  }
-  
+
+        this.authService.loginAndFetchUser(data.email, data.password).subscribe({
+            next: () => {
+                this.toastService.displayToast('Du bist angemeldet', true);
+                this.router.navigate(['crm/dashboard'], { replaceUrl: true });
+            },
+
+            error: (err) => {
+                this.toastService.displayToast('Login fehlgeschlagen - prüfe deine Daten', false);
+            }
+        });
+    }
+
     togglePasswordVisibility() {
-      this.isPasswordVisible = !this.isPasswordVisible
+        this.isPasswordVisible = !this.isPasswordVisible
     }
 }

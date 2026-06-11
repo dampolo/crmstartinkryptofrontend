@@ -8,6 +8,7 @@ import { AuthService } from '../../main-services/auth-service';
 import { EMPTY, exhaustMap, finalize, firstValueFrom, Subject } from 'rxjs';
 import { environment } from '../../../environment/environment';
 import { Preloader } from '../../shared/preloader/preloader';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
 	selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginCustomer {
 
 	authService = inject(AuthService);
 	mainStateService = inject(MainStateService);
+	toastService = inject(ToastService);
 	loginForm: FormGroup;
 	errorResponse = signal('')
 	isFormSubmitted: boolean = false;
@@ -52,7 +54,7 @@ export class LoginCustomer {
 			.pipe(
 				exhaustMap(() => {
 					if (this.loginForm.invalid) {
-						this.mainStateService.displayToast('Bitte alle Felder ausfüllen', false);
+						this.toastService.displayToast('Bitte alle Felder ausfüllen', false);
 						return EMPTY;
 					}
 
@@ -73,12 +75,12 @@ export class LoginCustomer {
 				})
 			).subscribe({
 				next: () => {
-					this.mainStateService.displayToast('Du bist angemeldet.', true);
+					this.toastService.displayToast('Du bist angemeldet.', true);
 					this.router.navigate(['/customer/dashboard'], { replaceUrl: false });
 				},
 
 				error: (err) => {
-					this.mainStateService.displayToast('Login fehlgeschlagen - prüfe deine Daten.', false);
+					this.toastService.displayToast('Login fehlgeschlagen - prüfe deine Daten.', false);
 					this.errorResponse.set('E-Mail oder Passwort sind falsch.')
 				}
 			})

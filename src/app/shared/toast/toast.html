@@ -1,5 +1,5 @@
 <div class="content-container">
-  <svg [ngClass]="{'show-arrow': mainStateService.showArrow}"
+  <svg [ngClass]="{'show-arrow': toastService.showArrow}"
     xmlns="http://www.w3.org/2000/svg"
     width="37"
     height="32"
@@ -12,6 +12,6 @@
     />
   </svg>
   <p class="content-description">
-    {{ mainStateService.showToastText() }}
+    {{ toastService.showToastText() }}
   </p>
 </div>

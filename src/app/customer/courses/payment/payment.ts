@@ -10,6 +10,7 @@ import { AuthService } from '../../../main-services/auth-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PROFILE_INCOMPLETE_ERROR } from '../../../models/customer.model';
 import { PurchaseService } from '../../../main-services/purchase-service';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-payment',
@@ -19,6 +20,7 @@ import { PurchaseService } from '../../../main-services/purchase-service';
 })
 export class Payment {
     mainStateService = inject(MainStateService)
+    toastService = inject(ToastService);
     courseService = inject(CourseService)
     invoiceService = inject(InvoiceService)
     authService = inject(AuthService);
@@ -45,7 +47,7 @@ export class Payment {
                 console.log(data);
             },
             error: (err) => {
-                this.mainStateService.displayToast('Systemfehler', false)
+                this.toastService.displayToast('Systemfehler', false)
             }
         })
 
@@ -55,7 +57,7 @@ export class Payment {
                 this.tax.set(response)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Systemfehler', false)
+                this.toastService.displayToast('Systemfehler', false)
             }
         })
     }
@@ -77,7 +79,7 @@ export class Payment {
                     error?.error?.message ||
                     'Du hast diesen Kurs bereits gekauft';
 
-                this.mainStateService.displayToast(
+                this.toastService.displayToast(
                     message,
                     false
                 );
@@ -155,7 +157,7 @@ export class Payment {
             error: (error: HttpErrorResponse) => {
                 const err = error.error as PROFILE_INCOMPLETE_ERROR;
                 const message = err?.message || 'Kauf fehlgeschlagen';
-                this.mainStateService.displayToast(message, false);
+                this.toastService.displayToast(message, false);
 
             }
         });
@@ -187,7 +189,7 @@ export class Payment {
                     error?.error?.message ||
                     'Du hast diesen Kurs bereits gekauft';
 
-                this.mainStateService.displayToast(
+                this.toastService.displayToast(
                     message,
                     false
                 );
@@ -204,7 +206,7 @@ export class Payment {
             },
             error: (error) => {
                 const message = error.error.message || 'Kauf fehlgeschlagen';
-                this.mainStateService.displayToast(message, false);
+                this.toastService.displayToast(message, false);
             }
         })
     }

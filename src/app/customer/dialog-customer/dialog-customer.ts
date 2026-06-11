@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
     selector: 'app-dialog-customer',
@@ -13,6 +14,7 @@ import { AuthService } from '../../main-services/auth-service';
 export class DialogCustomer  {
 
     mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     authService = inject(AuthService);
 
     constructor(private router: Router) {
@@ -21,7 +23,7 @@ export class DialogCustomer  {
     logOut() {
         this.authService.logout()
         this.router.navigate(["/kurse/login"])
-        this.mainStateService.displayToast('Du bist erfolgreich abgemeldet', true)
+        this.toastService.displayToast('Du bist erfolgreich abgemeldet', true)
         this.mainStateService.isProfileVisible = false
     }
 

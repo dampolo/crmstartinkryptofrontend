@@ -5,6 +5,7 @@ import { environment } from '../../../../../environment/environment';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MainStateService } from '../../../../main-services/main-state-service';
+import { ToastService } from '../../../../main-services/toast-service';
 
 @Component({
     selector: 'app-paypal',
@@ -14,7 +15,8 @@ import { MainStateService } from '../../../../main-services/main-state-service';
 })
 export class Paypal {
     private baseUrl = environment.apiBaseUrl;
-    mainStateService = inject(MainStateService)
+      mainStateService = inject(MainStateService)
+    toastService = inject(ToastService);
     paypalService = inject(PaypalService)
 
     @ViewChild('paypalButton', { static: true }) paypalElement!: ElementRef<HTMLElement>;
@@ -55,7 +57,7 @@ export class Paypal {
                         error?.error?.detail ||
                         "Something went wrong";
 
-                    this.mainStateService.displayToast(message, false);
+                    this.toastService.displayToast(message, false);
 
                     throw error; // optional but recommended
                 }

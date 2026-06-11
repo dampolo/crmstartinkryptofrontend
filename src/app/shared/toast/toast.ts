@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainStateService } from '../../main-services/main-state-service';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
   standalone: true,
@@ -10,5 +10,5 @@ import { MainStateService } from '../../main-services/main-state-service';
   styleUrl: './toast.scss'
 })
 export class Toast {
-    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
 }

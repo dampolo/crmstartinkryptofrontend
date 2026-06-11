@@ -5,6 +5,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, Reac
 import { HttpClient } from '@angular/common/http';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
 	selector: 'app-reset-password',
@@ -17,6 +18,7 @@ export class ResetPassword {
 	authService = inject(AuthService)
 	mainStateService = inject(MainStateService);
 	formBuilder = inject(FormBuilder);
+	toastService = inject(ToastService);
 
 
 	/**
@@ -74,7 +76,7 @@ export class ResetPassword {
 				this.router.navigate(['confirmation']);
 			},
 			error: () => {
-				this.mainStateService.displayToast('Login fehlgeschlagen – prüfe deine Daten', false);
+				this.toastService.displayToast('Login fehlgeschlagen – prüfe deine Daten', false);
 			}
 		});
 		this.isFormValid = true;

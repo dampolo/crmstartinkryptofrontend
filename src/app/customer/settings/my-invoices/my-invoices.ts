@@ -5,6 +5,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { InvoiceService } from '../../../main-services/invoice-service';
 import { DatePipe } from '@angular/common';
 import { environment } from '../../../../environment/environment';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-my-invoices',
@@ -15,6 +16,7 @@ import { environment } from '../../../../environment/environment';
 export class MyInvoices {
     invoiceService = inject(InvoiceService);
     mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     openMenuId: number | null = null;
     invoices = signal<INVOICE_CUSTOMER[]>([]);
     baseUrl = environment.apiBaseUrl;
@@ -27,7 +29,7 @@ export class MyInvoices {
 
             },
             error: (err) => {
-                this.mainStateService.displayToast('SystemFehler', false);
+                this.toastService.displayToast('SystemFehler', false);
             },
         });
     }

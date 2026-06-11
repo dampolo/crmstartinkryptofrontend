@@ -7,6 +7,7 @@ import { COURSE_FEATURE } from '../../../models/course.model';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CUSTOMER_CRM } from '../../../models/customer.model';
 import { Back } from '../../../shared/back/back';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-edit-features',
@@ -20,7 +21,8 @@ export class EditFeatures {
     features: COURSE_FEATURE[] = []
 
     mainStateService = inject(MainStateService);
-    courseService = inject(CourseService)
+    courseService = inject(CourseService);
+    toastService = inject(ToastService);
     editSingleFeature: FormGroup
 
     featuresForm: FormGroup;
@@ -81,11 +83,11 @@ export class EditFeatures {
 
         this.courseService.getCourse(courseId).subscribe({
             next: (data) => {
-                this.mainStateService.displayToast('Die Daten wurden gelesen', true)
+                this.toastService.displayToast('Die Daten wurden gelesen', true)
                 this.features = data.features;
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }
@@ -102,12 +104,12 @@ export class EditFeatures {
 
         this.courseService.postFeature(payload).subscribe({
             next: (data) => {
-                this.mainStateService.displayToast('Das Thema wurden hinzugefügt', true)
+                this.toastService.displayToast('Das Thema wurden hinzugefügt', true)
                 this.featuresForm.reset()
                 this.ngOnInit()
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }
@@ -116,12 +118,12 @@ export class EditFeatures {
         this.courseService.deleteFeature(featureId).subscribe({
             next: () => {
                 this.renderFeatures();
-                this.mainStateService.displayToast('Das Thema wurde gelöscht.', true)
+                this.toastService.displayToast('Das Thema wurde gelöscht.', true)
 
             },
 
             error: () => {
-                this.mainStateService.displayToast('Versuche es noch einmal.', false)
+                this.toastService.displayToast('Versuche es noch einmal.', false)
 
             }
         })
@@ -149,11 +151,11 @@ export class EditFeatures {
         this.courseService.patchFeature(payload, featureId).subscribe({
             next: () => {
                 this.mainStateService.isEditFeatureVisible .set(false);
-                this.mainStateService.displayToast('Das Thema wurde geändert.', true)
+                this.toastService.displayToast('Das Thema wurde geändert.', true)
             },
 
             error: () => {
-                this.mainStateService.displayToast('Versuche es noch einmal.', false)
+                this.toastService.displayToast('Versuche es noch einmal.', false)
 
             }
         })

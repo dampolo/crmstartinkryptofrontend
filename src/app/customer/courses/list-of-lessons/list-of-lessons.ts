@@ -7,6 +7,7 @@ import { DecimalPipe } from '@angular/common';
 import { Back } from '../../../shared/back/back';
 import { DurationPipe } from '../../../pipes/duration-pipe';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-list-of-lessons',
@@ -18,6 +19,7 @@ export class ListOfLessons {
     lessons = signal<LESSON[]>([]);
     courseService = inject(CourseService)
     mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     constructor(private route: ActivatedRoute,
         private router: Router,
         private sanitizer: DomSanitizer
@@ -63,7 +65,7 @@ export class ListOfLessons {
                         error?.error?.detail ||
                         "Something went wrong";
 
-                    this.mainStateService.displayToast(message, false);
+                    this.toastService.displayToast(message, false);
                 }
             });
         })

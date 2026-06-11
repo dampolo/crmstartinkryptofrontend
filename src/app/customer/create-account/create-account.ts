@@ -14,6 +14,7 @@ import { Back } from '../../shared/back/back';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { Preloader } from '../../shared/preloader/preloader';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
   selector: 'app-create-account',
@@ -27,6 +28,7 @@ export class CreateAccount {
   readonly router = inject(Router);
   authService = inject(AuthService);
   mainStateService = inject(MainStateService);
+  toastService = inject(ToastService);
   errorResponse = signal('')
 
   myForm: FormGroup; // name - just for now
@@ -83,7 +85,7 @@ export class CreateAccount {
       error: (error) => {
         this.mainStateService.showPreloader = false
         this.errorResponse.set('Du bist schon registriert mit E-Mail oder Google.')
-        this.mainStateService.displayToast('Du bist schon registriert.', false)
+        this.toastService.displayToast('Du bist schon registriert.', false)
       },
     });
   }

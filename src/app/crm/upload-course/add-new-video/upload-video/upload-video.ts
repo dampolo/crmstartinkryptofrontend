@@ -7,6 +7,7 @@ import { CourseService } from '../../../../main-services/course-service';
 import { LESSON } from '../../../../models/course.model';
 import { finalize, Subscription } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
+import { ToastService } from '../../../../main-services/toast-service';
 
 @Component({
     selector: 'app-upload-video',
@@ -16,7 +17,7 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class UploadVideo {
 
-    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     courseService = inject(CourseService)
 
     lesson = signal<LESSON | null>(null)
@@ -115,7 +116,7 @@ export class UploadVideo {
                 this.lesson.set(data)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }
@@ -128,11 +129,11 @@ export class UploadVideo {
 
         this.courseService.pathVideo(lessonId, payload).subscribe({
             next: () => {
-                this.mainStateService.displayToast("Das Video wurde erfolgreich gelöscht", true);
+                this.toastService.displayToast("Das Video wurde erfolgreich gelöscht", true);
                 this.renderLesson();
             },
             error: () => {
-                this.mainStateService.displayToast("Versuche es noch einmal.", true);
+                this.toastService.displayToast("Versuche es noch einmal.", true);
 
             }
         })

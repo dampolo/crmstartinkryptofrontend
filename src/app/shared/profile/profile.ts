@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MainStateService } from '../../main-services/main-state-service';
 import { Back } from '../back/back';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
     selector: 'app-profile',
@@ -16,7 +17,7 @@ import { Back } from '../back/back';
 export class Profile {
 
     customerService = inject(UserService);
-    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     customer = signal<CUSTOMER | null>(null);
     showEdit: boolean = false;
     showEditAvatar: boolean = false;
@@ -94,11 +95,11 @@ export class Profile {
 
         this.customerService.updateCustomer(payload).subscribe({
             next: () => {
-                this.mainStateService.displayToast('Deine Daten wurden aktualisiert.', true);
+                this.toastService.displayToast('Deine Daten wurden aktualisiert.', true);
                 this.showConfirmation()
             },
             error: (err) => {
-                this.mainStateService.displayToast('!! Verusche noch einmal.', false);
+                this.toastService.displayToast('!! Verusche noch einmal.', false);
                 this.showConfirmation()
             }
         })
@@ -119,7 +120,7 @@ export class Profile {
     }
 
     editAvatar() {
-        this.mainStateService.displayToast('Die Option ist noch nicht verfügbar.', false)
+        this.toastService.displayToast('Die Option ist noch nicht verfügbar.', false)
     }
 
     pwdRecovery() {

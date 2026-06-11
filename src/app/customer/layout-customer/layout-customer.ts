@@ -6,6 +6,7 @@ import { NavbarCustomer } from '../navbar-customer/navbar-customer';
 import { Toast } from '../../shared/toast/toast';
 import { MainStateService } from '../../main-services/main-state-service';
 import { Footer } from '../../shared/footer/footer';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
   selector: 'app-layout-customer',
@@ -15,4 +16,5 @@ import { Footer } from '../../shared/footer/footer';
 })
 export class LayoutCustomer {
   mainStateService = inject(MainStateService)
+  toastService = inject(ToastService);
 }

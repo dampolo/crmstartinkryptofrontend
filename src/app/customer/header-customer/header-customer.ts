@@ -5,6 +5,7 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { Logo } from '../../shared/logo/logo';
 import { DialogCustomer } from "../dialog-customer/dialog-customer";
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
 	selector: 'app-header-customer',
@@ -17,6 +18,7 @@ export class HeaderCustomer {
 	isProfileVisible = false
 
 	mainStateService = inject(MainStateService);
+	toastService = inject(ToastService);
 	authService = inject(AuthService);
 
 	constructor(private router: Router) {
@@ -25,7 +27,7 @@ export class HeaderCustomer {
 	logOut() {
 		this.authService.logout()
 		this.router.navigate(["/kurse/login"])
-		this.mainStateService.displayToast('Du bist erfolgreich abgemeldet', true)
+		this.toastService.displayToast('Du bist erfolgreich abgemeldet', true)
 	}
 
 	showDialog() {
