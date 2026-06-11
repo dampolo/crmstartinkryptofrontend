@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Back } from '../../shared/back/back';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
     selector: 'app-forgot-password',
@@ -18,6 +19,8 @@ export class ForgotPassword {
 
     authService = inject(AuthService)
     mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
+
 
     recoveryForm: FormGroup;
     isFormValid: boolean = false;
@@ -38,7 +41,7 @@ export class ForgotPassword {
                 this.router.navigate(['/kurse/confirmation'])
             },
             error: () => {
-                this.mainStateService.displayToast('Versuche noch einmal', false)
+                this.toastService.displayToast('Versuche noch einmal', false)
             }
         })
     }
