@@ -3,78 +3,81 @@ import { DialogBusiness } from './dialog-business';
 import { MainStateService } from '../../main-services/main-state-service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../main-services/auth-service';
+import { ToastService } from '../../main-services/toast-service';
 
 
 describe('Profile', () => {
-  let component: DialogBusiness;
-  let fixture: ComponentFixture<DialogBusiness>;
+    let component: DialogBusiness;
+    let fixture: ComponentFixture<DialogBusiness>;
 
-  let mainStateService: MainStateService;
-  let authService: jasmine.SpyObj<AuthService>;
-  let router: jasmine.SpyObj<Router>;
+    let mainStateService: MainStateService;
+    let toastService: ToastService;
+    let authService: jasmine.SpyObj<AuthService>;
+    let router: jasmine.SpyObj<Router>;
 
-  beforeEach(async () => {
-    const authSpy = jasmine.createSpyObj(
-      'AuthService',
-      ['logout']
-    );
+    beforeEach(async () => {
+        const authSpy = jasmine.createSpyObj(
+            'AuthService',
+            ['logout']
+        );
 
-    const routerSpy = jasmine.createSpyObj('Router', [
-      'navigate'
-    ]);
+        const routerSpy = jasmine.createSpyObj('Router', [
+            'navigate'
+        ]);
 
 
-    await TestBed.configureTestingModule({
-      imports: [DialogBusiness],
-      providers: [
-        MainStateService,
-        { provide: Router, useValue: routerSpy },
-        { provide: AuthService, useValue: authSpy }
-      ]
-    })
-      .compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [DialogBusiness],
+            providers: [
+                MainStateService,
+                { provide: Router, useValue: routerSpy },
+                { provide: AuthService, useValue: authSpy }
+            ]
+        })
+            .compileComponents();
+        toastService = TestBed.inject(ToastService);
+        spyOn(toastService, 'displayToast');
 
-    mainStateService = TestBed.inject(MainStateService);
-    spyOn(mainStateService, 'displayToast');
+        mainStateService = TestBed.inject(MainStateService);
 
-    authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
-    
-    router = TestBed.inject(Router) as jasmine.SpyObj<Router>
+        authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
 
-    fixture = TestBed.createComponent(DialogBusiness);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        router = TestBed.inject(Router) as jasmine.SpyObj<Router>
 
-  it('should create component', () => {
-    expect(component).toBeTruthy();
-  });
+        fixture = TestBed.createComponent(DialogBusiness);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should logout user and navigate to login page', () => {
-    component.logOut();
+    it('should create component', () => {
+        expect(component).toBeTruthy();
+    });
 
-    expect(authService.logout).toHaveBeenCalled();
+    it('should logout user and navigate to login page', () => {
+        component.logOut();
 
-    expect(router.navigate).toHaveBeenCalledWith([
-      '/kurse/login'
-    ]);
+        expect(authService.logout).toHaveBeenCalled();
 
-    expect(mainStateService.isProfileVisible)
-      .toBeFalse();
+        expect(router.navigate).toHaveBeenCalledWith([
+            '/kurse/login'
+        ]);
 
-    expect(mainStateService.displayToast)
-      .toHaveBeenCalledWith(
-        'Du bist erfolgreich abgemeldet',
-        true
-      );
-  });
+        expect(mainStateService.isProfileVisible)
+            .toBeFalse();
 
-  it('should navigate to profile page', () => {
-    component.openProfile();
+        expect(toastService.displayToast)
+            .toHaveBeenCalledWith(
+                'Du bist erfolgreich abgemeldet',
+                true
+            );
+    });
 
-    expect(router.navigate).toHaveBeenCalledWith([
-      '/crm/profile'
-    ]);
-  });
+    it('should navigate to profile page', () => {
+        component.openProfile();
+
+        expect(router.navigate).toHaveBeenCalledWith([
+            '/crm/profile'
+        ]);
+    });
 
 });

@@ -6,6 +6,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
 import { COURSE_FEATURE } from '../../../models/course.model';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-edit-course',
@@ -29,9 +30,8 @@ export class EditCourse {
     features: COURSE_FEATURE[] = []
     priceForm: FormGroup
 
-    mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
-
+    toastService = inject(ToastService);
 
     constructor(private route: ActivatedRoute, private router: Router) {
 
@@ -61,7 +61,7 @@ export class EditCourse {
 
         this.courseService.getCourse(courseId).subscribe({
             next: (data) => {
-                this.mainStateService.displayToast('Die Daten wurden gelesen', true)
+                this.toastService.displayToast('Die Daten wurden gelesen', true)
 
                 this.mainDataForm.patchValue({
                     name: data.name,
@@ -82,7 +82,7 @@ export class EditCourse {
 
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }
@@ -100,10 +100,10 @@ export class EditCourse {
         this.courseService.updateCourse(courseId, payload).subscribe({
             next: (data) => {
                 this.showDescription = !this.showDescription
-                this.mainStateService.displayToast('Die Beschreibung wurden erfolgreich gespeichert.', true)
+                this.toastService.displayToast('Die Beschreibung wurden erfolgreich gespeichert.', true)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
 
@@ -121,10 +121,10 @@ export class EditCourse {
         this.courseService.updateCourse(courseId, payload).subscribe({
             next: (data) => {
                 this.showPrice = !this.showPrice;
-                this.mainStateService.displayToast('Der Prise wurden erfolgreich gespeichert.', true)
+                this.toastService.displayToast('Der Prise wurden erfolgreich gespeichert.', true)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }
@@ -135,7 +135,7 @@ export class EditCourse {
 
     submitStatus() {
         this.showStatus = !this.showStatus;
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+        this.toastService.displayToast('Daten wurden erfolgreich gespeichert.', true)
     }
 
     editMainData() {
@@ -153,10 +153,10 @@ export class EditCourse {
         this.courseService.updateCourse(courseId, payload).subscribe({
             next: (data) => {
                 this.showEdit = !this.showEdit;
-                this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+                this.toastService.displayToast('Daten wurden erfolgreich gespeichert.', true)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }

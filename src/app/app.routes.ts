@@ -51,7 +51,7 @@ export const routes: Routes = [
         path: '',
         component: LayoutWebsite,
         children: [
-            { path: '', component: Main, title: 'Startseite' },
+            { path: '', component: Main, title: 'Start in Krypto' },
             { path: 'termin', component: Termin, title: 'Termin vereinbaren' },
             { path: 'datenschutz', component: Datenschutz, title: 'Datenschutz' },
             { path: 'impressum', component: Impressum, title: 'Impressum' },

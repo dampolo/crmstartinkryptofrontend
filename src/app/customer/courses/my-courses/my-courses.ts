@@ -4,6 +4,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
 import { Router, RouterLink } from '@angular/router';
 import { Back } from '../../../shared/back/back';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-my-courses',
@@ -13,8 +14,8 @@ import { Back } from '../../../shared/back/back';
 })
 export class MyCourses {
     courseService = inject(CourseService)
+    toastService = inject(ToastService);
     courses = signal<PURCHASE[]>([])
-    mainStateService = inject(MainStateService);
     lessons = signal<LESSON[]>([]);
 
     constructor(private router: Router){}
@@ -27,7 +28,7 @@ export class MyCourses {
 
             },
             error: (err) => {
-                this.mainStateService.displayToast('SystemFehler', false);
+                this.toastService.displayToast('SystemFehler', false);
             }
         })
     }

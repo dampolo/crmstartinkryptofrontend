@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Back } from '../../../shared/back/back';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MainStateService } from '../../../main-services/main-state-service';
 import { RouterLink } from '@angular/router';
 import { CourseService } from '../../../main-services/course-service';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-add-new-course',
@@ -14,10 +14,8 @@ import { CourseService } from '../../../main-services/course-service';
 })
 export class AddNewCourse {
     courseForm: FormGroup;
-
-    mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
-    
+    toastService = inject(ToastService);
 
 
     constructor() {
@@ -46,18 +44,15 @@ export class AddNewCourse {
 
         this.courseService.postCourse(payload).subscribe({
             next: () => {
-                this.mainStateService.displayToast('Der Kurs wurde gespeichert', true)
+                this.toastService.displayToast('Der Kurs wurde gespeichert', true)
 
             },
             error:  () => {
-                this.mainStateService.displayToast('Versuche es noch einmal.', false)
+                this.toastService.displayToast('Versuche es noch einmal.', false)
             }
         })
-
-
-        console.log(payload);
         
-        this.mainStateService.displayToast('Daten wurden erfolgreich gespeichert.', true)
+        this.toastService.displayToast('Daten wurden erfolgreich gespeichert.', true)
     }
 
 }

@@ -1,10 +1,10 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerControl } from '../../services/customer-control';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CUSTOMER } from '../../../models/customer.model';
-import { MainStateService } from '../../../main-services/main-state-service';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
   selector: 'app-customer-details',
@@ -14,7 +14,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 })
 export class CustomerDetails {
   customerControl = inject(CustomerControl);
-  mainStateService = inject(MainStateService);
+  toastService = inject(ToastService);
   customer = signal<CUSTOMER | null>(null);
   showEdit: boolean = false;
   customerForm: FormGroup;
@@ -103,7 +103,7 @@ export class CustomerDetails {
 
   showConfirmation(message: string, boolean: boolean) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.mainStateService.displayToast(message, boolean);
+    this.toastService.displayToast(message, boolean);
     this.showEdit = false;
     this.ngOnInit();
   }

@@ -5,15 +5,15 @@ import { Navbar } from '../navbar/navbar';
 import { Toast } from '../../shared/toast/toast';
 import { MainStateService } from '../../main-services/main-state-service';
 import { HeaderCrm } from "../header-crm/header-crm";
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
-  selector: 'app-layout',
-  imports: [CommonModule, Navbar, RouterOutlet, Toast, HeaderCrm],
-  templateUrl: './layout.html',
-  styleUrl: './layout.scss',
+    selector: 'app-layout',
+    imports: [CommonModule, Navbar, RouterOutlet, Toast, HeaderCrm],
+    templateUrl: './layout.html',
+    styleUrl: './layout.scss',
 })
 export class Layout {
-  mainStateService = inject(MainStateService)
-  
-
+    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
 }

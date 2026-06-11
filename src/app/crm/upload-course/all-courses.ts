@@ -6,6 +6,7 @@ import { COURSE, PURCHASE } from '../../models/course.model';
 import { MainStateService } from '../../main-services/main-state-service';
 import { catchError, of } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
     selector: 'app-all-courses',
@@ -16,12 +17,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class AllCourses {
     courseService = inject(CourseService)
     purchasedCourses = signal<PURCHASE[]>([])
-    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
 
     courses = toSignal(
         this.courseService.getCourses().pipe(
             catchError((err) => {
-                this.mainStateService.displayToast('SystemFehler', false);
+                this.toastService.displayToast('SystemFehler', false);
                 return of([]);
             })
         ),

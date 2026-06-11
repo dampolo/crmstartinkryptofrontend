@@ -4,7 +4,7 @@ import { CompanyControl } from '../../services/company-control';
 import { CommonModule } from '@angular/common';
 import { catchError, EMPTY, switchMap, tap } from 'rxjs';
 import { Logo } from '../../../shared/logo/logo';
-import { MainStateService } from '../../../main-services/main-state-service';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     standalone: true,
@@ -16,7 +16,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 export class Company {
     companyForm: FormGroup;
     companyControl = inject(CompanyControl);
-    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     currentYear = new Date().getFullYear();
     showEdit: boolean = false;
     selectedFileName: string | null = null;
@@ -24,12 +24,12 @@ export class Company {
     ngOnInit() {
         this.companyControl.getCompany().subscribe({
             next: (data) => {
-                this.mainStateService.displayToast('Die Daten wurden gelesen', true)
+                this.toastService.displayToast('Die Daten wurden gelesen', true)
                 console.log(data);
 
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }
@@ -129,10 +129,10 @@ export class Company {
             .pipe(switchMap(() => this.companyControl.getCompany()),
                 tap(() => {
                     this.showEdit = false;
-                    this.mainStateService.displayToast('Firmendaten wurden erfolgreich gespeichert.', true)
+                    this.toastService.displayToast('Firmendaten wurden erfolgreich gespeichert.', true)
                 }),
                 catchError(err => {
-                    this.mainStateService.displayToast('Fehler beim Speichern der Daten.', false)
+                    this.toastService.displayToast('Fehler beim Speichern der Daten.', false)
                     return EMPTY
                 })
             )

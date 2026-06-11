@@ -2,11 +2,10 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
 import { Back } from '../../../shared/back/back';
-import { LESSON_PDF } from '../../../models/course.model';
 import { catchError, map, Observable, of, tap } from 'rxjs';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-add-new-lesson',
@@ -16,8 +15,7 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 })
 export class AddNewLesson {
     lessonForm: FormGroup;
-
-    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     courseService = inject(CourseService);
     showEdit = false;
 
@@ -52,10 +50,10 @@ export class AddNewLesson {
                 this.lessonId = id;
             }),
             tap(() => {
-                this.mainStateService.displayToast('Die Lektion wurde gespeichert', true);
+                this.toastService.displayToast('Die Lektion wurde gespeichert', true);
             }),
             catchError((err) => {
-                this.mainStateService.displayToast('Versuche es noch einmal.', false);
+                this.toastService.displayToast('Versuche es noch einmal.', false);
                 return of(null);
             })
         );

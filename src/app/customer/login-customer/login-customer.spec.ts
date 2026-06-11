@@ -5,12 +5,15 @@ import { provideRouter, Router } from '@angular/router';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { of, throwError } from 'rxjs';
+import { ToastService } from '../../main-services/toast-service';
 
 describe('Login', () => {
   let component: LoginCustomer;
   let fixture: ComponentFixture<LoginCustomer>;
 
   let mainStateService: MainStateService;
+  let toastService: ToastService;
+
   let authService: jasmine.SpyObj<AuthService>;
   let router: Router;
 
@@ -39,8 +42,10 @@ describe('Login', () => {
     router = TestBed.inject(Router);
     spyOn(router, 'navigate');
 
+    toastService = TestBed.inject(ToastService);
+    spyOn(toastService, 'displayToast');
+
     mainStateService = TestBed.inject(MainStateService);
-    spyOn(mainStateService, 'displayToast');
 
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
@@ -63,7 +68,7 @@ describe('Login', () => {
 
     component.loginWithEmailAndPassword();
 
-    expect(mainStateService.displayToast)
+    expect(toastService.displayToast)
       .toHaveBeenCalledWith(
         'Bitte alle Felder ausfüllen',
         false
@@ -92,7 +97,7 @@ describe('Login', () => {
         'Password123!'
       );
 
-    expect(mainStateService.displayToast)
+    expect(toastService.displayToast)
       .toHaveBeenCalledWith(
         'Du bist angemeldet.',
         true
@@ -118,7 +123,7 @@ describe('Login', () => {
 
     component.loginWithEmailAndPassword();
 
-    expect(mainStateService.displayToast)
+    expect(toastService.displayToast)
       .toHaveBeenCalledWith(
         'Login fehlgeschlagen - prüfe deine Daten.',
         false
@@ -175,7 +180,7 @@ describe('Login', () => {
     expect(authService.loginWithGoogle).toHaveBeenCalled();
 
     expect(router.navigate).not.toHaveBeenCalled();
-    
+
     expect(mainStateService.showPreloader).toBeFalse();
 
   });

@@ -6,6 +6,7 @@ import { AuthService } from '../../main-services/auth-service';
 import { of, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastService } from '../../main-services/toast-service';
 
 
 describe('CreateAccount', () => {
@@ -13,6 +14,8 @@ describe('CreateAccount', () => {
   let fixture: ComponentFixture<CreateAccount>;
 
   let mainStateService: MainStateService;
+  let toastService: ToastService;
+
   let authSpy: jasmine.SpyObj<AuthService>;
   let router: Router;
 
@@ -36,8 +39,10 @@ describe('CreateAccount', () => {
     router = TestBed.inject(Router)
     spyOn(router, "navigate")
 
+    toastService = TestBed.inject(ToastService);
+    spyOn(toastService, 'displayToast');
+
     mainStateService = TestBed.inject(MainStateService);
-    spyOn(mainStateService, 'displayToast');
 
     fixture = TestBed.createComponent(CreateAccount);
     component = fixture.componentInstance;
@@ -195,7 +200,7 @@ describe('CreateAccount', () => {
 
     component.submit();
 
-    expect(mainStateService.displayToast)
+    expect(toastService.displayToast)
       .toHaveBeenCalledWith(
         'Du bist schon registriert.',
         false

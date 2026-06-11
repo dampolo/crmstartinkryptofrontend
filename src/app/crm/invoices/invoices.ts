@@ -4,6 +4,7 @@ import { InvoiceService } from '../services/invoice-service';
 import { INVOICE } from '../../models/invoice.model';
 import { environment } from '../../../environment/environment';
 import { MainStateService } from '../../main-services/main-state-service';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
   standalone: true,
@@ -14,7 +15,8 @@ import { MainStateService } from '../../main-services/main-state-service';
 })
 export class Invoices {
   invoiceService = inject(InvoiceService);
-  mainStateService = inject(MainStateService);
+  toastService = inject(ToastService);
+
   openMenuId: number | null = null;
   invoices = signal<INVOICE[]>([]);
   baseUrl = environment.apiBaseUrl;
@@ -25,7 +27,7 @@ export class Invoices {
         this.invoices.set(invoices);
       },
       error: (err) => {
-        this.mainStateService.displayToast('SystemFehler', false);
+        this.toastService.displayToast('SystemFehler', false);
       },
     });
   }

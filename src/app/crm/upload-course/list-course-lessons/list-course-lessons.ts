@@ -6,6 +6,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 import { LESSON } from '../../../models/course.model';
 import { DecimalPipe } from '@angular/common';
 import { DurationPipe } from '../../../pipes/duration-pipe';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-list-course-lessons',
@@ -16,8 +17,7 @@ import { DurationPipe } from '../../../pipes/duration-pipe';
 export class ListCourseLessons {
     lessons = signal<LESSON[]>([]);
     courseService = inject(CourseService)
-    mainStateService = inject(MainStateService);
-
+    toastService = inject(ToastService);
     constructor(private route: ActivatedRoute, private router: Router) { }
 
 
@@ -27,7 +27,7 @@ export class ListCourseLessons {
             next: (data) => {
                 this.lessons.set(data);
                 console.log(data);
-                
+
             },
             error: (error: any) => {
                 console.log(error);
@@ -38,7 +38,7 @@ export class ListCourseLessons {
                     error?.error?.detail ||
                     "Something went wrong";
 
-                this.mainStateService.displayToast(message, false);
+                this.toastService.displayToast(message, false);
             }
         })
     }
@@ -47,7 +47,7 @@ export class ListCourseLessons {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
         this.router.navigate(["/crm/kurse", courseId, "add-new-lesson"])
     }
-    
+
     editLesson(lessonId: number) {
         const courseId = Number(this.route.snapshot.paramMap.get("courseId"))
         this.router.navigate(["/crm/kurse", courseId, "edit-lesson", lessonId])

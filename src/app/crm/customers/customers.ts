@@ -2,9 +2,9 @@ import { Component, inject, signal } from '@angular/core';
 import { CustomerControl } from '../services/customer-control';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from "@angular/router";
-import { MainStateService } from '../../main-services/main-state-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of, tap } from 'rxjs';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
   standalone: true,
@@ -15,19 +15,19 @@ import { catchError, of, tap } from 'rxjs';
 })
 export class Customers {
   customerControl = inject(CustomerControl);
-  mainStateService = inject(MainStateService);
+  toastService = inject(ToastService);
   openMenuId: number | null = null;
 
   customers = toSignal(
     this.customerControl.getCustomers().pipe(
       tap(() => {
-        this.mainStateService.displayToast(
+        this.toastService.displayToast(
           'Die Kunden wurden geladen.',
           true
         );
       }),
       catchError(error => {
-        this.mainStateService.displayToast(
+        this.toastService.displayToast(
           'Der Server ist aktuell nicht erreichbar. Bitte versuche es später erneut.',
           false
         );

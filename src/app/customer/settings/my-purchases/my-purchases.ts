@@ -6,6 +6,7 @@ import { PURCHASE_CUSTOMER } from '../../../models/purchase.model';
 import { PurchaseService } from '../../../main-services/purchase-service';
 import { PaymentCategoryLabel, PaymentMethodLabel, PaymentStatusLabels } from '../../../models/invoice.model';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
     selector: 'app-my-purchases',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
 export class MyPurchases {
     purchaseService = inject(PurchaseService);
     mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     baseUrl = environment.apiBaseUrl;
     purchases = signal<PURCHASE_CUSTOMER[]>([]);
     PaymentMethodLabel = PaymentMethodLabel;
@@ -33,7 +35,7 @@ export class MyPurchases {
 
             },
             error: (err) => {
-                this.mainStateService.displayToast('SystemFehler', false);
+                this.toastService.displayToast('SystemFehler', false);
             },
         });
     }

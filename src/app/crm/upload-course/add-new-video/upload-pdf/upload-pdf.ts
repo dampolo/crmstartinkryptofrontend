@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { environment } from '../../../../../environment/environment';
 import { finalize, Subscription } from 'rxjs';
+import { ToastService } from '../../../../main-services/toast-service';
 
 @Component({
     selector: 'app-upload-pdf',
@@ -15,9 +16,8 @@ import { finalize, Subscription } from 'rxjs';
     styleUrl: './upload-pdf.scss',
 })
 export class UploadPdf {
-    private baseUrl = environment.apiBaseUrl;
-    mainStateService = inject(MainStateService);
     courseService = inject(CourseService)
+    toastService = inject(ToastService);
 
     lesson = signal<LESSON | null>(null)
 
@@ -105,7 +105,7 @@ export class UploadPdf {
                 this.lesson.set(data)
             },
             error: (err) => {
-                this.mainStateService.displayToast('Du hast kein Internet', false)
+                this.toastService.displayToast('Du hast kein Internet', false)
             }
         })
     }
@@ -114,11 +114,11 @@ export class UploadPdf {
     deletePdf(pdfId: number) {
         this.courseService.deleteSinglePdf(pdfId).subscribe({
             next: () => {
-                this.mainStateService.displayToast('Pdf wurde erfolgreich gelöscht.', true);
+                this.toastService.displayToast('Pdf wurde erfolgreich gelöscht.', true);
                 this.renderLesson();
             },
             error: () => {
-                this.mainStateService.displayToast('Du hast kein Internet', false);
+                this.toastService.displayToast('Du hast kein Internet', false);
             }
         })
     }

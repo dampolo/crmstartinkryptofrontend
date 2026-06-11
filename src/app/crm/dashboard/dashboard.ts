@@ -1,9 +1,8 @@
 import { Component, inject, Inject, signal } from '@angular/core';
-import { DASHBOARD } from '../../models/dashboard.model';
 import { DashboardService } from '../../main-services/dashboard-service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MainStateService } from '../../main-services/main-state-service';
 import { catchError, of, tap } from 'rxjs';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,19 +11,19 @@ import { catchError, of, tap } from 'rxjs';
   styleUrl: './dashboard.scss'
 })
 export class Dashboard {
-  dashboardService = inject(DashboardService)
-  mainStateService = inject(MainStateService);
+  dashboardService = inject(DashboardService);
+  toastService = inject(ToastService);
 
   dashboard = toSignal(
     this.dashboardService.getDashboard().pipe(
       tap(() => {
-        this.mainStateService.displayToast(
+        this.toastService.displayToast(
           'Die Daten wurden geladen.',
           true
         );
       }),
       catchError(error => {
-        this.mainStateService.displayToast(
+        this.toastService.displayToast(
           'Der Server ist aktuell nicht erreichbar. Bitte versuche es später erneut.',
           false
         );

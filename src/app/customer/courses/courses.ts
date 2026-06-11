@@ -7,6 +7,7 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { DecimalPipe } from '@angular/common';
 import { environment } from '../../../environment/environment';
 import { AuthService } from '../../main-services/auth-service';
+import { ToastService } from '../../main-services/toast-service';
 
 @Component({
     selector: 'app-courses',
@@ -17,7 +18,7 @@ import { AuthService } from '../../main-services/auth-service';
 export class Courses {
     courseService = inject(CourseService)
     courses = signal<COURSE[]>([])
-    mainStateService = inject(MainStateService);
+    toastService = inject(ToastService);
     authService = inject(AuthService);
 
     constructor(private router: Router) { }
@@ -30,7 +31,7 @@ export class Courses {
 
             },
             error: (err) => {
-                this.mainStateService.displayToast('SystemFehler', false);
+                this.toastService.displayToast('SystemFehler', false);
             }
         })
     }

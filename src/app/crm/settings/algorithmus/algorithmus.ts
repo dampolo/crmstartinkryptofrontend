@@ -10,7 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ProvisionType, ServiceCatalog } from '../../../models/service-catalog.model';
-import { MainStateService } from '../../../main-services/main-state-service';
+import { ToastService } from '../../../main-services/toast-service';
 
 @Component({
   selector: 'app-algorithmus',
@@ -20,7 +20,7 @@ import { MainStateService } from '../../../main-services/main-state-service';
 })
 export class Algorithmus {
   algorithmusControl = inject(AlgorithmusControl);
-  mainStateService = inject(MainStateService);
+  toastService = inject(ToastService);
   showEdit: boolean = false;
   algorithmusForm!: FormGroup;
   serviceCatalog = signal<ServiceCatalog[]>([]);
@@ -47,10 +47,10 @@ export class Algorithmus {
       next: (data) => {
         this.serviceCatalog.set(data);
         this.loadServicesIntoForm(data);
-        this.mainStateService.displayToast('Die Daten wurden gelesen', true);
+        this.toastService.displayToast('Die Daten wurden gelesen', true);
       },
       error: (err) => {
-        this.mainStateService.displayToast('Du hast kein Internet', false);
+        this.toastService.displayToast('Du hast kein Internet', false);
       },
     });
   }
@@ -145,10 +145,10 @@ export class Algorithmus {
 
     this.algorithmusControl.updateServices(payload.services).subscribe({
       next: () => {
-        this.mainStateService.displayToast('Die Leistungen wurden geändert', true);
+        this.toastService.displayToast('Die Leistungen wurden geändert', true);
       },
       error: (err) => {
-        this, this.mainStateService.displayToast('!! Verusche noch einmal', false);
+        this, this.toastService.displayToast('!! Verusche noch einmal', false);
       },
     });
   }
@@ -168,10 +168,10 @@ export class Algorithmus {
       this.algorithmusControl.deleteService(id).subscribe({
         next: () => {
           this.removeFromForm(service);
-          this.mainStateService.displayToast('!!! Der Service wurde gelöscht.', true)
+          this.toastService.displayToast('!!! Der Service wurde gelöscht.', true)
         },
         error: (err: any) => {
-          this.mainStateService.displayToast('!!! Versuche noch einmal', false)
+          this.toastService.displayToast('!!! Versuche noch einmal', false)
         }
       });
     } else {
