@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { of } from 'rxjs';
+import { ToastService } from '../../main-services/toast-service';
 
 describe('HeaderCustomer', () => {
   let component: HeaderCustomer;
@@ -12,14 +13,16 @@ describe('HeaderCustomer', () => {
 
   let mainStateServiceMock: jasmine.SpyObj<MainStateService>
   let authServiceMock: jasmine.SpyObj<AuthService>
+  let toastServiceMock: jasmine.SpyObj<ToastService>
+
   let router: Router
 
 
   beforeEach(async () => {
 
-    mainStateServiceMock = jasmine.createSpyObj('MainStateService', [
-      'displayToast',
-    ]);
+    mainStateServiceMock = jasmine.createSpyObj('MainStateService', []);
+
+    toastServiceMock = jasmine.createSpyObj('ToastService', ['displayToast']);
 
     const isMenuOpenSignal = jasmine.createSpy('isMenuOpen') as any;
     isMenuOpenSignal.set = jasmine.createSpy('set');
@@ -70,7 +73,7 @@ describe('HeaderCustomer', () => {
         ['/kurse/login']
       )
 
-    expect(mainStateServiceMock.displayToast)
+    expect(toastServiceMock.displayToast)
       .toHaveBeenCalledWith('Du bist erfolgreich abgemeldet', true)
   })
 
