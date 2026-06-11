@@ -5,12 +5,14 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { ToastService } from '../../main-services/toast-service';
 
 describe('Login', () => {
   let component: Login;
   let fixture: ComponentFixture<Login>;
 
   let mainStateService: MainStateService;
+  let toastService: ToastService;
   let authService: jasmine.SpyObj<AuthService>;
   let router: jasmine.SpyObj<Router>;
 
@@ -33,8 +35,10 @@ describe('Login', () => {
       ]
     }).compileComponents();
 
+    toastService = TestBed.inject(ToastService);
+    spyOn(toastService, 'displayToast');
+
     mainStateService = TestBed.inject(MainStateService);
-    spyOn(mainStateService, 'displayToast');
 
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
@@ -57,7 +61,7 @@ describe('Login', () => {
     expect(authService.loginAndFetchUser)
       .toHaveBeenCalledWith('test@test.de', '123456');
 
-    expect(mainStateService.displayToast)
+    expect(toastService.displayToast)
       .toHaveBeenCalledWith('Du bist angemeldet', true);
 
     expect(router.navigate)

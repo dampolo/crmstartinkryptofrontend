@@ -5,13 +5,15 @@ import { Dashboard } from './dashboard';
 import { DashboardService } from '../../main-services/dashboard-service';
 import { MainStateService } from '../../main-services/main-state-service';
 import { DASHBOARD } from '../../models/dashboard.model';
+import { ToastService } from '../../main-services/toast-service';
 
 describe('Dashboard', () => {
   let fixture: ComponentFixture<Dashboard>;
   let component: Dashboard;
 
   let dashboardServiceMock: jasmine.SpyObj<DashboardService>;
-  let mainStateServiceMock: jasmine.SpyObj<MainStateService>;
+  let toastServiceMock: jasmine.SpyObj<ToastService>;
+
 
   const mockDashboard: DASHBOARD = {
     customers_count: 10,
@@ -27,7 +29,7 @@ describe('Dashboard', () => {
       'getDashboard'
     ]);
 
-    mainStateServiceMock = jasmine.createSpyObj('MainStateService', [
+    toastServiceMock = jasmine.createSpyObj('ToastService', [
       'displayToast'
     ]);
 
@@ -43,8 +45,8 @@ describe('Dashboard', () => {
           useValue: dashboardServiceMock
         },
         {
-          provide: MainStateService,
-          useValue: mainStateServiceMock
+          provide: ToastService,
+          useValue: toastServiceMock
         }
       ]
     }).compileComponents();
@@ -64,15 +66,15 @@ describe('Dashboard', () => {
     expect(component.dashboard()?.applicants_count).toBe(5);
     expect(component.dashboard()?.invioces_count).toBe(3);
     expect(dashboardServiceMock.getDashboard).toHaveBeenCalledTimes(1);
-    expect(mainStateServiceMock.displayToast).toHaveBeenCalledTimes(1);
-    expect(mainStateServiceMock.displayToast).toHaveBeenCalledWith(
+    expect(toastServiceMock.displayToast).toHaveBeenCalledTimes(1);
+    expect(toastServiceMock.displayToast).toHaveBeenCalledWith(
       'Die Daten wurden geladen.',
       true
     );
   });
 
   it('should handle error and display error toast', () => {
-    mainStateServiceMock.displayToast.calls.reset();
+    toastServiceMock.displayToast.calls.reset();
     
     dashboardServiceMock.getDashboard.and.returnValue(
       throwError(() => new Error('Server Error'))
@@ -85,7 +87,7 @@ describe('Dashboard', () => {
 
     expect(errorComponent.dashboard()).toBeNull();
 
-    expect(mainStateServiceMock.displayToast).toHaveBeenCalledWith(
+    expect(toastServiceMock.displayToast).toHaveBeenCalledWith(
       'Der Server ist aktuell nicht erreichbar. Bitte versuche es später erneut.',
       false
     );
