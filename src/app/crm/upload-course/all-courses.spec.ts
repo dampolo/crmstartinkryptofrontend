@@ -6,12 +6,16 @@ import { MainStateService } from '../../main-services/main-state-service';
 import { CourseService } from '../../main-services/course-service';
 import { of, throwError } from 'rxjs';
 import { COURSE, STATUS } from '../../models/course.model';
+import { ToastService } from '../../main-services/toast-service';
 
 describe('AllCourse', () => {
   let component: AllCourses;
   let fixture: ComponentFixture<AllCourses>;
   let courseService: jasmine.SpyObj<CourseService>;
   let mainStateServiceMock: jasmine.SpyObj<MainStateService>;
+  let toastServiceMock: jasmine.SpyObj<ToastService>
+
+
 
   const mockCourses: COURSE[] = [
     {
@@ -40,11 +44,17 @@ describe('AllCourse', () => {
 
   beforeEach(async () => {
 
-    mainStateServiceMock = jasmine.createSpyObj('MainStateService', [
+    mainStateServiceMock = {
+      showConfirmationText: {
+        set: jasmine.createSpy('set')
+      }
+    } as any;
+
+    toastServiceMock = jasmine.createSpyObj('ToastService', [
       'displayToast'
     ]);
 
-    courseService  = jasmine.createSpyObj(
+    courseService = jasmine.createSpyObj(
       'CourseService',
       ['getCourses']
     );
@@ -53,10 +63,14 @@ describe('AllCourse', () => {
       imports: [AllCourses],
       providers: [
         provideRouter([]),
-        { provide: CourseService, useValue: courseService  },
+        { provide: CourseService, useValue: courseService },
         {
           provide: MainStateService,
           useValue: mainStateServiceMock
+        },
+        {
+          provide: ToastService,
+          useValue: toastServiceMock
         }
       ]
     })
@@ -88,7 +102,7 @@ describe('AllCourse', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    expect(mainStateServiceMock.displayToast)
+    expect(toastServiceMock.displayToast)
       .toHaveBeenCalledWith('SystemFehler', false);
 
     expect(component.courses()).toEqual([]);

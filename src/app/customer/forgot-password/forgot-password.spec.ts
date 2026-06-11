@@ -5,25 +5,30 @@ import { provideRouter, Route, Router } from '@angular/router';
 import { MainStateService } from '../../main-services/main-state-service';
 import { AuthService } from '../../main-services/auth-service';
 import { of, throwError } from 'rxjs';
+import { ToastService } from '../../main-services/toast-service';
 
 describe('ForgotPassword', () => {
     let component: ForgotPassword;
     let fixture: ComponentFixture<ForgotPassword>;
 
     let mainStateServiceMock: jasmine.SpyObj<MainStateService>
+    let toastServiceMock: jasmine.SpyObj<ToastService>
+
     let authServiceMock: jasmine.SpyObj<AuthService>
     let router: Router
 
     beforeEach(async () => {
 
-        mainStateServiceMock = jasmine.createSpyObj('MainStateService', [
+        toastServiceMock = jasmine.createSpyObj('ToastService', [
             'displayToast'
         ]);
 
-        mainStateServiceMock.showConfirmationText = {
-            set: jasmine.createSpy('set'),
+        mainStateServiceMock = {
+            showConfirmationText: {
+                set: jasmine.createSpy('set')
+            }
         } as any;
-
+        
         authServiceMock = jasmine.createSpyObj(
             'AuthService',
             ['forgotPassword']
@@ -36,6 +41,10 @@ describe('ForgotPassword', () => {
                 {
                     provide: MainStateService,
                     useValue: mainStateServiceMock
+                },
+                {
+                    provide: ToastService,
+                    useValue: toastServiceMock
                 },
                 {
                     provide: AuthService,
@@ -66,7 +75,7 @@ describe('ForgotPassword', () => {
         component.submit();
 
         expect(mainStateServiceMock.showConfirmationText.set)
-        .toHaveBeenCalledWith('');
+            .toHaveBeenCalledWith('');
     })
 
     it('should navigate to confirmation page and show text with confirmation', () => {
@@ -110,7 +119,7 @@ describe('ForgotPassword', () => {
         expect(authServiceMock.forgotPassword)
             .toHaveBeenCalledWith('test@test.de');
 
-        expect(mainStateServiceMock.displayToast)
+        expect(toastServiceMock.displayToast)
             .toHaveBeenCalledWith('Versuche noch einmal', false)
 
     })

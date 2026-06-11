@@ -20,7 +20,11 @@ describe('HeaderCustomer', () => {
 
   beforeEach(async () => {
 
-    mainStateServiceMock = jasmine.createSpyObj('MainStateService', []);
+    mainStateServiceMock = {
+      showConfirmationText: {
+        set: jasmine.createSpy('set')
+      }
+    } as any;
 
     toastServiceMock = jasmine.createSpyObj('ToastService', ['displayToast']);
 
@@ -44,6 +48,10 @@ describe('HeaderCustomer', () => {
         {
           provide: AuthService,
           useValue: authServiceMock
+        },
+        {
+          provide: ToastService,
+          useValue: toastServiceMock
         }
       ]
     })
