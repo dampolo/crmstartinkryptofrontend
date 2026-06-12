@@ -35,6 +35,7 @@ describe('Profile', () => {
             ]
         })
             .compileComponents();
+
         toastService = TestBed.inject(ToastService);
         spyOn(toastService, 'displayToast');
 
@@ -72,7 +73,7 @@ describe('Profile', () => {
             );
     });
 
-    it('should navigate to profile page', () => {
+    it('should navigate to profile business page', () => {
         component.openProfile();
 
         expect(router.navigate).toHaveBeenCalledWith([

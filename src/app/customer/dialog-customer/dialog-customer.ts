@@ -12,7 +12,6 @@ import { ToastService } from '../../main-services/toast-service';
     styleUrl: './dialog-customer.scss',
 })
 export class DialogCustomer  {
-
     mainStateService = inject(MainStateService);
     toastService = inject(ToastService);
     authService = inject(AuthService);
@@ -20,6 +19,7 @@ export class DialogCustomer  {
     constructor(private router: Router) {
 
     }
+
     logOut() {
         this.authService.logout()
         this.router.navigate(["/kurse/login"])
