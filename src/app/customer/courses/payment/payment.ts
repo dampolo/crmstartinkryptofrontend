@@ -2,7 +2,6 @@ import { CommonModule, DecimalPipe } from '@angular/common';
 import { Component, computed, ErrorHandler, inject, signal } from '@angular/core';
 import { MainStateService } from '../../../main-services/main-state-service';
 import { CourseService } from '../../../main-services/course-service';
-import { single } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { COURSE, DISCOUNT_CODE, TAX } from '../../../models/course.model';
 import { InvoiceService } from '../../../main-services/invoice-service';
@@ -11,10 +10,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { PROFILE_INCOMPLETE_ERROR } from '../../../models/customer.model';
 import { PurchaseService } from '../../../main-services/purchase-service';
 import { ToastService } from '../../../main-services/toast-service';
+import { Back } from '../../../shared/back/back';
 
 @Component({
     selector: 'app-payment',
-    imports: [CommonModule, DecimalPipe],
+    imports: [CommonModule, DecimalPipe, Back],
     templateUrl: './payment.html',
     styleUrl: './payment.scss',
 })
@@ -61,6 +61,7 @@ export class Payment {
             }
         })
     }
+    
 
     // The method check if the discount code correct ist
     // and give you the object back.

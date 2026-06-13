@@ -56,7 +56,7 @@ describe('Dashboard', () => {
     fixture.detectChanges();
   });
 
-  it('should create the component', () => {
+  it('should create the component crm dashboard', () => {
     expect(component).toBeTruthy();
   });
   
