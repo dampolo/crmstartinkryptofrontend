@@ -1,18 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Payment } from './payment';
-import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, provideRouter, Router } from '@angular/router';
 import { COURSE, DISCOUNT_CODE, STATUS, TAX } from '../../../models/course.model';
 import { AuthService } from '../../../main-services/auth-service';
 import { of, throwError } from 'rxjs';
 import { ToastService } from '../../../main-services/toast-service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PurchaseService } from '../../../main-services/purchase-service';
+import { CourseService } from '../../../main-services/course-service';
+import { MainStateService } from '../../../main-services/main-state-service';
+import { InvoiceService } from '../../../main-services/invoice-service';
 
 describe('Payment', () => {
     let component: Payment;
     let fixture: ComponentFixture<Payment>;
     let authServiceSpy: jasmine.SpyObj<AuthService>
+    let purchaseServiceSpy: jasmine.SpyObj<PurchaseService>
+    let courseServiceSpy: jasmine.SpyObj<CourseService>
+    let mainStateService: MainStateService;
+    let invoiceServiceSpy: jasmine.SpyObj<InvoiceService>
     let toastServiceSpy: jasmine.SpyObj<ToastService>;
+    let router: Router;
 
 
     const mockCourse: COURSE = {
@@ -50,9 +59,22 @@ describe('Payment', () => {
             'displayToast'
         ]);
 
+        purchaseServiceSpy = jasmine.createSpyObj('PurchaseService',
+            ['checkPurchase']
+        )
+        courseServiceSpy = jasmine.createSpyObj('CourseService',
+            ['buyCourse', 'getCourse']
+        )
+
+        invoiceServiceSpy = jasmine.createSpyObj(
+            'InvoiceService',
+            ['getTax']
+        );
+
         await TestBed.configureTestingModule({
             imports: [Payment],
             providers: [
+                MainStateService,
                 provideRouter([]),
                 {
                     provide: ActivatedRoute,
@@ -72,9 +94,30 @@ describe('Payment', () => {
                     provide: ToastService,
                     useValue: toastServiceSpy
                 }
+                ,
+                {
+                    provide: PurchaseService,
+                    useValue: purchaseServiceSpy
+                },
+                {
+                    provide: CourseService,
+                    useValue: courseServiceSpy
+                },
+                {
+                    provide: InvoiceService,
+                    useValue: invoiceServiceSpy
+                }
             ]
         })
             .compileComponents();
+
+        router = TestBed.inject(Router);
+        spyOn(router, 'navigate');
+
+        mainStateService = TestBed.inject(MainStateService);
+
+        courseServiceSpy.getCourse.and.returnValue(of(mockCourse));
+        invoiceServiceSpy.getTax.and.returnValue(of(mockTax));
 
         fixture = TestBed.createComponent(Payment);
         component = fixture.componentInstance;
@@ -218,7 +261,7 @@ describe('Payment', () => {
         });
     });
 
-    it('should call checkProfileComplete with correct values', () => {
+    it('should call checkProfileComplete in submitOrder with correct values', () => {
         component.course.set(mockCourse);
 
         component.discountCode.set({
@@ -229,11 +272,11 @@ describe('Payment', () => {
 
         component.paymentMethod.set('paypal');
 
-        spyOn(component, 'checkProfileComplete');
+        spyOn(component, 'validateProfileBeforePurchase');
 
         component.submitOrder();
 
-        expect(component.checkProfileComplete).toHaveBeenCalledWith(
+        expect(component.validateProfileBeforePurchase).toHaveBeenCalledWith(
             1, // courseId from route
             {
                 course_id: 1,
@@ -243,27 +286,28 @@ describe('Payment', () => {
         );
     });
 
-    it('should call checkPurchase when profile is complete', () => {
+    it('should call checkPurchase in (checkProfileComplete) when profile is complete', () => {
         authServiceSpy.checkProfileComplete.and.returnValue(
             of({
                 message: 'Profil vollständig'
             })
         );
-        spyOn(component, 'checkPurchase');
+        spyOn(component, 'validatePurchase');
 
         const payload = {
             course_id: 1,
             discount: null
         };
 
-        component.checkProfileComplete(1, payload, 'paypal');
+        component.validateProfileBeforePurchase(1, payload, 'paypal');
 
-        expect(component.checkPurchase).toHaveBeenCalledWith(
+        expect(component.validatePurchase).toHaveBeenCalledWith(
             1,
             payload,
             'paypal'
         );
     });
+
     it('should show backend error message when profile is incomplete', () => {
         const errorResponse = new HttpErrorResponse({
             error: {
@@ -276,7 +320,7 @@ describe('Payment', () => {
             throwError(() => errorResponse)
         );
 
-        component.checkProfileComplete(
+        component.validateProfileBeforePurchase(
             1,
             { course_id: 1, discount: null },
             'paypal'
@@ -288,4 +332,180 @@ describe('Payment', () => {
         );
     });
 
+    it('should navigate to paypal page when purchase check succeeds', () => {
+        purchaseServiceSpy.checkPurchase.and.returnValue(of(true))
+
+        const payload = {
+            course_id: 1,
+            discount: null
+        };
+
+        component.validatePurchase(1, payload, 'paypal')
+
+        expect(router.navigate).toHaveBeenCalledWith(
+            ['customer/courses/payment/1/paypal'],
+            {
+                state: { payload }
+            }
+        )
+    })
+
+    it('should navigate to paypal page when purchase check succeeds', () => {
+        purchaseServiceSpy.checkPurchase.and.returnValue(of(true))
+
+        const payload = {
+            course_id: 1,
+            discount: null
+        };
+
+        component.validatePurchase(1, payload, 'paypal')
+
+        expect(router.navigate).toHaveBeenCalledWith(
+            ['customer/courses/payment/1/paypal'],
+            {
+                state: { payload }
+            }
+        )
+    })
+
+    it('should call buyCourseWithBankTransfer when payment method is bank transfer', () => {
+        purchaseServiceSpy.checkPurchase.and.returnValue(of(true));
+
+        spyOn(component, 'buyCourseWithBankTransfer');
+
+        const payload = {
+            course_id: 1,
+            discount: null
+        };
+
+        component.validatePurchase(1, payload, 'bank')
+
+        expect(component.buyCourseWithBankTransfer)
+            .toHaveBeenCalledWith(payload)
+    })
+
+    it('should show error toast when course is already purchased', () => {
+        purchaseServiceSpy.checkPurchase.and.returnValue(
+            throwError(() =>
+                new HttpErrorResponse({
+                    error: {
+                        message: 'Du hast diesen Kurs bereits gekauft'
+                    }
+                })
+            )
+        );
+
+        component.validatePurchase(
+            1,
+            { course_id: 1, discount: null },
+            'paypal'
+        );
+
+        expect(toastServiceSpy.displayToast).toHaveBeenCalledWith(
+            'Du hast diesen Kurs bereits gekauft',
+            false
+        );
+    });
+
+    it('should show fallback message when backend error has no message', () => {
+        purchaseServiceSpy.checkPurchase.and.returnValue(
+            throwError(() =>
+                new HttpErrorResponse({
+                    error: {}
+                })
+            )
+        );
+
+        component.validatePurchase(
+            1,
+            { course_id: 1, discount: null },
+            'paypal'
+        );
+
+        expect(toastServiceSpy.displayToast).toHaveBeenCalledWith(
+            'Du hast diesen Kurs bereits gekauft',
+            false
+        );
+    });
+
+    it('should navigate to confirmation page when course purchase succeeds', () => {
+        const payload = {
+            course_id: 1,
+            discount: null
+        };
+
+        courseServiceSpy.buyCourse.and.returnValue(of({}));
+
+        component.buyCourseWithBankTransfer(payload);
+
+        expect(mainStateService.showConfirmationText()).toBe(
+            'Du hast den Kurs erfoglreich gekauft.'
+        );
+
+        expect(mainStateService.showConfirmationLink()).toBe(
+            'course'
+        );
+
+        expect(router.navigate).toHaveBeenCalledWith([
+            '/customer/confirmation'
+        ]);
+    });
+
+    it('should call buyCourse service with payload', () => {
+        const payload = {
+            course_id: 1,
+            discount: null
+        };
+
+        courseServiceSpy.buyCourse.and.returnValue(of({}));
+
+        component.buyCourseWithBankTransfer(payload);
+
+        expect(courseServiceSpy.buyCourse)
+            .toHaveBeenCalledWith(payload);
+    });
+
+    it('should show error message when purchase fails', () => {
+        const payload = {
+            course_id: 1,
+            discount: null
+        };
+
+        courseServiceSpy.buyCourse.and.returnValue(
+            throwError(() => ({
+                error: {
+                    message: 'Kurs bereits gekauft'
+                }
+            }))
+        );
+
+        component.buyCourseWithBankTransfer(payload);
+
+        expect(toastServiceSpy.displayToast)
+            .toHaveBeenCalledWith(
+                'Kurs bereits gekauft',
+                false
+            );
+    });
+
+    it('should show fallback message when backend error has no message', () => {
+        const payload = {
+            course_id: 1,
+            discount: null
+        };
+
+        courseServiceSpy.buyCourse.and.returnValue(
+            throwError(() => ({
+                error: {}
+            }))
+        );
+
+        component.buyCourseWithBankTransfer(payload);
+
+        expect(toastServiceSpy.displayToast)
+            .toHaveBeenCalledWith(
+                'Kauf fehlgeschlagen',
+                false
+            );
+    });
 });

@@ -145,15 +145,15 @@ export class Payment {
     submitOrder() {
         const payload = this.checkoutPayload()
         const courseId = Number(this.route.snapshot.paramMap.get('courseId'))
-        this.checkProfileComplete(courseId, payload, this.paymentMethod())
+        this.validateProfileBeforePurchase(courseId, payload, this.paymentMethod())
     }
 
     // Check if the profile is complieted because you cannot buy a course if
     // the address is not complite
-    checkProfileComplete(courseId: number, payload: any, paymentMethod: string) {
+    validateProfileBeforePurchase(courseId: number, payload: any, paymentMethod: string) {
         this.authService.checkProfileComplete().subscribe({
             next: () => {
-                this.checkPurchase(courseId, payload, paymentMethod)
+                this.validatePurchase(courseId, payload, paymentMethod)
             },
             error: (error: HttpErrorResponse) => {
                 const err = error.error as PROFILE_INCOMPLETE_ERROR;
@@ -165,7 +165,7 @@ export class Payment {
 
     }
 
-    checkPurchase(courseId: number, payload: any, paymentMethod: string) {
+    validatePurchase(courseId: number, payload: any, paymentMethod: string) {
 
         this.purchaseService.checkPurchase(courseId).subscribe({
 
