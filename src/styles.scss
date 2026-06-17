@@ -46,7 +46,6 @@ main {
   color: basic.$main;
   padding-inline: 1rem;
   background-color: basic.$body-bg;
-  gap: 1rem;
 }
 
 .main-crm,
@@ -593,5 +592,17 @@ app-add-new-video {
 
   app-profile {
     padding: 0;
+  }
+}
+
+
+@media (height < 700px) and (width > 500px) {
+  app-header {
+    position: static;
+  }
+
+  .faq, .legacy, .imprint {
+    padding: 2rem;
+    margin-block: 1rem;
   }
 }
