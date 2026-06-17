@@ -35,7 +35,7 @@ export class MyCourses {
 
     openCourse(courseId: number) {
       this.router.navigate([
-        'customer/my-courses/', courseId, 'list-of-lessons'
+        `customer/my-courses/${courseId}/list-of-lessons`
       ])
     }
 }
